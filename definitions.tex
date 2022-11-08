@@ -1,0 +1,31 @@
+  \usepackage{amssymb}
+  \usepackage{latexsym}
+  \usepackage{amsfonts}
+  \usepackage{amsthm}
+  \usepackage{amsmath}
+
+
+% put your command and environment definitions here
+
+
+
+
+% some theorem environments
+% remove "[theorem]" if you do not want them to use the same number sequence
+
+
+  \newtheorem{theorem}{Theorem}[chapter]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{prop}[theorem]{Proposition}
+  \newtheorem{cor}[theorem]{Corollary}
+
+  \newtheorem{conj}{Conjecture}
+  \renewcommand{\theconj}{\Alph{conj}}  % numbered A, B, C etc
+
+  \theoremstyle{definition}
+  \newtheorem{defn}[theorem]{Definition}
+  \newtheorem{ex}[theorem]{Example}
+  \newtheorem{exs}[theorem]{Examples}
+  \newtheorem{question}[theorem]{Question}
+  \newtheorem{remark}[theorem]{Remark}
+  \newtheorem{notn}[theorem]{Notation}
