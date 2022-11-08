@@ -5,6 +5,12 @@
 \RequirePackage{amsfonts} %mathbb font
 \RequirePackage{amssymb} %therefore
 \RequirePackage{mathtools} % for DeclarePairedDelimiter
+%\RequirePackage[numbers]{natbib}
+\RequirePackage[english]{babel}
+\RequirePackage{csquotes}
+\RequirePackage[style=trad-abbrv,natbib=true]{biblatex}
+\addbibresource{ref.bib}
+\RequirePackage{doi}  % to hyperlink the doi in citations
 
 \IfFileExists{theoremstyle.sty}{\RequirePackage{theoremstyle}}{}
 
