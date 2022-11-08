@@ -1,11 +1,11 @@
 % An MSI thesis template thrown together Oct 2005 - CW
 
-
-\documentclass[a4paper,12pt]{book}
+% openany allows a chapter to start on even numbered pages
+\documentclass[a4paper,12pt,openany]{book}
 
 
   % a file containing your definitions, which packages to load etc
-  \include{definitions}
+  \usepackage{definitions}
 
   % line-spacing factor
   \renewcommand{\baselinestretch}{1.2}
@@ -13,9 +13,6 @@
   % use this if you don't want headers and page numbers on
   % blank pages at the end of chapters
   \newcommand{\blanknonumber}{\newpage\thispagestyle{empty}}
-
-  % needed for ANU logo on titlepage (optional)
-  \usepackage{graphics}
 
   % margins
   \setlength{\voffset}{-1in}
@@ -27,8 +24,6 @@
   \setlength{\topmargin}{2.5cm}
 
 
-\usepackage{hyperref}%added by Joan Licata,  2022
-
   % for working drafts, un-comment the following command and list
   % the chapters etc you want to see in the output, eg
   % \includeonly{titlepage,chapter1,chapter2}
@@ -38,63 +33,62 @@
 \begin{document}
 
 
-  % set page numbers to roman and suppress chapter numbers
-  \frontmatter
+% set page numbers to roman and suppress chapter numbers
+\frontmatter
 
 
-  % remove or switch the order of these as you see fit
-  \include{titlepage}\blanknonumber
-  \include{dedication}\blanknonumber
-  \include{declaration}\blanknonumber
-  \include{acknowledgements}\blanknonumber
-  \include{abstract}\blanknonumber
-  \tableofcontents\blanknonumber
-  \include{notation}\blanknonumber
-
-
-
-  % set page numbers to arabic, reset to 1
-  \mainmatter
-
-  % assuming there are files chapter1.tex etc...
-  \include{chapter1}
-  %\include{chapter2}
-  %\include{chapter3}
-  %\include{chapter4}
-  %etc
+% remove or switch the order of these as you see fit
+\input{titlepage}%\blanknonumber
+\input{dedication}%\blanknonumber
+\input{declaration}%\blanknonumber
+\input{acknowledgements}%\blanknonumber
+\input{abstract}%\blanknonumber
+\tableofcontents%\blanknonumber
+\input{notation}%\blanknonumber
 
 
 
+% set page numbers to arabic, reset to 1
+\mainmatter
+\renewcommand{\thefootnote}{\arabic{footnote}}
 
-% APPENDICES
-
-
-  % change chapter name and counters (eg Chapter 1 -> Appendix A)
-  \appendix
-
-
-  % assuming there are files appendix1.tex etc...
-  \include{appendix1}
-  %\include{appendix2}
-  %\include{appendix3}
-  %etc
+% assuming there are files chapter1.tex etc...
+\input{chapter1}
+%\include{chapter2}
+%\include{chapter3}
+%\include{chapter4}
+%etc
 
 
 
 
-% BIBLIOGRAPHY
+%APPENDICES
 
 
-  % add Bibliography to table of contents
-  \addcontentsline{toc}{chapter}{Bibliography}
+% change chapter name and counters (eg Chapter 1 -> Appendix A)
+\appendix
 
 
-  % list BibTeX (.bib) files and choose bibliography style
-  \bibliography{references1,references2}
-  \bibliographystyle{abbrv}
+% assuming there are files appendix1.tex etc...
+\input{appendix1}
+%\include{appendix2}
+%\include{appendix3}
+%etc
 
-  % OR... do it manually in the file bibliography.tex
-  \include{bibliography}
+
+
+
+%BIBLIOGRAPHY
+
+
+% add Bibliography to table of contents
+\addcontentsline{toc}{chapter}{Bibliography}
+
+
+% list BibTeX (.bib) files and choose bibliography style
+\bibliography{ref}
+\bibliographystyle{abbrv} % or abbrvnat
+
 
 
 

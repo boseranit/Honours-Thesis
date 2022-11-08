@@ -7,7 +7,7 @@
 Blah blah blah...
 
 The environments below all use the same numbering sequence.  See
-the file \verb+definitions.tex+ if you want to change this.
+the file \verb+definitions.tex+ if you want to change this.\cite{einstein}
 
 \begin{defn}
 A lemma.
@@ -21,8 +21,20 @@ Some notation.
 A lemma.
 \end{lemma}
 
-\begin{theorem}
-A theorem.
+\begin{theorem}[Girsanov theorem {\cite[Thm 5.7.1]{halliday}}]
+	Let $\gamma \in H^2$ be an $\mathbb{R}^n$ valued process, satisfying 
+	\[
+		\E \paren[3]{\exp \paren[3]{\frac{1}{2}\int_{0}^{T} \norm{\gamma(s)}^2 ds }}
+		< \infty \tag{Noikov's condition}
+	\] 
+	Suppose $(B_t)_{t\geq 0}$ is a Brownian process w.r.t. $\P$. Then there exists an
+	equivalent probability measure  $\widehat{\P}\sim \P$ such that the process 
+	defined by
+	\[
+	\widetilde{B}_t = B_t + \int_{0}^{t} \gamma_s ds \qquad 0\leq t\leq T 
+	\] 
+	is a Brownian motion w.r.t. $\widehat{\P}$. The measure $\widehat{\P}$ can
+	be defined through the Radon-Nikod\'{y}m  derivative.
 \end{theorem}
 
 \begin{proof}
@@ -50,6 +62,3 @@ A remark.
 \end{remark}
 
 
-\newpage
-
-Blah blah blah...
