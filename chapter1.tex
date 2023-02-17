@@ -6,7 +6,7 @@
 formalism and Donaldson Witten theory using twisted $N=2$ supersymmetry.
 Lacking details
 
-\cite{wittentTQFT} is the seminal article on twisted supersymmetric gauge theory.
+\cite{wittenTQFT} is the seminal article on twisted supersymmetric gauge theory.
 Including how donaldson invariants arise
 
 \cite{birminghamTFT} is a 366pg textbook on supersymmetry, BRST, euler
@@ -38,21 +38,292 @@ formula for Thom class
 \cite{MQintro} is a 35 pg introductory accound of the previous paper, beginning
 with Mathai-Quillen formalism for finite dimen vector bundles
 
+\section{History}
+Weyl (1918) introduced the concepts of gauge transformation and gauge
+invariance, while seeking to unify electromagnetism with general relativity. After the
+development of quantum mechanics, an idea was to make the global phase symmetry
+into a local gauge symmetry by replacing the momentum operator with a covariant 
+derivative in the Schrodinger equation, given by 
+$\widehat{p}=\frac{\hbar}{i}(\nabla+iA)$. The result of this $\U(1)$ gauge symmetry
+turns out to be profound, since it introduces EM interactions with a charged
+quantum mechanical particle. This was the first widely accepted gauge theory,
+and popularised by Pauli (\citeyear{pauli_em}).\cite{pauli_em}
+Gauge theory was mostly limited to EM and GR until the paper of Yang and Mills 
+(1954). They introduced $\SU(2)$ gauge theories for
+isotopic spin axes, to understand the strong interaction. This idea later found
+application to the model of the electroweak interaction by Weinberg and Salam
+(1967), and also the Higgs mechanism (1966) for spontaneous symmetry breaking
+allowing gauge fields to acquire mass. 
+
+This also motivated the search for a strong force gauge theory, which is now
+known as quantum chromodynamics. The Standard Model unifies the description of
+electromagnetism, weak interactions and strong interactions in the language of
+quantized gauge theory. 
+
+The origin of TQFT can be traced to the work of Schwarz and Witten.
+Schwarz showed that the Ray-Singer torsion, a particular topological invarint,
+could be represented as the partition function of a certian quantum field theory
+(1978). Unrelated to this observation, Witten gave a framework for understanding
+Morse theory in terms of supersymmetric quantum mechanics (1982), which was 
+generalised to an infinite dimensional version by Floer. 
+
+In \citeyear{don83}, Donaldson built on his doctoral advisor Atiyah's work on 
+Yang-Mills instantons to introduce his famous polynomial invariants, and prove 
+Donaldson's theorem.\cite{don83}
+Freedman used this work to exhibit existence of exotic differentiable
+structures on $\mathbb{R}^{4}$. 
+Witten (\citeyear{wittenTQFT}) provided a way
+of obtaining the polynomials by formulating a supersymmetric TQFT, which became
+known as Donaldson-Witten theory.\cite{wittenTQFT}
+Another approach to obtain topological invariants, related to Donaldson's
+construction, comes from Seiberg-Witten theory (1994). They formulated a set of
+equations that contains the same information as the Yang-Mills equations but
+are technically much easier to work with. 
+
+\section{Outline}
+Riemannian 4-manifold and a principal $G$-bundle $E$ over it. Given a connection
+on this bundle, the curvature  $F(A)\in \Omega^2(\mathfrak{g})$ is a Lie algebra
+valued 2-form. Then instantons are solutions to the ASD equation $\star F(A) =
+-F(A)$. 
+
+We can defined the gauge group to be the group of bundle automorphisms of  $E$.
+This acts on the space of connections, and preserves the subspaces of
+instantons, so we can mod out by this to define a moduli space of instantons
+$\mathcal{M}(E)$. If we're lucky, this is a smooth manifold and the donaldson
+invariant does not depend on the Riemannian metric and is an invariant of smooth
+4-manifolds. 
+
+The curvature is the field strength tensor of a physical gauge theory, while the
+connection is called the gauge potential. (electromagnetism is an example)
+The action of a Yang-Mills gauge theory is given by the integral
+\[
+S = \int_M \Tr (F\wedge \star F)
+\] 
+whose Euler-Lagrange equations are the classical equations of motion, i.e. the
+classical solutions are stationary points of this functional. Now, we can
+decompose the field strength into a self-dual and anti-self-dual part.
+This gives 
+\[
+S = \int \Tr(F^{+}\wedge \star F^{+}) +\int \Tr(F^{-}\wedge \star F^{-})
+\] 
+and comparing this to the second Chern class $C_2(A) := \int \Tr(F\wedge F)$ we
+can see that $\abs{S(A)} >= \abs{C_2(A)}$, i.e. it is locally minimized when
+this equality holds. But this holds exactly when either $F^{+}=0$ or $F^{-}=0$.
+Thus the classical equations of motion are equivalent to $\star F = \pm F$. So
+instantons are just classical solutions to the equation of motion.
+
+Instantons may be related by large gauge transformations, which may be
+quotiented out.
+
+
+
 
 \section{Introduction}
+A gauge is a ``coordinate system" that varies depending on one's ``location"
+with respect to some base space. A gauge transform is a change of coordinates
+applied to each such location, and a gauge theory is a model for some system to
+which gauge transforms can be applied, and is typically gauge invariant, in that
+all meaningful quantities transform naturally under gauge transformations. By
+fixing a gauge (or breaking the gauge symmetry), the model becomes easier to
+analyse mathematically. 
 
-Donaldson-Witten theory is a TQFT of Witten type. Witten-type TQFTs can be
-formulated in a variety of frameworks. 
+
+
+
+A quantum field theory is called a TQFT when the correlation functions are
+independent of the metric. 
+TQFT has been an active area of research ever since the seminal work by Witten
+\cite{wittenTQFT}. TQFT contains no excitations that may propagate in the
+spacetime, so it does not describe any waves we know in the real world. The
+characteristic quantity describing a configuration: the action, remains
+invariant under any continuous changes of the topology. 
+
+There are two ways to formally guarantee that the correlation functions remain
+invariant under variations of the metric. % labatista, lozano
+\begin{itemize}
+	\item Schwarz type TFT: the action and the operators are defined without 
+		using the metric of the manifold. The most notable example is
+		Chern-Simmons gauge theory. Another import set of examples are the BF
+		theories. 
+	\item Witten type TFT: there is explicit metric
+	dependence, but the theory has a scalar symmetry $\delta$ acting on
+	the fields such that the correlation
+	functions do not depend on the background metric. 
+\end{itemize}
+
+This thesis will focus on a particular Witten type TQFT: Donaldson-Witten
+theory. Witten-type TQFTs can be formulated in a variety of frameworks. 
 \begin{itemize}
 	\item 
-- The most geometric one corresponds to the Mathai-Quillen formalism. In this
+ The most geometric one corresponds to the Mathai-Quillen formalism. In this
 formalism a TQFT is constructed out of a moduli problem. Topological invariants
 are then defined as integrals of a certain Euler class over the resulting moduli
 space.\cite{cernTQFT}
 	\item 
-- A different framework is the one based on the twisting of N = 2 supersymmetry.
+ A different framework is the one based on the twisting of N = 2 supersymmetry.
 In this case, information on the physical theory can be used in the
 TQFT. (Seiberg-Witten invariants have shown up in this framework)
 \end{itemize}
+
+\section{Characteristic classes}
+Recall that for a compact, oriented, Riemannian 2-manifold the Gauss-Bonnet
+theorem states that 
+\[
+	\int \frac{1}{2\pi} K \operatorname{vol} = \chi(M)
+\] 
+which shows that the integral of the Gaussian curvature, which is locally the 
+component of the curvature form relative to an orthonormal frame, is a
+diffeomorphism invariant, independent of the Riemannian structure. 
+
+Let $E\to M$ be a vector bundle of rank $r$. Under a change of frame
+$\overline{\sigma}= \sigma a$, where $a : M \to GL(r,\mathbb{R})$, recall that
+the curvature matrix transforms as $\overline{\Omega}=a^{-1}\Omega a$.  
+The motivation for characteristic classes is to find a polynomial $P(X)$ in the
+entries of $X\in \mathbb{R}^{r\times r}$, such that it is invariant under
+conjugation by all $A\in \GL(r,\mathbb{R})$. That is, $P(A^{-1}XA)=P(X)$; call
+this property $\Ad$-invariant. Then $P(\Omega)$ would be
+independent of the frame and define global form, and has further nice
+properties as the following theorem will show.
+
+\begin{thm}[Chern-Weil theorem \cite{nakahara}] Let $P$ be an $\Ad$-invariant 
+	polynomial in the entries of $\mathbb{R}^{r\times r}$ of degree $k$. 
+	Then $P(\Omega) \in \Omega^{2k}(M,\mathbb{C})$ satisfies
+	\begin{enumerate}[(i)]
+	    \item $dP(\Omega)= 0$, i.e. $P(\Omega)$ is a closed form
+		\item Given two connections $A_0$ and $A_1$, and corresponding
+			 curvature matrices $\Omega_0$ and $\Omega_1$, the difference
+			 $P(\Omega_1)-P(\Omega_0)$ is exact. So the cohomology class
+			 $[P(\Omega)]$ is independent of the choice of connection.
+	\end{enumerate}
+\end{thm}
+\begin{proof}
+	show all the working
+\end{proof}
+
+The cohomology class $[P(F_A)]$ is called the \underline{characteristic
+class} of  $E$ associated to  $P$. 
+
+\subsection{Pontrjagin classes}
+
+
+\subsection{Chern classes}
+Show how $\det(\lambda I + X)$ is an example.
+
+\section{Donaldson-Witten theory}
+This is a retelling of Witten's 1988 TQFT paper. 
+% https://physics.stackexchange.com/questions/224297/what-to-a-physicist-are-instantons-and-the-donaldson-invariants
+
+The physical setting in which the Donaldson invariants will appear is a
+Yang-Mills theory living on the four-dimensional manifold $M$ coupled to certain
+fields such that the total action has a supersymmetry. The action of this theory
+is 
+\begin{align*}
+	S &= \int \Tr \Big(\frac{1}{4}F_{\mu\nu}F^{\mu\nu} +\frac{1}{4}F_{\mu\nu}(\star
+F)^{\mu\nu} +\frac{1}{2}\phi D_\mu D^\mu\lambda - i\eta D_\mu\psi^\mu +
+iD_\mu\psi_\nu\chi^{\mu\nu} \\ 
+	  &\qquad - \frac{i}{2}\lambda[\psi_\mu,\psi^\mu]-\frac{i}{2}\phi[\eta,\eta]-\frac{1}{8}[\phi,\lambda]^2\Big)\sqrt{g} \odif[order=4]{x}
+\end{align*}
+where $D_\mu = \nabla_\mu + [A_\mu,+]$ is the gauge covariant derivative and
+$\nabla$ is the Riemannian covariant derivative, and all fields are
+$\mathfrak{g}$-valued. There is a  $\mathbb{Z}_2$-grading on the space of
+fields. The bosonic fields are $\phi,\lambda$ and the fermionic fields are
+$\eta,\psi,\chi$ and  $\chi$ is additional constrained to be self-dual. The
+action is invariant under the symmetry 
+\begin{align*}
+	\delta_\epsilon A = \mathrm{i}\epsilon\psi \quad \delta_\epsilon\phi = 0
+	\quad \delta_\epsilon\lambda = 2\mathrm{i}\epsilon\eta \\
+	\delta_\epsilon\psi = -\epsilon D\phi \quad \delta_\epsilon\eta =
+	\frac{1}{2}\epsilon[\phi,\lambda] \quad \delta_\epsilon \chi = \epsilon(F +
+	\ast F) 
+\end{align*}
+with $\epsilon$ a fermionic infinitesimal parameter. As with all
+transformations, we think of this one as having a generator: its supercharge
+$Q$, which gives all transformations as  $\delta \alpha=-i\epsilon Q(\alpha)$
+where $\alpha$ is any field. in a Hamiltonian formulation,  $Q(\alpha)$ would be
+the Poisson bracket  $\{Q,\alpha\}$, but on a general manifold we don't have
+that option. By explicit computation, we find that 
+\[
+	\delta_\epsilon\delta_\zeta X - \delta_\zeta\delta_\epsilon X =
+	-2\mathrm{i}\epsilon\zeta\phi
+\] 
+for every field $X$ except  $A$, where it is  $-D\phi$. This holds only on-shell
+for  $\chi$, but off-shell for all others. Therefore, the commutator of two such
+transformations is a gauge transformation, and hence has no physical impact. The
+conserved current associated to this symmetry is 
+ \[
+	 J = \mathrm{Tr}_\mathfrak{g}\left((F_{\mu\nu} + (\ast F)_{\mu\nu})\psi^\nu
+		 - \eta D_\mu \phi - D^\nu\phi \chi_{\mu\nu} -
+	 \frac{1}{2}\psi_\mu[\lambda,\phi]\right)\mathrm{d}x^\mu
+\] 
+where conservation means that $\star J$ is closed, so for any homology 3-cycle
+ $\gamma$, the integral  $Q(\gamma) = \int_\gamma \star J$ depends only on the
+ homology class of  $\gamma$. Furthermore, one may show that the energy momentum
+ tensor  $T_{\mu\nu}= 2 \frac{\delta S}{\delta g^{\mu\nu}}$ of this theory is an
+ infinitesimal transform $T_{\mu\nu}=\{Q,\lambda_{\mu\nu}\}$ for $\lambda$ given
+ in Witten's eq.(2.34). 
+
+\section{Donaldson invariants as path integrals}
+In the following, the path integral measure $\mathcal{D}X$ includes all fields,
+and also intends to have gauge equivalence calsses quotiented out. The generic
+object we consider is the (unnormalized) expectation value of any observable
+$\mathcal{O}$ which is any nice functional in the fields:
+\[
+Z(\mathcal{O}) = \int \mathcal{O} \exp(-S /e^2) \mathcal{D}X
+\] 
+If the supersymmetry transformation is non-anomalous, we have
+$Z(\{Q,\mathcal{O}\})= 0$ for every observable. We now claim that $Z=Z(1)$ is a
+smooth invariant, and in particular will turn out to be a Donaldson invariant.
+For  $Z$ to be a smooth invariant, it must be invariant under changes in the
+metric. The change of metric is by definition  $\delta
+S=\frac{1}{2}\int_M\sqrt{g} T_{\mu\nu}\delta g^{\mu\nu}$ and this leads to
+\[
+	\delta Z(1) = -\frac{1}{e^2}Z(\{Q,\int_M \sqrt{g}\delta
+	g^{\mu\nu}\lambda_{\mu\nu}\}) = 0
+\] 
+so $Z(1)$ is invariant under changes of the metric. Similarly, it is invariant
+under changes of the gauge coupling constant  $e$,   as long as it stays
+non-zero. But in the limit of small coupling, the path integral is strongly
+dominated by the classical minima of the free theories, and the calssical minima
+of the free gauge theory are the anti-self-dual instantons. The self-dual ones
+are not minima beause we have added $F\wedge F$ to the Lagrangian. So we may
+evaluate  $Z$ by looking at the instanton contributions. 
+
+
+\section{Euler number}
+\subsection{Finite dimensional vector bundle}
+Let $E \xrightarrow{\pi} X$ be a real vector bundle.  
+% Assume $E$ and  $X$ are orientable,  $X$ compact without boundary, rank  $E$
+% is even with  $\rank(E) = 2m \leq \dim(X) = n$.
+
+The Euler class of  $E$
+
+\section{Mathai-Quillen formula for Euler number}
+A recurrent concept in this thesis will be the Euler number of a vector bundle.
+There are two quite different approaches for calculating the Euler number
+$\chi(X) = \chi(TX)$ of a manifold  $X$. This first is topological, and counts
+the signed isolated zeros of a vector field on $X$, via the Hopf theorem. The
+second is differential geometric and represents  $\chi(X)$ as the integral over
+$X$ of a density constructed from the curvature of some connection on  $X$, via
+the Gauss-Bonnet theorem. 
+
+By extension, the Euler number of an arbitrary vector bundle $E$ over $X$ can be
+determined in terms of a section, or the curvature of a connection on  $E$.
+
+The Mathai-Quillen formula \cite{MQformula} is a more general formula which interpolates between
+the two approaches. It relies on the construction of a form $e_{s,\Delta}(E)$ which depends
+on both a section  $s$ and connection  $\Delta$, with the property
+$\chi(E)=\int_X e(E)$ for all $s$ and  $\Delta$. Moreover, this equation reduces
+to the Hopf or Gauss-Bonnet theorem for an appropriate choice of $s$. 
+
+\section{TQFT as a generalisation of Mathai-Quillen}
+% section 4.2 MQintro
+ This approach is
+due to \cite{atiyahlagrangians}, who showed that TQFT can be regarded as an
+infinite dimensional generalisation of the Mathai-Quillen construction. 
+Although $e(E)$ and  $\int_X e(E)$ do not make sense for
+infinite dimensional  $E$ and  $X$, the Mathai-Quillen form  $e_{s,\Delta}$ can
+be used to formally define regularized Euler numbers $\chi_s(E) := \int_X
+e_{s,\Delta}(E)$. Although not independent of $s$, these numbers  $\chi_s(E)$
+are of topological interest for certain choices of  $s$.  
 
 

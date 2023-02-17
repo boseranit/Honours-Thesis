@@ -27,7 +27,8 @@
   % the chapters etc you want to see in the output, eg
   % \includeonly{titlepage,chapter1,chapter2}
 
-
+  \titleformat{\section}{\normalfont\fontsize{17}{15}\bfseries}
+  	{\thesection}{1em}{}
 
 \begin{document}
 
@@ -38,7 +39,7 @@
 
 % remove or switch the order of these as you see fit
 \input{titlepage}%\blanknonumber
-\input{dedication}%\blanknonumber
+%\input{dedication}%\blanknonumber
 \input{declaration}%\blanknonumber
 \input{acknowledgements}%\blanknonumber
 \input{abstract}%\blanknonumber

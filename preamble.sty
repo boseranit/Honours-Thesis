@@ -11,6 +11,8 @@
 \RequirePackage[style=trad-abbrv,natbib=true]{biblatex}
 \addbibresource{ref.bib}
 \RequirePackage{doi}  % to hyperlink the doi in citations
+\RequirePackage{titlesec} % to change section title font size
+\RequirePackage{lmodern} % to allow arbitrary font sizes
 
 \IfFileExists{theoremstyle.sty}{\RequirePackage{theoremstyle}}{}
 
@@ -29,7 +31,11 @@
 \DeclareMathOperator{\nll}{null}
 \DeclareMathOperator{\spn}{span}
 \DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\hol}{hol}
 \DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
 \DeclareMathOperator{\U}{U}
 \DeclareMathOperator{\SU}{SU}
 \renewcommand{\O}{{\operatorname{O}}}
