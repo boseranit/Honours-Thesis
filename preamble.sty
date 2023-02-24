@@ -78,11 +78,14 @@
 \RequirePackage{subfig} % for side by side figures
 \RequirePackage{float} % to use H in figure option
 \RequirePackage{fancyhdr} % for headers and footers
-\fancyhf{}
+\pagestyle{fancy} % make page style editable with fancyhdr
 \renewcommand{\headrulewidth}{0pt} % remove line 
-\pagestyle{fancy} % for footer
-%\rhead{\footnotesize\textit{Ranit Bose u6324368}}
-\cfoot{\thepage} % adds page number
+\fancyhf{} % set all head and foot elements empty
+\setlength{\headheight}{15pt}
+\fancyhead[RO,LE]{\thepage}
+\fancyhead[RE]{\leftmark}
+\fancyhead[LO]{\rightmark}
+%\cfoot{\thepage} % adds page number
 
 %\RequirePackage[parfill]{parskip} % for no paragraph indent
 %\renewcommand{\baselinestretch}{1.03} % increase line spacing
