@@ -1,43 +1,6 @@
 
-\chapter{Chapter title goes here}
+\chapter{Characteristic Classes}
 \label{chapter1}
-\section{Reference Guide}
-\cite{cernTQFT} is a 63 page introduction to TQFT, including the Mathai-Quillen
-formalism and Donaldson Witten theory using twisted $N=2$ supersymmetry.
-Lacking details
-
-\cite{wittenTQFT} is the seminal article on twisted supersymmetric gauge theory.
-Including how donaldson invariants arise
-
-\cite{birminghamTFT} is a 366pg textbook on supersymmetry, BRST, euler
-character, sigma models, donaldson theory, Schwarz type TFTs, topological
-gravity and renormalization
-
-\cite{cordes95} is 247pg of lecture notes, and focuses on equivariant cohomology
-and TQFT from pg 75. Moves through topics very quickly.
-
-\cite{axiomTQFTintro} Motivates the functorial axiomatisation of TQFT using the
-path integral approach
-
-\cite{marino} 40 pages, goes through Donaldson invariants, supersymmetry and donaldson
-witten theory, by stating a number of result, but without detail and lacking
-proofs. 
-
-\cite{moore} 80 pg, similar to marino. Focuses on path integral approach to
-cohomological TFT, and Mathai quillen
-
-\cite{TQFTbook} More detailed version of marino's lectures on TFT. 
-
-\cite{MQformula} is the original paper by Mathai and Quillen which introduced a
-formula for the euler number.
-
-\cite{atiyahlagrangians} a short article showing how Witten's Lagrangian should
-be understood in terms on the Gauss-Bonnet formula. Starts with Mathai-Quillen
-formula for Thom class
-
-\cite{MQintro} is a 35 pg introductory accound of the previous paper, beginning
-with Mathai-Quillen formalism for finite dimen vector bundles
-
 \section{History}
 Weyl (1918) introduced the concepts of gauge transformation and gauge
 invariance, while seeking to unify electromagnetism with general relativity. After the
@@ -165,11 +128,38 @@ In this case, information on the physical theory can be used in the
 TQFT. (Seiberg-Witten invariants have shown up in this framework)
 \end{itemize}
 
+\section{Vector Bundles}
+A connection on a vector bundle $E \to M$ is a map  $\nabla : \Gamma(TM) \times
+\Gamma(E) \to \Gamma(E)$. (additional properties)
+
+Suppose $\sigma_1,\ldots,\sigma_r \in \Gamma(U,E)$ is a frame for $E$, then the
+connection matrix of $\nabla$ relative to the frame is the matrix of 1-forms
+$A^{ij}\in \Omega^{1}(U)$ defined by
+\[
+	\nabla_X \sigma_i = \sum_{j=1}^{r} A^{ji}(X) \otimes \sigma_j
+\] 
+
+Similarly, the curvature of a vector bundle is a map $F_\nabla :
+\mathcal{X}(M)\times \mathcal{X}(M) \times \Gamma(E) \to \Gamma(E)$. Then the
+curvature matrix of the connection $\nabla$ relative to the frame is the matrix
+of 2-forms  $\Omega^{ij}\in \Omega^2(U)$ defined by
+\[
+F_\nabla(X,Y)e_i = \sum_{j=1} \Omega^{ji}(X,Y)e_j
+\] 
+
+\section{Principal Bundles}
+A connection on a principal $G$-bundle $P\to M$ is a 1-form $\theta \in
+\Omega^1(P,\mathfrak{g})$, satisfying certain properties.
+
+The curvature of the connection is a 2-form $F_\theta\in\Omega^2(M,\ad P)$.
+But $\pi^* F_\theta = d\theta + \theta\wedge\theta \in\Omega^2(P,\mathfrak{g})$.
+
+
 \section{Characteristic classes}
 Recall that for a compact, oriented, Riemannian 2-manifold the Gauss-Bonnet
 theorem states that 
 \[
-	\int \frac{1}{2\pi} K \operatorname{vol} = \chi(M)
+	\int_M \frac{1}{2\pi} K \operatorname{vol} = \chi(M)
 \] 
 which shows that the integral of the Gaussian curvature, which is locally the 
 component of the curvature form relative to an orthonormal frame, is a
@@ -181,149 +171,161 @@ the curvature matrix transforms as $\overline{\Omega}=a^{-1}\Omega a$.
 The motivation for characteristic classes is to find a polynomial $P(X)$ in the
 entries of $X\in \mathbb{R}^{r\times r}$, such that it is invariant under
 conjugation by all $A\in \GL(r,\mathbb{R})$. That is, $P(A^{-1}XA)=P(X)$; call
-this property $\Ad$-invariant. Then $P(\Omega)$ would be
-independent of the frame and define global form, and has further nice
+this property $\Ad \GL(r,\mathbb{R})$-invariant. Then $P(\Omega)$ would be
+independent of the frame and define a global form, with further nice
 properties as the following theorem will show.
 
-\begin{thm}[Chern-Weil theorem \cite{nakahara}] Let $P$ be an $\Ad$-invariant 
-	polynomial in the entries of $\mathbb{R}^{r\times r}$ of degree $k$. 
+Denote $\operatorname{Inv}(\mathfrak{gl}(r,\mathbb{R}))$ as the ring of $\Ad
+\GL(r,\mathbb{R})$-invariant polynomials on $\mathbb{R}^{r\times r}$.
+The following theorem is described in \cite[Thm 23.3]{loringtu}.
+
+\begin{thm}[Chern-Weil theorem ] \label{thm:chern_weil}
+	Let $P\in\operatorname{Inv}(\mathbb{R}^{r\times r})$ of degree $k$. 
 	Then $P(\Omega) \in \Omega^{2k}(M,\mathbb{C})$ satisfies
 	\begin{enumerate}[(i)]
 	    \item $dP(\Omega)= 0$, i.e. $P(\Omega)$ is a closed form
 		\item Given two connections $A_0$ and $A_1$, and corresponding
 			 curvature matrices $\Omega_0$ and $\Omega_1$, the difference
-			 $P(\Omega_1)-P(\Omega_0)$ is exact. So the cohomology class
+			 $P(\Omega_1)-P(\Omega_0)$ is exact. So the de Rham cohomology class
 			 $[P(\Omega)]$ is independent of the choice of connection.
 	\end{enumerate}
 \end{thm}
-\begin{proof}
-	show all the working
+
+Note that $P(\Omega)$ is a global form due to the discussion above.
+This theorem can also be applied to a principal $G$-bundle $P \to M$ in a 
+straightforward way. Let $P\in\operatorname{Inv}(\mathbb{R}^{r\times r})$. 
+Since the curvature is locally in $\Omega \in $ 
+We extend the domain of invariant polynomials from
+$\mathfrak{gl}(k,\mathbb{R})$, to $\mathfrak{g}$-valued  $p$-forms on  $M$. For
+$X\eta$ with  $X\in \mathfrak{g},\eta\in\Omega^{p}(M)$ we can define
+\[
+	P(X\eta) := \underbrace{k}{\eta\wedge \ldots\wedge\eta}P(X)
+\] 
+
+There are two ways to prove part (i). One is to establish 
+a correspondence between homogeneous polynomials 
+in $\operatorname{Inv}(\mathbb{R}^{r\times r})$ of degree $k$, and symmetric
+$k$-linear polynomials  $\widetilde{P}: \mathfrak{gl}(r,\mathbb{R})^{k}\to \mathbb{R}$
+which are $\Ad \GL(r,\mathbb{R})$-invariant, i.e. 
+\[
+\widetilde{P}(\Ad_A X_1,..,\Ad_A X_k) = \widetilde{P}(X_1,\ldots,X_k)
+\]
+Then it can be proved using appropriate choices of $A$ and $X_i$, and the
+Bianchi identity.
+
+In order to prove this we need to establish an algebraic theorem.
+
+\begin{ex} (Coefficients of the characteristic polynomial)
+	Let $X \in \mathfrak{gl}(r,\mathbb{R}) = \mathbb{R}^{r\times r}$, and let $\lambda
+	\in\mathbb{R}$. The coefficients $f_k(X)$  of $\lambda^{r-k}$ in 
+	\[
+	\det(\lambda I + X) = \lambda^{r} + f_1(X)\lambda^{r-1} + \ldots + f_r(X)
+	\] 
+	are polynomials on $\mathfrak{gl}(r,\mathbb{R})$. Moreover, they are $\Ad
+	\GL(r,\mathbb{R})$ invariant since the determinant is not basis dependent.
+\end{ex}
+\begin{ex} (Trace polynomials)
+	Define the polynomial $\Sigma_k(X) := \Tr(X^{k})$ which is another example
+	of an invaiant polynomial on $\mathfrak{gl}(r,\mathbb{R})$.
+\end{ex}
+The two sets of polynomials above play a crucial role in characteristic classes,
+because of the following theorem.
+\begin{thm}[{\cite[Thm 23.4]{loringtu}}] \label{thm:invariant_poly}
+	The ring $\operatorname{Inv}(\mathfrak{gl}(r,\mathbb{R}))$ of invariant
+	polynomials is generated by the set $f_k(X)$ or the trace polynomials
+	$\Sigma_k(X)$:
+	\[
+	\operatorname{Inv}(\mathfrak{gl}(r,\mathbb{R}))
+	= \mathbb{R}[f_1,\ldots,f_r] = \mathbb{R}[\Sigma_1,\ldots,\Sigma_r]
+	\] 
+\end{thm}
+
+Thus, it is sufficient to prove Thm \ref{thm:chern_weil} for trace polynomials,
+because the exterior derivative is linear, and if the cohomology classes of
+$\Sigma_k(\Omega)$ are independent of the connection, then it also holds for a
+polynomial in $\Sigma_k(\Omega)$.
+
+\begin{defn}
+	if $A = [\alpha^{ij}]$ and $B = [\beta^{ij}]$ are matrices of $k$-forms on
+	 $M$, with the number of columns of  $A$ equal to number of rows of  $B$,
+	 then 
+	  \begin{enumerate}[(i)]
+	     \item $(A\wedge B)^{ij} = \sum_k \alpha ^{ik} \wedge\beta^{ki} $
+	     \item $(dA)^{ij} = d\alpha ^{ij}$
+	 \end{enumerate}
+\end{defn}
+\begin{prop}
+	Let $A = [\alpha^{ij}]$ and $B = [\beta^{ij}]$ are matrices of differential
+	forms on $M$ with degrees $a$ and  $b$ respectively.
+	\begin{enumerate}[(i)]
+	    \item $\Tr(A\wedge B) = (-1)^{ab} \Tr(B\wedge A)$
+		\item $d \Tr(A) = \Tr(dA)$
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}[Proof of Thm \ref{thm:chern_weil}]
+	\begin{enumerate}[(i)]
+	    \item As mentioned, we only need to consider trace polynomials
+			$f_k(X)=\Tr(X^k)$. Then 
+		\begin{align*}
+			d \Tr(\Omega^{k})
+			&= \Tr (d \Omega^{k}) \\
+			&= \Tr (\Omega^{k} \wedge A - A \wedge \Omega^{k}) \tag{generalised
+			Bianchi identity} \\
+			&= \Tr (\Omega^{k} \wedge A) - \Tr(A \wedge \Omega^{k}) \\
+			&= 0 
+		\end{align*}
+	\item \cite[Prop 5.28]{morita}	
+		\begin{comment}
+		Again, we only need to consider $P = \Tr(X^k) 
+		\in \operatorname{Inv}(\mathfrak{gl}(r,\mathbb{R}))$. 
+		To show that the cohomology class does not depend on the choice of
+		connection, we need to show that for two connections $\nabla^0$ and
+		$\nabla^1$,$P(\Omega_0) - P(\Omega_1) \in \Im(d)$. We will construct a
+		$(2k-1)$-form whose exterior derivative is the above.
+		\end{comment}
+	Consider the vector bundle $E\times I
+	\xrightarrow{\pi} M\times I$, where $I = [0,1]$. Any section of  $E\times
+	\mathbb{R}$ is of the form $(x,t) \mapsto (s(x),t)$, and so can be written
+	in a frame with coefficients independent of $t$. So sections of $E$ are in
+	correspondence with sections of  $E\times I$. Define a connection $\nabla$ 
+	on $E\times I$ by $\nabla_{\partial t} s = 0$ and $\nabla_X =
+	(1-t)\nabla^0_X+t\nabla^1_X$ where $X$ is any vector field with zero
+	component in  $\pdv{}{t}$.
+
+	Using the associated curvature form $\Omega$, we get a cohomology class
+	$[P(\Omega)]$. There is a natural inclusion  $i_j : M \to M \times
+	\mathbb{R}$ given by $i_j(x)=(x,j)$ where $j=0,1$. By definition of
+	$\nabla$, the pullback is $i^*_j \Omega = \Omega^j$, and thus $i^*_j
+	P(\Omega) = P(\Omega^j)$.
+	
+	Also note that $i_0$ and $i_1$ are homotopic, so the induced homomorphisms on
+	cohomology are identical. This gives 
+	\[
+		[P(\Omega^0)] = i_0^*([P(\Omega)]) = i_1^*([P(\Omega)])=[P(\Omega^1)]
+	\] 
+	\end{enumerate}
 \end{proof}
 
-The cohomology class $[P(F_A)]$ is called the \underline{characteristic
-class} of  $E$ associated to  $P$. 
+Hence there is a well defined algebra homomorphism $c_E :
+\operatorname{Inv}(\mathfrak{gl}(r,\mathbb{R}))\to H^{*}(M)$, called the
+Chern-Weil homomorphism.
+The cohomology class $[P(\Omega)]$ is called the \underline{characteristic
+class} of $E$ associated to  $P$. 
 
 \subsection{Pontrjagin classes}
+From Theorem \ref{thm:invariant_poly}, the algebra
+$\operatorname{Inv}(\mathfrak{gl}(r,\mathbb{R}))$ is generated by the
+coefficients $f_k(X)$ of  $\det(\lambda I + X)$ and by the trace polynomials
+$\Tr(X^{k})$. To determine all the characteristic classes of $E$, it suffices to
+calculate the characteristic classes associated to either set of polynomials.
+The classes arising from $f_k(X)$ are called Pontrjagin classes.
 
 
-\subsection{Chern classes}
+
+\subsection{Euler class}
 Show how $\det(\lambda I + X)$ is an example.
 
-\section{Donaldson-Witten theory}
-This is a retelling of Witten's 1988 TQFT paper. 
-% https://physics.stackexchange.com/questions/224297/what-to-a-physicist-are-instantons-and-the-donaldson-invariants
-
-The physical setting in which the Donaldson invariants will appear is a
-Yang-Mills theory living on the four-dimensional manifold $M$ coupled to certain
-fields such that the total action has a supersymmetry. The action of this theory
-is 
-\begin{align*}
-	S &= \int \Tr \Big(\frac{1}{4}F_{\mu\nu}F^{\mu\nu} +\frac{1}{4}F_{\mu\nu}(\star
-F)^{\mu\nu} +\frac{1}{2}\phi D_\mu D^\mu\lambda - i\eta D_\mu\psi^\mu +
-iD_\mu\psi_\nu\chi^{\mu\nu} \\ 
-	  &\qquad - \frac{i}{2}\lambda[\psi_\mu,\psi^\mu]-\frac{i}{2}\phi[\eta,\eta]-\frac{1}{8}[\phi,\lambda]^2\Big)\sqrt{g} \odif[order=4]{x}
-\end{align*}
-where $D_\mu = \nabla_\mu + [A_\mu,+]$ is the gauge covariant derivative and
-$\nabla$ is the Riemannian covariant derivative, and all fields are
-$\mathfrak{g}$-valued. There is a  $\mathbb{Z}_2$-grading on the space of
-fields. The bosonic fields are $\phi,\lambda$ and the fermionic fields are
-$\eta,\psi,\chi$ and  $\chi$ is additional constrained to be self-dual. The
-action is invariant under the symmetry 
-\begin{align*}
-	\delta_\epsilon A = \mathrm{i}\epsilon\psi \quad \delta_\epsilon\phi = 0
-	\quad \delta_\epsilon\lambda = 2\mathrm{i}\epsilon\eta \\
-	\delta_\epsilon\psi = -\epsilon D\phi \quad \delta_\epsilon\eta =
-	\frac{1}{2}\epsilon[\phi,\lambda] \quad \delta_\epsilon \chi = \epsilon(F +
-	\ast F) 
-\end{align*}
-with $\epsilon$ a fermionic infinitesimal parameter. As with all
-transformations, we think of this one as having a generator: its supercharge
-$Q$, which gives all transformations as  $\delta \alpha=-i\epsilon Q(\alpha)$
-where $\alpha$ is any field. in a Hamiltonian formulation,  $Q(\alpha)$ would be
-the Poisson bracket  $\{Q,\alpha\}$, but on a general manifold we don't have
-that option. By explicit computation, we find that 
-\[
-	\delta_\epsilon\delta_\zeta X - \delta_\zeta\delta_\epsilon X =
-	-2\mathrm{i}\epsilon\zeta\phi
-\] 
-for every field $X$ except  $A$, where it is  $-D\phi$. This holds only on-shell
-for  $\chi$, but off-shell for all others. Therefore, the commutator of two such
-transformations is a gauge transformation, and hence has no physical impact. The
-conserved current associated to this symmetry is 
- \[
-	 J = \mathrm{Tr}_\mathfrak{g}\left((F_{\mu\nu} + (\ast F)_{\mu\nu})\psi^\nu
-		 - \eta D_\mu \phi - D^\nu\phi \chi_{\mu\nu} -
-	 \frac{1}{2}\psi_\mu[\lambda,\phi]\right)\mathrm{d}x^\mu
-\] 
-where conservation means that $\star J$ is closed, so for any homology 3-cycle
- $\gamma$, the integral  $Q(\gamma) = \int_\gamma \star J$ depends only on the
- homology class of  $\gamma$. Furthermore, one may show that the energy momentum
- tensor  $T_{\mu\nu}= 2 \frac{\delta S}{\delta g^{\mu\nu}}$ of this theory is an
- infinitesimal transform $T_{\mu\nu}=\{Q,\lambda_{\mu\nu}\}$ for $\lambda$ given
- in Witten's eq.(2.34). 
-
-\section{Donaldson invariants as path integrals}
-In the following, the path integral measure $\mathcal{D}X$ includes all fields,
-and also intends to have gauge equivalence calsses quotiented out. The generic
-object we consider is the (unnormalized) expectation value of any observable
-$\mathcal{O}$ which is any nice functional in the fields:
-\[
-Z(\mathcal{O}) = \int \mathcal{O} \exp(-S /e^2) \mathcal{D}X
-\] 
-If the supersymmetry transformation is non-anomalous, we have
-$Z(\{Q,\mathcal{O}\})= 0$ for every observable. We now claim that $Z=Z(1)$ is a
-smooth invariant, and in particular will turn out to be a Donaldson invariant.
-For  $Z$ to be a smooth invariant, it must be invariant under changes in the
-metric. The change of metric is by definition  $\delta
-S=\frac{1}{2}\int_M\sqrt{g} T_{\mu\nu}\delta g^{\mu\nu}$ and this leads to
-\[
-	\delta Z(1) = -\frac{1}{e^2}Z(\{Q,\int_M \sqrt{g}\delta
-	g^{\mu\nu}\lambda_{\mu\nu}\}) = 0
-\] 
-so $Z(1)$ is invariant under changes of the metric. Similarly, it is invariant
-under changes of the gauge coupling constant  $e$,   as long as it stays
-non-zero. But in the limit of small coupling, the path integral is strongly
-dominated by the classical minima of the free theories, and the calssical minima
-of the free gauge theory are the anti-self-dual instantons. The self-dual ones
-are not minima beause we have added $F\wedge F$ to the Lagrangian. So we may
-evaluate  $Z$ by looking at the instanton contributions. 
-
-
-\section{Euler number}
-\subsection{Finite dimensional vector bundle}
-Let $E \xrightarrow{\pi} X$ be a real vector bundle.  
-% Assume $E$ and  $X$ are orientable,  $X$ compact without boundary, rank  $E$
-% is even with  $\rank(E) = 2m \leq \dim(X) = n$.
-
-The Euler class of  $E$
-
-\section{Mathai-Quillen formula for Euler number}
-A recurrent concept in this thesis will be the Euler number of a vector bundle.
-There are two quite different approaches for calculating the Euler number
-$\chi(X) = \chi(TX)$ of a manifold  $X$. This first is topological, and counts
-the signed isolated zeros of a vector field on $X$, via the Hopf theorem. The
-second is differential geometric and represents  $\chi(X)$ as the integral over
-$X$ of a density constructed from the curvature of some connection on  $X$, via
-the Gauss-Bonnet theorem. 
-
-By extension, the Euler number of an arbitrary vector bundle $E$ over $X$ can be
-determined in terms of a section, or the curvature of a connection on  $E$.
-
-The Mathai-Quillen formula \cite{MQformula} is a more general formula which interpolates between
-the two approaches. It relies on the construction of a form $e_{s,\Delta}(E)$ which depends
-on both a section  $s$ and connection  $\Delta$, with the property
-$\chi(E)=\int_X e(E)$ for all $s$ and  $\Delta$. Moreover, this equation reduces
-to the Hopf or Gauss-Bonnet theorem for an appropriate choice of $s$. 
-
-\section{TQFT as a generalisation of Mathai-Quillen}
-% section 4.2 MQintro
- This approach is
-due to \cite{atiyahlagrangians}, who showed that TQFT can be regarded as an
-infinite dimensional generalisation of the Mathai-Quillen construction. 
-Although $e(E)$ and  $\int_X e(E)$ do not make sense for
-infinite dimensional  $E$ and  $X$, the Mathai-Quillen form  $e_{s,\Delta}$ can
-be used to formally define regularized Euler numbers $\chi_s(E) := \int_X
-e_{s,\Delta}(E)$. Although not independent of $s$, these numbers  $\chi_s(E)$
-are of topological interest for certain choices of  $s$.  
+\subsection{Chern class}
 
 
