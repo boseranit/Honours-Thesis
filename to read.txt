@@ -1,0 +1,30 @@
+Revise connection and curvature from Loring tu when needed
+
+classical electromagnetism - Nakahara chapter 1 Baez chapter 5
+
+Bryan questions:
+should I include a proof of nabla^2 = F
+should I include a proof Thom isomorphism? 
+
+To write:
+intersection form
+1.6 BGV Transgression formulas, pullback of thom class, Poincare-hopf theorem
+
+This week: 
+Loring Tu Ch 18,19,20,21,22 
+
+why EG is well defined
+equivariant deRham theorem, 
+Weil-cartan isomorphism
+localisation
+
+Cordes ch10
+Cordes ch11
+equivariant thom class, Venselaar pg 18
+localisation formula
+
+
+
+
+Donaldson ch1, ch4 Yang-Mills theory
+Baez ch6, II 1,2,3

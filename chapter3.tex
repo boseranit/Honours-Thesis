@@ -1,0 +1,349 @@
+
+\chapter{Mathai-Quillen formula}
+\label{chapter3}
+\section{Introduction}
+Topological quantum fields theories can be constructed based on the
+Mathai-Quillen formalism. Although the main breakthroughs in these theories have
+been provided in their formulation as twisted $\mathcal{N}=2$ supersymmetric
+theories, this provides a useful geometric framework.\cite{TQFTbook}
+
+In general, Witten type TQFTs are associated with a moduli problem characterized
+by three basic data: fields, symmetries, and equations.
+In the case of Donaldson-Witten theory, the configuration space is the space of
+connections $\mathcal{A}$ on a bundle $E$, whose elements are fields 
+$\phi$ over a four-manifold  $X$.  the group $\mathcal{G}$ is the group of gauge
+transformations associated with $G$, so we are led to consider the quotient
+space  $\mathcal{A}/\mathcal{G}$. Within this quotient, the moduli space is
+defined by a set of equations $s(\phi)=0$, and the self-duality equations can be
+regarded as sections of a bundle
+$\mathcal{E}=\mathcal{A}\times_{\mathcal{G}}\Omega^{2,+}(X,g_E)$. (What does
+this mean?)
+ \[
+ \mathcal{M} = \set{\phi\in \mathcal{A} \mid s(\phi)=0}/\mathcal{G}
+\] 
+In finite dimensions, the Mathai-Quillen formula gives an explicit differentiam
+form representative of the Euler class. However it was noticed by Atiyah and
+Jeffrey \cite{atiyahlagrangians} that the action principle of the theory can be
+recovered by constructing the Euler class of $\mathcal{E}$ using an extension of
+the Mathai-Quillen representative to the infinite-dimensional case. Conversely,
+the Mathai-Quillen formalism makes possible to construct a cohomological field
+theory starting from a moduli problem.
+
+Recall that there are quite different approaches for calculating the Euler number
+$\chi(X) = \chi(TX)$ of an oriented even dimensional manifold $X$. 
+This first is topological, and counts
+the signed isolated zeros of a vector field on $X$, via the Hopf theorem. The
+second is differential geometric and represents  $\chi(X)$ as the integral over
+$X$ of a density constructed from the curvature of a connection on $X$, via
+the Gauss-Bonnet theorem. 
+
+The Mathai-Quillen formula \cite{MQformula} is a more general formula which interpolates between
+the two approaches. It relies on the construction of a form $\chi_{s,\nabla}(E)$ in
+the Euler class which depends
+on both a section  $s$ and connection  $\nabla$.  
+
+\begin{thm}[Thom Isomorphism] % Thm 6.17 Bott Tu
+	If a vector bundle $\pi: E \to M$ is orientable with rank $n$, 
+	then 
+	 $H^*_{cv}(E) \simeq H^{*-n}(M)$
+\end{thm}
+\begin{defn}
+	Under the Thom isomorphism $\mathcal{F}:H^*(M)\to H_{cv}^{*+n}(E)$, the
+	image of $1\in H^0(M)$ is called the \underline{Thom class}  $\Phi\in
+	H_{cv}^n(E)$ of the vector bundle.
+\end{defn}
+
+
+
+\section{Construction of Thom form}
+Let us first look at the construction on an oriented Euclidean vector bundle
+$E\xrightarrow{\pi} M$ of rank $n$ over a point $M=\{x_0\}$. 
+Given coordinates $x^1,\ldots,x^n$ on $E$ from the local trivialisation,
+a Thom form $U\in \Omega^n_{cv}(E)$ can be defined as
+\[
+	U(x) = (2\pi)^{-n/2}e^{-\abs{x}^2 /2} dx^1\wedge \ldots\wedge dx^n
+\] 
+Given the basis $e_1,\ldots,e_n$ of  $V$ corresponding to the coordinates
+$x^1,\ldots,x^n$, denote the map $dx = dx^k \otimes e_k \in 
+\Omega^1(E, V)$. Then $e^{-idx}\in \Omega(E,\bigwedge V)$ by taking a formal sum
+of wedge products.
+We can express this form in terms of the Berezin integral,
+considered as a map $\int^B := \int \odif{e_1}\cdots\odif{e_n} 
+: \Omega^*(E,\bigwedge V) \to \Omega^*(E)$.
+
+\begin{lem} %1.49 BGV
+	The form $U\in \Omega^n_{cv}(E)$ equals 
+	\[
+		 U(x) = (2\pi)^{-n/2} e^{-\abs{x}^2 /2} \epsilon(n)\int^B e^{-idx}
+	\] 
+	where $\epsilon(n)=1$ if  $n$ is even, otherwise  $i$.
+\end{lem}
+\begin{proof}
+	The Berezin integral kills any forms of order less than $n$, so only
+	multiples of $e_1 \wedge \ldots\wedge e_n$ remain.
+	Hence,
+	\begin{align*}
+		\int^B e^{-idx} 
+		&= (-i)^n \frac{1}{n!}\int^B (dx^k\otimes e_k)^n \\
+		&= (-i)^n \int^B dx^1\wedge \ldots\wedge dx^n\otimes e_1 \wedge\ldots\wedge e_n \\
+		&= (-i)^n(-1)^{n(n-1)/2} \int^B dx^1\wedge \ldots\wedge dx^n\otimes e_n \wedge\ldots\wedge e_1 \\
+		&= (-i)^n(-1)^{n(n-1)/2} dx^1\wedge \ldots\wedge dx^n
+	\end{align*}
+	In the second line, we have permuted all $n!$ terms into standard order for
+	both the $dx^i$ and  $e_i$, so the signs of the permutations cancel.
+	In the third line, we needed to reverse the order of the $e_i$ to accomodate
+	the order of integration. The lemma now follows, since
+	$(-i)^n(-1)^{n(n-1)/2}$ equals 1 if $n$ is even, and otherwise  $-i$. 
+\end{proof}
+We will define the Thom form on a more general manifold by modification of the
+above lemma. Denote $x \in \Omega^0(E,\pi^*E)$ as the \underline{tautological
+section}, defined by $e\in E_p \mapsto e\in (\pi^*E)_{e} = E_{p}$.
+Then choosing a Euclidean connection $\nabla^E$ on  $E$, we may replace  $dx$ by 
+$\nabla^{\pi^*E} x \in \Omega^1(E,\pi^*E)$.
+
+\begin{prop} \label{prop:derivative_berezin} %1.50 BGV
+	If $\nabla$ is a metric connection on  $E$, this induces a covariant
+	derivative on $\bigwedge E$. Then for any
+	$\alpha\in\Omega(M,\bigwedge E)$, we have 
+	\[
+	d\int^B \alpha = \int^B \nabla\alpha
+	\] 
+\end{prop}
+\begin{proof} 
+	Given a non-vanishing section $\nu\in \Omega^1(M,\bigwedge^nE)$,
+	the Berezin integral is given by the induced inner product on $\bigwedge E$
+	with  $\nu$. Then  $\nabla$ induced on  $\bigwedge E$ is compatible with
+	this inner product, and 
+	\[
+	d\gen{\nu,\omega} = \gen{\nabla \nu, \omega} + \gen{\nu, \nabla \omega}
+	=\int^B \nabla\omega
+	\] 
+	where we have used the fact that $\nabla \nu = 0$, by definition of the
+	Berezin integral on an oriented vector bundle with a metric connection.
+\end{proof}
+
+We will apply this proposition to the pullback vector bundle $\pi^*E \to E$, 
+with induced connection $\nabla^{\pi^*E}=\pi^*\nabla^E$. Denote $V=\pi^*E$ to
+simplify notation.
+Let $\iota(s):\Omega^i(E,\bigwedge^j V) \to
+\Omega^i(E,\bigwedge^{j-1} V)$ for $s\in\Gamma(V)$ be a contraction operator
+defined in a similar fashion as \ref{def:contraction}, by the following
+properties:
+\begin{enumerate}[(1)]
+    \item If $w\in \Omega^0(E,V)$, then  $\iota(s)w = \gen{s,w}$
+	\item If $\alpha\in\Omega^i(E,\bigwedge^jV),
+		\beta\in\Omega^k(E,\bigwedge^lV)$, then 
+	 \[
+	\iota(x)(\alpha\wedge \beta) 
+	= (\iota(x)\alpha)\wedge\beta + (-1)^{i+j}\alpha\wedge(\iota(x)\beta)
+	\] 
+\end{enumerate}
+Note that this uniquely defines $\iota(s)$ because the formulas can be applied
+to a basis of $\bigwedge^iT^*E\otimes \bigwedge^jV$.
+
+Denote $\nabla = \nabla^{\pi^*E}$. 
+Recall that the curvature is a form in $\Omega^2(E,\End(V))$ 
+which is skew-symmetric valued. We can identify $\mathfrak{so}(V)$ with 
+$\bigwedge^2 V$ in the following way:
+\[
+	A\in \mathfrak{so}(V) \mapsto \sum_{i<j} \gen{Ae_i,e_j} e_i\wedge e_j
+\] 
+given a frame of $V$. Hence, we denote the curvature form as $F \in
+\Omega^2(E,\bigwedge^2V)$.
+
+\begin{lem} % 1.51 BGV
+	Let $x \in \Omega^0(V)$ be the tautological section on $E$, and $\nabla$ the
+	induced connection on $\bigwedge V$.
+	Let $\omega_t = \frac{1}{2}t^2\abs{x}^2 + it\nabla x + F 
+	\in \Omega(E,\bigwedge V)$. Then 
+	\[
+		(\nabla - it\iota(x))\omega_t = 0
+	\] 
+\end{lem}
+\begin{proof}
+	 By metric compatibility,
+	$\nabla \abs{x}^2 = 2\gen{\nabla x, x} = -2\iota(x)\nabla x$.
+	Next, we have $\nabla(\nabla x) = \iota(x) F$.
+	Finally by Bianchi's identity, $\nabla F = 0$. Combining this,
+	\[
+	\nabla \omega_t = -t^2\iota(x) \nabla x + it\iota(x)F 
+	\] 
+	On the other hand, $\iota(x)\abs{x}^2 = 0$ by definition of $\iota(x)$, so
+	\[
+	it\iota(x)\omega_t = -t^2\iota(x) \nabla x + it\iota(x)F
+	\] 
+\end{proof}
+We can also extend Proposition \ref{prop:derivative_berezin} to 
+$d\int^B\alpha = \int^B (\nabla-it\iota(s))\alpha$ for any
+$\alpha\in\Omega(\bigwedge V)$ since $\iota(s)\alpha$ has no component in the top exterior power.
+% TODO 
+why this means the Thom form is closed?
+
+We now define the Thom form $U_t = \epsilon(N) \int^B e^{-\omega_t} \in
+\Omega^n(E)$. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment} % Blau approach
+Let $E=P\times_\rho V$ be the associated bundle to $P$ with rank $2m$. 
+basic forms on $P\times V$ are in correspondence with forms on  $E$.
+
+A representative for the Thom class, called the Mathai-Quillen Thom form, is
+given by
+\begin{equation} \label{eq:mathai_quillen}
+\Phi_\nabla(E) = \frac{1}{(2\pi)^m} e^{-v_a^2/2} \int \odif{\chi} 
+\exp(\chi_a\Omega^{ab}\chi_b /2 + i\nabla v^a \chi_a)
+\end{equation}
+where $v^a \in \Omega^0(P\times V)$ are coordinates on $V$, and $\nabla v^a \in
+\Omega^1(P\times V)$ is the exterior covariant derivative of $v^a$.
+Not well defined globally, since using trivialisation to use coordinates? 
+
+We claim that this defines a basic form in $\Omega^{2m}_\rho(P\times V)$,
+and that it is a representative of the Thom class. 
+
+To show that it is a basic form, we need to prove it is horizontal and $\rho$
+equivariant.  
+
+To show that is is a representative of the Thom class, we need to prove it is
+closed and satisfies  $\pi^*\Phi_\nabla(E) = 1$.
+
+Pullback by zero section is Pfaffian.
+\end{comment} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prop} % prop 1.53 BGV
+	We have the transgression formula
+	\[
+	\odv{}{t} U_t = -i\epsilon(N) d\int^B x e^{-\omega_t}
+	\] 
+\end{prop}
+\begin{prop} \label{prop:thom_pullback}
+	Let $s\in \Gamma(M,E)$ be a section of $E$.
+	The cohomology class of the pullback $s^*\Phi_\nabla(E) \in \Omega^{n}(M)$
+	is independent of the section  $s\in\Gamma(E)$.
+\end{prop}
+\begin{proof}
+	Integrating the transgression formula above from 0 to 1, 
+	\[
+		U_1 - U_0 = -id\int_0^1\int^B x e^{-t^2\abs{x}^2/2 +
+		it\nabla x + F} \odif{t}
+	\] 
+	Note that $s^*U_0 = \epsilon(n)\int^B e^{-s^*F} \in \Omega(M)$. Since $F$ is
+	the pullback curvature on $V = \pi^*E$, it is constant on 
+	(why is $s^*U$ equal to the Pfaffian? use basis of V).
+
+	Taking the pullback by $s$ on both sides, we find that $s^*U_1$ is
+	cohomologous to the Euler class for any section $s$:  
+	\[
+		s^*U_1 - s^*U_0 = -id\int_0^1\int^B s\wedge e^{-t^2\abs{s}^2/2 +
+		it\nabla s + F} \odif{t}
+	\] 
+	% TODO: complete proof
+\end{proof}
+\section{Localisation}
+Sign of a vector field, generalises to any vector bundle?
+\begin{thm}[Poincare-Hopf] % Thm 1.56 BGV
+	If $v$ is a non-degenerate vector field on an orientable compact manifold
+	$M$, then 
+	\[
+		 (2\pi)^{-n /2} \int_M \chi(TM) = \sum_{\set{p|v(p)=0}} \nu(p,v)	
+	\] 
+\end{thm}
+there is a generalisation of this result, where we assume that the zeroes
+of $v$ are isolated instead of $v$ being non-degenerate. 
+
+
+To every closed (as a subspace) and oriented submanifold $i: S
+\xhookrightarrow{} M$ of dimension  $k$, we can
+associate a unique cohomology class  $[\eta_s]\in H^{n-k}(M)$ called its
+\underline{Poincare dual} as follows. Let $\omega\in \Omega_c^k(M)$ be closed.
+Since $\operatorname{supp}(\omega|_S) \subset \operatorname{supp}(\omega) \cap
+S$ is a closed subset of a compact set, $i^*\omega$ also has compact support on
+$S$, so  $\int_S i^*\omega$ is defined. Hence integration over  $S$ is a  
+linear functional on $H^k_c(M)$. It follows by Poincare duality:
+$(H_c^k(M))^*\simeq H^{n-k}(M)$, that integration over $S$ corresponds to a
+unique cohomology class $[\eta_S]\in H^{n-k}(M)$. 
+From the construction of the Poincare duality map, $\eta_S$ satisfies
+for any closed $\omega\in \Omega^k_c(M)$
+\[
+\int_S i^*\omega = \int_M \omega \wedge \eta_S
+\] 
+\begin{defn}
+	Let $S$ be a submanifold of dimension  $k$ in a manifold  $M$ of dimension
+	$n$. A \underline{tubular neighbourhood} of  $S$ in  $M$ is an open
+	neighbourhood of  $S$ in  $M$ diffeomorphic to a vector bundle of rank
+	$n-k$ over  $S$, such that  $S$ is diffeomorphic to the zero section.
+\end{defn}
+%TODO 
+define normal bundle, tubular neighbourhood thm \\
+why the poincare dual of a closed oriented submanifold $S$ is the Thom class of
+the normal bundle of $S$.
+\begin{thm}[Localisation property] % see pg 69 Bott Tu
+	Let $f\in C^\infty(M',M)$ be an orientation-preserving map of oriented
+	manifolds, and $S\subset M$ be a submanifold. Then $\eta_{f^{-1}(S)} =
+	f^*\eta_S$, i.e. for all  $\omega\in \Omega^k_c(M)$,
+	\[
+	\int_{f^{-1}(S)} i^*\omega = \int_M \omega \wedge f^*\eta_S
+	\] 
+\end{thm}
+\begin{cor} \label{cor:zero_localisation}
+	Let $E\to M$ be a vector bundle of rank $k$ over a manifold of dimension $n$, 
+	and $s\in\Gamma(M,E)$.
+	Then for all $\omega\in \Omega^{n-k}_c(M)$,
+	 \[
+	\int_{s^{-1}(0)} i^*\omega = \int_M s^* \Phi(E) \wedge \omega
+	\] 
+\end{cor}
+
+% discussion from Witten N matrix model 3.3, see also cordes 11.10.3
+Let $E\to M$ be a vector bundle over a finite-dimensional compact manifold  $M$.
+Let $s\in\Gamma(M,E)$ be a section and  $S=s^{-1}(0)$ which has
+Poincare dual $\chi(E)$. We wish to consider a non-generic $s$ of a certain
+type. Suppose $S$ has dimension greater than
+$\dim(M)-\dim(E)$. 
+
+Let  $N\to S$ be the normal bundle of dimension
+$\dim(M)-\dim(S)$.  More like $N = \coker (\nabla s)$
+
+Let  $u\in\Gamma(S,N)$ be a generic section and
+$P=u^{-1}(0)$ which has Poincare dual $\chi(V')$. Since  $P\subset S \subset M$,
+we claim that $i(P)$ is Poincare dual to  $\chi(E)$.
+\[
+\int_M \chi(E\to M)\wedge \omega = \int_{S} i^*\omega \wedge \chi(N\to S)
+\] 
+Note that if $s$ is a generic section then  $\coker (\nabla s) = \{0\}$, which
+reduces to \ref{cor:zero_localisation}.
+
+
+
+\section{Equivariant version of Mathai-Quillen}
+Find the universal Thom form in Weil and Cartan models
+\begin{defn}
+	A form $U\in (W(\mathfrak{g})\otimes \Omega(M))_{bas}$ is a
+	\underline{universal Thom form} in the Weil model if it is closed and
+	$\int_M U = 1$. 
+\end{defn} 
+
+% cordes pg 103
+Let $E$ be an orientable vector bundle of rank  $2m$ with fiber  $V$. Given a
+metric on  $E$, we can identify  $E$ as the associated bundle to the
+$\SO(V)$-principal bundle of orthonormal oriented frames on $E$, that is, $E
+\simeq \Fr_{\SO}(E) \times_{\SO(V)} V$. Denote $P=\Fr_{\SO}(E)$ and $G=\SO(V)$.
+
+Then since  $P\times V \to P\times_G V \simeq E$ is a principal bundle,
+$\Omega^*(E)\simeq \Omega^*(P\times V)_{bas}$. 
+With a choice of Weil homomorphism $w:W(\mathfrak{g}) \to \Omega(P)$, we can
+identify this space with $(W(\mathfrak{g})\otimes\Omega(V))_{bas}$. 
+% TODO 
+is this an isomorphism?
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJXKFxcbWF0aGZyYWt7Z30pXFxvdGltZXNcXE9tZWdhKFYpIl0sWzEsMCwiXFxPbWVnYShQXFx0aW1lcyBWKSJdLFswLDEsIihXKFxcbWF0aGZyYWt7Z30pXFxvdGltZXNcXE9tZWdhKFYpKV97YmFzfSJdLFsxLDEsIlxcT21lZ2EoUFxcdGltZXMgVilfe2Jhc31cXHNpbWVxXFxPbWVnYShFKSJdLFswLDEsInciXSxbMCwyXSxbMSwzXSxbMiwzLCJ3Il1d
+\[\begin{tikzcd}[column sep=2.25em]
+		{W(\mathfrak{g})\otimes\Omega(V)} & {\Omega(P\times V)} \\
+			{(W(\mathfrak{g})\otimes\Omega(V))_{bas}} & {\Omega(P\times
+			V)_{bas}\simeq\Omega(E)}
+				\arrow["w", from=1-1, to=1-2]
+					\arrow[from=1-1, to=2-1]
+						\arrow[from=1-2, to=2-2]
+							\arrow["w", from=2-1, to=2-2]
+\end{tikzcd}\]
+We can then get the Thom class through the Weil homomorphism

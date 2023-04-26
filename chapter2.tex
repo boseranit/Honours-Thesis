@@ -1,122 +1,382 @@
-
-\chapter{Chapter title goes here}
+\chapter{Equivariant Cohomology}
 \label{chapter2}
 
-\section{Donaldson-Witten theory}
-This is a retelling of Witten's 1988 TQFT paper. 
-% https://physics.stackexchange.com/questions/224297/what-to-a-physicist-are-instantons-and-the-donaldson-invariants
+\section{Preliminaries}
+Equivariant differential topology extends the results of differential topology
+to manifolds/topological spaces with a group action, called a $G$-space. A
+$G$-space is a topological space $X$ with a continuous action $X\times G \to X$ 
+such that $x\cdot e = x$ for $e$ the identity in  $G$ and $(x\cdot g) \cdot h =
+x\cdot (gh)$ for $g,h\in G$. 
 
-The physical setting in which the Donaldson invariants will appear is a
-Yang-Mills theory living on the four-dimensional manifold $M$ coupled to certain
-fields such that the total action has a supersymmetry. The action of this theory
-is 
-\begin{align*}
-	S &= \int \Tr \Big(\frac{1}{4}F_{\mu\nu}F^{\mu\nu} +\frac{1}{4}F_{\mu\nu}(\star
-F)^{\mu\nu} +\frac{1}{2}\phi D_\mu D^\mu\lambda - i\eta D_\mu\psi^\mu +
-iD_\mu\psi_\nu\chi^{\mu\nu} \\ 
-	  &\qquad - \frac{i}{2}\lambda[\psi_\mu,\psi^\mu]-\frac{i}{2}\phi[\eta,\eta]-\frac{1}{8}[\phi,\lambda]^2\Big)\sqrt{g} \odif[order=4]{x}
-\end{align*}
-where $D_\mu = \nabla_\mu + [A_\mu,+]$ is the gauge covariant derivative and
-$\nabla$ is the Riemannian covariant derivative, and all fields are
-$\mathfrak{g}$-valued. There is a  $\mathbb{Z}_2$-grading on the space of
-fields. The bosonic fields are $\phi,\lambda$ and the fermionic fields are
-$\eta,\psi,\chi$ and  $\chi$ is additional constrained to be self-dual. The
-action is invariant under the symmetry 
-\begin{align*}
-	\delta_\epsilon A = \mathrm{i}\epsilon\psi \quad \delta_\epsilon\phi = 0
-	\quad \delta_\epsilon\lambda = 2\mathrm{i}\epsilon\eta \\
-	\delta_\epsilon\psi = -\epsilon D\phi \quad \delta_\epsilon\eta =
-	\frac{1}{2}\epsilon[\phi,\lambda] \quad \delta_\epsilon \chi = \epsilon(F +
-	\ast F) 
-\end{align*}
-with $\epsilon$ a fermionic infinitesimal parameter. As with all
-transformations, we think of this one as having a generator: its supercharge
-$Q$, which gives all transformations as  $\delta \alpha=-i\epsilon Q(\alpha)$
-where $\alpha$ is any field. in a Hamiltonian formulation,  $Q(\alpha)$ would be
-the Poisson bracket  $\{Q,\alpha\}$, but on a general manifold we don't have
-that option. By explicit computation, we find that 
-\[
-	\delta_\epsilon\delta_\zeta X - \delta_\zeta\delta_\epsilon X =
-	-2\mathrm{i}\epsilon\zeta\phi
-\] 
-for every field $X$ except  $A$, where it is  $-D\phi$. This holds only on-shell
-for  $\chi$, but off-shell for all others. Therefore, the commutator of two such
-transformations is a gauge transformation, and hence has no physical impact. The
-conserved current associated to this symmetry is 
+We will often be dealing with both left and right group actions, but these are
+equivalent. If we have a right $G$ action on $X$, this can be turned into a left
+action by defining  $g \cdot x = x \cdot g^{-1}$, so that $h\cdot (g\cdot x) =
+(x\cdot g^{-1})\cdot h^{-1} = x\cdot (g^{-1}h^{-1}) = (hg)\cdot x$. The same
+argument works in the other direction.
+
+
+There are two definitions of equivariant
+cohomology: the Borel construction which uses classifying spaces, and the Cartan model.
+These have been proven to be equivalent in the case of compact manifolds with
+compact group actions by Cartan. % TODO reference theorem, venselaar
+
+First let us recall some basic definitions in algebraic topology.
+\begin{defn}
+	Let $(X,x_0)$ and $(Y,y_0)$ are based topological spaces. Two maps
+	$f,g:(X,x_0)\to(Y,y_0)$ are \underline{homotopic} if there is a continuous
+	map $F:X\times [0,1]\to Y$ such that
+	$F(x,0)=f(x),F(x,1)=g(x),F(x_0,t)=y_0$. Then we denote $f\sim g$.
+
+	A \underline{homotopy equivalence} is a continuous map $f:(X,x_0)\to(Y,y_0)$
+	that has a homotopy inverse, i.e. a continuous map $g:(Y,y_0)\to(X,x_0)$
+	such that $f\circ g \sim \mathbb{1}_Y$ and $g\circ f \sim \mathbb{1}_X$.
+	Then we say $X$ and  $Y$ have the same homotopy type.
+
+	A topological space $(X,x_0)$ is \underline{contractible} if it has the
+	homotopy type of a point. 
+	A space $X$ is \underline{weakly contractible} if all its homotopy groups
+	are trivial, i.e.  $\pi_q(X)=0$ for all  $q\geq 0$. 
+\end{defn}
+An important theorem in homotopy theory is Whitehead's theorem, which states
+that if a continuous map $f:X\to Y$ of CW complexes induces an isomorphism on
+all homotopy groups, then  $f$ is a homotopy equivalence. In particular, this
+means that a weakly contractible CW complex is contractible, using the inclusion
+map $x_0 \to X$.
+% every smooth manifold is homotopy equivalent to a CW complex pg 18 Tu
+
+A useful tool for computing homotopy groups is the homotopy exact sequence of a
+fiber bundle. 
+\begin{thm}[{\cite[Thm 4.41]{hatcher}}] \label{thm:fiber_les}
+	Suppose $(E,x_0) \xrightarrow{\pi} (B,b_0)$ is a fiber bundle with fiber
+	$F=\pi^{-1}(b_0)$ and path-connected base space $B$. Let  $x_0$ also be the
+	basepoint of $F$, and  $i:(F,x_0)\to (E,x_0)$ the inclusion map. Then there
+	exists a long exact sequence
+	\[
+		\ldots\to\pi_n(F,x_0) \xrightarrow{i_*}\pi_n(E,x_0)
+		\xrightarrow{\pi_*}\pi_n(B,b_0)
+		\to \pi_{n-1}(F,x_0)\to\ldots\to\pi_0(E,x_0)\to 0
+	\] 
+	All maps are group homomorphisms except the last three maps which are set
+	maps.
+\end{thm}
+
+In this section, assume $G$ is a topological group. 
+Cartan's mixing contruction, also
+called Borel's construction, turns a principal  $G$-bundle and a  $G$-space  $M$
+into a fiber bundle with fiber  $M$. 
+
+If  $P$ is a right  $G$-space and  $M$ is a left  $G$-space, the 
+\underline{Cartan mixing space} of  $P$ and  $M$ is the quotient 
+$P\times_G M:= (P\times M) / \sim$ by the 
+equivalence relation $(p,m)\sim (pg,g^{-1}m) \textrm{ for some }g\in G$.
+Equivalently, this is the orbit space $(P\times M) /G$ under the diagonal action
+$g(p,m) = (pg,g^{-1}m)$.
+
+If in addition $P\xrightarrow{\pi} B$ is a principal $G$-bundle, define the projection
+$\tau_1:P\times_GM\to B$ by $\tau_1([p,m])=\pi(p)$. This is well defined because
+$\pi$ preserves the fiber.
+
+\begin{prop} \label{prop:cartan_mixing}% prop 4.5 Tu
+	If $P\xrightarrow{\pi} B$ is a principal  $G$-bundle and  $M$ is a left  $G$-space,
+	then  $\tau_1 : P\times_G M\to B$ is a fiber bundle with fiber  $M$.
+\end{prop}
+\begin{proof}
+	Suppose $\pi^{-1}(U)\simeq U\times G$. It suffices to show
+	$\tau_1^{-1}(U)\simeq U\times M$. 
+	\begin{align*}
+		\tau_1^{-1}(U)
+		&= \{[p,m]\in P\times_GM \mid \pi(p)\in U\} \\
+		&= \pi^{-1}(U)\times _G M \\
+		&\simeq (U\times G) \times_G M 
+	\end{align*}
+	To show this is homeomorphic to $U\times M$, we define 
+	$\varphi:(U\times G) \times_G M \to U\times M$ by 
+	$[(x,g),m] \mapsto (x,gm)$. It has inverse $(x,m)\mapsto [(x,1),m]$.
+\end{proof}
+
+
+\section{Borel construction}
+\begin{defn}
+	Given a topological group $G$, let  $EG \to BG$ be a principal  $G$-bundle
+	with weakly contractible total space  $EG$. Define the  \underline{homotopy
+	quotient} of a $G$-space $M$ by $M_G:=EG\times_G M$.
+	 
+	The \underline{equivariant cohomology} of $M$ is defined to be the singular
+	cohomology of the homotopy quotient: $H_G^*(M;R) := H^*(M_G;R)$.
+\end{defn}
+Of course, for this definition to make sense we need to show that it is
+independent of the choice of weakly contractible $EG$, which we do now. 
+
+\begin{defn}
+	A map $f:X\to Y$ is a \underline{weak homotopy equivalence}
+	it induces an isomorphism of homotopy groups
+	$f_*:\pi_q(X)\to\pi_q(Y)$ for all  $q\geq 0$. 
+\end{defn}
+
+\begin{lem} % lemma 4.9 Tu
+	If $E$ is a weakly contractible $G$-space, and $P\to P/G$ is a principal
+	$G$-bundle, there is a weak homotopy equivalence $(E\times P) /G \to P /G$.  
+\end{lem}
+\begin{proof}
+	We consider $E\times_G P = (E\times P) /G$ as the orbit space under 
+	the diagonal action $(e,p)g = (g^{-1}e,pg)$. 
+	By Proposition \ref{prop:cartan_mixing}, $(E\times P) /G \to P /G$ is a
+	fiber bundle with fiber $E$. By the long exact sequence of a fiber
+	bundle (Theorem \ref{thm:fiber_les}), the sequence of induced maps
+	\[
+	\ldots \to \pi_q(E) \to \pi_q((E\times P) /G) \to\pi_q(P /G) \to
+	\pi_{q-1}(E)\to \ldots
+	\] 
+	is exact. Since $E$ is weakly contractible, the middle map is an isomorphism
+	 $\pi_q((E\times P) /G) \to \pi_q(P /G)$ for any  $q\geq 0$.
+\end{proof}
+
+\begin{cor}
+	Suppose $M$ is a left  $G$-space. If $E\to B$ and  $E'\to B'$ are two principal
+	$G$-bundles with weakly contractible total spaces, then $E\times_G M$ and
+	$E'\times_G M$ are weakly homotopy equivalent.
+\end{cor}
+\begin{proof}
+	Note that homotopy equivalence is not a symmetric relation, but by symmetry
+	of $E$ and  $E'$ both directions hold. 
+	Applying the previous lemma to $E$ and $E'\times M$, there is a weak
+	homotopy equivalence $(E\times E'\times M)/G$ to $(E'\times M) /G$.
+
+\end{proof}
+\begin{thm}[{\cite[Proposition 4.21]{hatcher}}]
+	A weak homotopy equivalence $f:X\to Y$ induces isomorphisms
+	$f^*:H^n(Y;R)\to H^n(X;R)$ in cohomology for all  $n$.
+\end{thm}
+
+Hence, combining the last two results tells us that for any two choices of
+weakly contractible principal $G$-bundles  $E$ and  $E'$,  $H^*(E\times_G M)
+\simeq H^*(E'\times_G M)$ so the definition of equivariant cohomology is
+independent of the choice of  $E$. 
+
+To define the equivariant cohomology of a $G$-space  $M$, we need a weakly
+contractible principal $G$- bundle $EG$. It turns out that for CW complexes,  
+a weakly contractible $G$-bundle is equivalent to a universal $G$-bundle, as
+defined below.
+\begin{defn}
+	A principal $G$-bundle  $\pi:EG\to BG$ is a \underline{universal $G$-bundle} 
+	if the following two conditions hold:
+	\begin{enumerate}[(i)]
+	    \item for any principal $G$-bundle  $P$ over a CW complex $X$, there
+			exists a continuous map  $h:X\to BG$ such that  $P \simeq h^*EG$ 
+		\item If $h_0,h_1:X\to BG$ and $h_0^*EG \simeq h_1^*EG$ over a CW
+			complex $X$, then  $h_0$ and $h_1$ are homotopic
+	\end{enumerate}
+	The base space $BG$ of a universal  $G$-bundle is called a
+	\underline{classifying space} for  $G$.
+\end{defn}
+\begin{thm}[Steenrod 1951] % thm 5.2 Tu
+	Let $E\to B$ be a principal  $G$-bundle. If  $E$ is weakly contractible,
+	then  $E\to B$ is a universal bundle. Conversely, if  $E\to B$ is a
+	universal bundle and  $B$ is a CW complex, then  $E$ is weakly contractible.
+\end{thm}
+
+\begin{comment}
+Let $X$ be a CW complex, and $[X,B]$ be the homotopy classes of maps $h:X\to B$, 
+and  $\mathcal{P}_G(X)$ be the isomorphism classes of principal $G$-bundles over $X$. 
+Then the definition of universal $G$-bundle states the map
+$\varphi:[X,BG]\to\mathcal{P}_G(X)$ given by $h\mapsto h^*(EG)$ is surjective
+(condition (i)) and injective (condition (ii)). 
+% TODO: well defined by Theorem 5.3 Tu
+\end{comment}
+
+\begin{thm} %thm 5.6
+	If a CW classifying space exists for a topological group $G$, it is unique 
+	up to homotopy equivalence.
+\end{thm}
+\begin{proof}
+	Suppose $E\to B$ and  $E'\to B'$ are universal bundles, where $B$ and  $B'$
+	are CW complexes. Since  $E'$ is
+	universal there is a map  $f:B\to B'$ such that  $E'\simeq h^*E$. Similarly
+	there is a map  $h:B'\to B$ such that  $E\simeq h^*E'$. Therefore,  $E\simeq
+	f^*h^*E=(h\circ f)^*E$. 
+
+	But this means  $(h\circ f)^*E = \id_B^*E$, so by condition (ii) of a
+	universal bundle, $h\circ f \simeq \id_B$. Similarly, $f\circ h\simeq
+	\id_{B'}$. Therefore $B$ and  $B'$ are homotopy equivalent.
+\end{proof}
+
+Moreover, it can be shown that a universal $G$-bundle exists for any topological
+group  $G$. % Milnor's construction TODO: elaborate?
+
+
+\section{Cartan model}
+\begin{defn} \label{def:contraction} % BGV
+	If $V$ is a vector space, the \underline{contraction} (or interior
+	multiplication) operator $\iota(v) :
+	\Lambda V^* \to \Lambda V^*$ for $v\in V$ is the unique operator such that
+	\begin{enumerate}[(1)]
+	    \item $\iota(v)\alpha = \alpha(v)$ if  $\alpha\in V^*$
+		\item $\iota(v)(\alpha\wedge\beta) = (\iota(v)\alpha)\wedge\beta + 
+			(-1)^{\abs{\alpha}}\alpha\wedge(\iota(v)\beta)$, if  $\alpha,\beta$
+			are homogeneous elements of  $\Lambda V^*$.
+	\end{enumerate} % mention exterior operator?
+\end{defn}
+Hence, we can define \underline{interior multiplication} with a vector
+field as the map $\iota(X) : \Omega^*(M) \to \Omega^{*-1}(M)$.
+The definition similarly extends to vector valued forms.
+\begin{thm} % thm 10.4 tu equivariant, p18 BGV
+	Let $X$ be a vector field on  $M$, and $\alpha\in \Omega(M)$. 
+	\begin{enumerate}[(i)]
+	    \item $\mathcal{L}(X)d = d\mathcal{L}(X)$
+		\item $\mathcal{L}(X)(\iota(Y)\alpha) = \iota([X,Y])\alpha +
+			\iota(Y)(\mathcal{L}(X)\alpha)$ 
+		\item Cartan's homotopy formula: $\mathcal{L}(X) = d
+			\cdot\iota(X)+\iota(X)\cdot d$
+	\end{enumerate}
+\end{thm}
+\begin{proof}
+	
+\end{proof}
+
+\begin{defn}
+	Let $\mathfrak{g}$ be a Lie algebra. A \underline{$\mathfrak{g}$-differential graded
+	algebra} is a commutative graded algebra $\Omega= \bigoplus_{k\geq
+	0}\Omega^k$ with 
+	\begin{itemize}
+		\item an antiderivation $d:\Omega\to\Omega$ of degree 1 such that
+	$d\circ d = 0$
+		\item two actions of $\mathfrak{g}$: $\iota:\mathfrak{g}\times\Omega\to\Omega$
+			and  $\mathcal{L}:\mathfrak{g}\times\Omega\to\Omega$, where for
+			$X\in\mathfrak{g}$,  $\iota_X$ and  $\mathcal{L}_X$ are
+			$\mathbb{R}$-linear in $X$,  $\iota_X$ acts on  $\Omega$ as an
+			antiderivation of degree -1,  $\iota_x = 0$, and  $\mathcal{L}_X$
+			acts as a derivation of degree 0.
+	\end{itemize}
+	Furthermore, the operators satisfy Cartan's homotopy formula:
+	$\mathcal{L}_X= d\iota_X+\iota_Xd$.
+\end{defn}
+Note that commutativity for a graded algebra means that if $a\in
+\Omega^k,b\in\Omega^l$ then $ba = (-1)^{kl}ab$.  
+
+\begin{defn}
+	A differential form $\alpha\in\Omega$ is 
+	\underline{horizontal} if $\iota_X\alpha=0$ for all $X\in\mathfrak{g}$. 
+	It is \underline{invariant} if $\mathcal{L}_X\alpha = 0$ for all $X\in
+	\mathfrak{g}$. It is \underline{basic} if it is both horizontal and
+	invariant.
+\end{defn}
+Note that in the case of a principal bundle, we think of $X\in \mathfrak{g}$ as 
+a vertical vector field via $X_p = \odv{}{t}_{t=0} p \exp (t X)$. 
+\begin{comment} %%% stuff about principal and associated bundles
+\begin{defn}
+	A differential form $\alpha\in\Omega(P,V)$ on a principal $G$-bundle  with 
+	representation $(V,\rho)$ is \underline{$\rho$-equivariant}   
+	if for every $g\in G$, $r_g^*\alpha = \rho(g^{-1})\alpha$. 
+	\\
+	A differential form $\alpha\in\Omega(P,V)$ on a principal $G$-bundle  with 
+	representation $(V,\rho)$ is \underline{basic}  
+	if it is horizontal and $\rho$-equivariant. This subspace is
+	denoted $\Omega_{bas}(P,V)$.
+\end{defn}
+Let $P$ be a principle $G$-bundle, and let ($V,\rho$) be a representation of
+$G$. Let $E= P\times_\rho V$ be the associated bundle.
+\begin{thm} %thm 31.9 tu
+	The map $\Omega_{bas}^k(P,V) \to \Omega^k(M,P\times_\rho V)$ given by 
+	$\omega \mapsto \alpha_x = f_p \circ \omega_p$
+	is a linear isomorphism, where $f_p: V\to E_x$ is the isomorphism  $v\mapsto
+	[p,v]$, and $p\in\pi^{-1}(x)$ is any point.
+\end{thm}
+
+\begin{cor} % Prop 1.7 BGV
+	There is a natural isomorphism between $\Gamma(M,P\times_\rho V)$ and
+	$\rho$-equivariant maps in
+	$C^{\infty}(P,V)$, given by sending $s\in C^{\infty}(P,V)^G$ to $s_M$
+	defined by  $s_M(x) = [p,s(p)]$, where  $p\in\pi^{-1}(x)$ is any element.
+\end{cor}
+
+
+Recall that a \underline{vertical vector} on a fibre bundle $E$ with base  $M$
+is a tangent vector  $X\in TE$ such that  $X(\pi^* f) = 0$ for any  $f\in
+C^\infty(M)$. The space $V_pP$ of vertical tangent vectors to a point $p$ in a
+principal $G$-bundle can be canonically identified with the Lie algebra $\mathfrak{g}$ 
+of $G$ in the following way. 
+If $X\in\mathfrak{g}$, the \underline{fundamental vector field} associated to
+$X$, denoted $X_P \in \Gamma(VP)$, is
  \[
-	 J = \mathrm{Tr}_\mathfrak{g}\left((F_{\mu\nu} + (\ast F)_{\mu\nu})\psi^\nu
-		 - \eta D_\mu \phi - D^\nu\phi \chi_{\mu\nu} -
-	 \frac{1}{2}\psi_\mu[\lambda,\phi]\right)\mathrm{d}x^\mu
+X_P = \odv{}{t}_{t=0} p \exp (t X)
 \] 
-where conservation means that $\star J$ is closed, so for any homology 3-cycle
- $\gamma$, the integral  $Q(\gamma) = \int_\gamma \star J$ depends only on the
- homology class of  $\gamma$. Furthermore, one may show that the energy momentum
- tensor  $T_{\mu\nu}= 2 \frac{\delta S}{\delta g^{\mu\nu}}$ of this theory is an
- infinitesimal transform $T_{\mu\nu}=\{Q,\lambda_{\mu\nu}\}$ for $\lambda$ given
- in Witten's eq.(2.34). 
-
-\section{Donaldson invariants as path integrals}
-In the following, the path integral measure $\mathcal{D}X$ includes all fields,
-and also intends to have gauge equivalence calsses quotiented out. The generic
-object we consider is the (unnormalized) expectation value of any observable
-$\mathcal{O}$ which is any nice functional in the fields:
-\[
-Z(\mathcal{O}) = \int \mathcal{O} \exp(-S /e^2) \mathcal{D}X
-\] 
-If the supersymmetry transformation is non-anomalous, we have
-$Z(\{Q,\mathcal{O}\})= 0$ for every observable. We now claim that $Z=Z(1)$ is a
-smooth invariant, and in particular will turn out to be a Donaldson invariant.
-For  $Z$ to be a smooth invariant, it must be invariant under changes in the
-metric. The change of metric is by definition  $\delta
-S=\frac{1}{2}\int_M\sqrt{g} T_{\mu\nu}\delta g^{\mu\nu}$ and this leads to
-\[
-	\delta Z(1) = -\frac{1}{e^2}Z(\{Q,\int_M \sqrt{g}\delta
-	g^{\mu\nu}\lambda_{\mu\nu}\}) = 0
-\] 
-so $Z(1)$ is invariant under changes of the metric. Similarly, it is invariant
-under changes of the gauge coupling constant  $e$,   as long as it stays
-non-zero. But in the limit of small coupling, the path integral is strongly
-dominated by the classical minima of the free theories, and the calssical minima
-of the free gauge theory are the anti-self-dual instantons. The self-dual ones
-are not minima beause we have added $F\wedge F$ to the Lagrangian. So we may
-evaluate  $Z$ by looking at the instanton contributions. 
+This is a vertical vector field because $X_P(\pi^*f) = \odv{}{t}_{t=0} f(p \exp
+(t X)) = 0$. 
+\end{comment}
 
 
-\section{Euler number}
-\subsection{Finite dimensional vector bundle}
-Let $E \xrightarrow{\pi} X$ be a real vector bundle.  
-% Assume $E$ and  $X$ are orientable,  $X$ compact without boundary, rank  $E$
-% is even with  $\rank(E) = 2m \leq \dim(X) = n$.
+\begin{prop} % prop 18.10 tu
+	If $\Omega$ is a  $\mathfrak{g}$-differential graded algebra, the vector
+	space of basic elements $\Omega_{bas}$ is a $\mathfrak{g}$-differential
+	graded algebra.
+\end{prop}
+% TODO tensor product of dgas
+Tensor prouct of dgas is a dga
 
-The Euler class of  $E$
+\begin{thm}[Equivariant de Rham theorem] % 19.4 Tu
+	For a compact connected Lie group $G$ with Lie algebra $\mathfrak{g}$, and
+	$G$-manifold  $M$, there is a graded-algebra isomorphism 
+	 \[
+		 H_G^*(M) \simeq H^*((W(\mathfrak{g})\otimes \Omega(M))_{bas}, \delta)
+	\] 
+\end{thm}
+The complex $(W(\mathfrak{g})\otimes \Omega(M))_{bas}$ with the Weil
+differential is called the \underline{Weil model}.
 
-\section{Mathai-Quillen formula for Euler number}
-A recurrent concept in this thesis will be the Euler number of a vector bundle.
-There are two quite different approaches for calculating the Euler number
-$\chi(X) = \chi(TX)$ of a manifold  $X$. This first is topological, and counts
-the signed isolated zeros of a vector field on $X$, via the Hopf theorem. The
-second is differential geometric and represents  $\chi(X)$ as the integral over
-$X$ of a density constructed from the curvature of some connection on  $X$, via
-the Gauss-Bonnet theorem. 
+\begin{thm}[Weil-Cartan isomorphism] % Thm 21.1 Tu
+	Let $G$ be a connected Lie group, and $M$ be a left $G$-manifold. There is a
+	graded-algebra isomorphism 
+	\[
+		F : (W(\mathfrak{g})\otimes \Omega(M))_{hor} \to S(g^*\otimes \Omega(M))
+	\] 
+	\[
+	a+ \sum \theta_I a_I \mapsto a
+	\] 
+	which induces a graded-algebra isomorphism on the basic algebras
+	$F : F : (W(\mathfrak{g})\otimes \Omega(M))_{bas} \to (S(g^*\otimes
+	\Omega(M)))^G$. 
+\end{thm}
+The complex $(S(g^*\otimes \Omega(M)))^G$ is called the \underline{Cartan
+model}. Elements of the Cartan model are called \underline{equivariant forms}.
 
-By extension, the Euler number of an arbitrary vector bundle $E$ over $X$ can be
-determined in terms of a section, or the curvature of a connection on  $E$.
+\section{BRST Model}
+In the context of topological field theories, another model of equivariant
+cohomlogy arises naturally, called the BRST model. As a vector space, it is
+identical to the Weil model $W(\mathfrak{g})\otimes \Omega(M)$, but with
+differential $d_B = d_W + \theta^i\otimes \mathcal{L}_i - u^i \otimes \iota_i$.
 
-The Mathai-Quillen formula \cite{MQformula} is a more general formula which interpolates between
-the two approaches. It relies on the construction of a form $e_{s,\Delta}(E)$ which depends
-on both a section  $s$ and connection  $\Delta$, with the property
-$\chi(E)=\int_X e(E)$ for all $s$ and  $\Delta$. Moreover, this equation reduces
-to the Hopf or Gauss-Bonnet theorem for an appropriate choice of $s$. 
+% TODO how does it arise? proof of conjugagion theorem, why conjugate?
+It was shown by Kalkman that the BRST and Weil models are related by the algebra
+automorphism of conjugation by $\exp (\theta^i \iota_i)$. 
 
-\section{TQFT as a generalisation of Mathai-Quillen}
-% section 4.2 MQintro
- This approach is
-due to \cite{atiyahlagrangians}, who showed that TQFT can be regarded as an
-infinite dimensional generalisation of the Mathai-Quillen construction. 
-Although $e(E)$ and  $\int_X e(E)$ do not make sense for
-infinite dimensional  $E$ and  $X$, the Mathai-Quillen form  $e_{s,\Delta}$ can
-be used to formally define regularized Euler numbers $\chi_s(E) := \int_X
-e_{s,\Delta}(E)$. Although not independent of $s$, these numbers  $\chi_s(E)$
-are of topological interest for certain choices of  $s$.  
+
+\section{Equivariant characteristic classes}
+\begin{defn} % from ch1 BGV
+	Let $\pi: E\to M$ be a fibre bundle and let $G$ be a Lie group. We say $E$
+	is a \underline{$G$-equivariant bundle} if $E$ and  $M$ are 
+	$G$-manifolds  with $g \cdot \pi = \pi \cdot g$ for all  $g\in G$.\\
+	If  $E$ is a vector bundle, we further require that the action  $g: E_x \to
+	E_{gx}$ is linear.
+\end{defn}
+
+\begin{prop} % prop 9.4 Tu
+	Let $f:M\to N$ be a $G$-equivariant map of  $G$-spaces, and let
+	$f_G:M_G\to N_G$ be defined by $[e,x]\mapsto [e,f(x)]$. 
+	\begin{enumerate}[(i)]
+	    \item If $f$ is injective, then $f_G$ is injective
+		\item If $f$ is surjective, then $f_G$ is surjective
+		\item If $M\xrightarrow{f} N$ is a fiber bundle with fiber $F$, then
+			$M_G\xrightarrow{f_G}N_G$ is a fiber bundle with fiber  $F$. 	
+	\end{enumerate}
+\end{prop}
+
+Let $G$ be a topological group, and  $\pi : E\to M$ be a  $G$-equivariant vector
+bundle. By the proposition above, this induces a vector bundle  $\pi_G : E_G\to
+M_G$ on homotopy quotients of the same rank. If $E\to M$ is oriented, then so is
+$E_G \to M_G$. 
+
+The \underline{equivariant Euler class} of an oriented equivariant vector bundle
+$\pi : E \to M$ is defined to be the Euler class of $\pi_G : E_G \to M_G$, i.e.
+it is an element of $H_G^*(M)$. 
 
 

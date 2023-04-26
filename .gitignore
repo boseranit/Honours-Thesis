@@ -11,3 +11,4 @@ build/thesis.synctex.gz
 build/thesis.toc
 build/thesis.bcf
 build/thesis.run.xml
+*.aux
