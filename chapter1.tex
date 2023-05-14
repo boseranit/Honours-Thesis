@@ -1,49 +1,7 @@
 
-\chapter{Introduction and Motivation}
+\chapter{Donaldson Invariants}
 \label{chapter1}
-\section{History}
-Weyl (1918) introduced the concepts of gauge transformation and gauge
-invariance, while seeking to unify electromagnetism with general relativity. After the
-development of quantum mechanics, an idea was to make the global phase symmetry
-into a local gauge symmetry by replacing the momentum operator with a covariant 
-derivative in the Schrodinger equation, given by 
-$\widehat{p}=\frac{\hbar}{i}(\nabla+iA)$. The result of this $\U(1)$ gauge symmetry
-turns out to be profound, since it introduces EM interactions with a charged
-quantum mechanical particle. This was the first widely accepted gauge theory,
-and popularised by Pauli (\citeyear{pauli_em}).\cite{pauli_em}
-Gauge theory was mostly limited to EM and GR until the paper of Yang and Mills 
-(1954). They introduced $\SU(2)$ gauge theories for
-isotopic spin axes, to understand the strong interaction. This idea later found
-application to the model of the electroweak interaction by Weinberg and Salam
-(1967), and also the Higgs mechanism (1966) for spontaneous symmetry breaking
-allowing gauge fields to acquire mass. 
-
-This also motivated the search for a strong force gauge theory, which is now
-known as quantum chromodynamics. The Standard Model unifies the description of
-electromagnetism, weak interactions and strong interactions in the language of
-quantized gauge theory. 
-
-The origin of TQFT can be traced to the work of Schwarz and Witten.
-Schwarz showed that the Ray-Singer torsion, a particular topological invarint,
-could be represented as the partition function of a certian quantum field theory
-(1978). Unrelated to this observation, Witten gave a framework for understanding
-Morse theory in terms of supersymmetric quantum mechanics (1982), which was 
-generalised to an infinite dimensional version by Floer. 
-
-In \citeyear{don83}, Donaldson built on his doctoral advisor Atiyah's work on 
-Yang-Mills instantons to introduce his famous polynomial invariants, and prove 
-Donaldson's theorem.\cite{don83}
-Freedman used this work to exhibit existence of exotic differentiable
-structures on $\mathbb{R}^{4}$. 
-Witten (\citeyear{wittenTQFT}) provided a way
-of obtaining the polynomials by formulating a supersymmetric TQFT, which became
-known as Donaldson-Witten theory.\cite{wittenTQFT}
-Another approach to obtain topological invariants, related to Donaldson's
-construction, comes from Seiberg-Witten theory (1994). They formulated a set of
-equations that contains the same information as the Yang-Mills equations but
-are technically much easier to work with. 
-
-\section{Outline}
+\section{Yang-Mills theory}
 Riemannian 4-manifold and a principal $G$-bundle $E$ over it. Given a connection
 on this bundle, the curvature  $F(A)\in \Omega^2(\mathfrak{g})$ is a Lie algebra
 valued 2-form. Then instantons are solutions to the ASD equation $\star F(A) =
@@ -64,20 +22,55 @@ S = \int_M \Tr (F\wedge \star F)
 \] 
 whose Euler-Lagrange equations are the classical equations of motion, i.e. the
 classical solutions are stationary points of this functional. Now, we can
-decompose the field strength into a self-dual and anti-self-dual part.
-This gives 
+decompose the field strength $F = F^+ + F^-$ into self-dual and anti-self-dual
+parts. Using the fact that $\Omega^{2,+}$ and $\Omega(2,-)$ are orthogonal, this 
+gives 
 \[
 S = \int \Tr(F^{+}\wedge \star F^{+}) +\int \Tr(F^{-}\wedge \star F^{-})
 \] 
-and comparing this to the second Chern class $C_2(A) := \int \Tr(F\wedge F)$ we
-can see that $\abs{S(A)} >= \abs{C_2(A)}$, i.e. it is locally minimized when
-this equality holds. But this holds exactly when either $F^{+}=0$ or $F^{-}=0$.
-Thus the classical equations of motion are equivalent to $\star F = \pm F$. So
-instantons are just classical solutions to the equation of motion.
+\begin{thm}
+	The second Chern class $c_2(E)\in H^4(M,\mathbb{Z})$ classifies up to
+	isomorphism $\SU(2)$-bundles over any compact connected oriented 4-manifold
+	 $M$. (appendix A in Freed and Uhlenbeck)
+\end{thm}
+The Lie algebras of the groups $\SU(n)$ or $\SO(n)$ correspond to traceless
+matrices, so in these cases  the second Chern class simplfies 
+\[
+c_2(E) = \frac{1}{8\pi^2}\int_M (\Tr(F^2)-(\Tr(F)^2)) = 
+\frac{1}{8\pi^2}\int_M \Tr(F\wedge F)
+\] 
+(why is $F\wedge F$ the same as  $F^2$)
+Again decomposing $F=F^++F^-$, we can write  $c_2(E) = \frac{1}{8\pi^2}\int_M
+(\abs[*]{F^+}^2-\abs[*]{F^-}^2)$. 
 
-Instantons may be related by large gauge transformations, which may be
-quotiented out.
+Comparing with the Yang-Mills action, 
+\begin{align*}
+	S_{YM}(A) = \int_M (\abs[*]{F^+}^2+\abs[*]{F^-}^2) 
+	= \begin{cases}
+		8\pi^2 c_2(E) + 2\int_M \abs[*]{F^-}^2 \\
+		-8\pi^2 c_2(E) + 2\int_M \abs[*]{F^+}^2
+	\end{cases}
+\end{align*}
+We see that for $c_2(E)>0$, the action is bounded below by 
+$S(A) >= 8\pi^2\abs{c_2(A)}$ and the self-dual connections $F^-=0$ are
+minimisers. For $c_2(E)<0$ the action is bounded
+below by $S(A)\geq -8\pi^2c_2(E)$, and minimised by anti-self-dual connections
+$F^+=0$. 
+Thus the classical equations of motion are equivalent to $\star F = \pm F$,
+whose solutions are called (anti-)instantons.
 
+Note that $\star F = - F$ is a non-linear differential equation for
+non-abelian gauge groups, and defines a subspace of the infinite dimensional
+space of connections $\mathcal{A}$. This subspace can be regarded as the zero
+locus of the section $s : \mathcal{A} \to \Omega^{2,+}$ given by $s(A) =
+F_A+\star F_A$. The main goal is to define a finite-dimensional moduli space
+starting from  $s^{-1}(0)$. 
+The key property used to do this is that the section is equivariant with respect
+to the action of the gauge group: $s(u^*(A))=u^*(s(A))$.
+
+Hence if a connection is ASD, i.e. $s(A)=0$, then the transformed connection is
+also ASD. The moduli space is defined by quotienting the space of ASD
+connections by the action of the gauge group. 
 
 \section{Gauge Theory Motivation}
 Let $M$ be a space-time manifold. In field theory, a particle or field is 
@@ -121,11 +114,13 @@ described locally using a connection 1-form (or gauge potential),
 by $\partial_\mu+A$, where
 $A$ is a matrix or vector (if $\dim V=1$) that depends on the tangent vector.
 
-In QFT we only consider transformations that change reference frames, but leave
-the points in spacetime fixed. However, general relativity is based on
-transformations of space-time itself, which we can call external symmetries. 
-The gauge symmetries (or changes of local trivialisation) are an artefact of our 
-choice of coordinates/fields. There is no
+General relativity is based on
+transformations of space-time itself, which we can call external symmetries.
+However, in QFT we only consider transformations that change reference frames, 
+but leave the points in spacetime fixed by acting on the fields of the theory, 
+called internal symmetries.   
+An example of this is gauge symmetries (or changes of local trivialisation),
+which are an artefact of our choice of coordinates/fields. There is no
 physical meaning, since all states related by such a transformation are
 physically the same. 
 Although it is possible to describe particles without gauge theory, by defining
@@ -135,8 +130,8 @@ properties, it is easier to work with fields with extra structure.
 % by an ordinary 4-vector field but must be associated to a gauge symmetry eq31
 
 For instance, the photon has two polarisation states, but we instead have a
-connection $A^{\mu}$ with four components, that transforms nicely under the
-$\SO(3,1)$ Lorentz group, and only consider gauge independent
+connection (or gauge field) $A^{\mu}$ with four components, that transforms 
+nicely under the Lorentz group $\O(3,1)$, and only consider gauge independent
 quantities to be physical. In contrast, a global symmetry is a ``true" symmetry
 of the system, because it corresponds to a conserved quantity via Noether's
 theorem, and are physically not the same.  
@@ -196,4 +191,14 @@ moduli space of connections quotiented by gauge group
 
 transversality
 
+\vspace{5mm}
+\hrule 
+\vspace{5mm}
 
+\textbf{Bibliographical notes}
+{\small
+\begin{itemize}
+	\item A great overview of the main ideas in the two approaches to
+		constructing a Witten type TFT is given in \citet{TQFTbook}.
+\end{itemize}
+}

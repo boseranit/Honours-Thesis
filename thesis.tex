@@ -29,6 +29,17 @@
   \titleformat{\section}{\normalfont\fontsize{17}{15}\bfseries}
   	{\thesection}{1em}{}
 
+  % include chapter and section numbers in bookmarks
+  \usepackage[
+  open,
+  openlevel=2,
+  atend,
+  numbered
+  ]{bookmark}
+  \makeatletter
+  \newcommand{\numbersections}{\renewcommand{\Hy@numberline}[1]{##1. }}
+  \newcommand{\nonumbersections}{\renewcommand{\Hy@numberline}[1]{}}
+  \makeatother
 \begin{document}
 
 
@@ -40,11 +51,13 @@
 \input{titlepage}%\blanknonumber
 %\input{dedication}%\blanknonumber
 \input{declaration}%\blanknonumber
-\input{acknowledgements}%\blanknonumber
 \input{abstract}%\blanknonumber
+% add contents to bookmarks 
+\pdfbookmark{\contentsname}{toc}
 \tableofcontents%\blanknonumber
+\input{preface}
+\input{acknowledgements}%\blanknonumber
 \input{notation}%\blanknonumber
-
 
 
 % set page numbers to arabic, reset to 1
@@ -72,6 +85,7 @@
 \input{appendix1}
 \input{appendix2}
 \input{appendix3}
+\input{appendix4}
 %etc
 
 

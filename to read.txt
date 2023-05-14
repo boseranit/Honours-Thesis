@@ -5,18 +5,16 @@ classical electromagnetism - Nakahara chapter 1 Baez chapter 5
 Bryan questions:
 should I include a proof of nabla^2 = F
 should I include a proof Thom isomorphism? 
+proof of equivariant de rham theorem 
+proof of basic = g inv and horizontal
 
 To write:
 intersection form
 1.6 BGV Transgression formulas, pullback of thom class, Poincare-hopf theorem
+local model for moduli space (atiyah, hitchin, singer)
 
-This week: 
-Loring Tu Ch 18,19,20,21,22 
-
-why EG is well defined
 equivariant deRham theorem, 
 Weil-cartan isomorphism
-localisation
 
 Cordes ch10
 Cordes ch11
