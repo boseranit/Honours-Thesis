@@ -1,0 +1,49 @@
+\chapter{Transversality} 
+\label{appendix4}
+
+% Prop 2.3.4 Ben andrews
+\begin{thm}
+	Let $S$ be a subset of a smooth manifold $M$. Then $S$ is a  $k$-dimensional
+	submanifold if and only if  $S$ is locally the zero locus of a submersion,
+	i.e. for every  $x\in S$ there is a neighbourhood of $U\subset M$ of $x$ and
+	a submersion  $G : U \to \mathbb{R}^{n-k}$ such that $S\cap U = G^{-1}(0)$.
+\end{thm}
+
+% prop 5.38 Lee manifolds
+\begin{thm}
+	If $S \subset E$ is a submanifold, and $f: U \to N$ is any local defining
+	submersion map for $S$, then $T_xS = \ker Df|_x$ for each $x\in S\cap U$.
+\end{thm}
+
+\begin{defn}
+	A smooth map $f: M\to N$ is \underline{transversal} to a submanifold
+	$S\subset N$, denoted $f \pitchfork S$, if for every $x\in f^{-1}(S)$ 
+	\[
+	Df(T_xM) + T_{f(x)}S = T_{f(x)}M
+	\] 
+\end{defn}
+
+% corollary of IFT
+\begin{thm} 
+	If $f \pitchfork S$, then  $f^{-1}S \hookrightarrow M$ is a 
+	submanifold.
+\end{thm}
+
+% https://sites.math.northwestern.edu/~jnkf/classes/mflds/4transversality.pdf
+\begin{thm}[Thom transversality theorem]
+	Let $M$ and $E$ be smooth manifolds, and let  $S\subset E$ be a submanifold. 
+	The subspace $C^{\infty}_{\pitchfork S}(M,E) \subset C^{\infty}(M,E)$,
+	consisting of smooth maps $f:M\to E$ which are transverse to  $S$, is dense.
+\end{thm}
+\begin{comment}
+	This is equivalent to the following. For any smooth map $f: M\to E$ there
+	exists a smooth embedding  $s:S\to E$ arbitrarily close to  $i:S\to E$, and
+	for which  $f$ is transverse to  $s$. 
+\end{comment}
+
+% Guillem Pollack p70
+\begin{thm}[Transversality homotopy theorem]
+	Let $S$ be a boundaryless submanifold of the boundaryless manifold  $E$. 
+	For any smooth map $f: M\to E$, there exists a smooth map $g: M\to E$
+	homotopic to  $f$ such that  $g \pitchfork S$.
+\end{thm}
