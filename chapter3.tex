@@ -240,8 +240,20 @@ Pullback by zero section is Pfaffian.
 	\] 
 	% TODO: complete proof
 \end{proof}
+
+\section{Thom isomorphism}
+% TODO: explain Thom isomorphism
+\begin{prop}[Projection formula] % Prop 6.15 Bott Tu p63
+	(a) Let $\pi : E \to M$ be an oriented vector bundle of rank  $n$,
+	$\tau\in\Omega^*(M)$ and  $\omega\in \Omega^*(E)$ with compact support
+	along the fiber. Then 
+	 \[
+	\pi_*((\pi^*\tau)  
+	\] 
+\end{prop}
+
 \section{Localisation}
-Sign of a vector field, generalises to any vector bundle?
+Sign of a vector field, generalises to any vector bundle? 
 \begin{thm}[Poincare-Hopf] % Thm 1.56 BGV
 	If $v$ is a non-degenerate vector field on an orientable compact manifold
 	$M$, then 
@@ -249,10 +261,13 @@ Sign of a vector field, generalises to any vector bundle?
 		 (2\pi)^{-n /2} \int_M \chi(TM) = \sum_{\set{p|v(p)=0}} \nu(p,v)	
 	\] 
 \end{thm}
+\begin{proof}
+	% TODO 
+\end{proof}
 there is a generalisation of this result, where we assume that the zeroes
 of $v$ are isolated instead of $v$ being non-degenerate. 
 
-
+% p51 Bott Tu
 To every closed (as a subspace) and oriented submanifold $i: S
 \xhookrightarrow{} M$ of dimension  $k$, we can
 associate a unique cohomology class  $[\eta_s]\in H^{n-k}(M)$ called its
@@ -273,34 +288,122 @@ for any closed $\omega\in \Omega^k_c(M)$
 	$n$. A \underline{tubular neighbourhood} of  $S$ in  $M$ is an open
 	neighbourhood of  $S$ in  $M$ diffeomorphic to a vector bundle of rank
 	$n-k$ over  $S$, such that  $S$ is diffeomorphic to the zero section.
+
+	The \underline{normal bundle} of $S$ in  $M$ is the vector bundle on  $S$
+	is the quotient bundle $N$ defined by the exact sequence 
+	\[
+	\begin{tikzcd}[column sep = 1.6em]
+		0 \arrow[r] & TS \arrow[r] & TM|_S \arrow[r] 
+						& N \arrow[r] & 0
+	\end{tikzcd}
+	\] 	
 \end{defn}
-%TODO 
-define normal bundle, tubular neighbourhood thm \\
-why the poincare dual of a closed oriented submanifold $S$ is the Thom class of
-the normal bundle of $S$.
+
+%TODO reference See 
+% https://luis.impa.br/aulas/anvar/Spivak_Vol1_3ed.pdf Spival p346
+% https://www.math.tecnico.ulisboa.pt/~acannas/Books/lsg.pdf p37
+% http://alpha.math.uga.edu/~usher/8210-notes2.pdf Thm 2.11
+\begin{thm}[Tubular neighbourhood theorem] 
+	Every $S$ submanifold of a smooth manifold $M$ has a 
+	tubular neighbourhood  $T$ in $M$, and  
+	$T$ is diffeomorphic to the normal bundle of $S$ in $M$.
+\end{thm}
+
+Let $S$ be an oriented submanifold of an oriented manifold $M$, which is closed
+as a subspace. Let $j:T \hookrightarrow M$ be the inclusion
+of a tubular neighborhood of  $S$. Since $S$ and  $M$ are orientable, the normal
+bundle is also orientable. % TODO why?
+
+Let $j_*: H_{cv}^{*}(T) \to H^*(M)$ be extension by zero, which is defined 
+because % TODO why does Thom form vanish near boundary of S?
+
+\begin{thm}[Poincare dual as a Thom class] % p67 Bott Tu
+	The Poincare dual of a submanifold $S^k \subset M^n$ is the Thom class of the
+	normal bundle of $S$ in  $M$, i.e. 
+	\[
+		\int_M \omega\wedge j_*\Phi = \int_S i^*\omega 
+	\] 
+	for all $\omega\in H^k_c(M)$, and $\Phi\in H^{n-k}(T)$.
+\end{thm}
+\begin{proof}
+	\begin{align*}
+		\int_M \omega\wedge j_*\Phi 
+		&= \int_T \omega \wedge \Phi \\
+		&=  
+	\end{align*}
+\end{proof}
+
 \begin{thm}[Localisation property] % see pg 69 Bott Tu
 	Let $f\in C^\infty(M',M)$ be an orientation-preserving map of oriented
-	manifolds, and $S\subset M$ be a submanifold. Then $\eta_{f^{-1}(S)} =
-	f^*\eta_S$, i.e. for all  $\omega\in \Omega^k_c(M)$,
+	manifolds, and $S\subset M$ be a closed oriented submanifold. 
+	If $f$ is transversal to  $S$ and  $T$, then
+	$\eta_{f^{-1}(S)} = f^*\eta_S$, i.e. for all  $\omega\in \Omega^k_c(M')$,
 	\[
-	\int_{f^{-1}(S)} i^*\omega = \int_M \omega \wedge f^*\eta_S
+	\int_{M'} \omega \wedge f^*\eta_S =\int_{f^{-1}(S)} i^*\omega  
 	\] 
+	where $i: f^{-1}(S) \to M'$ is the inclusion map.
 \end{thm}
-\begin{cor} \label{cor:zero_localisation}
-	Let $E\to M$ be a vector bundle of rank $k$ over a manifold of dimension $n$, 
+\begin{proof}
+	%TODO why is dimension of f^-1 S the same as S ?, complete proof
+	claim $f^{-1}T$ is a tubular neighborhood of $f^{-1}S$ in $M'$
+
+	The following diagram commutes (why?)
+	% https://q.uiver.app/?q=WzAsNixbMCwwLCJIXiooUykiXSxbMSwwLCJIXnsqK2t9KFQpIl0sWzIsMCwiSF4qKE0pIl0sWzIsMSwiSF4qKE0nKSJdLFsxLDEsIkheeyora30oZl57LTF9VCkiXSxbMCwxLCJIXiooZl57LTF9UykiXSxbMCw1LCJmXioiXSxbMSw0LCJmXioiXSxbMiwzLCJmXioiXSxbMCwxLCJcXHdlZGdlIFxcUGhpKFQpIl0sWzEsMiwial8qIl0sWzQsMywial8qIl0sWzUsNCwiXFx3ZWRnZSBcXFBoaShmXnstMX1UKSJdXQ==
+	\[\begin{tikzcd}[row sep=2.85em, column sep=4.45em]
+			{H^*(S)} & {H^{*+k}_{cv}(T)} & {H^*(M)} \\
+				{H^*(f^{-1}S)} & {H^{*+k}_{cv}(f^{-1}T)} & {H^*(M')}
+					\arrow["{f^*}", from=1-1, to=2-1]
+						\arrow["{f^*}", from=1-2, to=2-2]
+							\arrow["{f^*}", from=1-3, to=2-3]
+								\arrow["{\wedge \Phi(T)}", from=1-1, to=1-2]
+									\arrow["{j_*}", from=1-2, to=1-3]
+										\arrow["{j_*}", from=2-2, to=2-3]
+											\arrow["{\wedge \Phi(f^{-1}T)}",
+											from=2-1, to=2-2]
+	\end{tikzcd}\]
+	Starting with $1\in H^0(S)$, the maps on the top row gives 
+	$\eta_S \in H^{n-k}(M) \mapsto f^*\eta_S \in H^{n-k}(M')$ 
+	On the other hand, the maps on the bottom row gives
+	$\eta_{f^{-1}S} \mapsto \eta_{f^{-1}S} \in H^{n-k}$
+\end{proof}
+
+% TODO is there a dimension condition? dim m \geq dim W
+\begin{cor} \label{cor:vb_localisation}
+	Let $E\to M$ be an oriented vector bundle of rank $k$ over an oriented 
+	manifold of dimension $n$, 
 	and $s\in\Gamma(M,E)$.
 	Then for all $\omega\in \Omega^{n-k}_c(M)$,
 	 \[
-	\int_{s^{-1}(0)} i^*\omega = \int_M s^* \Phi(E) \wedge \omega
+	\int_M \omega \wedge s^* \Phi(E) =\int_{s^{-1}(0)} i^*\omega  
 	\] 
 \end{cor}
+% TODO does section satisfy transversality conditions, or describe 
+% how transversality homotopy theorem does not require this
 
+This follows from choosing the section to be the orientation preserving map, and
+choosing the submanifold of $0\subset E$ to be the image of the zero section.
+Since $0\subset E$ is a diffeomorphic embedding of $M$ in $E$, and we have the
+exact sequence
+\[
+	\begin{tikzcd}[column sep = 1.6em]
+		0 \arrow[r] & T0 \arrow[r] & TE|_0 \arrow[r] 
+						& E \arrow[r] & 0
+	\end{tikzcd}
+	\]
+the normal bundle of  $0\subset E$ is  $E$ itself.
+Hence $\eta_0 = \Phi(E)$. 
+
+\subsection{Witten localisation formula}
 % discussion from Witten N matrix model 3.3, see also cordes 11.10.3
 Let $E\to M$ be a vector bundle over a finite-dimensional compact manifold  $M$.
-Let $s\in\Gamma(M,E)$ be a section and  $S=s^{-1}(0)$ which has
-Poincare dual $\chi(E)$. We wish to consider a non-generic $s$ of a certain
-type. Suppose $S$ has dimension greater than
-$\dim(M)-\dim(E)$. 
+Let $s\in\Gamma(M,E)$ be a generic section and assuming $\dim M \geq \rank E$, 
+$S=s^{-1}(0)$ is a submanifold with
+Poincare dual $s^*\Phi(E)=\chi(E)$ by Corollary \ref{cor:vb_localisation}. 
+By the rank-nullity theorem, we would have $\dim S = \rank M - \rank E$, but 
+we wish to consider a non-generic section $s$ of a certain type with 
+$\dim S > \dim(M)-\rank(E)$. 
+
+
 
 Let  $N\to S$ be the normal bundle of dimension
 $\dim(M)-\dim(S)$.  More like $N = \coker (\nabla s)$
@@ -312,7 +415,7 @@ we claim that $i(P)$ is Poincare dual to  $\chi(E)$.
 \int_M \chi(E\to M)\wedge \omega = \int_{S} i^*\omega \wedge \chi(N\to S)
 \] 
 Note that if $s$ is a generic section then  $\coker (\nabla s) = \{0\}$, which
-reduces to \ref{cor:zero_localisation}.
+reduces to Corollary \ref{cor:vb_localisation}.
 
 
 
@@ -347,3 +450,15 @@ is this an isomorphism?
 							\arrow["w", from=2-1, to=2-2]
 \end{tikzcd}\]
 We can then get the Thom class through the Weil homomorphism
+
+\vspace{5mm}
+\hrule 
+\vspace{5mm}
+
+\textbf{Bibliographical notes}
+{\small
+\begin{itemize}
+	\item A more comprehensive treatment of the Thom isomorphism can be found in
+		\citet{bott_tu}.  
+\end{itemize}
+}
