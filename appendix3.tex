@@ -1,5 +1,173 @@
-\chapter{Supergeometry} 
+\chapter{Supersymmetry} 
 \label{appendix3}
+\section{Spin representations}
+Given a Lie group of symmetries $G$ on fields, physicists are often interested in the 
+representations (reps) of its universal covering group. The reason is 
+Wigner's theorem shows that symmetry transformations on a projective Hilbert space are
+represented by a unitary or antiunitary operator on the Hilbert space. The
+former is of more physical interest, so the Hilbert
+space of the QFT must carry a projective unitary representation of $G$. 
+This analysis is made easier by
+Bargmann's theorem, which says that if $G$ is a connected 
+Lie group and its Lie algebra cohomology group
+$H^2(\mathfrak{g},\mathbb{R})$ is trivial, then every projective unitary
+representation can be lifted to a unitary representation of the universal cover
+of $G$.\cite[Theorem 4.8]{cft} This applies to any semisimple Lie
+group, and in particular for $\SO^+(1,3)$, the restricted
+Lorentz group. 
+
+The spin group $\Spin(n)$ or $\Spin(p,q)$ is defined such that it is the double cover of
+$\SO(n)$ or $\SO^+(p,q)$ respectively. 
+The latter denotes the connected component of the identity of $\SO(p,q)$. 
+That is, there is a group homomorphism $\Spin(p,q) \to \SO^+(p,q)$ whose kernel
+has two elements $\{-1,1\}$. 
+As a result, they also share the same Lie algebra.
+
+For $n\geq 3$,
+$\Spin(n)$ is simply connected, and thus is the unique universal covering 
+of $\SO(n)$. However, in general $\Spin(p,q)$ is not simply connected. 
+But for Minkowski space, we have the isomorphism $\Spin(3,1) \simeq
+\SL(2,\mathbb{C})$, which is simply connected. 
+Therefore, every representation of its Lie algebra can be integrated to a group
+representation, so we only need to consider representations of
+$\mathfrak{sl}(2,\mathbb{C})$.\cite[Theorem 5.6]{hall} 
+This is the relativistic analogue of $\SU(2)$ being the double cover of  $\SO(3)$,
+and explains why representations of $\SL(2,\mathbb{C})$ is central to the study
+of relativistic spin, and will turn out to be also for supersymmetry. 
+
+\begin{defn}
+	\underline{Spin representations} are the simplest representations of 
+	$\Spin(p,q)$ that do not come from representations of  $\SO(p,q)$. 
+	More precisely, it is a representation $\rho : \Spin(p,q) \to \GL(V)$ such 
+	that $-1$ is not in the kernel of $\rho$.
+
+\underline{Spinors} are elements of a spin representation $V$.
+\end{defn}
+
+\begin{prop}
+	\begin{enumerate}[(1)]
+	    \item 
+	$\mathfrak{sl}(2,\mathbb{C}) \simeq \mathfrak{so}(1,3)
+	\simeq\mathfrak{su}(2)_{\mathbb{C}}$
+		\item \phantom{}\vspace{-1.0cm}
+	\begin{align*}
+		\mathfrak{sl}(2,\mathbb{C})_{\mathbb{C}}
+		&\simeq \mathfrak{sl}(2,\mathbb{C})\oplus i\mathfrak{sl}(2,\mathbb{C})\\
+		&\simeq \mathfrak{sl}(2,\mathbb{C})\oplus \mathfrak{sl}(2,\mathbb{C}) \\
+		&\simeq \mathfrak{su}(2)_{\mathbb{C}} \oplus \mathfrak{su}(2)_{\mathbb{C}}
+	\end{align*}
+	\end{enumerate}
+\end{prop}
+\begin{proof}
+	\begin{enumerate}[(1)]
+	    \item 
+	The first isomorphism comes from the double covering $\SL(2,\mathbb{C}) \to
+	\SO(1,3)$ being a local diffeomorphism.
+
+	Any $X\in \mathfrak{sl}(2,\mathbb{C})$ can be written $X = X_1 + iX_2$ where
+	$X_1= (X-X^*) /2$ and $X_2= (X+X^*) /(2i)$, where $X^*$ is the conjugate
+	transpose. Note that both $X_1$ and $X_2$ are traceless and skew-Hermitian
+	so are in $\mathfrak{su}(2)$.
+		\item 
+	We view $\mathfrak{sl}(2,\mathbb{C})$ as a real Lie algebra, so its
+	complexification is a complex Lie algebra with two copies. 
+	The last line follows from part (1).
+	\end{enumerate}
+\end{proof}
+ 
+Note that a complex rep refers to a rep on a complex
+vector space, but the Lie algebra homomorphism can still be either
+$\mathbb{R}$-linear or $\mathbb{C}$-linear. 
+
+\begin{prop}
+	Let $\mathfrak{g}$ be a real Lie algebra. Then
+	$\mathbb{R}$-linear reps of $\mathfrak{g}$ are in one-to-one
+	correspondence with $\mathbb{C}$-linear reps of  $\mathfrak{g}_{\mathbb{C}}$
+	on a complex vector space. 
+\end{prop}
+\begin{proof}
+	Given an $\mathbb{R}$-linear rep $\pi : \mathfrak{g} \to \mathfrak{gl}(V)$,
+	where  $V$ is a complex vector space, this extends to a unique
+	$\mathbb{C}$-linear rep of $\mathfrak{g}_{\mathbb{C}}$ given by 
+	$\pi(X+iY) = \pi(X) + i\pi(Y)$. It is easy to check that this map is  a
+	$\mathbb{C}$-linear Lie algebra homomorphism. Uniqueness comes from
+	$\mathbb{C}$-linearity.
+
+	Let $\pi : \mathfrak{g}_{\mathbb{C}} \to\mathfrak{gl}(V)$ be a 
+	$\mathbb{C}$-linear rep , and the inclusion $i : \mathfrak{g} \to
+	\mathfrak{g}\otimes_{\mathbb{R}}\mathbb{C}$ defined by $i(X) = X\otimes 1$. We can restrict
+	the rep to an $\mathbb{R}$-linear rep on $\mathfrak{g}$ by defining
+	$\widetilde{\pi}(X) = \pi(i(X))$, which is a rep because it is the composition of
+	two Lie algebra homomorphisms. 
+
+	Finally, after checking that the two maps above are inverses, we conclude
+	that there is a one-to-one correspondence. 
+\end{proof}
+
+Therefore, the proposition shows that $\mathbb{R}$-linear reps of
+$\mathfrak{sl}(2,\mathbb{C})$ are obtained from $\mathbb{C}$-linear reps of
+$\mathfrak{sl}(2,\mathbb{C})\oplus \mathfrak{sl}(2,\mathbb{C})$.
+We know for each integer $m\geq 0$, there is a unique irreducible complex
+rep of  $\mathfrak{sl}(2,\mathbb{C})$ of dimension $m+1$.\cite{hall} Hence,
+$\mathbb{R}$-linear irreducible reps  of $\mathfrak{sl}(2,\mathbb{C})$ (and
+$\SL(2,\mathbb{C})$)
+are indexed by two integers $(j_1,j_2)$ where $j_1-1$ and $j_2-2$ are the
+dimensions. Sometimes this pair is divided by 2, and each half integer
+represents the spin. 
+
+% A.2 labastida
+The group $\SL(2,\mathbb{C})$ has the standard representation on a two dimensional
+complex vector space $S$. Similarly, there is the complex conjugate
+representation $\overline{S}$, dual representation $\widetilde{S}$, and dual
+complex conjugate representation $\widetilde{\overline{S}}$. 
+The action of $M\in \SL(2,\mathbb{C})$ in these representations are
+multiplication by its complex conjugate $\overline{M}$, inverse transpose
+$(M^\intercal)^{-1}$ and inverse adjoint $(M^{\dagger})^{-1}$ respectively.
+We denote spinors of these representations by 
+\[
+\psi_\alpha \in S, \qquad \psi_{\dot{\alpha}}\in \overline{S}, \qquad
+\psi^\alpha \in \widetilde{S}, \qquad \psi^{\dot{\alpha}}\in \widetilde{\overline{S}}
+\] 
+and operators are denoted with dotted or undotted components consistent with the
+above, e.g. $M_{\alpha}{}^\beta \in \mathfrak{gl}(S),
+M_{\dot{\alpha}}{}^{\dot{\beta}} \in \mathfrak{gl}(\overline{S})$. 
+Contractions with the $\epsilon_{\alpha\beta}$ and 
+$\sigma_{\dot{\alpha}\dot{\beta}}$ tensor raise and lower spinor indices.
+
+The standard rep  $S$ corresponds to the index $(1,0)$ while $\overline{S}$ to $(0,1)$. 
+
+
+\section{Supersymmetry algebra}
+% West ch2
+In the 1960s, with the growing awareness of the significance of internal
+symmetries such as $\SU(2)$ in electroweak theory and larger groups,
+physicists attempted to find a Lie group which would combine the spacetime
+Poincare group with an internal symmetry group. After much effort, Coleman and
+Mandula proved under general assumptions that any Lie group which contains the
+Poincare group $P$ and an internal symmetry group $G$ which is consistent with
+QFT, must be a direct product of $P$ and  $G$, i.e. their generators commute.
+
+The supersymmetry algebra avoids the restrictions of the Coleman-Mandula theorem
+by relaxing the notion of a Lie algebra to include algebraic systems whose
+defining relations involve anticommutators as well as commutators, called
+a Lie superalgebra. In 
+
+\begin{defn}
+	A \underline{Lie superalgebra} is a nonassociative 
+	$\mathbb{Z}_2$-graded algebra over a commutative ring (usually $\mathbb{R}$
+	or $\mathbb{C}$) $\mathfrak{g} = \mathfrak{g}_0 \oplus \mathfrak{g}_1$ with
+	an operation $[\cdot,\cdot]:\mathfrak{g}\times \mathfrak{g} \to
+	\mathfrak{g}$ satisfying 
+	\begin{itemize}
+		\item Super skew-symmetry: $[x,y] = -(-1)^{\abs{x}\abs{y}}[y,x]$
+		\item Super Jacobi identity: 
+		\[
+			(-1)^{\abs{x}\abs{z}}[x,[y,z]]+(-1)^{\abs{y}\abs{x}}[y,[z,x]]
+			+(-1)^{\abs{z}\abs{y}}[z,[x,y]]=0
+		\]
+	\end{itemize}
+\end{defn}
+Note that in particular, the 
 
 \begin{defn}
 	supermanifold
@@ -7,4 +175,4 @@
 
 Functions on superspace = differential forms
 
-integration on supermanifolds using measure
+integration on supermanifolds using (Haar?) measure
