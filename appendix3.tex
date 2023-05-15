@@ -1,25 +1,10 @@
 \chapter{Supersymmetry} 
 \label{appendix3}
-\section{Spin representations}
-Given a Lie group of symmetries $G$ on fields, physicists are often interested in the 
-representations (reps) of its universal covering group. The reason is 
-Wigner's theorem shows that symmetry transformations on a projective Hilbert space are
-represented by a unitary or antiunitary operator on the Hilbert space. The
-former is of more physical interest, so the Hilbert
-space of the QFT must carry a projective unitary representation of $G$. 
-This analysis is made easier by
-Bargmann's theorem, which says that if $G$ is a connected 
-Lie group and its Lie algebra cohomology group
-$H^2(\mathfrak{g},\mathbb{R})$ is trivial, then every projective unitary
-representation can be lifted to a unitary representation of the universal cover
-of $G$.\cite[Theorem 4.8]{cft} This applies to any semisimple Lie
-group, and in particular for $\SO^+(1,3)$, the restricted
-Lorentz group. 
 
 The spin group $\Spin(n)$ or $\Spin(p,q)$ is defined such that it is the double cover of
 $\SO(n)$ or $\SO^+(p,q)$ respectively. 
 The latter denotes the connected component of the identity of $\SO(p,q)$. 
-That is, there is a group homomorphism $\Spin(p,q) \to \SO^+(p,q)$ whose kernel
+That is, there is a smooth group homomorphism $\Spin(p,q) \to \SO^+(p,q)$ whose kernel
 has two elements $\{-1,1\}$. 
 As a result, they also share the same Lie algebra.
 
@@ -35,14 +20,72 @@ This is the relativistic analogue of $\SU(2)$ being the double cover of  $\SO(3)
 and explains why representations of $\SL(2,\mathbb{C})$ is central to the study
 of relativistic spin, and will turn out to be also for supersymmetry. 
 
+
+\section{Motivation}
+Given a Lie group $G$ of symmetries on fields, physicists are often interested in the 
+representations (reps) of its universal covering group. One reason is that
+Wigner's theorem shows that symmetry transformations on a projective Hilbert space 
+come from a unitary or antiunitary operator on the Hilbert space. The
+former is of more physical interest, so the Hilbert
+space of the QFT must carry a projective unitary representation of $G$. 
+This analysis is made easier by
+Bargmann's theorem, which says that if $G$ has a connected universal covering
+group and its Lie algebra cohomology group
+$H^2(\mathfrak{g},\mathbb{R})$ is trivial, then every projective unitary
+representation can be lifted to a unitary representation of the universal cover
+of $G$.\cite[Theorem 4.8]{cft} 
+This applies to any semisimple Lie
+group, and in particular for the Poincar\'e group, which we expect to act as a
+symmetry group on the Hilbert space.  
+
+% https://math.stackexchange.com/questions/49345/unitary-representations-of-non-compact-lie-groups
+% https://physics.stackexchange.com/questions/358390/on-finite-dimensional-unitary-representations-of-non-compact-lie-groups
+% wiki Reps of lorentz group - finite dim reps
+These representations must be infinite dimensional because a non-compact 
+connected simple Lie group has no non-trivial
+finite dimensional unitary reps. % TODO reference 
+Note that $\SO^+(1,3)$ is non-compact, connected and simple; hence so is its universal
+covering group because it shares the same Lie algebra and the statement
+also applies to the universal cover of the Poincar\'e group. 
+The usual approach to finding irreducible unitary reps of its covering
+group is Wigner's little group method, which leads to Wigner's classification of
+particles.\cite{wigner_classification} 
+
+However, we are also interested in finite dimensional reps of the universal
+cover of $\SO^+(1,3)$. The reason comes from 
+the fact that we expect a finite discrete number of spin states, as the
+Stern-Gerlach experiment suggests. We can allow for this by having the fields 
+transform as a finite dimensional representation of $\SL(2,\mathbb{C})$.  
+The relationship between this finite dim rep on fields and the infinite dim rep
+on the Hilbert space is expressed in one of the Wightman axioms, known as the
+transformation law of the field. 
+\begin{comment}
+	The axioms states that the fields are operator-valued, acting upon some
+	Hilbert space $H$. 
+	This axiom states that there is a projective representation
+	$U:\mathbb{R}^{1,3}\rtimes\SO(1,3) \to \operatorname{PU}(H)$, and a
+	spin representation $\sigma : \SL(2,\mathbb{C}) \to V$ such that 
+	\[
+	U(L,a)^{\dagger} \phi(x) U(L,a) = \sigma(L)\phi(L^{-1}(x-a))
+	\] 
+	where on the r.h.s, $\sigma(L)$ is a finite dimensional matrix acting upon
+	the vector $(\phi^1, \ldots,\phi^{\dim V})$, and on the l.h.s
+	the operator acts on each component of $\phi$. 
+	So the finite dim rep gives the "classical field", while the infinite dim
+	unitary rep tells us about the particle by Wigner's classification.
+\end{comment}
+
+\section{Representations of \texorpdfstring{$\SL(2,\mathbb{C})$}{SL(2,C)}}
 \begin{defn}
 	\underline{Spin representations} are the simplest representations of 
 	$\Spin(p,q)$ that do not come from representations of  $\SO(p,q)$. 
 	More precisely, it is a representation $\rho : \Spin(p,q) \to \GL(V)$ such 
 	that $-1$ is not in the kernel of $\rho$.
 
-\underline{Spinors} are elements of a spin representation $V$.
+	\underline{Spinors} are elements of a spin representation $V$.
 \end{defn}
+
+
 
 \begin{prop}
 	\begin{enumerate}[(1)]
@@ -62,7 +105,7 @@ of relativistic spin, and will turn out to be also for supersymmetry.
 	\begin{enumerate}[(1)]
 	    \item 
 	The first isomorphism comes from the double covering $\SL(2,\mathbb{C}) \to
-	\SO(1,3)$ being a local diffeomorphism.
+	\SO(1,3)$ being a local homeomorphism.
 
 	Any $X\in \mathfrak{sl}(2,\mathbb{C})$ can be written $X = X_1 + iX_2$ where
 	$X_1= (X-X^*) /2$ and $X_2= (X+X^*) /(2i)$, where $X^*$ is the conjugate
@@ -108,12 +151,11 @@ Therefore, the proposition shows that $\mathbb{R}$-linear reps of
 $\mathfrak{sl}(2,\mathbb{C})$ are obtained from $\mathbb{C}$-linear reps of
 $\mathfrak{sl}(2,\mathbb{C})\oplus \mathfrak{sl}(2,\mathbb{C})$.
 We know for each integer $m\geq 0$, there is a unique irreducible complex
-rep of  $\mathfrak{sl}(2,\mathbb{C})$ of dimension $m+1$.\cite{hall} Hence,
+rep of $\mathfrak{sl}(2,\mathbb{C})$ of dimension $m+1$.\cite{hall} Hence,
 $\mathbb{R}$-linear irreducible reps  of $\mathfrak{sl}(2,\mathbb{C})$ (and
 $\SL(2,\mathbb{C})$)
-are indexed by two integers $(j_1,j_2)$ where $j_1-1$ and $j_2-2$ are the
-dimensions. Sometimes this pair is divided by 2, and each half integer
-represents the spin. 
+are indexed by two half integers $(j_1,j_2)$ where $2j_1+1$ and $2j_2+2$ are the
+dimensions.  
 
 % A.2 labastida
 The group $\SL(2,\mathbb{C})$ has the standard representation on a two dimensional
@@ -128,13 +170,17 @@ We denote spinors of these representations by
 \psi_\alpha \in S, \qquad \psi_{\dot{\alpha}}\in \overline{S}, \qquad
 \psi^\alpha \in \widetilde{S}, \qquad \psi^{\dot{\alpha}}\in \widetilde{\overline{S}}
 \] 
-and operators are denoted with dotted or undotted components consistent with the
+where $\alpha=1,2$.
+Operators are denoted with dotted or undotted components consistent with the
 above, e.g. $M_{\alpha}{}^\beta \in \mathfrak{gl}(S),
 M_{\dot{\alpha}}{}^{\dot{\beta}} \in \mathfrak{gl}(\overline{S})$. 
 Contractions with the $\epsilon_{\alpha\beta}$ and 
 $\sigma_{\dot{\alpha}\dot{\beta}}$ tensor raise and lower spinor indices.
+% TODO is the last line necessary?
 
-The standard rep  $S$ corresponds to the index $(1,0)$ while $\overline{S}$ to $(0,1)$. 
+The standard rep  $S$ corresponds to the index $(\frac{1}{2},0)$ while 
+$\overline{S}$ to $(0,\frac{1}{2})$. Another example is the Dirac spinor, which
+corresponds to the $(\frac{1}{2},0)\oplus (0,\frac{1}{2})$ rep. 
 
 
 \section{Supersymmetry algebra}
@@ -143,21 +189,20 @@ In the 1960s, with the growing awareness of the significance of internal
 symmetries such as $\SU(2)$ in electroweak theory and larger groups,
 physicists attempted to find a Lie group which would combine the spacetime
 Poincare group with an internal symmetry group. After much effort, Coleman and
-Mandula proved under general assumptions that any Lie group which contains the
+Mandula proved under general assumptions that any Lie group containing the
 Poincare group $P$ and an internal symmetry group $G$ which is consistent with
 QFT, must be a direct product of $P$ and  $G$, i.e. their generators commute.
 
 The supersymmetry algebra avoids the restrictions of the Coleman-Mandula theorem
-by relaxing the notion of a Lie algebra to include algebraic systems whose
+by relaxing the notion of a Lie algebra to include generators whose
 defining relations involve anticommutators as well as commutators, called
-a Lie superalgebra. In 
+a Lie superalgebra. 
 
 \begin{defn}
-	A \underline{Lie superalgebra} is a nonassociative 
-	$\mathbb{Z}_2$-graded algebra over a commutative ring (usually $\mathbb{R}$
-	or $\mathbb{C}$) $\mathfrak{g} = \mathfrak{g}_0 \oplus \mathfrak{g}_1$ with
-	an operation $[\cdot,\cdot]:\mathfrak{g}\times \mathfrak{g} \to
-	\mathfrak{g}$ satisfying 
+	A \underline{Lie superalgebra} is a 
+	$\mathbb{Z}_2$-graded algebra $\mathfrak{g} = \mathfrak{g}_0 \oplus \mathfrak{g}_1$ 
+	over a commutative ring (usually $\mathbb{R}$ or $\mathbb{C}$)  with 
+	Lie bracket $[\cdot,\cdot]:\mathfrak{g}\times \mathfrak{g} \to \mathfrak{g}$ satisfying 
 	\begin{itemize}
 		\item Super skew-symmetry: $[x,y] = -(-1)^{\abs{x}\abs{y}}[y,x]$
 		\item Super Jacobi identity: 
@@ -167,12 +212,109 @@ a Lie superalgebra. In
 		\]
 	\end{itemize}
 \end{defn}
-Note that in particular, the 
+Note that the Lie bracket is the multiplication operation in the graded algebra,
+so it must respect the grading, and is bilinear. This product acts as an
+anticommutator on two degree 1 elements, and as a commutator if either of them
+have degree 0. 
+
+Recall that the Poincar\'e group $\mathbb{R}^{1,3} \rtimes \O(1,3)$ is the 
+semidirect product of translations and the Lorentz group with group
+multiplication $(\alpha,f) \cdot (\beta, g) = (\alpha + f\cdot \beta, f\cdot
+g)$. Its universal cover is the double cover  $\mathbb{R}^{1,3}\rtimes
+\SL(2,\mathbb{C})$. In component form, the Poincar\'e algebra has the 10
+dimensional basis $\{P_\mu,M_{\mu\nu}\}$ where $\mu<\nu$ and  $\mu,\nu\in
+\{0,1,2,3\}$. Here  $P_\mu$ are the four generators of translations, and
+$M_{\mu\nu}$ are the six generators of boosts and rotations, with commutation relations
+\begin{align*}
+	[P_\mu, P_\nu] &= 0 \\
+	-i[M_{\mu\nu}, P_{\rho}] &= \eta_{\mu\rho}P_{\nu} - \eta_{\nu\rho}P_{\mu} \\
+	-i[M_{\mu\nu}, M_{\rho\sigma}] &= \eta_{\mu\rho}M_{\nu\sigma} -
+	\eta_{\mu\sigma}M_{\nu\rho} - \eta_{\nu\rho}M_{\mu\sigma} +
+	\eta_{\nu\sigma}M_{\mu\rho} 
+\end{align*}
+where $\eta$ is the  $(+,-,-,-)$ Minkowski metric. 
+
+\begin{comment} % from wiki Poincare group
+	From the previous section, we know the Lorentz group admits two inequivalent 
+	two-dimensional complex spin representations 2 and $\overline{2}$ whose tensor 
+	product decomposes as $2\otimes\overline{2} \simeq 3 \oplus 1$, to give the
+	adjoint representation. 
+	Normally, we treat such a decomposition as relating to specific particles,
+	e.g. the pion is a quark and anti-quark pair. However, we can also identify
+	$3\oplus 1$ with Minkowski spacetime. 
+
+	This leads to the question: if Minkowski spacetime belongs to the adjoint
+	representation, can Poincar\'e symmetry be extended to the fundamental
+	representation? 
+
+	The physical appeal of this idea is that the fundamental representations
+	correspond to fermions. 
+	So far, however, the implied supersymmetry here,
+	of a symmetry between spatial and fermionic directions, has not been seen
+	experimentally in nature. 
+\end{comment}
+
+without central charges
+
+% See section 4.1 labastida 
+A supersymmetry algebra is a Lie superalgebra such that the even part is a Lie
+algebra containing the Poincar\'e algebra, and the odd part is built from
+spinors, on which there is an anticommutation relation. 
+In the simplest supersymmetry algebra, the even part is the Poincar\'e algebra and
+the odd part is generated by $Q_{\alpha} \in S$, and
+$\overline{Q}_{\dot{\alpha}} \in \overline{S}$, with the Lie bracket relations
+\[
+	\{Q_\alpha,\overline{Q}_{\dot{\beta}}\} 
+	= 2\sigma^{\mu}_{\alpha \dot{\beta}} P_{\mu} 
+	\qquad
+	\{Q_\alpha,Q_{\beta}\} = 0
+	\qquad
+	\{\overline{Q}_{\dot{\alpha}}, \overline{Q}_{\dot{\beta}}\} = 0 
+\] 
+\begin{equation*}
+	\begin{split}
+		&[M^{\mu\nu}, Q_{\alpha}] 
+		= \frac{1}{2} (\sigma^{\mu\nu})_{\alpha}{}^{\beta}Q_\beta \\
+		&[P_{\mu}, Q_{\alpha}] 
+		= 0 
+	\end{split}
+	\qquad
+	\begin{split}
+		&[M^{\mu\nu}, \overline{Q}^{\dot{\alpha}}] = 
+		-(\sigma^{\mu\nu})^{\alpha}{}_{\dot{\beta}}\overline{Q}^{\dot{\beta}}\\
+		&[P_\mu, \overline{Q}_{\dot{\alpha}}] = 0
+	\end{split}
+\end{equation*}
+where $(\sigma^{\mu\nu})_{\alpha}{}^{\beta}$ is a homomorphism between the
+representations $S\oplus\overline{S}$ to the vector representation of
+$\SO(1,3)$ using the Littlewood-Richardson rule.
+
+- Why not specify [Q bar, P], or [Q bar, M], are they implied from [Q,P] \\
+- where do the commutation relations come from? \\
+- how is each vector component $Q_{\alpha}\in S$ a generator? 
 
 \begin{defn}
-	supermanifold
+	superspace
 \end{defn}
 
 Functions on superspace = differential forms
 
 integration on supermanifolds using (Haar?) measure
+
+
+\begin{thm}[Chebsch-Gordan rule]
+	Let $V_m$ and $V_n$ be the irreducible representations of
+	$\mathfrak{sl}(2,\mathbb{C})$ of highest weights $m$ and $n$ respectively.
+	Assume  $m\geq n$, then
+	\[
+	V_m \otimes V_n \simeq V_{m+n} \oplus V_{m+n-2} \oplus \cdots \oplus 
+	V_{m-n+2} \oplus V_{m-n}
+	\] 
+	is an isomorphism of representations of $\mathfrak{sl}(2,\mathbb{C})$
+\end{thm}
+\begin{comment}
+	The idea of the proof is to define formal characters of lie algebra reps.
+	prove two reps are isomorphic iff they have the same character. 
+	Then show how the character behaves under direct sum and tensor product.
+	Then show that the two sides have the same character.
+\end{comment}
