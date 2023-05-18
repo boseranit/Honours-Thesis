@@ -52,15 +52,17 @@ group is Wigner's little group method, which leads to Wigner's classification of
 particles.\cite{wigner_classification} 
 
 However, we are also interested in finite dimensional reps of the universal
-cover of $\SO^+(1,3)$. The reason comes from 
-the fact that we expect a finite discrete number of spin states, as the
+cover of $\SO^+(1,3)$. The reason comes from the fact that we expect a 
+finite discrete number of spin states, as the
 Stern-Gerlach experiment suggests. We can allow for this by having the fields 
-transform as a finite dimensional representation of $\SL(2,\mathbb{C})$.  
+transform as a finite dimensional representation of the $\SL(2,\mathbb{C})$.
+The reason for looking at the universal cover is that it includes the spin reps,
+which is required for describing fermions.
 The relationship between this finite dim rep on fields and the infinite dim rep
 on the Hilbert space is expressed in one of the Wightman axioms, known as the
 transformation law of the field. 
 \begin{comment}
-	The axioms states that the fields are operator-valued, acting upon some
+	In this formalism, the fields are operator-valued, acting upon some
 	Hilbert space $H$. 
 	This axiom states that there is a projective representation
 	$U:\mathbb{R}^{1,3}\rtimes\SO(1,3) \to \operatorname{PU}(H)$, and a
@@ -105,7 +107,7 @@ transformation law of the field.
 	\begin{enumerate}[(1)]
 	    \item 
 	The first isomorphism comes from the double covering $\SL(2,\mathbb{C}) \to
-	\SO(1,3)$ being a local homeomorphism.
+	\SO(1,3)$ being a local homeomorphism and group homomorphism.
 
 	Any $X\in \mathfrak{sl}(2,\mathbb{C})$ can be written $X = X_1 + iX_2$ where
 	$X_1= (X-X^*) /2$ and $X_2= (X+X^*) /(2i)$, where $X^*$ is the conjugate
@@ -154,7 +156,7 @@ We know for each integer $m\geq 0$, there is a unique irreducible complex
 rep of $\mathfrak{sl}(2,\mathbb{C})$ of dimension $m+1$.\cite{hall} Hence,
 $\mathbb{R}$-linear irreducible reps  of $\mathfrak{sl}(2,\mathbb{C})$ (and
 $\SL(2,\mathbb{C})$)
-are indexed by two half integers $(j_1,j_2)$ where $2j_1+1$ and $2j_2+2$ are the
+are indexed by two half integers $(j_1,j_2)$ where $2j_1+1$ and $2j_2+1$ are the
 dimensions.  
 
 % A.2 labastida
@@ -167,20 +169,86 @@ multiplication by its complex conjugate $\overline{M}$, inverse transpose
 $(M^\intercal)^{-1}$ and inverse adjoint $(M^{\dagger})^{-1}$ respectively.
 We denote spinors of these representations by 
 \[
-\psi_\alpha \in S, \qquad \psi_{\dot{\alpha}}\in \overline{S}, \qquad
-\psi^\alpha \in \widetilde{S}, \qquad \psi^{\dot{\alpha}}\in \widetilde{\overline{S}}
+\psi_\alpha \in S, \qquad \overline{\psi}_{\dot{\alpha}}\in \overline{S}, \qquad
+\psi^\alpha \in \widetilde{S}, \qquad \overline{\psi}^{\dot{\alpha}}\in \widetilde{\overline{S}}
 \] 
-where $\alpha=1,2$.
+where $\psi_\alpha=(\psi_1,\psi_2)\in \mathbb{C}^2$.
 Operators are denoted with dotted or undotted components consistent with the
 above, e.g. $M_{\alpha}{}^\beta \in \mathfrak{gl}(S),
 M_{\dot{\alpha}}{}^{\dot{\beta}} \in \mathfrak{gl}(\overline{S})$. 
-Contractions with the $\epsilon_{\alpha\beta}$ and 
-$\sigma_{\dot{\alpha}\dot{\beta}}$ tensor raise and lower spinor indices.
-% TODO is the last line necessary?
 
 The standard rep  $S$ corresponds to the index $(\frac{1}{2},0)$ while 
 $\overline{S}$ to $(0,\frac{1}{2})$. Another example is the Dirac spinor, which
 corresponds to the $(\frac{1}{2},0)\oplus (0,\frac{1}{2})$ rep. 
+
+\section{Generators of \texorpdfstring{$\mathfrak{sl}(2,\mathbb{C})$}{sl(2,C)}}
+\begin{comment}
+The vector representation of $\SL(2,\mathbb{C})$ is defined as $(\frac{1}{2},0)\otimes
+(0,\frac{1}{2})\simeq (\frac{1}{2},\frac{1}{2})$, where the isomorphism comes
+from the Clebsch-Gordan rule. % TODO how is that right?
+To explicitly construct the representation, we use the Pauli matrices
+ 
+The action of $M\in
+\SL(2,\mathbb{C})$ is given by $x_{\mu} \mapsto M(\sigma^\mu x_{\mu})M^{\dagger}$
+
+$(\sigma^{\mu\nu})_{\alpha}{}^{\beta}$ is a homomorphism 
+$S\otimes \overline{S} \to $ to the vector representation of $\SO(1,3)$ 
+\end{comment}
+To give an explicit description of the Lie algebra, define the Pauli matrices
+\[
+\sigma^1 = 
+\begin{pmatrix}
+	0 & 1 \\ 1 & 0
+\end{pmatrix}
+\qquad \sigma^2 = 
+\begin{pmatrix}
+	0 & -i \\ i & 0
+\end{pmatrix}
+\qquad \sigma^3 = 
+\begin{pmatrix}
+	1 & 0 \\ 0 & -1
+\end{pmatrix}
+\]
+Then a basis for $\mathfrak{sl}(2,\mathbb{C})$ is given by
+$\{\sigma^1,\sigma^2,\sigma^3,i\sigma^1,i\sigma^2,i\sigma^3\}$, which generate
+all traceless matrices in $M_2(\mathbb{C})$. The commutation relations are
+defined by $[\sigma^i,\sigma^j] = 2i\epsilon_{ijk}\sigma^k$. 
+
+We can also describe the
+generators from the isomorphism $\mathfrak{so}(1,3) \simeq
+\mathfrak{sl}(2,\mathbb{C})$. Define the Pauli vectors
+\[
+	\sigma^{\mu} = (1,\sigma^1,\sigma^2,\sigma^3)
+\qquad
+	\overline{\sigma}^{\mu} = (1,-\sigma^1,-\sigma^2,-\sigma^3)
+\] 
+and the anti-symmetrised product 
+\[
+	\sigma^{\mu\nu} = \frac{1}{4}(\sigma^\mu \overline{\sigma}^\nu - \sigma^\nu
+	\overline{\sigma}^\mu)
+\]
+Because of the anti-symmetry, there are six linearly independent generators
+which forms the basis $\{i\sigma^{\mu\nu}\}$ for $\mathfrak{sl}(2,\mathbb{C})$. 
+Recall that the Lorentz algebra $\mathfrak{so}(1,3)$ is generated by rotations and boosts 
+$iM^{\mu\nu}$, giving six basis elements due to the anti-symmetry of $M^{\mu\nu}$. 
+The map $M^{\mu\nu} \mapsto \sigma^{\mu\nu}$ defines a Lie algebra 
+isomorphism, since they satisfy the same commutation relations
+\[
+-i[M^{\mu\nu}, M^{\rho\sigma}] = \eta^{\mu\rho}M^{\nu\sigma} -
+	\eta^{\mu\sigma}M^{\nu\rho} - \eta^{\nu\rho}M^{\mu\sigma} +
+	\eta^{\nu\sigma}M^{\mu\rho}
+\] 
+Note that the definition of the Lie algebra in physics is based
+on elements $X\in \mathfrak{g}$ such that  $e^{itX}\in G$. The reason is that
+in a unitary representation, the induced Lie algebra rep will consist of
+Hermitian matrices (as opposed to anti-Hermitian), which is desirable because
+they have real eigenvalues. However, in this thesis we
+will always use the usual definition, based on $e^{tX}\in G$, which is why there
+is an extra factor of $i$ when describing the basis of the Lie algebras above.
+
+Contractions with the $\epsilon_{\alpha\beta}$ and 
+$\sigma_{\dot{\alpha}\dot{\beta}}$ tensor raise and lower spinor indices.
+% TODO explain sigma bar 
 
 
 \section{Supersymmetry algebra}
@@ -202,7 +270,7 @@ a Lie superalgebra.
 	A \underline{Lie superalgebra} is a 
 	$\mathbb{Z}_2$-graded algebra $\mathfrak{g} = \mathfrak{g}_0 \oplus \mathfrak{g}_1$ 
 	over a commutative ring (usually $\mathbb{R}$ or $\mathbb{C}$)  with 
-	Lie bracket $[\cdot,\cdot]:\mathfrak{g}\times \mathfrak{g} \to \mathfrak{g}$ satisfying 
+	super Lie bracket $[\cdot,\cdot]:\mathfrak{g}\times \mathfrak{g} \to \mathfrak{g}$ satisfying 
 	\begin{itemize}
 		\item Super skew-symmetry: $[x,y] = -(-1)^{\abs{x}\abs{y}}[y,x]$
 		\item Super Jacobi identity: 
@@ -212,19 +280,44 @@ a Lie superalgebra.
 		\]
 	\end{itemize}
 \end{defn}
-Note that the Lie bracket is the multiplication operation in the graded algebra,
-so it must respect the grading, and is bilinear. This product acts as an
-anticommutator on two degree 1 elements, and as a commutator if either of them
-have degree 0. 
-
+Being a graded algebra, the Lie bracket respects the grading, and 
+is bilinear. On the odd subspace $\mathfrak{g}_1$, it acts as an
+anticommutator so is denoted $\{-,-\}$. 
+\begin{defn}
+	Given a Lie algebra $\mathfrak{g}$, a \underline{super-extension} of
+	$\mathfrak{g}$ is a Lie superalgebra  $\mathfrak{s} =
+	\mathfrak{s}_0\oplus\mathfrak{s}_1$ with an isomorphism  $i:\mathfrak{g}\to
+	\mathfrak{s}_0$ of Lie algebras. 
+\end{defn}
+\begin{comment}
+\begin{prop} %https://ncatlab.org/nlab/show/geometry+of+physics+--+supersymmetry
+	\label{prop:super_ext}
+	Given a Lie algebra $\mathfrak{g}$, a choice of super-extension
+	$\mathfrak{g}\to\mathfrak{s}$ is equivalently the following data:
+	 \begin{enumerate}[1.]
+		 \item a vector space $S$, representing the odd part of $\mathfrak{s}$
+		 \item a Lie algebra homomorphism $\rho : \mathfrak{g} \to
+			 \mathfrak{gl}(S)$, representing the action of $[-,-] :
+			 \mathfrak{g}\otimes S \to S$
+		 \item a symmetric bilinear map $\{-,-\}:S\otimes S \to \mathfrak{g}$, 
+			 representing the action of  $\{-,-\}$, such that for all
+			 $X\in\mathfrak{g}$
+			  \[
+				  \rho_X\{-,-\} = \{\rho_X(-),-\} + \{-,\rho_X(-)\}
+			 \] 
+			 and $\rho_{\{\psi,\psi\}}(\psi) = 0$ for all $\psi\in S$.
+	\end{enumerate}
+\end{prop}
+\end{comment}
 Recall that the Poincar\'e group $\mathbb{R}^{1,3} \rtimes \O(1,3)$ is the 
 semidirect product of translations and the Lorentz group with group
 multiplication $(\alpha,f) \cdot (\beta, g) = (\alpha + f\cdot \beta, f\cdot
-g)$. Its universal cover is the double cover  $\mathbb{R}^{1,3}\rtimes
-\SL(2,\mathbb{C})$. In component form, the Poincar\'e algebra has the 10
-dimensional basis $\{P_\mu,M_{\mu\nu}\}$ where $\mu<\nu$ and  $\mu,\nu\in
-\{0,1,2,3\}$. Here  $P_\mu$ are the four generators of translations, and
-$M_{\mu\nu}$ are the six generators of boosts and rotations, with commutation relations
+g)$. 
+%Its universal cover is the double cover  $\mathbb{R}^{1,3}\rtimes \SL(2,\mathbb{C})$. 
+In component form, the Poincar\'e algebra has a 10
+dimensional basis consisting of the four generators of translations $P^{\mu}$
+and six generators $M^{\mu\nu}$ of boosts and rotations of the Lorentz algebra,
+where $M^{\mu\nu}=-M^{\nu\mu}$ and $\mu,\nu\in \{0,1,2,3\}$, with commutation relations
 \begin{align*}
 	[P_\mu, P_\nu] &= 0 \\
 	-i[M_{\mu\nu}, P_{\rho}] &= \eta_{\mu\rho}P_{\nu} - \eta_{\nu\rho}P_{\mu} \\
@@ -232,8 +325,12 @@ $M_{\mu\nu}$ are the six generators of boosts and rotations, with commutation re
 	\eta_{\mu\sigma}M_{\nu\rho} - \eta_{\nu\rho}M_{\mu\sigma} +
 	\eta_{\nu\sigma}M_{\mu\rho} 
 \end{align*}
-where $\eta$ is the  $(+,-,-,-)$ Minkowski metric. 
+where $\eta$ is the  $(+,-,-,-)$ Minkowski metric.
 
+The supersymmetry algebra was constructed in the context of the
+Haag-Lopuszanski-Sohnius theorem, which stated under similar assumptions of the
+Coleman-Mandula theorem that spinors from the reps $(\frac{1}{2},0)$ and
+$(0,\frac{1}{2})$ are the only possible generators for supersymmetry. 
 \begin{comment} % from wiki Poincare group
 	From the previous section, we know the Lorentz group admits two inequivalent 
 	two-dimensional complex spin representations 2 and $\overline{2}$ whose tensor 
@@ -254,14 +351,14 @@ where $\eta$ is the  $(+,-,-,-)$ Minkowski metric.
 	experimentally in nature. 
 \end{comment}
 
-without central charges
 
+\subsection{\texorpdfstring{$N=1$}{N=1} supersymmetry algebra}
 % See section 4.1 labastida 
-A supersymmetry algebra is a Lie superalgebra such that the even part is a Lie
-algebra containing the Poincar\'e algebra, and the odd part is built from
-spinors, on which there is an anticommutation relation. 
+
 In the simplest supersymmetry algebra, the even part is the Poincar\'e algebra and
-the odd part is generated by $Q_{\alpha} \in S$, and
+the odd part is generated by the four $\SL(2,\mathbb{C})$ spinors
+% TODO what is the odd part as a vector space?
+$Q_{\alpha} \in S$ and
 $\overline{Q}_{\dot{\alpha}} \in \overline{S}$, with the Lie bracket relations
 \[
 	\{Q_\alpha,\overline{Q}_{\dot{\beta}}\} 
@@ -274,24 +371,129 @@ $\overline{Q}_{\dot{\alpha}} \in \overline{S}$, with the Lie bracket relations
 \begin{equation*}
 	\begin{split}
 		&[M^{\mu\nu}, Q_{\alpha}] 
-		= \frac{1}{2} (\sigma^{\mu\nu})_{\alpha}{}^{\beta}Q_\beta \\
+		= (\sigma^{\mu\nu})_{\alpha}{}^{\beta}Q_\beta \\
 		&[P_{\mu}, Q_{\alpha}] 
 		= 0 
 	\end{split}
 	\qquad
 	\begin{split}
 		&[M^{\mu\nu}, \overline{Q}^{\dot{\alpha}}] = 
-		-(\sigma^{\mu\nu})^{\alpha}{}_{\dot{\beta}}\overline{Q}^{\dot{\beta}}\\
+		(\overline{\sigma}^{\mu\nu})^{\dot{\alpha}}{}_{\dot{\beta}}\overline{Q}^{\dot{\beta}}\\
 		&[P_\mu, \overline{Q}_{\dot{\alpha}}] = 0
 	\end{split}
 \end{equation*}
-where $(\sigma^{\mu\nu})_{\alpha}{}^{\beta}$ is a homomorphism between the
-representations $S\oplus\overline{S}$ to the vector representation of
-$\SO(1,3)$ using the Littlewood-Richardson rule.
-
+\begin{comment}
 - Why not specify [Q bar, P], or [Q bar, M], are they implied from [Q,P] \\
+They can be deduced by assuming Q bar and Q are hermitian conjugates in a rep
+- In a basis where $Q_{\alpha}^{\dagger} = \overline{Q}_{\dot{\alpha}}$, what
+it mean to take adjoint of a vector/spinor \\
+the point is that we choose a rep of the algebra such that this is the case.
+- Why are the other operators self adjoint?
+In a unitary rep, the other operators will all be hermitian.
 - where do the commutation relations come from? \\
-- how is each vector component $Q_{\alpha}\in S$ a generator? 
+explained below, and in tanedo notes. They come from looking at the spinor
+transformations and transformations of a unitary rep
+\end{comment}
+Here $Q_1,Q_2,\overline{Q}_{\dot{1}},\overline{Q}_{\dot{2}}$ are each distinct
+generators of the Lie algebra, but have a $\SL(2,\mathbb{C})$ action which
+relates them. To understand what this means, we describe where some of the 
+relations come from.
+\begin{itemize}
+	\item $[M^{\mu\nu}, Q_{\alpha}] 
+		= (\sigma^{\mu\nu})_{\alpha}{}^{\beta}Q_\beta $ \\
+	Recall that $\{i\sigma^{\mu\nu}\}$ is a basis for
+	$\mathfrak{sl}(2,\mathbb{C})$, so $\exp(i\omega_{\mu\nu}\sigma^{\mu\nu})$ is
+	a Lorentz transformation which acts on $Q_{\alpha}$ as the standard rep:
+	\[
+		Q_\alpha' = \exp(i\omega_{\mu\nu}\sigma^{\mu\nu})_{\alpha}{}^{\beta}Q_{\beta}
+	\] 
+	On the other hand, given a unitary representation $\rho$ of
+	the supersymmetric algebra on a Hilbert space, $Q_\alpha$ acts as an operator. 
+	From the principles of QFT, under the same Lorentz transformation, the operator 
+	transforms using $U = \exp(i\omega_{\mu\nu} \rho(M^{\mu\nu}))$ to 
+	\begin{align*}
+		\rho(Q_\alpha') &= U^{\dagger} \rho(Q_\alpha) U \\
+		&= \rho(Q_\alpha) + i\omega_{\mu\nu}(\rho(Q_\alpha)\rho( M^{\mu\nu}) -
+		\rho(M^{\mu\nu})\rho(Q_\alpha)) + \mathcal{O}(\omega^2) \\
+		&= \rho(Q_\alpha) + i\omega_{\mu\nu}\rho([Q_\alpha,M^{\mu\nu}]) + \mathcal{O}(\omega^2) 
+	\end{align*}
+	A way to guarantee this is (or if $\rho$ is injective) $Q_\alpha' = Q_\alpha
+	+ i\omega_{\mu\nu}[Q_\alpha,M^{\mu\nu}] + \mathcal{O}(\omega^2)$. 
+	Equating the first order terms in
+	$\omega_{\mu\nu}$ for $Q_\alpha'$, we arrive at the commutation relation.
+	\item $[M^{\mu\nu}, \overline{Q}^{\dot{\alpha}}] = 
+		(\overline{\sigma}^{\mu\nu})^{\dot{\alpha}}{}_{\dot{\beta}}
+		\overline{Q}^{\dot{\beta}}$\\
+	The reasoning for this is the same, except $\SL(2,\mathbb{C})$ acts on
+	$\overline{Q}_{\dot{\alpha}}$ as the conjugate rep. 
+\end{itemize}
+For a physical justification of the other Lie bracket relations, see the lecture
+notes by \citet{flipSUSY}. 
+Recall that the Coleman-Mandula theorem implied that all internal symmetries of
+the fields must commute with the spacetime symmetries of the Poincar\'e group.
+It turns out that all internal symmetries must also commute with $Q_\alpha$ with 
+one exception:  % TODO source? apart from Tong
+it can admit a $\U(1)$ symmetry that acts as a Lie algebra automorphism of the
+supersymmetry algebra via
+\[
+	Q_\alpha \mapsto e^{-i\lambda}Q_\alpha \quad\text{and}\quad
+	\overline{Q}_{\dot{\alpha}} \mapsto e^{i\lambda} \overline{Q}_{\dot{\alpha}}
+\] 
+Let $R\in \mathfrak{u}(1)$ be a generator of  $\U(1)$. Then given a unitary
+representation, the same transformation corresponds to 
+$\rho(Q_\alpha) \mapsto e^{i\rho(R)\lambda} \rho(Q_\alpha) e^{-i(R)\lambda}$. 
+Then using a similar argument as to find $[M^{\mu\nu}, Q_{\alpha}]$, we find
+\[
+	[Q_\alpha,R] = Q_\alpha \qquad [\overline{Q}_{\dot{\alpha}}, R] =
+	-\overline{Q}_{\dot{\alpha}}
+\] 
+
+
+
+\subsection{Extended supersymmetry algebra}
+More generally, it is possible to add $\mathcal{N}$ supersymmetry generators
+$Q^I_{\alpha}$ and $\overline{Q}_{\dot{\alpha}} ^{I}$ for
+$I=1,\ldots,\mathcal{N}$. Each of these generators retains the same Lie bracket
+relations,  
+\[
+	\{Q_\alpha^I,\overline{Q}^J_{\dot{\beta}}\} 
+	= 2\sigma^{\mu}_{\alpha \dot{\beta}} P_{\mu} \delta^{IJ}
+	\qquad
+	\{Q_\alpha^I,Q_{\beta}^J\} = 0
+	\qquad
+	\{\overline{Q}_{\dot{\alpha}}^I, \overline{Q}_{\dot{\beta}}^J\} = 0 
+\] 
+\begin{equation*}
+	\begin{split}
+		&[M^{\mu\nu}, Q_{\alpha}^I] 
+		= (\sigma^{\mu\nu})_{\alpha}{}^{\beta}Q_\beta^I \\
+		&[P_{\mu}, Q_{\alpha}^I] 
+		= 0 
+	\end{split}
+	\qquad
+	\begin{split}
+		&[M^{\mu\nu}, \overline{Q}^{\dot{\alpha}}_I] = 
+		(\overline{\sigma}^{\mu\nu})^{\dot{\alpha}}{}_{\dot{\beta}}
+		\overline{Q}^{\dot{\beta}}_I\\
+		&[P_\mu, \overline{Q}_{\dot{\alpha}}^I] = 0
+	\end{split}
+\end{equation*}
+
+More generally, the $R$-symmetry is the largest subgroup of Lie algebra
+automorphisms of the supersymmetry algebra which commutes with the Lorentz
+group.	For $\mathcal{N}>1$, called extended supersymmetry, 
+the $R$-symmetry rotates the supercharges between
+themselves, giving a  $\U(\mathcal{N})$ action. 
+
+Recall that each irreducible unitary representation of the Poincare algebra corresponds to a
+particle. However, an irreducible rep of the supersymmetry algebra corresponds
+to a direct sum of ordinary particles, called a \underline{multiplet}.
+Representations of extended supersymmetry are a subset of those theories with
+$\mathcal{N}=1$ supersymmetry, since they are constructed by joining together
+$\mathcal{N}=1$ multiplets.
+
+
+\section{Supergeometry}
 
 \begin{defn}
 	superspace
@@ -318,3 +520,19 @@ integration on supermanifolds using (Haar?) measure
 	Then show how the character behaves under direct sum and tensor product.
 	Then show that the two sides have the same character.
 \end{comment}
+
+
+\vspace{5mm}
+\hrule 
+\vspace{5mm}
+
+\textbf{Bibliographical notes}
+{\small
+\begin{itemize}
+	\item The lecture notes by \citet{tongSUSY} is the best resource I've come
+	across for understanding the motivation and intuition behind the
+	supersymmetry algebra, its representations, superspace and superfields.
+\end{itemize}
+}
+
+
