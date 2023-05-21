@@ -42,9 +42,46 @@ construction, comes from Seiberg-Witten theory (1994). They formulated a set of
 equations that contains the same information as the Yang-Mills equations but
 are technically much easier to work with. 
 
+\section{Introduction}
+
+A quantum field theory is called a TQFT when the correlation functions are
+independent of the metric. 
+TQFT has been an active area of research ever since the seminal work by Witten
+\cite{wittenTQFT}. TQFT contains no excitations that may propagate in the
+spacetime, so it does not describe any waves we know in the real world. The
+characteristic quantity describing a configuration: the action, remains
+invariant under any continuous changes of the topology. 
+
+There are two ways to formally guarantee that the correlation functions remain
+invariant under variations of the metric. % labatista, lozano
+\begin{itemize}
+	\item Schwarz type TFT: the action and the operators are defined without 
+		using the metric of the manifold. The most notable example is
+		Chern-Simmons gauge theory. Another import set of examples are the BF
+		theories. 
+	\item Witten type TFT: there is explicit metric
+	dependence, but the theory has a scalar symmetry $\delta$ acting on
+	the fields such that the correlation
+	functions do not depend on the background metric. 
+\end{itemize}
+
+This thesis will focus on a particular Witten type TQFT: Donaldson-Witten
+theory. Witten-type TQFTs can be formulated in a variety of frameworks. 
+\begin{itemize}
+	\item 
+ The most geometric one corresponds to the Mathai-Quillen formalism. In this
+formalism a TQFT is constructed out of a moduli problem. Topological invariants
+are then defined as integrals of a certain Euler class over the resulting moduli
+space.\cite{cernTQFT}
+	\item 
+ A different framework is the one based on the twisting of N = 2 supersymmetry.
+In this case, information on the physical theory can be used in the
+TQFT. (Seiberg-Witten invariants have shown up in this framework)
+\end{itemize}
 
 
-Preliminary knowledge:
+
+Assumed knowledge:
 
 Manifolds, Lie groups, Differential forms, integration on manifolds, de Rham cohomology
 (Introduction to Manifolds by Loring Tu, or Introduction to Smooth Manifolds by
@@ -52,4 +89,4 @@ John Lee)
 
 Connections, curvature and characteristic classes \cite{loringtu}
 
-Representations of Lie groups and Lie algebras \cite{hall}
+%Representations of Lie groups and Lie algebras \cite{hall}

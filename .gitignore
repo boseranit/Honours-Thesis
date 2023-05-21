@@ -12,3 +12,4 @@ build/thesis.toc
 build/thesis.bcf
 build/thesis.run.xml
 *.aux
+*.synctex(busy)

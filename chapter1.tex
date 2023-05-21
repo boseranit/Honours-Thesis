@@ -72,133 +72,29 @@ Hence if a connection is ASD, i.e. $s(A)=0$, then the transformed connection is
 also ASD. The moduli space is defined by quotienting the space of ASD
 connections by the action of the gauge group. 
 
-\section{Gauge Theory Motivation}
-Let $M$ be a space-time manifold. In field theory, a particle or field is 
-described in terms of a function $\psi:M\to V$, where  $V$ is some vector
-space typically over the complex numbers. There is an implicit choice of
-``reference frame". Suppose  $P_x$ is the space of all reference frames at $x$, and
-that any two frames are uniquely related by a group  $G$ of transformations,
-such as rotations, e.g. $pg\in P_x$. 
-By requiring a smooth concatentation of the frames, this leads to the idea of $P$ as a
- principal $G$-bundle over  $M$.
-
-Furthermore, suppose the group has a representation
-on $V$, such that if  $\psi:P\to V$ describes the value of  $\psi$ relative to
-$p\in P_x$, then $\psi(pg)=g^{-1}\cdot\psi(p)$ is the value relative to $pg$. 
-
-If  $U_{\alpha}\subset M$, then a continuous choice of a reference frame, described by a
-section $\sigma:U_{\alpha}\to P$ is called a gauge. Using this gauge, we can pull $\psi$
-down to obtain a local wave function on $U_{\alpha}$ given by
-$\psi(\sigma(y))$. If $\sigma:U_{\beta}\to P$ is another gauge, they are related
-by $\sigma_\beta(y) = \sigma_\alpha(y)g_{\alpha\beta}(y)$, so
-$\psi(\sigma_\alpha(y))=g_{\alpha\beta}(y)^{-1}\cdot\psi(\sigma_\beta(y))$.
-See \S Terminology for a comparison of language used in physics vs mathematics. 
-
-By combining the representation, we can describe the field, as a section of
-the vector bundle associated to $P$ by the representation  $\rho:G\to \GL(V)$,
-which is of the form $\psi:M\to P\times V / (p,v) \sim (pg, g^{-1}\cdot v)$. 
-
-In order to describe the dynamics of the field, we usually need to calculate the
-space-time derivatives. But physically meaningful quantities should transform
-correctly under a change of gauge (or local trivialisation). It turns out that 
-fixing a gauge and taking ordinary derivatives does not work. Informally, the parallel
-transport map $\Gamma(x\to x+dx) : E_x \to E_{x+dx}$ is a way to identify two
-fibres of the vector bundle together, allowing us to differentiate. 
-We wish this map to be approximately transitive in that 
-\[
-\Gamma(x+dx \to x+dx+dx') \circ \Gamma(x\to x+dx) \approx \Gamma(x\to x+dx+dx')
-\] 
-The precise nature of this error is described by the curvature of the
-connection. The new derivative, called the connection (or covariant derivative), can be 
-described locally using a connection 1-form (or gauge potential),
-by $\partial_\mu+A$, where
-$A$ is a matrix or vector (if $\dim V=1$) that depends on the tangent vector.
-
-General relativity is based on
-transformations of space-time itself, which we can call external symmetries.
-However, in QFT we only consider transformations that change reference frames, 
-but leave the points in spacetime fixed by acting on the fields of the theory, 
-called internal symmetries.   
-An example of this is gauge symmetries (or changes of local trivialisation),
-which are an artefact of our choice of coordinates/fields. There is no
-physical meaning, since all states related by such a transformation are
-physically the same. 
-Although it is possible to describe particles without gauge theory, by defining
-local operators which create and destroy particles, with certain transformation
-properties, it is easier to work with fields with extra structure.
-% Weinberg 5.9 shows massless fields with helicity pm 1 cannot be described 
-% by an ordinary 4-vector field but must be associated to a gauge symmetry eq31
-
-For instance, the photon has two polarisation states, but we instead have a
-connection (or gauge field) $A^{\mu}$ with four components, that transforms 
-nicely under the Lorentz group $\O(3,1)$, and only consider gauge independent
-quantities to be physical. In contrast, a global symmetry is a ``true" symmetry
-of the system, because it corresponds to a conserved quantity via Noether's
-theorem, and are physically not the same.  
-
-Note that this thesis does not discuss the quantization of gauge potentials, and
-without this, very little of physical significance, such as scattering cross
-sections or particle lifetimes can be computed. % see Faddeev Slavnov 
-% all of above based on bleecker
-% loringtu 29.10 the connection matrix on a vector bundle under a certain frame 
-%is the pullback of a certain 1-form on Fr(E) by the frame e:U to Fr(E)
-% this motivates a connection on a principal bundle
-
-\section{Introduction}
-
-A quantum field theory is called a TQFT when the correlation functions are
-independent of the metric. 
-TQFT has been an active area of research ever since the seminal work by Witten
-\cite{wittenTQFT}. TQFT contains no excitations that may propagate in the
-spacetime, so it does not describe any waves we know in the real world. The
-characteristic quantity describing a configuration: the action, remains
-invariant under any continuous changes of the topology. 
-
-There are two ways to formally guarantee that the correlation functions remain
-invariant under variations of the metric. % labatista, lozano
-\begin{itemize}
-	\item Schwarz type TFT: the action and the operators are defined without 
-		using the metric of the manifold. The most notable example is
-		Chern-Simmons gauge theory. Another import set of examples are the BF
-		theories. 
-	\item Witten type TFT: there is explicit metric
-	dependence, but the theory has a scalar symmetry $\delta$ acting on
-	the fields such that the correlation
-	functions do not depend on the background metric. 
-\end{itemize}
-
-This thesis will focus on a particular Witten type TQFT: Donaldson-Witten
-theory. Witten-type TQFTs can be formulated in a variety of frameworks. 
-\begin{itemize}
-	\item 
- The most geometric one corresponds to the Mathai-Quillen formalism. In this
-formalism a TQFT is constructed out of a moduli problem. Topological invariants
-are then defined as integrals of a certain Euler class over the resulting moduli
-space.\cite{cernTQFT}
-	\item 
- A different framework is the one based on the twisting of N = 2 supersymmetry.
-In this case, information on the physical theory can be used in the
-TQFT. (Seiberg-Witten invariants have shown up in this framework)
-\end{itemize}
-
-\section{Classical electromagnetism}
-How electromagnetism motivates Yang-Mills theory
-
-\section{Topological Aspects of Four-manifolds}
-Intersection form
+\section{Yang-Mills theory}
 
 moduli space of connections quotiented by gauge group
 
-transversality
+The space of gauge connections $\mathcal{A}$ on a principal bundle is the
+universe bundle for the group of gauge transformations $\mathcal{G}$. (ch 15
+Cordes)
+
+\section{Donaldson invariants}
+Intersection form
 
 \vspace{5mm}
 \hrule 
 \vspace{5mm}
+
+
 
 \textbf{Bibliographical notes}
 {\small
 \begin{itemize}
 	\item A great overview of the main ideas in the two approaches to
 		constructing a Witten type TFT is given in \citet{TQFTbook}.
+	\item The local model for $\mathcal{M}_{ASD}$ was first obtained by 
+		\citet{local_moduli}.
 \end{itemize}
 }

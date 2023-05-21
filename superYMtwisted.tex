@@ -1,0 +1,98 @@
+\chapter{Donaldson-Witten theory from SUSY YM} 
+\label{chapter6}
+
+\section{Overview}
+This is a retelling of Witten's 1988 TQFT paper. 
+\cite{wittenTQFT} is the seminal article on twisted supersymmetric TQFT 
+% https://physics.stackexchange.com/questions/224297/what-to-a-physicist-are-instantons-and-the-donaldson-invariants
+
+The physical setting in which the Donaldson invariants will appear is a
+Yang-Mills theory living on the four-dimensional manifold $M$ coupled to certain
+fields such that the total action has a supersymmetry. The action of this theory
+is 
+\begin{align*}
+	S &= \int \Tr \Big(\frac{1}{4}F_{\mu\nu}F^{\mu\nu} +\frac{1}{4}F_{\mu\nu}(\star
+F)^{\mu\nu} +\frac{1}{2}\phi D_\mu D^\mu\lambda - i\eta D_\mu\psi^\mu +
+iD_\mu\psi_\nu\chi^{\mu\nu} \\ 
+	  &\qquad - \frac{i}{2}\lambda[\psi_\mu,\psi^\mu]-\frac{i}{2}\phi[\eta,\eta]-\frac{1}{8}[\phi,\lambda]^2\Big)\sqrt{g} \odif[order=4]{x}
+\end{align*}
+where $D_\mu = \nabla_\mu + [A_\mu,+]$ is the gauge covariant derivative and
+$\nabla$ is the Riemannian covariant derivative, and all fields are
+$\mathfrak{g}$-valued. There is a  $\mathbb{Z}_2$-grading on the space of
+fields. The bosonic fields are $\phi,\lambda$ and the fermionic fields are
+$\eta,\psi,\chi$ and  $\chi$ is additional constrained to be self-dual. The
+action is invariant under the symmetry 
+\begin{align*}
+	\delta_\epsilon A = \mathrm{i}\epsilon\psi \quad \delta_\epsilon\phi = 0
+	\quad \delta_\epsilon\lambda = 2\mathrm{i}\epsilon\eta \\
+	\delta_\epsilon\psi = -\epsilon D\phi \quad \delta_\epsilon\eta =
+	\frac{1}{2}\epsilon[\phi,\lambda] \quad \delta_\epsilon \chi = \epsilon(F +
+	\ast F) 
+\end{align*}
+with $\epsilon$ a fermionic infinitesimal parameter. As with all
+transformations, we think of this one as having a generator: its supercharge
+$Q$, which gives all transformations as  $\delta \alpha=-i\epsilon Q(\alpha)$
+where $\alpha$ is any field. in a Hamiltonian formulation,  $Q(\alpha)$ would be
+the Poisson bracket  $\{Q,\alpha\}$, but on a general manifold we don't have
+that option. By explicit computation, we find that 
+\[
+	\delta_\epsilon\delta_\zeta X - \delta_\zeta\delta_\epsilon X =
+	-2\mathrm{i}\epsilon\zeta\phi
+\] 
+for every field $X$ except  $A$, where it is  $-D\phi$. This holds only on-shell
+for  $\chi$, but off-shell for all others. Therefore, the commutator of two such
+transformations is a gauge transformation, and hence has no physical impact. The
+conserved current associated to this symmetry is 
+ \[
+	 J = \mathrm{Tr}_\mathfrak{g}\left((F_{\mu\nu} + (\ast F)_{\mu\nu})\psi^\nu
+		 - \eta D_\mu \phi - D^\nu\phi \chi_{\mu\nu} -
+	 \frac{1}{2}\psi_\mu[\lambda,\phi]\right)\mathrm{d}x^\mu
+\] 
+where conservation means that $\star J$ is closed, so for any homology 3-cycle
+ $\gamma$, the integral  $Q(\gamma) = \int_\gamma \star J$ depends only on the
+ homology class of  $\gamma$. Furthermore, one may show that the energy momentum
+ tensor  $T_{\mu\nu}= 2 \frac{\delta S}{\delta g^{\mu\nu}}$ of this theory is an
+ infinitesimal transform $T_{\mu\nu}=\{Q,\lambda_{\mu\nu}\}$ for $\lambda$ given
+ in Witten's eq.(2.34). 
+
+\section{Donaldson invariants as path integrals}
+In the following, the path integral measure $\mathcal{D}X$ includes all fields,
+and also intends to have gauge equivalence calsses quotiented out. The generic
+object we consider is the (unnormalizedD expectation value of any observable
+$\mathcal{O}$ which is any nice functional in the fields:
+\[
+Z(\mathcal{O}) = \int \mathcal{O} \exp(-S /e^2) \mathcal{D}X
+\] 
+If the supersymmetry transformation is non-anomalous, we have
+$Z(\{Q,\mathcal{O}\})= 0$ for every observable. We now claim that $Z=Z(1)$ is a
+smooth invariant, and in particular will turn out to be a Donaldson invariant.
+For  $Z$ to be a smooth invariant, it must be invariant under changes in the
+metric. The change of metric is by definition  $\delta
+S=\frac{1}{2}\int_M\sqrt{g} T_{\mu\nu}\delta g^{\mu\nu}$ and this leads to
+\[
+	\delta Z(1) = -\frac{1}{e^2}Z(\{Q,\int_M \sqrt{g}\delta
+	g^{\mu\nu}\lambda_{\mu\nu}\}) = 0
+\] 
+so $Z(1)$ is invariant under changes of the metric. Similarly, it is invariant
+under changes of the gauge coupling constant  $e$,   as long as it stays
+non-zero. But in the limit of small coupling, the path integral is strongly
+dominated by the classical minima of the free theories, and the calssical minima
+of the free gauge theory are the anti-self-dual instantons. The self-dual ones
+are not minima beause we have added $F\wedge F$ to the Lagrangian. So we may
+evaluate  $Z$ by looking at the instanton contributions. 
+
+
+
+
+\vspace{5mm}
+\hrule 
+\vspace{5mm}
+
+\textbf{Bibliographical notes}
+{\small
+\begin{itemize}
+	\item Witten's paper
+\end{itemize}
+}
+
+
