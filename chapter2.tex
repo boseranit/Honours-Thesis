@@ -259,22 +259,53 @@ $\varphi:[X,BG]\to\mathcal{P}_G(X)$ given by $h\mapsto h^*(EG)$ is surjective
 
 
 \section{Cartan model}
-\subsection{Differential graded algebras}
+\subsection{Results on principal bundles}
+\begin{defn} % tu intro to manifolds 4.6
+	An \underline{antiderivation} of a graded algebra $A=\bigoplus_{k=0}^\infty
+	A^k$ is a linear map $D : A\to A$ such that 
+	 \[
+	D(ab) = (Da)b + (-1)^{\deg a} a(Db)
+	\] 
+	If there is an integer $m$ such that  $D A^k \subset A^{k+m}$ for all $k$,
+	then we call it an antidervation of degree  $m$.
+\end{defn}
+\begin{defn} 
+	Let  $\omega\in \Omega(P)$ be a differential form on a principal $G$-bundle
+	$P\xrightarrow{\pi} M$. 
+	Then $\omega$ is a \underline{basic form} if  $\omega = \pi^*\eta$
+	where  $\eta\in\Omega(M)$. 
+	It is \underline{$G$-invariant} if $L^*_g \omega =\omega$ for all  $g\in G$,
+	where $L_g : P\to P$ is left multiplication by  $g$.
+	It is \underline{horizontal} if at each $p\in P$,
+    $\omega$ vanishes whenever one of its arguments is vertical:
+	$\iota_Y\omega_p = 0$ for all  $Y\in V_p$.
+\end{defn}
+\noindent
+For any $G$-manifold, we can also identify $X\in \mathfrak{g}$ with 
+a vertical vector field via $X_p = \odv{}{t}_{t=0} p \exp (t X)$. 
+\begin{thm} % Thm 12.2 equivariant_tu
+	For a connected Lie group $G$, a form $\omega\in \Omega(P)$ on a principal
+	 $G$-bundle is  $G$-invariant if and only if  $\mathcal{L}_A\omega=0$ for
+	 all $A\in\mathfrak{g}$ in the Lie algebra.
+\end{thm}
 \begin{defn} \label{def:contraction} % BGV
 	If $V$ is a vector space, the \underline{contraction} (or interior
 	multiplication) operator $\iota(v) :
-	\Lambda V^* \to \Lambda V^*$ for $v\in V$ is the unique operator such that
-	\begin{enumerate}[(1)]
-	    \item $\iota(v)\alpha = \alpha(v)$ if  $\alpha\in V^*$
-		\item $\iota(v)(\alpha\wedge\beta) = (\iota(v)\alpha)\wedge\beta + 
-			(-1)^{\abs{\alpha}}\alpha\wedge(\iota(v)\beta)$, if  $\alpha,\beta$
-			are homogeneous elements of  $\Lambda V^*$.
-	\end{enumerate} % mention exterior operator?
+	\Lambda V^* \to \Lambda V^*$ for $v\in V$ is the unique antidervation of -1 
+	such that $\iota(v)\alpha = \alpha(v)$ if  $\alpha\in V^*$.
 \end{defn}
-Hence, we can define \underline{interior multiplication} with a vector
-field as the map $\iota(X) : \Omega^*(M) \to \Omega^{*-1}(M)$.
+\noindent
+In particular, we have interior multiplication with a vector
+field $\iota(X) : \Omega^*(M) \to \Omega^{*-1}(M)$.
 The definition similarly extends to vector valued forms.
-\begin{thm} % thm 10.4 tu equivariant, p18 BGV
+
+\begin{thm} % Thm 12.5 equivariant_tu
+	Let $G$ be a Lie group and  $P\xrightarrow{\pi} M$ be a principal
+	$G$-bundle. A form  $\omega\in\Omega^k(P)$ is basic if and only if it is
+	$G$-invariant and horizontal.
+\end{thm}
+
+\begin{thm} \label{thm:cartan_homotopy} % thm 10.4 tu equivariant, p18 BGV
 	Let $X$ be a vector field on  $M$, and $\alpha\in \Omega(M)$. 
 	\begin{enumerate}[(i)]
 	    \item $\mathcal{L}(X)d = d\mathcal{L}(X)$
@@ -284,10 +315,10 @@ The definition similarly extends to vector valued forms.
 			\cdot\iota(X)+\iota(X)\cdot d$
 	\end{enumerate}
 \end{thm}
-\begin{proof}
-	% TODO
-\end{proof}
 
+
+\subsection{Differential graded algebras}
+The results from above motivate some of the following definitions.
 \begin{defn}
 	Let $\mathfrak{g}$ be a Lie algebra. A \underline{$\mathfrak{g}$-differential graded
 	algebra} is a commutative graded algebra $\Omega= \bigoplus_{k\geq
@@ -299,24 +330,35 @@ The definition similarly extends to vector valued forms.
 			and  $\mathcal{L}:\mathfrak{g}\times\Omega\to\Omega$, where for
 			$X\in\mathfrak{g}$,  $\iota_X$ and  $\mathcal{L}_X$ are
 			$\mathbb{R}$-linear in $X$,  $\iota_X$ acts on  $\Omega$ as an
-			antiderivation of degree -1,  $\iota_x = 0$, and  $\mathcal{L}_X$
+			antiderivation of degree -1,  $\iota_X^2 = 0$, and  $\mathcal{L}_X$
 			acts as a derivation of degree 0.
 	\end{itemize}
 	Furthermore, the operators satisfy Cartan's homotopy formula:
 	$\mathcal{L}_X= d\iota_X+\iota_Xd$.
 \end{defn}
 Note that commutativity for a graded algebra means that if $a\in
-\Omega^k,b\in\Omega^l$ then $ba = (-1)^{kl}ab$.  
+\Omega^k,b\in\Omega^l$ then $ba = (-1)^{kl}ab$. 
+From Theorem \ref{thm:cartan_homotopy} in the previous section, it is
+clear that differential forms $\Omega(N)$ on a $G$-manifold  $N$ is an example
+of a $\mathfrak{g}$-dga. 
 
 \begin{defn}
-	A differential form $\alpha\in\Omega$ is 
+	An element $\alpha\in\Omega$ of a $\mathfrak{g}$-dga is 
 	\underline{horizontal} if $\iota_X\alpha=0$ for all $X\in\mathfrak{g}$. 
 	It is \underline{invariant} if $\mathcal{L}_X\alpha = 0$ for all $X\in
 	\mathfrak{g}$. It is \underline{basic} if it is both horizontal and
 	invariant.
 \end{defn}
-Note that in the case of a principal bundle, we think of $X\in \mathfrak{g}$ as 
-a vertical vector field via $X_p = \odv{}{t}_{t=0} p \exp (t X)$. 
+
+\begin{defn} 
+	A \underline{morphism} $\phi : \Omega' \to \Omega$ of
+	$\mathfrak{g}$-differential graded algebras is an algebra homomorphism that
+	commutes with  $d,\iota_X$ and  $\mathcal{L}_X$ for all $X\in\mathfrak{g}$.
+\end{defn}
+It follows directly that 
+morphism $\phi : \Omega'\to \Omega$ of $\mathfrak{g}$-differential graded
+algebras maps basic elements to basic elements.
+
 \begin{comment} %%% stuff about principal and associated bundles
 \begin{defn}
 	A differential form $\alpha\in\Omega(P,V)$ on a principal $G$-bundle  with 
@@ -366,15 +408,15 @@ multiplication given by
 	 (a\otimes B)(a'\otimes b') = (-1)^{(\deg b)(\deg a')}aa'\otimes bb'
 \] 
 which respects the grading $(A\otimes B)^k = \bigoplus_{i+j= k} A^i\otimes B^j$.
-The differential on $A\otimes B$ is defined by 
-\[
-d(a\otimes b) = (d_A a)\otimes b + (-1)^{\deg a}a\otimes d_Bb
-\] 
-The interior product is defined similarly as 
-\[
-\iota_X(a\otimes b) = (\iota_X a)\otimes b + (-1)^{\deg a}\otimes \iota_Xb
-\] 
-\begin{prop}[Operations on DGAs] % prop 18.7, 18.10 tu
+The differential, interior product and Lie derivative on $A\otimes B$ are defined by 
+\begin{align*}
+	d(a\otimes b) &= (d_A a)\otimes b + (-1)^{\deg a}a\otimes d_Bb \\
+	\iota_X(a\otimes b) &= (\iota_X a)\otimes b +(-1)^{\deg a}a\otimes \iota_Xb\\
+	\mathcal{L}_X(a\otimes b) &= (\mathcal{L}_X a)\otimes b +a\otimes\mathcal{L}_Xb
+\end{align*}
+ 
+\begin{prop}[Operations on DGAs]  \label{prop:dga_operations}
+	\phantom{}	% prop 18.7, 18.10 tu
 	\begin{enumerate}[(i), leftmargin=\parindent]
 	    \item 
 			If $(A,d_A)$ and  $(B,d_B)$ are $\mathfrak{g}$-differential graded 
@@ -386,10 +428,103 @@ The interior product is defined similarly as
 	graded algebra.
 	\end{enumerate}
 \end{prop}
-% TODO tensor product of dgas
+\begin{proof}[Proof (sketch)]
+	(i) It is required to check that $d$ and $\iota$ are antiderivations,
+	$\mathcal{L}_X$ is a derivation, $d\circ d = 0$,  $\iota_X^2=0$, and
+	Cartan's homotopy formula. These are all straightforward calculations.\\
+	(ii) It is required to show that if $\alpha$ and  $\beta$ are basic, then so
+	are $\alpha+\beta$,  $\alpha\beta$,  $d\alpha$,  $\iota_X \alpha$ and
+	$\mathcal{L}_X\alpha $. 
+
+	For $\alpha+\beta$, it follows from linearity of  $\iota$ and
+	$\mathcal{L}_X$. For $\alpha\beta$, it follows from the (anti)derivation
+	property of $\iota_X$ and  $\mathcal{L}_X$. For $d\alpha$, we have 
+	 \begin{align*}
+		 \iota_X(d\alpha) &= (\mathcal{L}_X-d\iota_X)\alpha = 0 \tag{by Cartan's
+		 homotopy formula} \\
+			 \mathcal{L}_X(d\alpha) &= d\mathcal{L}_X \alpha = 0 
+		\tag{again by Cartan's homotopy formula}
+	 \end{align*} 
+	The basicness of $\iota_X\alpha$ and  $\mathcal{L}_X\alpha$ also follow 
+	from application of Cartan's homotopy formula.
+\end{proof}
 
 \subsection{Weil model}
-% TODO defined weil model follow ch19 Tu
+Let $P\xrightarrow{\pi} M$ be a principal  $G$-bundle. With a choice of
+connection  $\omega\in\Omega^1(P,\mathfrak{g})$ and associated curvature
+$F\in\Omega^2(P,\mathfrak{g})$,
+the Weil homomorphism defines a homomorphism $\bigwedge(\mathfrak{g}^*)\otimes
+S(\mathfrak{g}^*) \to \Omega(P)$. To construct this, define the linear map 
+\[
+	f_1 : \mathfrak{g}^* \to \Omega^1(P) \text{ given by }
+	f_1(\alpha) = \alpha \circ \omega
+\] 
+which we can extend to a unique algebra homomorphism 
+$\bigwedge(\mathfrak{g}^*)\to\Omega(P)$ given by $f_1(\beta_1\wedge\ldots\wedge \beta_k)
+= f_1(\beta_1)\wedge\ldots\wedge f_1(\beta_k)$ for $\beta_i\in\mathfrak{g}^*$.
+This is well defined because 1-forms anticommute, thus we can define an
+alternating $k$-linear map and use the universal property of  $\bigwedge^k$.
+Similarly, define the linear map 
+\[
+	f_2 : \mathfrak{g}^* \to \Omega^2(P) \text{ given by }
+	f_2(\alpha) = \alpha \circ F
+\]
+Again, we can extend $f_1$ to a unique algebra homomorphism 
+$S(\mathfrak{g}^*)\to \Omega(P)$ given by
+$f_2(\beta_1\cdots\beta^k)=f_2(\beta_1)\wedge\ldots\wedge f_2(\beta_k)$ for
+$\beta_i\in\mathfrak{g}^*$. 
+
+Combining $f_1$ and $f_2$ gives a bilinear map $f_1\times f_2 :
+\bigwedge(\mathfrak{g}^*)\times S(\mathfrak{g}^*) \to \Omega(P)$ given by
+$(\alpha,\beta)\mapsto f_1(\alpha)\wedge f_2(\beta)$, and hence a linear 
+map on the tensor product
+\[
+w : \bigwedge(\mathfrak{g}^*)\otimes S(\mathfrak{g}^*) \to \Omega(P)
+\] 
+such that $w(\alpha\otimes \beta) = f_1(\alpha)\wedge f_2(\beta)$.
+We call $w$ the \underline{Weil homomorphism}, and 
+$W(\mathfrak{g}) =\bigwedge(\mathfrak{g}^*)\otimes S(\mathfrak{g}^*)$
+is called the \underline{Weil algebra}.
+Moreover, $w$ is a graded-algebra homomorphism if we assign degree 1 to elements of
+$\mathfrak{g}^*$ in $\bigwedge(\mathfrak{g}^*)$ and degree 2 to 
+elements of $\mathfrak{g}^*$ in $S(\mathfrak{g}^*)$.
+
+We want to make the Weil algebra into a $\mathfrak{g}$-differential graded
+algebra, so we will define a differential operator. Let $X_1,\ldots,X_n$ be a basis
+for $\mathfrak{g}$, with dual basis  $\alpha^1,\ldots,\alpha^n$. So the Weil
+algebra is generated by 
+\[
+	 \theta_i = \alpha^i \otimes 1, \quad 
+	 u_i = 1\otimes \alpha^i \quad\in \bigwedge(\mathfrak{g}^*)\otimes S(\mathfrak{g}^*)
+\] 
+We can write the connection $\omega\in\Omega^1(P,\mathfrak{g})$ as a linear
+combination $\omega = \sum \omega^kX_k$ and the curvature as $F=\sum F^kX_k$,
+where  $\omega^k$ and  $F^k$ are  $\mathbb{R}$-valued forms. 
+Then the Weil homomorphism acts by 
+\[
+w(\theta_k) = \theta_k\circ \omega = \omega^k
+\qquad 
+w(u_k) = u_k\circ F = F^k
+\] 
+We want to define a differential operator $\delta$ such that  $w\circ \delta =
+d\circ w$, so that $w$ is a  $\mathfrak{g}$-dga homomorphism. By the 
+structural equation $F=d\omega + \frac{1}{2}[\omega,\omega]$ and 
+Bianchi identity $dF=[F,\omega]$, we have
+\[
+d\omega^k = \Omega^k - \frac{1}{2}\sum c_{ij}^k \omega^i\wedge \omega^j,
+\qquad 
+dF^k = \sum c_{ij}^k F^i\wedge \omega^j
+\] 
+where $[X_i,X_j]=\sum c_{ij}^kX_k$ are the structure constants of the Lie
+algebra. Hence, we must define $\delta$ by
+\begin{equation}
+\delta\theta_k = u_k - \frac{1}{2}\sum c_{ij}^k \theta_i\theta_j, \qquad
+\delta u_k = \sum c_{ij}^k u_i\theta_j
+\end{equation}
+and extend $\delta$ to  $W(\mathfrak{g})$ as an antiderivation. 
+
+% TODO : p154 onwards show it is a dga
+
 \begin{thm}[Equivariant de Rham theorem] \label{thm:equivariant_de_Rham} % 19.4 Tu
 	For a compact connected Lie group $G$ with Lie algebra $\mathfrak{g}$, and
 	$G$-manifold  $M$, there is a graded-algebra isomorphism 
@@ -398,13 +533,17 @@ The interior product is defined similarly as
 	\] 
 \end{thm}
 The complex $(W(\mathfrak{g})\otimes \Omega(M))_{bas}$ with the Weil
-differential is called the \underline{Weil model}.
+differential is called the \underline{Weil model}. It is the basic subcomplex of
+the tensor product of two $\mathfrak{g}$-dgas which is well defined by
+Proposition \ref{prop:dga_operations}.
 
+
+\subsection{Cartan model}
 \begin{thm}[Weil-Cartan isomorphism] \label{thm:weil_cartan_iso} % Thm 21.1 Tu
 	Let $G$ be a connected Lie group, and $M$ be a left $G$-manifold. There is a
 	graded-algebra isomorphism 
 	\[
-		F : (W(\mathfrak{g})\otimes \Omega(M))_{hor} \to S(g^*\otimes \Omega(M))
+		F : (W(\mathfrak{g})\otimes \Omega(M))_{hor} \to S(\mathfrak{g}^*)\otimes \Omega(M)
 	\] 
 	\[
 	a+ \sum \theta_I a_I \mapsto a
