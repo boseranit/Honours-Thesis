@@ -258,7 +258,7 @@ $\varphi:[X,BG]\to\mathcal{P}_G(X)$ given by $h\mapsto h^*(EG)$ is surjective
 
 
 
-\section{Cartan model}
+\section{Weil model}
 \subsection{Results on principal bundles}
 \begin{defn} % tu intro to manifolds 4.6
 	An \underline{antiderivation} of a graded algebra $A=\bigoplus_{k=0}^\infty
@@ -283,7 +283,7 @@ $\varphi:[X,BG]\to\mathcal{P}_G(X)$ given by $h\mapsto h^*(EG)$ is surjective
 \noindent
 For any $G$-manifold, we can also identify $X\in \mathfrak{g}$ with 
 a vertical vector field via $X_p = \odv{}{t}_{t=0} p \exp (t X)$. 
-\begin{thm} % Thm 12.2 equivariant_tu
+\begin{thm}[{\cite[Theorem 12.2]{equivariant_tu}}] % Thm 12.2 equivariant_tu
 	For a connected Lie group $G$, a form $\omega\in \Omega(P)$ on a principal
 	 $G$-bundle is  $G$-invariant if and only if  $\mathcal{L}_A\omega=0$ for
 	 all $A\in\mathfrak{g}$ in the Lie algebra.
@@ -299,14 +299,18 @@ In particular, we have interior multiplication with a vector
 field $\iota(X) : \Omega^*(M) \to \Omega^{*-1}(M)$.
 The definition similarly extends to vector valued forms.
 
-\begin{thm} % Thm 12.5 equivariant_tu
-	Let $G$ be a Lie group and  $P\xrightarrow{\pi} M$ be a principal
-	$G$-bundle. A form  $\omega\in\Omega^k(P)$ is basic if and only if it is
-	$G$-invariant and horizontal.
+\begin{thm}[{\cite[Theorem 12.5]{equivariant_tu}}] % Thm 12.5 equivariant_tu
+	A form  $\omega\in\Omega^k(P)$ on a principal $G$-bundle is 
+	basic if and only if it is $G$-invariant and horizontal.
 \end{thm}
 
-\begin{thm} \label{thm:cartan_homotopy} % thm 10.4 tu equivariant, p18 BGV
-	Let $X$ be a vector field on  $M$, and $\alpha\in \Omega(M)$. 
+\begin{thm}[Cartan's homotopy formula {\cite[Theorem 20.10]{intro_tu}}] 
+	\label{thm:cartan_homotopy} % thm 10.4 tu equivariant, p18 BGV
+	Let $X\in \Gamma(TM)$ be a vector field on $M$, and $\alpha\in \Omega(M)$. Then
+	\[
+	\mathcal{L}(X) = d\iota(X)+\iota(X) d
+	\] 
+	\begin{comment}
 	\begin{enumerate}[(i)]
 	    \item $\mathcal{L}(X)d = d\mathcal{L}(X)$
 		\item $\mathcal{L}(X)(\iota(Y)\alpha) = \iota([X,Y])\alpha +
@@ -314,6 +318,7 @@ The definition similarly extends to vector valued forms.
 		\item Cartan's homotopy formula: $\mathcal{L}(X) = d
 			\cdot\iota(X)+\iota(X)\cdot d$
 	\end{enumerate}
+	\end{comment}
 \end{thm}
 
 
@@ -321,7 +326,7 @@ The definition similarly extends to vector valued forms.
 The results from above motivate some of the following definitions.
 \begin{defn}
 	Let $\mathfrak{g}$ be a Lie algebra. A \underline{$\mathfrak{g}$-differential graded
-	algebra} is a commutative graded algebra $\Omega= \bigoplus_{k\geq
+	algebra} is a graded-commutative algebra $\Omega= \bigoplus_{k\geq
 	0}\Omega^k$ with 
 	\begin{itemize}
 		\item an antiderivation $d:\Omega\to\Omega$ of degree 1 such that
@@ -336,7 +341,7 @@ The results from above motivate some of the following definitions.
 	Furthermore, the operators satisfy Cartan's homotopy formula:
 	$\mathcal{L}_X= d\iota_X+\iota_Xd$.
 \end{defn}
-Note that commutativity for a graded algebra means that if $a\in
+Note that graded-commutative algebra means that if $a\in
 \Omega^k,b\in\Omega^l$ then $ba = (-1)^{kl}ab$. 
 From Theorem \ref{thm:cartan_homotopy} in the previous section, it is
 clear that differential forms $\Omega(N)$ on a $G$-manifold  $N$ is an example
@@ -352,7 +357,7 @@ of a $\mathfrak{g}$-dga.
 
 \begin{defn} 
 	A \underline{morphism} $\phi : \Omega' \to \Omega$ of
-	$\mathfrak{g}$-differential graded algebras is an algebra homomorphism that
+	$\mathfrak{g}$-differential graded algebras is a graded algebra homomorphism that
 	commutes with  $d,\iota_X$ and  $\mathcal{L}_X$ for all $X\in\mathfrak{g}$.
 \end{defn}
 It follows directly that 
@@ -404,16 +409,18 @@ This is a vertical vector field because $X_P(\pi^*f) = \odv{}{t}_{t=0} f(p \exp
 
 If $(A,d_A)$ and  $(B,d_B)$ are differential graded algebras, then their tensor product has
 multiplication given by 
- \[
+\begin{equation} \label{eq:tensor_mult}
 	 (a\otimes B)(a'\otimes b') = (-1)^{(\deg b)(\deg a')}aa'\otimes bb'
-\] 
+\end{equation}
 which respects the grading $(A\otimes B)^k = \bigoplus_{i+j= k} A^i\otimes B^j$.
 The differential, interior product and Lie derivative on $A\otimes B$ are defined by 
-\begin{align*}
-	d(a\otimes b) &= (d_A a)\otimes b + (-1)^{\deg a}a\otimes d_Bb \\
-	\iota_X(a\otimes b) &= (\iota_X a)\otimes b +(-1)^{\deg a}a\otimes \iota_Xb\\
+\begin{align}
+	d(a\otimes b) &= (d_A a)\otimes b + (-1)^{\deg a}a\otimes d_Bb \nonumber \\
+	\iota_X(a\otimes b) &= (\iota_X a)\otimes b +(-1)^{\deg a}a\otimes \iota_Xb
+	\label{eq:tensor_ops} \\
 	\mathcal{L}_X(a\otimes b) &= (\mathcal{L}_X a)\otimes b +a\otimes\mathcal{L}_Xb
-\end{align*}
+	\nonumber
+\end{align}
  
 \begin{prop}[Operations on DGAs]  \label{prop:dga_operations}
 	\phantom{}	% prop 18.7, 18.10 tu
@@ -538,7 +545,7 @@ the tensor product of two $\mathfrak{g}$-dgas which is well defined by
 Proposition \ref{prop:dga_operations}.
 
 
-\subsection{Cartan model}
+\section{Cartan model}
 \begin{thm}[Weil-Cartan isomorphism] \label{thm:weil_cartan_iso} % Thm 21.1 Tu
 	Let $G$ be a connected Lie group, and $M$ be a left $G$-manifold. There is a
 	graded-algebra isomorphism 
@@ -555,16 +562,19 @@ Proposition \ref{prop:dga_operations}.
 The complex $(S(g^*\otimes \Omega(M)))^G$ is called the \underline{Cartan
 model}. Elements of the Cartan model are called \underline{equivariant forms}.
 
+\begin{comment}
+	
 \section{BRST Model}
 In the context of topological field theories, another model of equivariant
 cohomlogy arises naturally, called the BRST model. As a vector space, it is
 identical to the Weil model $W(\mathfrak{g})\otimes \Omega(M)$, but with
 differential $d_B = d_W + \theta^i\otimes \mathcal{L}_i - u^i \otimes \iota_i$.
 
-% TODO how does it arise? proof of conjugagion theorem, why conjugate?
+% TODO how does it arise? proof of conjugation theorem, why conjugate?
 It was shown by Kalkman that the BRST and Weil models are related by the algebra
 automorphism of conjugation by $\exp (\theta^i \iota_i)$. 
 
+\end{comment}
 
 \section{Equivariant characteristic classes}
 \begin{defn} % from ch1 BGV

@@ -1,28 +1,29 @@
-Revise connection and curvature from Loring tu when needed
-
-classical electromagnetism - Nakahara chapter 1 Baez chapter 5
-
 Bryan questions:
 should I include a proof of nabla^2 = F
-should I include a proof Thom isomorphism? 
+should I include a proof Thom isomorphism? only for compact case?
 proof of equivariant de rham theorem 
-proof of basic = g inv and horizontal
+is it too much detail for equivariant Thom diagram?
 
 To write:
-intersection form
+why i commutes with d
+how integration along the fiber maps into associated bundle via Weil homo
+define theta, Omega and x in universal Thom form in Weil model
+
+ch4 Donaldson Kronheimer
 1.6 BGV Transgression formulas, pullback of thom class, Poincare-hopf theorem
 local model for moduli space (atiyah, hitchin, singer)
 
 equivariant deRham theorem, 
 Weil-cartan isomorphism
 
-Cordes ch10
-Cordes ch11
 equivariant thom class, Venselaar pg 18
-localisation formula
+witten localisation formula
 
 
 
 
+Revise connection and curvature from Loring tu when needed
+classical electromagnetism - Nakahara chapter 1 Baez chapter 5
+Cordes ch11
 Donaldson ch1, ch4 Yang-Mills theory
 Baez ch6, II 1,2,3

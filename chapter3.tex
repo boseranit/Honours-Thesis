@@ -19,14 +19,6 @@ regarded as sections of a bundle
 $\mathcal{E}=\mathcal{A}\times_{\mathcal{G}}\Omega^{2,+}(X,g_E)$. (What does
 this mean?)
   
-In finite dimensions, the Mathai-Quillen formula gives an explicit differential
-form representative of the Euler class. However it was noticed by Atiyah and
-Jeffrey \cite{atiyahlagrangians} that the action principle of the theory can be
-recovered by constructing the Euler class of $\mathcal{E}$ using an extension of
-the Mathai-Quillen representative to the infinite-dimensional case. Conversely,
-the Mathai-Quillen formalism makes possible to construct a cohomological field
-theory starting from a moduli problem.
-
 Recall that there are two quite different approaches for calculating the Euler number
 $\chi(X) = \chi(TX)$ of an oriented even dimensional manifold $X$. 
 This first is topological, and counts
@@ -76,6 +68,12 @@ In the latter case, we define $\pi_*(\omega) = 0$, and otherwise
 where $\phi\in\Omega(M)$ and  $f$ has compact support for each fixed  $x\in M$
 since  $\omega$ is compact in the vertical direction. 
 
+% exercise 6.14 Bott Tu
+The definition of $\pi_*$ is well defined, i.e. it agrees for different local
+trivialisations, and is independent of the choice of oriented trivialisation of
+ $E$. % TODO 
+
+
 % TODO move this 
 We can similarly define integration along the fiber for $\omega\in
 W(\mathfrak{g})\otimes \Omega(V)$, which can be written as $\alpha
@@ -119,7 +117,7 @@ We can express this form in terms of the Berezin integral,
 considered as a map $\int^B := \int \odif{e_1}\cdots\odif{e_n} 
 : \Omega^*(E,\bigwedge V) \to \Omega^*(E)$.
 
-\begin{lem} %1.49 BGV
+\begin{lem} \label{lem:gaussian_integral} %1.49 BGV
 	The form $U\in \Omega^n_{cv}(E)$ equals 
 	\[
 		 U(x) = (2\pi)^{-n/2} e^{-\abs{x}^2 /2} \epsilon(n)\int^B e^{-idx}
@@ -199,7 +197,7 @@ $\bigwedge^2 V$ in the following way:
 given a frame of $V$. Hence, we denote the curvature form as $F \in
 \Omega^2(E,\bigwedge^2V)$.
 
-\begin{lem} % 1.51 BGV
+\begin{prop} \label{prop:closed_prop} % 1.51 BGV
 	Let $x \in \Omega^0(V)$ be the tautological section on $E$, and $\nabla$ the
 	induced connection on $\bigwedge V$.
 	Let $\omega_t = \frac{1}{2}t^2\abs{x}^2 + it\nabla x + F 
@@ -207,7 +205,7 @@ given a frame of $V$. Hence, we denote the curvature form as $F \in
 	\[
 		(\nabla - it\iota(x))\omega_t = 0
 	\] 
-\end{lem}
+\end{prop}
 \begin{proof}
 	 By metric compatibility,
 	$\nabla \abs{x}^2 = 2\gen{\nabla x, x} = -2\iota(x)\nabla x$.
@@ -221,19 +219,60 @@ given a frame of $V$. Hence, we denote the curvature form as $F \in
 	it\iota(x)\omega_t = -t^2\iota(x) \nabla x + it\iota(x)F
 	\] 
 \end{proof}
-We can also extend Proposition \ref{prop:derivative_berezin} to 
-$d\int^B\alpha = \int^B (\nabla-it\iota(s))\alpha$ for any
-$\alpha\in\Omega(\bigwedge V)$ since $\iota(s)\alpha$ has no component in the top exterior power.
-% TODO 
-why this means the Thom form is closed?
 
 We now define the Mathai-Quillen Thom form 
 \begin{equation}
-	U = \epsilon(N) \int^B e^{-\frac{1}{2}\abs{x}^2+i\nabla x + F} \in \Omega^n(E)
+	U = (2\pi)^{-n/2}\epsilon(N) \int^B e^{-\frac{1}{2}\abs{x}^2-i\nabla x - F} \in \Omega^n(E)
 \end{equation}
-and the parametrised version $U_t = \epsilon(N) \int^B e^{-\omega_t} \in
-\Omega^n(E)$. 
+and its parameterised version $U_t = (2\pi)^{-n/2}\epsilon(N) \int^B e^{-\omega_t} \in
+\Omega^n(E)$. To justify why $U_t\in\Omega^n(E)$, note that
+$\omega_t\in\bigoplus_{i=0}^2 \Omega^i(E,\bigwedge^iV)$, and hence 
+$e^{-\omega_t} \in \bigoplus_{i=0}^n \Omega^i(E,\bigwedge^iV)$. The Berezin
+integral then only retains the top degree part. 
 
+\begin{thm}
+	The Mathai-Quillen form $U \in \Omega^n_{rd}(E)$ is a Thom form. 
+\end{thm}
+\begin{proof}
+	% BGV Lemma 1.51
+	We need to show that $U$ is closed, and integration along the fiber gives $1\in
+	\Omega^0(E)$.
+	By definition \ref{defn:grassman_function}, the exponential of $-\omega_t$
+	is 
+	\begin{equation} \label{eq:MQ_exp}
+		e^{-\omega_t} = \sum_{k=0}^{n} \frac{e^{-t^2\abs{x}^2 /2}}{k!} (-it\nabla x
+		- F)^k
+	\end{equation}
+	Claim: $(\nabla -it\iota(x)) e^{-\omega_t} = 0$
+	% TODO 
+	how is it closed  ??
+	To show that $U_t$ is closed, we can extend Proposition \ref{prop:derivative_berezin} to 
+	$d\int^B\alpha = \int^B (\nabla-it\iota(s))\alpha$ for any	
+	$\alpha\in\Omega(\bigwedge V)$ since $\iota(s)\alpha$ has no component in 
+	the top exterior power.	
+	It follows from this
+	and Proposition \ref{prop:closed_prop} that $U_t$ is closed.
+	
+	% BGV prop 1.52 says integral reduces to the case where $M$ is a point
+	% Proof is found from Blau 
+	Since $\abs{x}^2 \in \Omega^0(E,\bigwedge^0V)$ is an even Grassman number, 
+	the exponential can be factored into two parts: \vspace{-3pt} 
+	\[
+	U_t = (2\pi)^{-n/2}\epsilon(N) e^{-\frac{1}{2}\abs{x}^2}\int^B e^{-i\nabla x -F}
+	\] 
+	This is also apparent from equation (\ref{eq:MQ_exp}). 
+	To integrate $U_t \in \Omega(E)$ along the fiber of $E$, we extract from
+	the Berezin integral the part which is a $n$-form on the fiber of $E$,
+	\begin{align*}
+		\int_E (2\pi)^{-n/2}\epsilon(N) e^{-\frac{1}{2}\abs{x}^2}\int^B e^{-i\nabla x -F}
+		&= (2\pi)^{-n/2}\epsilon(N) \int_E e^{-\frac{1}{2}\abs{x}^2}\int^B 
+		e^{-idx}
+		= 1 
+	\end{align*}
+	we are only left with the $dx$ term because the induced connection and
+	curvature forms on  $\pi^*E$ do not have any components along the fiber.
+	We have evaluated the integral using Lemma \ref{lem:gaussian_integral}.
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{comment} % Blau approach
@@ -295,19 +334,80 @@ Pullback by zero section is Pfaffian.
 
 
 \section{Localisation}
-Sign of a vector field, generalises to any vector bundle? 
+One of the primitive applications of the Mathai-Quillen formula is to prove the
+Poincar\'e-Hopf theorem. 
+
+Let $E\to M$ be a vector bundle over  $M$, and $v\in\Gamma(E)$ be a section of $E$.
+At a zero $p\in M$ of  $v$, the Lie bracket gives an endomorphism 
+$\mathcal{L}_p(v) : T_pM \to T_pM$ defined by  $X\mapsto [X,v]$. In a coordinate system in
+which  $p=0$ and  $v= v^i \partial_i$,  $\mathcal{L}_p(v)$ is given by 
+ \[
+	 \mathcal{L}_p(v)\partial_i = \sum_{j=1}^{n} [\partial_i, v^j(p)\partial^j] 
+	 = \sum_{j=1}^{n} (\partial_i v_j(p)) \partial_j
+\] 
+A zero of $p$ is called \underline{non-degenerate} if  $\mathcal{L}_p(v)$ is
+invertible. Denote by $\nu(p,v) \in \{\pm 1\}$ the sign of the determinant of
+$\mathcal{L}_p(v)$. If all of the zeroes of $v$ are non-degenerate, we call  $v$
+non-degenerate. 
+
 \begin{thm}[Poincare-Hopf] % Thm 1.56 BGV
-	If $v$ is a non-degenerate vector field on an orientable compact manifold
-	$M$, then 
+	If $v$ is a non-degenerate vector field on an oriented compact manifold $M$ 
+	of dimension $n$, then 
 	\[
 		 (2\pi)^{-n /2} \int_M \chi(TM) = \sum_{\set{p|v(p)=0}} \nu(p,v)	
 	\] 
 \end{thm}
 \begin{proof}
-	% TODO 
+	(adapted from \cite[Theorem 1.56]{bgv})
+	Choose a chart $\phi_p : U_p : \to \mathbb{R}^n$ in a neighbourhood $U_p$ of
+	each zero $p\in M$ of $v$, which gives coordinates on the tangent bundle 
+	$\psi_p : TU_p \to \mathbb{R}^n$. The vector field $v$ defines a
+	smooth map $\psi_p \circ v : U_p\to \mathbb{R}^n$ 
+	with $v(p) = 0$ and invertible
+	derivative $\mathcal{L}_p(v)$. 
+	% TODO why is this the derivative?
+
+	Therefore by the inverse function theorem, $v$ is a local diffeomorphism
+	between open neighbourhoods $V_p \subset U_p$ and $B \subset \mathbb{R}^n$. 
+	The orientation on $V_p$ induced by  $M$ and by the local diffeomorphism
+	differ by the sign $\nu(p,v)$. 
+
+	We may assume  $V_p$ are disjoint for each $p$.  Choose a Riemannian metric
+	on $M$ which agrees with the metric on each $V_p$ induced by the diffeomorphism
+	into  $\mathbb{R}^n$. Since $M$ is compact,  $\exists \epsilon > 0$ such
+	that  $\norm{v} \geq \epsilon$ on the compact set  $M\setminus \bigcup_p V_p$,
+	because if $\norm{v}$ can get arbitrarily close to 0, we would find a convergent
+	subsequence in $M\setminus \bigcup_p V_p$ whose limit is a zero of $v$.  
+
+	Let $U\in \Omega^n(TM)$ be the Mathai-Quillen Thom form of  $TM$ with respect to the
+	Riemannian metric and associated Levi-Civita connection. 
+	Let $f : \mathbb{R}_+ \to [0,1]$ be a smooth bump function such that $f(s)=1$
+	if  $s < \epsilon^2 /4$ and $f(s)=0$ if  $s>\epsilon^2$. Then for all $t>0$
+	\[
+		\int_M \chi(TM) = \int_M v_t^* U 
+		= \int_M (1-f(\norm{v}^2))v_t^*U  + \int_M f(\norm{v}^2)v_t^*U
+	\] 
+	where $v_t := tv$. From equation (\ref{eq:MQ_exp}), we see that
+	$v_t^* U$ is of the form
+	\[
+		v_t^*U = e^{-t^2\norm{v}^2 /2} \sum_{k=0}^{n} t^k \alpha_k
+	\] 
+	where $\alpha_k \in \Omega(M)$.
+	On each $V_p$, the metric and connection are trivial since they are induced 
+	by $v$, so 
+	\begin{align*}
+		v_t^*U |_{V_p} 
+		&= (2\pi)^{-n/2} e^{-t^2\norm{x}^2 /2} \int^B e^{-itdv} \\
+		&= (2\pi)^{-n/2}t^n \nu(p,v) e^{-t^2\norm{x}^2 /2} dx^1 \wedge
+		\ldots\wedge dx^n \tag{using Lemma \ref{lem:gaussian_integral}}
+	\end{align*}
+	The sign $\nu(p,v)$ comes from the fact that the Berezin integral is taken
+	with respect to the orientation 
+	 
 \end{proof}
-there is a generalisation of this result, where we assume that the zeroes
-of $v$ are isolated instead of $v$ being non-degenerate. 
+
+There is a generalisation of this result, where we assume that the zeroes
+of $v$ are isolated instead of non-degenerate.\cite[Theorem 1.58]{bgv} 
 
 % p51 Bott Tu
 To every closed (as a subspace) and oriented submanifold $i: S
@@ -462,19 +562,36 @@ reduces to Corollary \ref{cor:vb_localisation}.
 
 
 \section{Equivariant version of Mathai-Quillen}
- 
+\begin{prop}
+	Let $E\to M$ be an oriented vector bundle with fiber $V=\mathbb{R}^n$ 
+	and  $P=\Fr_{\SO}(E)$ be the
+	principal $\SO(n)$-bundle of orthonormal oriented frames on  $E$. Then 
+	$P\times_{\SO(n)} V$ is canonically isomorphic to $E$ as a vector bundle. 
+\end{prop} 
+\begin{proof}
+	The action of $A\in\SO(n)$ on $P\times V$ is 
+	$
+		([v_1 \cdots v_n], v) \cdot A = ([v_1 \cdots v_n] A, A^{-1} v) 
+	$.
+	Then the canonical isomorphism $\psi : P\times_{\SO(n)} V \to E$ is defined by
+	\[
+		[[v_1 \cdots v_n], v] \mapsto [v_1 \cdots v_n] v
+	\] 
+	It is clear that this is well defined, linear, smooth and preserves the
+	fiber. The map is injective because $v_1,\ldots,v_n$ must be linearly
+	independent, and surjective because $v_1,\ldots,v_n$ is a basis for $E_x$.
+\end{proof}
 % p104 MQformula
 % cordes pg 103
-Let $E\to M$ be an orientable vector bunde or rank  $n$ with a
+Let $E\to M$ be an oriented vector bunde or rank  $n$ with a
 metric and compatible connection, and fiber $V$. 
-Let $P=\Fr_{\SO}(E)$ be the principal $\SO(V)$-bundle of orthonormal oriented frames on  $E$.
-Then $E$ can be identified as the associated bundle $P\times_G V$ with the
+Let $P=\Fr_{\SO}(E)$, so 
+$E$ can be identified as the associated bundle $P\times_G V$ with the
 induced connection. 
-We denote $G=\SO(V)$, and its Lie algebra
-$\mathfrak{g}=\mathfrak{so}(n)$.
+Denote $G=\SO(V)$, and its Lie algebra as $\mathfrak{g}=\mathfrak{so}(n)$.
 
-The Weil homomorphism associated to the connection in $P$ is 
-$w: W(\mathfrak{g}) \to \Omega(P)$, which induces the homomorphisms
+The Weil homomorphism $w: W(\mathfrak{g}) \to \Omega(P)$ associated to the 
+connection on $P$ induces a map $\overline{w}$ 
 \begin{comment}
 	
 % https://q.uiver.app/?q=WzAsNixbMSwwLCJXKFxcbWF0aGZyYWt7Z30pXFxvdGltZXNcXE9tZWdhKFYpIl0sWzIsMCwiXFxPbWVnYShQXFx0aW1lcyBWKSJdLFsxLDEsIihXKFxcbWF0aGZyYWt7Z30pXFxvdGltZXNcXE9tZWdhKFYpKV97YmFzfSJdLFsyLDEsIlxcT21lZ2EoUFxcdGltZXMgVilfe2Jhc30iXSxbMywxLCJcXHNpbWVxXFxPbWVnYShFKSJdLFswLDEsIlxcT21lZ2FfRyhWKVxcc2ltZXEiXSxbMCwxLCJ3Il0sWzAsMl0sWzEsM10sWzIsMywidyJdXQ==
@@ -500,13 +617,14 @@ $w: W(\mathfrak{g}) \to \Omega(P)$, which induces the homomorphisms
 							\arrow["w", from=1-2, to=1-3]
 								\arrow["i",hook, from=1-3, to=1-4]
 \end{tikzcd}\]
+A few remarks are necessary to explain the diagram.
 \begin{itemize}
 \item 
 	Here $W(\mathfrak{g})\otimes \Omega(V)$ is a tensor product of two
-	$\mathfrak{g}$-differential graded algebras, where $V$ is considered to
-	be a $\SO(n)$-manifold. 
+	$\mathfrak{g}$-differential graded algebras, where $V$ is considered as
+	a $\SO(n)$-manifold. 
 
-	\item 
+\item 
 Since  $P\times V \to P\times_G V \simeq E$ is a principal bundle,
 $\Omega^*(E)\simeq \Omega^*(P\times V)_{bas}$ by definition of basic forms.
 
@@ -520,19 +638,39 @@ canonical projections. Then the map is defined by $\omega \otimes \alpha
 Since $w$ is a  $\mathfrak{g}$-dga morphism, so is  
 $w:\Omega(\mathfrak{g})\otimes\Omega(V)\to \Omega(P)\otimes\Omega(V)$ because it
 is the identity on  $\Omega(V)$. We claim that $i$ is also a $\mathfrak{g}$-dga morphism. 
-% TODO
+\begin{itemize}
+	\item Graded algebra homomorphism. It is linear by construction. It also respects
+		multiplication because 
+	\begin{align*}
+		i((\omega_1\otimes\alpha_1)(\omega_2\otimes\alpha_2))
+		&= i((-1)^{\abs{\alpha_1}\abs{\omega_2}}
+		(\omega_1\wedge\omega_2)\otimes(\alpha_1\wedge \alpha_2)) \\
+		&= (-1)^{\abs{\alpha_1}\abs{\omega_2}}
+		p_1^*(\omega_1\wedge\omega_2)\wedge p_2^*(\alpha_1\wedge \alpha_2) \\
+		&= (-1)^{\abs{\alpha_1}\abs{\omega_2}}p_1^*\omega_1\wedge
+		p_1^*\omega_2\wedge p_2^*\alpha_1\wedge p_2^*\alpha_2  \\
+		&= p_1^*\omega_1\wedge p_2^*\alpha_1 \wedge p_1^*\omega_2\wedge p_2^*\alpha_2 \\
+		&= i(\omega_1\otimes \alpha_1)\wedge i(\omega_2\otimes \alpha_2) 
+	\end{align*}
+	\item Commutes with $d$ and $\iota_X$. This follows from by expanding the
+		definitions of $d$ and  $\iota_X$ on the tensor product, given in
+		equations (\ref{eq:tensor_ops}), and the fact that the pullbacks
+		$p_1^*$ and $p_2^*$ commute with  $d$ and $\iota_X$.
+\end{itemize}
+Therefore, $w \circ i$ is a $\mathfrak{g}$-dga morphism and descends to the map
+ $\overline{w}$ on the basic subcomplexes.
 \end{itemize}
 
 
 \begin{defn} 
-	A form $U\in (W(\mathfrak{g})\otimes \Omega(V))_{bas}$ is a
+	A form $U\in (W(\mathfrak{g})\otimes \Omega_{cv}(V))_{bas}$ is a
 	\underline{universal Thom form} in the Weil model if for any oriented vector
 	bundle $E$ of rank $n$ with a metric and compatible connection, the 
 	Weil homomorphism $\overline{w}$ carries $U$ to a form representing the Thom class of $E$.
 \end{defn} 
 
 \begin{prop} 
-	A differential form $U\in (W(\mathfrak{g})\otimes \Omega(V))_{bas}$ is a 
+	A differential form $U\in (W(\mathfrak{g})\otimes \Omega_{cv}(V))_{bas}$ is a 
 	universal Thom form if and only $U$ is closed and  $\int_V U = 1$.
 \end{prop}
 \begin{proof}
@@ -540,12 +678,23 @@ is the identity on  $\Omega(V)$. We claim that $i$ is also a $\mathfrak{g}$-dga 
 	Weil homomorphism $\overline{w}$. Then $\overline{U}$ will be closed because
 	$\overline{w}$ is commutes with the differential operators. 
 
-	So it only remains to check that integration along the fiber gives 1. 
+	It only remains to check that integration along the fiber gives 1. 
+	This is defined on $\Omega(P\times_G V)\simeq \Omega(E)$ in exactly the same
+	way, since coordinate functions on $E$ can be pulled back via the canonical
+	isomorphism to coordinate functions on $P\times_G V$. 
+	\begin{comment}
+	Recall that a local trivialisation 
+	$\phi_\alpha : E|_{U_\alpha} \to U_\alpha \times
+	\mathbb{R}^n$ gives coordinate functions $[t_1\cdots t_n] = p_2\phi_\alpha
+	\in \mathbb{R}^n$ where $p_2$ is the projection on to $\mathbb{R}^n$.  
+	This can be identified with coordinate functions on the associated bundle
+	$[x_1\cdots]$
+	\end{comment}
 	% TODO 
-	(define integration and check integral is 1)
+	(check integral is 1)
 \end{proof}
 
-\begin{prop} 
+\begin{prop} \label{prop:universal_Thom}
 	The element $U \in W(\mathfrak{g}) \otimes \Omega(V)$ defined by  
 	\[% cordes eq11.12
 		U = (2\pi)^{-m} \Pf(\phi) \exp(-\abs{x}^2-\gen{\nabla x,\phi^{-1}\nabla x})
