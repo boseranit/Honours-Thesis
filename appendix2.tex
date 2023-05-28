@@ -151,12 +151,21 @@ series.
 	$z \in \bigwedge(\theta_1,\ldots,\theta_n)$ be a Grassman number. 
 	Denote $z_B \in \bigwedge^0 = \mathbb{R}$ to be the projection onto the 
 	field. Then define $f(z)$ by
-	 \[
+	\begin{equation}
 	f(z) := \sum_{k=0}^{n} \frac{f^{(k)}(z_B)}{k!} (z-z_B)^k
-	\] 
+	\end{equation}
 \end{defn}
 In other words, a smooth function of a Grassman number $z$ is defined to be its
-Taylor series at $z_B$. 
+Taylor series at $z_B$. A particular smooth function we will be interested in is
+the exponential function $e^{x}$. In this case, the point at which the Taylor
+expansion is taken does not matter because $z_B\in \mathbb{R}$ commutes with all
+other numbers:
+\begin{equation} \label{eq:grassman_exp}
+e^{z}
+=\sum_{k=0}^{n} \frac{e^{z_B}}{k!}(z-z_B)^k
+= \paren{\sum_{k=0}^{\infty} \frac{1}{k!}z_B^k}\paren{\sum_{k=0}^{n} \frac{1}{k!}(z-z_B)^k}
+= \sum_{k=0}^{\infty} \frac{1}{k!}z^k
+\end{equation}
 If $\theta=[\theta_1,\ldots,\theta_n]$ are Grassman variables then we can also
 consider multivariable polynomials $f(\theta) \in
 \bigwedge (\theta_1,\ldots,\theta_n)$. For example, if there are two arguments 
