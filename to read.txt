@@ -2,7 +2,6 @@ Bryan questions:
 should I include a proof of nabla^2 = F
 should I include a proof Thom isomorphism? only for compact case?
 proof of equivariant de rham theorem 
-is it too much detail for equivariant Thom diagram?
 
 To write:
 why i commutes with d
