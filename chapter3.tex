@@ -87,7 +87,10 @@ f(t)dt_1\wedge\ldots\wedge dt_n$ globally.
 
 
 \section{Mathai-Quillen construction of Thom form}
-Rapid decrease forms vs compact vertical
+\label{section:mq_formula}
+The Mathai-Quillen construction uses a slight variation of the Thom isomorphism.
+Differential forms with compact support in each fibre are replaced by forms
+which are rapidly decreasing in the fibre directions. 
 
 \begin{defn}
 	A differential form $\omega\in \Omega(E)$ is \underline{rapidly decreasing
@@ -132,14 +135,17 @@ considered as a map $\int^B := \int \odif{e_1}\cdots\odif{e_n}
 	\begin{align*}
 		\int^B e^{-idx} 
 		&= (-i)^n \frac{1}{n!}\int^B (dx^k\otimes e_k)^n \\
-		&= (-i)^n \int^B dx^1\wedge \ldots\wedge dx^n\otimes e_1 \wedge\ldots\wedge e_n \\
-		&= (-i)^n(-1)^{n(n-1)/2} \int^B dx^1\wedge \ldots\wedge dx^n\otimes e_n \wedge\ldots\wedge e_1 \\
+		&= (-i)^n \int^B (dx^1\otimes e_1) \ldots(dx^n\otimes e_n) \\
+		&= (-i)^n(-1)^{n(n-1)/2} \int^B dx^1\wedge \ldots\wedge dx^n\otimes e_1 \wedge\ldots\wedge e_n \\
 		&= (-i)^n(-1)^{n(n-1)/2} dx^1\wedge \ldots\wedge dx^n
 	\end{align*}
-	In the second line, we have permuted all $n!$ terms into standard order for
-	both the $dx^i$ and  $e_i$, so the signs of the permutations cancel.
-	In the third line, we needed to reverse the order of the $e_i$ to accomodate
-	the order of integration. The lemma now follows, since
+	Multiplication of elements of $\Omega(E,\bigwedge V)$ occur in
+	the graded tensor product, so that this is a graded algebra. 
+	In the second line, we have permuted all $n!$ terms into standard order, and
+	terms of degree two commute.
+	In the third line, $dx^i$ are separated from the  $e_i$, which
+	anti-commute due to  $\Omega(E,\bigwedge V)$ being a graded algebra. 
+	The lemma now follows, since
 	$(-i)^n(-1)^{n(n-1)/2}$ equals 1 if $n$ is even, and otherwise  $-i$. 
 \end{proof}
 We will define the Thom form on a more general manifold by modification of the
@@ -192,9 +198,9 @@ Denote $\nabla = \nabla^{\pi^*E}$.
 Recall that the curvature is a form in $\Omega^2(E,\End(V))$ 
 which is skew-symmetric valued. We can identify $\mathfrak{so}(V)$ with 
 $\bigwedge^2 V$ in the following way:
-\[
+\begin{equation} \label{eq:so_wedge}
 	A\in \mathfrak{so}(V) \mapsto \sum_{i<j} \gen{Ae_i,e_j} e_i\wedge e_j
-\] 
+\end{equation}
 given a frame of $V$. Hence, we denote the curvature form as $F \in
 \Omega^2(E,\bigwedge^2V)$.
 
@@ -332,6 +338,367 @@ Pullback by zero section is Pfaffian.
 \end{proof}
 
 
+
+\section{Universal Mathai-Quillen formula}
+\begin{prop}
+	Let $E\to M$ be an oriented vector bundle with fiber $V=\mathbb{R}^n$ 
+	and  $P=\Fr_{\SO}(E)$ be the
+	principal $\SO(n)$-bundle of orthonormal oriented frames on  $E$. Then 
+	$P\times_{\SO(n)} V$ is canonically isomorphic to $E$ as a vector bundle. 
+\end{prop} 
+\begin{proof}
+	The action of $A\in\SO(n)$ on $P\times V$ is 
+	$
+		([v_1 \cdots v_n], v) \cdot A = ([v_1 \cdots v_n] A, A^{-1} v) 
+	$.
+	Then the canonical isomorphism $\psi : P\times_{\SO(n)} V \to E$ is defined by
+	\[
+		[[v_1 \cdots v_n], v] \mapsto [v_1 \cdots v_n] v
+	\] 
+	It is clear that this is well defined, linear, smooth and preserves the
+	fiber. The map is injective because $v_1,\ldots,v_n$ must be linearly
+	independent, and surjective because $v_1,\ldots,v_n$ is a basis for $E_x$.
+\end{proof}
+% p104 MQformula
+% cordes pg 103
+Let $E\to M$ be an oriented vector bunde or rank  $n$ with a
+metric and compatible connection, and fiber $V$. 
+Let $P=\Fr_{\SO}(E)$, so 
+$E$ can be identified as the associated bundle $P\times_G V$ with the
+induced connection. 
+
+More generally, let $G$ be a connected Lie group and 
+consider a principal $G$-bundle  $P\to M$ over a manifold of
+dimension $n$ with a connection. Let $\rho : G \to \SO(V)$ be a representation 
+on a vector bundle of rank  $n$. 
+This determines the associated vector bundle  $E:=P\times_\rho V \to M$
+with typical fiber $V$. 
+
+% Sources for this:
+% naber p113
+% guillemin 7.2, ch10
+% constantinescu 2.2
+The Cartan map associated to the 
+connection on $P\times V$ can be viewed as a map 
+\[
+	\Omega_G(V) \simeq (S(\mathfrak{g}^*)\otimes \Omega(V))^G 
+	\xrightarrow{\operatorname{Car}_{\omega}} \Omega(P\times V)_{bas}\simeq
+	\Omega(E)
+\] 
+given by $\alpha\otimes f \mapsto \operatorname{Hor}_{\omega}(\alpha(\Omega) 
+\wedge p_2^* f)$, where $p_2 : P\times V \to V$ is the projection onto $V$.
+Here $V$ is considered as a $\SO(n)$-manifold. 
+Since  $P\times V \to P\times_G V \simeq E$ is a principal bundle,
+$\Omega^*(E)\simeq \Omega^*(P\times V)_{bas}$ by definition of basic forms on a
+principal bundle.
+
+\begin{comment}
+% as a composition with inclusion in top row
+% https://q.uiver.app/#q=WzAsNyxbMSwwLCJXKFxcbWF0aGZyYWt7Z30pXFxvdGltZXNcXE9tZWdhKFYpIl0sWzMsMCwiXFxPbWVnYShQXFx0aW1lcyBWKSJdLFsxLDEsIihXKFxcbWF0aGZyYWt7Z30pXFxvdGltZXNcXE9tZWdhKFYpKV97YmFzfSJdLFszLDEsIlxcT21lZ2EoUFxcdGltZXMgVilfe2Jhc30iXSxbNCwxLCJcXHNpbWVxXFxPbWVnYShFKSJdLFswLDEsIlxcT21lZ2FfRyhWKVxcc2ltZXEiXSxbMiwwLCJcXE9tZWdhKFApXFxvdGltZXNcXE9tZWdhKFYpIl0sWzAsMl0sWzEsM10sWzIsMywiXFxvdmVybGluZXt3fSJdLFswLDYsInciXSxbNiwxLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dXQ==
+\[\begin{tikzcd}[column sep=1em]
+		&[-18pt] {W(\mathfrak{g})\otimes\Omega(V)} & {\Omega(P)\otimes\Omega(V)} 
+		& {\Omega(P\times V)} \\
+	{\Omega_G(V)\simeq} &[-18pt] {(W(\mathfrak{g})\otimes\Omega(V))_{bas}} &&
+	{\Omega(P\times V)_{bas}} &[-18pt] {\simeq\Omega(E)}
+				\arrow[from=1-2, to=2-2]
+					\arrow[from=1-4, to=2-4]
+						\arrow["{\overline{w}}", from=2-2, to=2-4]
+							\arrow["w", from=1-2, to=1-3]
+								\arrow["i",hook, from=1-3, to=1-4]
+\end{tikzcd}\]
+
+A few remarks are necessary to explain the diagram.
+\begin{itemize}
+\item 
+The injection $i:\Omega(P)\otimes\Omega(V) \to \Omega(P\times V)$ can be defined
+as follows. Denote by $p_1 : P\times V \to P$ and $p_2:P\times V \to V$ the 
+canonical projections. Then the map is defined by $\omega \otimes \alpha
+\mapsto p_1^*\omega \wedge p_2^*\alpha$.  
+
+\item 
+Since $w$ is a  $\mathfrak{g}$-dga morphism, so is  
+$w:\Omega(\mathfrak{g})\otimes\Omega(V)\to \Omega(P)\otimes\Omega(V)$ because it
+is the identity on  $\Omega(V)$. We claim that $i$ is also a $\mathfrak{g}$-dga morphism. 
+\begin{itemize}
+	\item Graded algebra homomorphism. It is linear by construction. It also respects
+		multiplication because 
+	\begin{align*}
+		i((\omega_1\otimes\alpha_1)(\omega_2\otimes\alpha_2))
+		&= i((-1)^{\abs{\alpha_1}\abs{\omega_2}}
+		(\omega_1\wedge\omega_2)\otimes(\alpha_1\wedge \alpha_2)) \\
+		&= (-1)^{\abs{\alpha_1}\abs{\omega_2}}
+		p_1^*(\omega_1\wedge\omega_2)\wedge p_2^*(\alpha_1\wedge \alpha_2) \\
+		&= (-1)^{\abs{\alpha_1}\abs{\omega_2}}p_1^*\omega_1\wedge
+		p_1^*\omega_2\wedge p_2^*\alpha_1\wedge p_2^*\alpha_2  \\
+		&= p_1^*\omega_1\wedge p_2^*\alpha_1 \wedge p_1^*\omega_2\wedge p_2^*\alpha_2 \\
+		&= i(\omega_1\otimes \alpha_1)\wedge i(\omega_2\otimes \alpha_2) 
+	\end{align*}
+	\item Commutes with $d$ and $\iota_X$. This follows from by expanding the
+		definitions of $d$ and  $\iota_X$ on the tensor product, given in
+		equations (\ref{eq:tensor_ops}), and the fact that the pullbacks
+		$p_1^*$ and $p_2^*$ commute with  $d$ and $\iota_X$.
+\end{itemize}
+Therefore, $w \circ i$ is a $\mathfrak{g}$-dga morphism and descends to the map
+ $\overline{w}$ on the basic subcomplexes.
+\end{itemize}
+\end{comment}
+
+\begin{defn} 
+	A form $U\in (S(\so(V)^*)\otimes \Omega_{cv}(V))^G$ is a
+	\underline{universal Thom form} if for any oriented vector
+	bundle $E$ of rank $n$ with a metric and compatible connection, the 
+	Cartan map $\operatorname{Car}_{\omega} : \Omega_{\SO(V)}(V) \to \Omega(E)$
+	carries $U$ to a form representing the Thom class of $E$.
+\end{defn} 
+
+\begin{prop} 
+	A differential form $U\in (S(\mathfrak{g}^*)\otimes \Omega_{cv}(V))^G$ is a 
+	universal Thom form if and only $U$ is closed and  $\int_V U = 1$.
+\end{prop}
+\begin{proof}
+	Denote $\overline{U}\in \Omega(P\times V)_{bas}$ to be the image of the
+	Weil homomorphism $\overline{w}$. Then $\overline{U}$ will be closed because
+	$\overline{w}$ is commutes with the differential operators. 
+
+	It only remains to check that integration along the fiber gives 1. 
+	This is defined on $\Omega(P\times_G V)\simeq \Omega(E)$ in exactly the same
+	way, since coordinate functions on $E$ can be pulled back via the canonical
+	isomorphism to coordinate functions on $P\times_G V$. 
+	\begin{comment}
+	Recall that a local trivialisation 
+	$\phi_\alpha : E|_{U_\alpha} \to U_\alpha \times
+	\mathbb{R}^n$ gives coordinate functions $[t_1\cdots t_n] = p_2\phi_\alpha
+	\in \mathbb{R}^n$ where $p_2$ is the projection on to $\mathbb{R}^n$.  
+	This can be identified with coordinate functions on the associated bundle
+	$[x_1\cdots]$
+	\end{comment}
+	% TODO 
+	(check integral is 1)
+\end{proof}
+
+% Guillemin 7.2
+Let $V$ be a real vector space with standard inner product, and $\rho : G \to
+\SO(V)$ be a rep of the Lie group $G$, with induced rep $\rho_* :
+\mathfrak{g}\to \so(V)$.
+We will construct a form in $S(\mathfrak{g}^*)\otimes \Omega(V) \otimes
+\bigwedge V$, which we will apply the Berezin integral to, followed by the
+Cartan map.  Fix an oriented orthonormal basis $\{e_1,\ldots,e_n\}$ for
+$V$, which allows us to define the Berezin integral, with corresponding
+coordinate functions $x_1,\ldots,x_n$.   
+Let  $\{X_1,\ldots,X_m\}$ be a basis of $\mathfrak{so}(V)$, with corresponding
+dual basis $\{u_1,\ldots,u_m\}$ where $m= \frac{1}{2}n(n-1)$. Recall that we 
+can identify $\mathfrak{so}(V)$ with 
+$\bigwedge^2 V$ via equation (\ref{eq:so_wedge}), restated here 
+\[
+	X_a \in\mathfrak{so}(V) \mapsto \sum_{i<j}\gen{X_a e_i,e_j} e_i\wedge e_j
+	= \frac{1}{2}\sum_{i} e_i\wedge X_a e_i
+\] 
+Denote $dx := \sum_i dx_i \otimes e_i \in \Omega^1(V)\otimes V$. Define the element 
+\begin{equation} % 7.16 guillemin % cordes eq 11.13 % naber 3.18
+	\label{eq:universal_thom_exponent}
+	\sigma := -\frac{1}{2}\abs{x}^2 - idx 
+	- \sum_a u_a\rho_* \otimes X_a 
+	\quad \in S(\g^*) \otimes \Omega(V) \otimes \bigwedge V
+\end{equation}
+which is analogous to $\omega_1$ as defined in Prop \ref{prop:closed_prop}.
+Note that $u_a \rho_* \in \mathfrak{g}^*$.
+In components, if we let $M^a = [\gen{ X_ae_i,e_j}]_{ji}$, we can write the same
+element as 
+\begin{equation} \label{eq:universal_thom_exponent2}
+\sigma = -\frac{1}{2}\abs{x}^2 - i\sum_i dx_i\otimes e_i 
+	-\frac{1}{2} \sum_{i,j} (\rho_*)_{ji}e_i\wedge e_j
+\end{equation}
+since $u_aX_a$ is the identity on  $\so(V)$, and $(\rho_*)_{ji} \in \mathfrak{g}^*$.
+Consider its Berezin integral
+\begin{equation} \label{eq:universal_thom}
+	U := \epsilon(n)(2\pi)^{-n /2}\int^B \exp\paren{\sigma}  
+	\quad\in S(\g^*)\otimes \Omega(V)
+\end{equation}
+where $\epsilon(n)=1$ if $n$ is even and otherwise $\epsilon(n)=i$.
+
+\begin{thm} \label{thm:uinversal_Thom}
+	The element $U \in S(\mathfrak{g}^*) \otimes \Omega(V)$ defined above  
+	is a universal Thom form.
+\end{thm}
+\begin{proof} % Guillemin p86-87
+We need to show that it is invariant and
+equivariantly closed in the Cartan model, and integration along the
+fiber gives 1. 
+
+
+(1) Closed. 
+We can consider the Cartan
+differential $\delta_C = d - \sum u_k\iota_k$ as an operator on 
+$S(\so(V)^*)\otimes\Omega(V)\otimes\bigwedge V$ by acting trivially on
+the last factor, so that it commutes with the Berezin integral. 
+It suffices to show $U$ is closed as a form on  $S(\so(V)^*)\otimes \Omega(V)$,
+because the map  $\rho^* : S(\so(V)^*)\to S(\g^*)$ given by  $u_i\mapsto
+u_i\circ \rho_*$ commutes with the Cartan differential. This can be seen most
+easily by viewing the elements as polynomials as in Theorem
+\ref{thm:cartan_diff}, which shows that  $(\delta_C \rho_* \alpha)(X) 
+= (\rho_*\delta_C \alpha)(\rho(X)) = (d-\iota_{\rho(X)})\alpha(\rho(X))$, noting
+that $\iota_X$ and  $\iota_{\rho(X)}$ act the same way on $\Omega(V)$.
+
+For the first term, only $d$ acts to give $\delta_C \abs{x}^2 = 2x_i dx_i$.
+On the second term, $d^2=0$ and we need to evaluate $u_a\iota_a dx_i$. 
+Since $x_i$ projects to the $i$th component of a vector in $V$, and the action
+of $e^{tX_k}$ is a matrix multiplication, for $v\in V$ in the tangent space
+\begin{align} \label{eq:interior_dx}
+	\iota_a dx_i(v)
+	= d x_i \paren{\odv{}{t}_{t=0} e^{-tX_a} v} 
+	= -x_i \paren{X_a v} 
+\end{align}
+Hence, $u_a\iota_a dx_i = -u_a\otimes x_i \circ X_a$. The third term is a
+multiple of $u_i$ and constant on $\Omega(V)$,
+hence maps to zero by  $\delta_C$. Thus, 
+\begin{align}
+	(d-u_a\iota_a) \sigma 
+&= -x_i dx_i - u_a \otimes i x_iX_a \otimes e_i \nonumber \\
+&= -x_i dx_i - u_a \otimes i x_j \otimes X_a e_j 
+\end{align}
+which is justified by $x_j$ being the coordinate functions of $e_j$:
+\begin{equation} \label{eq:move_operator_tensor}
+x_i X_a \otimes e_i 
+= \gen{X_ae_j,e_i}x_j \otimes e_i 
+= x_j \otimes \gen{X_ae_j,e_i}e_i 
+= x_j \otimes X_a e_j 
+\end{equation}
+The key observation is that $\delta_C$ acts by lowering the degree of the
+$\bigwedge V$ part. More precisely, consider the action of the Berezin
+derivative/integral
+\begin{align*}
+\pdv{}{e_k} \paren{-\sum_{i<j} u_a\otimes e_i\wedge M^a_{ji}e_j}
+&= -\sum_{i>k} u_a\otimes M^a_{ik}e_i + 
+ \sum_{i<k} u_a\otimes M^a_{ki}e_i \\
+&= -\sum_{i} u_a\otimes M^a_{ik}e_i  
+= -u_a\otimes X_a e_k  
+\end{align*}
+since $M^a_{ij}=-M^a_{ji}$. Applying $\pdv{}{e_k}$ to the other term,
+\[
+\pdv{}{e_k} (-idx_i \otimes e_i) = idx_k
+\] 
+because $e_i$ anti-commutes with  $dx_i$. We have shown that
+\begin{equation}
+\delta_C \sigma = \paren{\sum_{k} ix_k \pdv{}{e_k}}\sigma
+\end{equation}
+It follows that this also holds for $\exp (\sigma)$, because  $\delta_C$ is an
+anti-derivation. Therefore, 
+\[
+\delta_C \int^B \exp(\sigma) 
+= \int^B \delta_C \exp(\sigma)
+= \int^B ix_k \pdv{}{e_k} \exp(\sigma) = 0
+\] 
+as the Berezin derivative kills any top degree terms in $\bigwedge V$.
+
+(2) Integral along the fiber. We need to extract the coefficient of $dx_1\wedge
+\ldots\wedge dx_n$. Therefore, the last term in $\sigma$ does not contribute,
+and 
+ \[
+	 \int_V U = \epsilon(n)(2\pi)^{-n /2}\int_V e^{-\abs{x}^2} \int^B \exp(-idx_k \otimes e_k) 
+\] 
+But we know $\int^Be^{-idx_k\otimes e_k}$ evaluates to 
+$(-i)^n(-1)^{n(n-1)/2} dx_1\wedge \ldots\wedge dx_n$ by Lemma
+\ref{lem:gaussian_integral}. Hence, the integral of $U$ along the fiber $V$ is 1.
+
+(3) Invariant. % proved in p27 Constantinecu PhD
+It suffices to show the terms in $\sigma$ are invariant, because
+the Lie derivative is a derivation. We can extend the action of $G$ to the
+graded algebra $S(\g^*)\otimes \Omega(V)\otimes \bigwedge V$,
+acting on the $\bigwedge V$ component by multiplication by $\rho(g)^{-1}$. 
+Note that the Berezin integral is
+invariant under the action on $\bigwedge V$. This gives an associated Lie derivative,
+corresponding to multiplication by $\rho_*(X)$ for  $X\in\mathfrak{g}$.
+
+It is clear that $\abs{x}^2$ is invariant, because $\rho(g)$ has determinant 1.
+Next, we show $dx_i\otimes e_i$ is invariant by applying $\mathcal{L}_X$,
+\[
+\mathcal{L}_X (dx_i\otimes e_i) = \iota_X(dx_i) \otimes e_i + dx_i \otimes
+\rho_*(X)e_i = 0
+\] 
+by equations (\ref{eq:interior_dx}) and (\ref{eq:move_operator_tensor}).
+Finally, to apply $\mathcal{L}_X$, recall that the action on $S(\g^*)$ 
+is the coadjoint representation $\mathcal{L}_X \alpha(Y) = -\alpha ([X,Y])$. 
+The action on $V$ is  $\mathcal{L}_X v = \rho_*(X)v$.
+We can denote the third term in $\sigma$
+as $\frac{1}{2}e_i\wedge (\rho_*)_{ji} e_j \in \g^*\otimes \bigwedge^2V$,
+since $u_aX_a$ is just the identity.
+For $X,Y\in\g$, with  $\rho_*(X)=A,\rho_*(Y)=B$,
+\begin{align*}
+	&\quad\;(\mathcal{L}_X(e_i \wedge (\rho_*)_{ji} e_j))(Y) \\
+	&= (A e_i \wedge \rho_* e_i)(Y)
+	- e_i \wedge \rho_*([X,Y]) e_i
+	+ (e_i \wedge \rho_* A e_i)(Y) \\
+	&= Ae_i \wedge B e_i
+	- e_i \wedge (AB-BA) e_i
+	+ e_i \wedge A Be_i \tag{$\star$} \\
+	&= -e_i \wedge BA e_i
+	- e_i \wedge (AB-BA) e_i
+	+ e_i \wedge AB e_i = 0\tag{$\star\star$}
+\end{align*}
+where we begin by using the derivation property of $\mathcal{L}_X$, and explain
+the next two lines below.
+
+Proof of ($\star$): This step initially looks wrong, but recall that the term is
+to be interpreted as 
+\[
+\sum_{i,j}e_i\wedge (\rho_*(Y))_{ji} (Ae_j)
+=\sum_{i,j}e_i\wedge \sum_kB_{ji} A_{kj}e_k
+=\sum_{i}e_i\wedge \sum_{k,j}A_{kj}B_{ji} e_k
+=\sum_{i}e_i\wedge AB e_i
+\] 
+Proof of ($\star\star$): This is just an application of the more general property
+\[
+Ae_i \wedge Be_i
+= A_{ji}e_j \wedge B_{ki}e_k
+= e_j \wedge B_{ki}A^\intercal_{ij}e_k
+= e_j \wedge BA^\intercal e_j 
+\] 
+Finally, $U$ is invariant because $\mathcal{L}_X$ commutes with the Berezin
+integral.
+\end{proof}
+
+The proof of (1) closure is due to \citet{guillemin} and part of (3) invariance
+is a corrected version of the proof in \citet[p.27]{constantinescu}. In
+particular, the steps $(\star)$ and  $(\star\star)$ are corrected, as well as
+the action of $\mathcal{L}_X$ on $\mathfrak{g}^*$. 
+
+\begin{remark}
+	The minus sign in $e^{-tX_a}$ in the fundamental vector field over $V$ in
+	equation (\ref{eq:interior_dx}) arises due to the fact that the
+	$\SO(V)$-action on $V$ is a right action. In general, this is so that the
+	map $\g \to \Gamma(TM)$ is a Lie algebra homomorphism. 
+\end{remark}	
+ 
+% TODO prove equivalence to usual form
+To relate our formula to other versions in literature, let $\chi =
+(e_1,\ldots,e_n)$ be the Grassman variables for $V$. 
+In more compact notation, the third term of $\sigma$ can be written  
+as $\frac{1}{2} e_i \wedge (\rho_*)_{ij} e_j = \frac{1}{2} \chi^\intercal
+(\rho_*) \chi$. Then the Mathai-Quillen Thom form 
+$U\in S(\mathfrak{g}^*)\otimes \Omega(V)$ can be alternatively written as 
+\begin{equation} \label{eq:universal_thom_form} % AJ 2.1
+	U = \epsilon(n)\pi^{-n /2}e^{-\abs{x}^2} 
+	\int^B \exp \paren{\frac{1}{2}\chi^{\intercal}(\rho_*)\chi -
+idx^{\intercal}\chi} \odif{\chi} 
+\end{equation}
+If $\rho_*(X)\in\so(V)$ is always invertible, we can apply
+Proposition \ref{prop:berezin_formula}, to get
+\[
+	U = \epsilon(n)(2\pi)^{-n/2} \Pf(\rho_*) \exp(-\abs{x}^2-dx^{\intercal} (\rho_*)^{-1}dx)
+\] 
+We can also obtain a universal Thom form in the Weil model, by 
+applying the Weil-Cartan isomorphism $(S(\mathfrak{g}^*)\otimes \Omega(V))^G
+\xrightarrow{\simeq}(W(\mathfrak{g})\otimes \Omega(V))_{bas}$. 
+
+\begin{comment} % Mathai-Quillen forms in Weil model 
+\[% cordes eq11.12
+		U = (2\pi)^{-m} \Pf(\phi) \exp(-\abs{x}^2-\gen{\nabla x,\phi^{-1}\nabla x})
+\] 
+\[%MQformula weil eq 6.2 (extended from 1.8)
+	U = (2\pi)^{-m}\Pf(\Omega) \exp(-x^2-(dx+\theta x)^\intercal \Omega^{-1}
+	(dx+\theta x))
+\]
+\end{comment}
 \section{Localisation}
 One of the primitive applications of the Mathai-Quillen formula is to prove the
 Poincar\'e-Hopf theorem. 
@@ -584,185 +951,6 @@ reduces to Corollary \ref{cor:vb_localisation}.
 
 
 
-\section{Universal Mathai-Quillen formula}
-\begin{prop}
-	Let $E\to M$ be an oriented vector bundle with fiber $V=\mathbb{R}^n$ 
-	and  $P=\Fr_{\SO}(E)$ be the
-	principal $\SO(n)$-bundle of orthonormal oriented frames on  $E$. Then 
-	$P\times_{\SO(n)} V$ is canonically isomorphic to $E$ as a vector bundle. 
-\end{prop} 
-\begin{proof}
-	The action of $A\in\SO(n)$ on $P\times V$ is 
-	$
-		([v_1 \cdots v_n], v) \cdot A = ([v_1 \cdots v_n] A, A^{-1} v) 
-	$.
-	Then the canonical isomorphism $\psi : P\times_{\SO(n)} V \to E$ is defined by
-	\[
-		[[v_1 \cdots v_n], v] \mapsto [v_1 \cdots v_n] v
-	\] 
-	It is clear that this is well defined, linear, smooth and preserves the
-	fiber. The map is injective because $v_1,\ldots,v_n$ must be linearly
-	independent, and surjective because $v_1,\ldots,v_n$ is a basis for $E_x$.
-\end{proof}
-% p104 MQformula
-% cordes pg 103
-Let $E\to M$ be an oriented vector bunde or rank  $n$ with a
-metric and compatible connection, and fiber $V$. 
-Let $P=\Fr_{\SO}(E)$, so 
-$E$ can be identified as the associated bundle $P\times_G V$ with the
-induced connection. 
-Denote $G=\SO(V)$, and its Lie algebra as $\mathfrak{g}=\mathfrak{so}(n)$.
-
-The Weil homomorphism $w: W(\mathfrak{g}) \to \Omega(P)$ associated to the 
-connection on $P$ induces a map $\overline{w}$ 
-	
-% https://q.uiver.app/?q=WzAsNixbMSwwLCJXKFxcbWF0aGZyYWt7Z30pXFxvdGltZXNcXE9tZWdhKFYpIl0sWzIsMCwiXFxPbWVnYShQXFx0aW1lcyBWKSJdLFsxLDEsIihXKFxcbWF0aGZyYWt7Z30pXFxvdGltZXNcXE9tZWdhKFYpKV97YmFzfSJdLFsyLDEsIlxcT21lZ2EoUFxcdGltZXMgVilfe2Jhc30iXSxbMywxLCJcXHNpbWVxXFxPbWVnYShFKSJdLFswLDEsIlxcT21lZ2FfRyhWKVxcc2ltZXEiXSxbMCwxLCJ3Il0sWzAsMl0sWzEsM10sWzIsMywidyJdXQ==
-\[\begin{tikzcd}[column sep=2.2em]
-		&[-34pt] {W(\mathfrak{g})\otimes\Omega(V)} & {\Omega(P\times V)} \\
-	{\Omega_G(V)\simeq} &[-34pt] {(W(\mathfrak{g})\otimes\Omega(V))_{bas}} &
-			{\Omega(P\times V)_{bas}} &[-34pt] {\simeq\Omega(E)}
-				\arrow["w", from=1-2, to=1-3]
-					\arrow[from=1-2, to=2-2]
-						\arrow[from=1-3, to=2-3]
-							\arrow["w", from=2-2, to=2-3]
-\end{tikzcd}\]
-\begin{comment}
-% https://q.uiver.app/#q=WzAsNyxbMSwwLCJXKFxcbWF0aGZyYWt7Z30pXFxvdGltZXNcXE9tZWdhKFYpIl0sWzMsMCwiXFxPbWVnYShQXFx0aW1lcyBWKSJdLFsxLDEsIihXKFxcbWF0aGZyYWt7Z30pXFxvdGltZXNcXE9tZWdhKFYpKV97YmFzfSJdLFszLDEsIlxcT21lZ2EoUFxcdGltZXMgVilfe2Jhc30iXSxbNCwxLCJcXHNpbWVxXFxPbWVnYShFKSJdLFswLDEsIlxcT21lZ2FfRyhWKVxcc2ltZXEiXSxbMiwwLCJcXE9tZWdhKFApXFxvdGltZXNcXE9tZWdhKFYpIl0sWzAsMl0sWzEsM10sWzIsMywiXFxvdmVybGluZXt3fSJdLFswLDYsInciXSxbNiwxLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dXQ==
-\[\begin{tikzcd}[column sep=1em]
-		&[-18pt] {W(\mathfrak{g})\otimes\Omega(V)} & {\Omega(P)\otimes\Omega(V)} 
-		& {\Omega(P\times V)} \\
-	{\Omega_G(V)\simeq} &[-18pt] {(W(\mathfrak{g})\otimes\Omega(V))_{bas}} &&
-	{\Omega(P\times V)_{bas}} &[-18pt] {\simeq\Omega(E)}
-				\arrow[from=1-2, to=2-2]
-					\arrow[from=1-4, to=2-4]
-						\arrow["{\overline{w}}", from=2-2, to=2-4]
-							\arrow["w", from=1-2, to=1-3]
-								\arrow["i",hook, from=1-3, to=1-4]
-\end{tikzcd}\]
-\end{comment}
-A few remarks are necessary to explain the diagram.
-\begin{itemize}
-\item 
-	Here $W(\mathfrak{g})\otimes \Omega(V)$ is a tensor product of two
-	$\mathfrak{g}$-differential graded algebras, where $V$ is considered as
-	a $\SO(n)$-manifold. 
-
-\item 
-Since  $P\times V \to P\times_G V \simeq E$ is a principal bundle,
-$\Omega^*(E)\simeq \Omega^*(P\times V)_{bas}$ by definition of basic forms on a
-principal bundle.
-
-\item 
-The injection $i:\Omega(P)\otimes\Omega(V) \to \Omega(P\times V)$ can be defined
-as follows. Denote by $p_1 : P\times V \to P$ and $p_2:P\times V \to V$ the 
-canonical projections. Then the map is defined by $\omega \otimes \alpha
-\mapsto p_1^*\omega \wedge p_2^*\alpha$.  
-
-\item 
-Since $w$ is a  $\mathfrak{g}$-dga morphism, so is  
-$w:\Omega(\mathfrak{g})\otimes\Omega(V)\to \Omega(P)\otimes\Omega(V)$ because it
-is the identity on  $\Omega(V)$. We claim that $i$ is also a $\mathfrak{g}$-dga morphism. 
-\begin{itemize}
-	\item Graded algebra homomorphism. It is linear by construction. It also respects
-		multiplication because 
-	\begin{align*}
-		i((\omega_1\otimes\alpha_1)(\omega_2\otimes\alpha_2))
-		&= i((-1)^{\abs{\alpha_1}\abs{\omega_2}}
-		(\omega_1\wedge\omega_2)\otimes(\alpha_1\wedge \alpha_2)) \\
-		&= (-1)^{\abs{\alpha_1}\abs{\omega_2}}
-		p_1^*(\omega_1\wedge\omega_2)\wedge p_2^*(\alpha_1\wedge \alpha_2) \\
-		&= (-1)^{\abs{\alpha_1}\abs{\omega_2}}p_1^*\omega_1\wedge
-		p_1^*\omega_2\wedge p_2^*\alpha_1\wedge p_2^*\alpha_2  \\
-		&= p_1^*\omega_1\wedge p_2^*\alpha_1 \wedge p_1^*\omega_2\wedge p_2^*\alpha_2 \\
-		&= i(\omega_1\otimes \alpha_1)\wedge i(\omega_2\otimes \alpha_2) 
-	\end{align*}
-	\item Commutes with $d$ and $\iota_X$. This follows from by expanding the
-		definitions of $d$ and  $\iota_X$ on the tensor product, given in
-		equations (\ref{eq:tensor_ops}), and the fact that the pullbacks
-		$p_1^*$ and $p_2^*$ commute with  $d$ and $\iota_X$.
-\end{itemize}
-Therefore, $w \circ i$ is a $\mathfrak{g}$-dga morphism and descends to the map
- $\overline{w}$ on the basic subcomplexes.
-\end{itemize}
-
-
-\begin{defn} 
-	A form $U\in (W(\mathfrak{g})\otimes \Omega_{cv}(V))_{bas}$ is a
-	\underline{universal Thom form} in the Weil model if for any oriented vector
-	bundle $E$ of rank $n$ with a metric and compatible connection, the 
-	Weil homomorphism $\overline{w}$ carries $U$ to a form representing the Thom class of $E$.
-\end{defn} 
-
-\begin{prop} 
-	A differential form $U\in (W(\mathfrak{g})\otimes \Omega_{cv}(V))_{bas}$ is a 
-	universal Thom form if and only $U$ is closed and  $\int_V U = 1$.
-\end{prop}
-\begin{proof}
-	Denote $\overline{U}\in \Omega(P\times V)_{bas}$ to be the image of the
-	Weil homomorphism $\overline{w}$. Then $\overline{U}$ will be closed because
-	$\overline{w}$ is commutes with the differential operators. 
-
-	It only remains to check that integration along the fiber gives 1. 
-	This is defined on $\Omega(P\times_G V)\simeq \Omega(E)$ in exactly the same
-	way, since coordinate functions on $E$ can be pulled back via the canonical
-	isomorphism to coordinate functions on $P\times_G V$. 
-	\begin{comment}
-	Recall that a local trivialisation 
-	$\phi_\alpha : E|_{U_\alpha} \to U_\alpha \times
-	\mathbb{R}^n$ gives coordinate functions $[t_1\cdots t_n] = p_2\phi_\alpha
-	\in \mathbb{R}^n$ where $p_2$ is the projection on to $\mathbb{R}^n$.  
-	This can be identified with coordinate functions on the associated bundle
-	$[x_1\cdots]$
-	\end{comment}
-	% TODO 
-	(check integral is 1)
-\end{proof}
-
-\begin{prop} \label{prop:universal_Thom}
-	The element $U \in W(\mathfrak{g}) \otimes \Omega(V)$ defined by  
-	\[% cordes eq11.12
-		U = (2\pi)^{-m} \Pf(\phi) \exp(-\abs{x}^2-\gen{\nabla x,\phi^{-1}\nabla x})
-	\] 
-	\[ % cordes eq 11.13
-	U = \pi^{-m} e^{-\abs{x}^2}
-	\int^B\exp(\frac{1}{4}\gen{\chi,\phi\chi}_{V^*}+i\gen{\nabla x, \rho})
-	\odif{\rho}	
-	\]
-	\[%MQformula eq 6.2
-	U = (2\pi)^{-m}\Pf(\Omega) \exp(-x^2-(dx+\theta x)^\intercal \Omega^{-1}
-	(dx+\theta x))
-	\] 
-	is a universal Thom form in the Weil model.	
-\end{prop}
-	
- 
-% TODO prove equivalence to usual form
-Applying the Weil-Cartan isomorphism $(W(\mathfrak{g})\otimes \Omega(V))_{hor}
-\xrightarrow{\simeq} S(\mathfrak{g}^*)\otimes \Omega(V)$, we obtain a universal Thom form in the
-Cartan model. 
-\begin{prop}
-	The form $U\in S(\mathfrak{g}^*)\otimes \Omega(V)$ given by 
-	\[ % AJ 2.1
-	U = \pi^{-m}e^{-x^2} \int^B \exp \paren{\frac{1}{4}\chi^{\intercal}\Omega\chi +
-	idx^{\intercal}\chi} \odif{\chi} 
-	\]
-	is a universal Thom form in the Cartan model.
-	where $x=(x_1,\ldots,x_{2m})$ are coordinates for $V=\mathbb{R}^{2m}$ and
-	$\chi=(\chi_1,\ldots,\chi_{2m})$ are Grassman variables. Here $\Omega_{ij} \in
-	\mathfrak{g}$ is defined as the image of the representation: $\Omega_{ij}(X) =
-	\rho(X)_{ij}$. Note that we denote $\rho$ also as the induced representation on
-	the Lie algebra.
-\end{prop}
- 
- 
-
-	The Mathai-Quillen Thom form in the Cartan model can be written in the
-	alternative form
-	\[% MQformula eq 1.8
-	U = (2\pi)^{-m} \Pf(\Omega) \exp(-x^2-dx^{\intercal}\Omega^{-1}dx)
-	\] 
-
-
 
 \vspace{5mm}
 \hrule 
@@ -773,5 +961,10 @@ Cartan model.
 \begin{itemize}
 	\item A more comprehensive treatment of the Thom isomorphism can be found in
 		\citet{bott_tu}.  
+	\item The Mathai-Quillen formula described in section
+		\ref{section:mq_formula} is based on section 
+		section 1.6 of \cite{bgv}.
+	\item The book by \citet{guillemin} gives an exposition of the
+	Mathai-Quillen formula in the equivariant case 
 \end{itemize}
 }

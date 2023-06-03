@@ -281,7 +281,7 @@ $f(\theta_1,\theta_2)=A+B\theta_1+C\theta_2 + D\theta_1\theta_2$.
 	 \] 
 \end{proof}
 
-\begin{prop} % MQformula 1.8
+\begin{prop} \label{prop:berezin_formula} % MQformula 1.8
 	If $\theta = [\theta_1,\ldots,\theta_n]$ are Grassman
 	variables, $J= [J_1,\ldots,J_n]$ are odd Grassman numbers that do not
 	involve $\theta_i$, and $M$ is an invertible skew-symmetric  $n\times n$ matrix,
@@ -316,7 +316,7 @@ $f(\theta_1,\theta_2)=A+B\theta_1+C\theta_2 + D\theta_1\theta_2$.
 	\odif{\theta}
 	&= \int \exp\paren{\frac{1}{2}\chi^\intercal M \chi }
 	\odif{\theta} \exp\paren{\frac{1}{2}J^\intercal M^{-1} J}	\\
-	&= \int \exp\paren{\frac{1}{2}\chi^\intercal M \chi }
+	&= \int \exp\paren{\frac{1}{2}\theta^\intercal M \theta }
 	\odif{\theta} \exp\paren{\frac{1}{2}J^\intercal M^{-1} J}\tag{by Prop
 	\ref{prop:berezin_translation}}\\
 	&= \Pf(M) \exp\paren{\frac{1}{2}J^\intercal M^{-1} J} \tag{by Lemma
