@@ -505,7 +505,7 @@ map on the tensor product
 w : \bigwedge(\mathfrak{g}^*)\otimes S(\mathfrak{g}^*) \to \Omega(P)
 \] 
 such that $w(\alpha\otimes \beta) = f_1(\alpha)\wedge f_2(\beta)$.
-We call $w$ the \underline{Weil homomorphism} (also called charatceristic
+We call $w$ the \underline{Weil homomorphism} (also called characteristic
 homomorphism), and 
 $W(\mathfrak{g}) =\bigwedge(\mathfrak{g}^*)\otimes S(\mathfrak{g}^*)$
 is called the \underline{Weil algebra}.
@@ -665,6 +665,18 @@ of the basic Weil subcomplex.
 	inverse for $H$.
 \end{proof}
 
+\begin{remark} \label{remark:cartan_not_horizontal}
+	A potential point of confusion is that $H:W(\mathfrak{g})\to W(\mathfrak{g})$ 
+	is the projection on to the horizontal component, so in this case 
+	$S(\mathfrak{g}^*) = W(\mathfrak{g})_{hor}$. However as an operator on
+	$W(\mathfrak{g})\otimes \mathcal{A}$, this is no longer true because
+	elements in $S(\mathfrak{g}^*)\otimes \mathcal{A}$ are no longer horizontal.
+	This means that $E \neq J$ in the proof, and neither is contained within the other. 
+	Consequently, the Cartan model  $(S(\mathfrak{g}^*)\otimes \mathcal{A})^G$
+	consists of invariant but not necessarily horizontal elements, but is
+	isomorphic to the algebra of basic forms.
+\end{remark}
+
 \subsection{Cartan differential}
 The Weil-Cartan isomorphism carries the Weil differential $\delta_W$ to a
 differential $\delta_C$ on the Cartan model, i.e. defined by
@@ -716,13 +728,47 @@ d\eta_I$, then
 Note that $\delta_W u_i = \sum c_{kl}^iu_k\theta_l$, while 
 $\delta_C u_i = 0$ in the Cartan model. 
 
+It may be unsatisfying to give a definition which is based on the choice of a
+basis for $\mathfrak{g}$, so we now give an intrinsic, basis-free description.
+An element $\alpha = \sum u_I \alpha_I \in S(\mathfrak{g}^*) \otimes
+\Omega(M)$, where  $\alpha_I \in \Omega(N)$, can be interpreted as a function
+$\mathfrak{g} \to \Omega(M)$ given by 
+\[
+	\alpha(X) = \sum u_{i_1}(X)\cdots u_{i_n}(X) \alpha_I 
+\] 
+where $I$ is a multi-index of arbitrary length allowing for repeated indices.
+Thus, $(S(\mathfrak{g}^*)\otimes \Omega(M))^G$ are $\Omega(M)$-valued
+polymomials on  $\mathfrak{g}$. 
+\begin{thm} \label{thm:cartan_diff} % thm 21.4
+	The Cartan differential 
+	$\delta_C : (S(\g^*)\otimes \Omega(M))^G \to (S(\g^*)\otimes \Omega(M))^G$
+	is given by
+	\[
+		(\delta_C \alpha)(X) = (d - \iota_X)(\alpha(X)), \quad 
+		\text{for } X\in\mathfrak{g}.
+	\] 
+\end{thm}
+\begin{proof}
+	Since both sides are linear, it suffices to assume $\alpha = u^I\beta$ where
+	$\beta\in\Omega(M)$. Then 
+	 \[
+	(\delta_C \alpha)(X) = u_I(X) d\beta - \sum_i u_i(X)\iota_i u^I(X)\beta
+	\] 
+	In the second term of this expression, the operator can be written 
+	\[
+	\sum_i u_i(X)\iota_{X_i} =  \iota_{\sum u_i(X)X_i } = \iota_X
+	\] 
+	using linearity of $\iota$, and that  $u_i$ is the dual
+	basis, completing the proof.
+\end{proof}
+
 \subsection{Cartan map}
 The notation for the Cartan model alludes to a natural action of  $G$
 on the complex $W(\mathfrak{g})$. The action is induced by the
 coadjoint representation $\Ad^* :G \to \operatorname{Aut}(\mathfrak{g}^*)$ of  
 $G$ on  $\mathfrak{g}^*$. It is the unique action
 such that $\gen[*]{\Ad_g^* \alpha, \Ad_g X} = \gen{\alpha, X}$ for
-$\alpha\in\mathfrak{g}^*,X\in\mathfrak{g},g\in G$ and $\gen{\alpha,X}=\alpha(X)$ 
+$\alpha\in\mathfrak{g}^*,X\in\mathfrak{g},g\in G$ where $\gen{\alpha,X}=\alpha(X)$ 
 denotes the value of the linear functional, given by
 \begin{equation} \label{eq:group_coadjoint_action}
 	\gen[*]{\Ad^*_g \alpha, Y} := \gen{\alpha,\Ad_{g^{-1}} Y}
@@ -761,42 +807,46 @@ on a $G$-manifold  $M$,  $\mathcal{L}_X \omega = 0$ if and only if $R_g^*\omega
 invariant if and only if they are invariant under the product group action
 $(\alpha\otimes \omega) \cdot g = \Ad_g^*\alpha \otimes R_g^*\omega$.
 
-Let $N$ be a right  $G$-manifold.
-An element $\alpha = \sum u_I \alpha_I \in S(\mathfrak{g}^*) \otimes
-\Omega(N)$, where  $\alpha_I \in \Omega(N)$, can be interpreted as a function
-$\mathfrak{g} \to \Omega(N)$ given by 
-\[
-	\alpha(X) = \sum u_{i_1}(X)\cdots u_{i_n}(X) \alpha_I 
-\] 
-where $I$ is a multi-index of arbitrary length allowing for repeated indices.
-This means $S(\mathfrak{g}^*)^G$ consists of $\Ad(G)$-invariant polynomials.
+Viewed as polymomials, $S(\mathfrak{g}^*)^G$ is the subalgebra of 
+$\Ad(G)$-invariant polynomials.
 From Theorem $\ref{thm:weil_cartan_iso}$, we have
-$W(\mathfrak{g})_{bas} \simeq S(\mathfrak{g}^*)^G$. Thus, a Weil homomorphism 
-$w: W(\mathfrak{g}) \to \Omega(P)$ induced by a connection on a principal bundle
-$P\to M$ descends to the Chern-Weil homomorphism on the basic subcomplexes
+$W(\mathfrak{g})_{bas} = S(\mathfrak{g}^*)^G$. Thus, a Weil homomorphism 
+$w: W(\mathfrak{g}) \to \Omega(P)$ induced by a connection on a principal bundle 
+$P\to M$ descends to 
+the Chern-Weil homomorphism on the basic subcomplexes
 $w : S(\mathfrak{g}^*)^G \to \Omega(P)_{bas}$, given by  
 \[
-\sum a_I u_I \mapsto \sum a_I \Omega^{i_1}\wedge \cdots\wedge\Omega^{i_k}
+\alpha=\sum a_I u_I \mapsto \sum a_I \Omega^{i_1}\wedge \cdots\wedge\Omega^{i_k}
 \] 
+Denote the image of the Weil map by $\alpha(\Omega)$, which indicates ``evaluating 
+the polynomial at the curvature". 
 We wish to generalise the Chern-Weil map to 
-$w:W(\mathfrak{g})\otimes \Omega(P)\to \Omega(P)$, by defining $\alpha\otimes \eta \mapsto
-w(\alpha) \wedge \eta$.  However, the problem is that for a basic element
-$\alpha \otimes \eta$, its image may no longer be basic. (why?)
-
-% TODO elaborate on the above, define the Cartan map
-
+$S(\mathfrak{g}^*)\otimes \Omega(P)\to \Omega(P)$, by defining $\alpha\otimes \eta \mapsto
+\alpha(\Omega)\wedge \eta$.  However, the problem is that elements in the Cartan model
+are invariant but not horizontal as mentioned in Remark
+\ref{remark:cartan_not_horizontal}, and hence $\alpha(\Omega) \wedge \eta$ will be
+invariant but not necessarily horizontal. We can remedy this by 
+projecting onto the horizontal subspace of
+$\operatorname{Hor}_{\omega}:\Omega(P)\to \Omega(P)_{hor}$. Thus, we have
+motivated the Cartan map  
+\begin{equation}
+	\operatorname{Car}_{\omega} : (S(\mathfrak{g}^*)\otimes\Omega(P))^G\to \Omega(P)_{bas},
+	\qquad \alpha \mapsto \operatorname{Hor}_{\omega}(\alpha(\Omega))
+\end{equation}
 As Proposition \ref{prop:free_action_cohomology} shows, the equivariant 
 cohomology of a $G$-manifold  $P$ with a
 free action is isomorphic to the singular cohomology of the quotient
 $H_G(P)\simeq H^*(P /G)$. The Cartan map can be used to establish an algebraic
-counterpart of the same result. 
+counterpart of this same result. 
 % naber p113-114 % Thm 5.17 meinrenken
 \begin{thm}[Cartan] % Theorem 5.2 meinrenken
 	Suppose $P\xrightarrow{\pi}M$ is a principal $G$-bundle with a connection, 
-	and $w : W(\mathfrak{g}) \otimes \Omega(P) \to \Omega(P)$ is the associated 
-	Weil homomorphism, then the Cartan map 
-	$\operatorname{Hor}\circ w$ induces an isomorphism in cohomology
-	$H_G(P)\simeq H(\Omega(P)_{bas}) = H(M)$
+	and $\operatorname{Car}_{\omega} : (S(\mathfrak{g}^*) \otimes \Omega(P))^G 
+	\to \Omega(P)_{bas}$ is the associated  Cartan map. Then the Cartan map 
+	is a quasi-isomorphism, i.e. a chain map that
+	induces isomorphisms on all cohomology groups
+	$H_G^*(P)\simeq H^*(\Omega(P)_{bas}) \simeq H^*(M)$.
+	\begin{comment}
 	% https://q.uiver.app/#q=WzAsNSxbMCwwLCJXKFxcbWF0aGZyYWt7Z30pXFxvdGltZXNcXE9tZWdhKFApIl0sWzEsMCwiXFxPbWVnYShQKSJdLFswLDEsIihXKFxcbWF0aGZyYWt7Z30pXFxvdGltZXNcXE9tZWdhKFApKV97XFx0ZXh0e2Jhc319Il0sWzEsMSwiXFxPbWVnYShQKV97XFx0ZXh0e2Jhc319Il0sWzIsMSwiXFxzaW1lcVxcT21lZ2EoTSkiXSxbMCwyXSxbMSwzXSxbMCwxLCJ3Il0sWzIsMywidyJdXQ==
 	\[\begin{tikzcd}[column sep = 3.5em]
 			{W(\mathfrak{g})\otimes\Omega(P)} & {\Omega(P)} \\
@@ -807,31 +857,15 @@ counterpart of the same result.
 							\arrow["w", from=1-1, to=1-2]
 							\arrow["\operatorname{Hor}\circ w", from=2-1, to=2-2]
 			\end{tikzcd}\]
-\begin{comment} % with Cartan model on left
-	% https://q.uiver.app/#q=WzAsNixbMSwwLCJXKFxcbWF0aGZyYWt7Z30pXFxvdGltZXNcXE9tZWdhKFApIl0sWzIsMCwiXFxPbWVnYShQKSJdLFsxLDEsIihXKFxcbWF0aGZyYWt7Z30pXFxvdGltZXNcXE9tZWdhKFApKV97XFx0ZXh0e2Jhc319Il0sWzIsMSwiXFxPbWVnYShQKV97XFx0ZXh0e2Jhc319Il0sWzAsMSwiKFMoXFxtYXRoZnJha3tnfV4qKVxcb3RpbWVzXFxPbWVnYShQKSleRyAiXSxbMywxLCJcXHNpbWVxXFxPbWVnYShNKSJdLFs0LDIsIkgiXSxbMCwyXSxbMSwzXSxbMCwxLCJ3Il0sWzIsMywidyJdXQ==
-	\[\begin{tikzcd}
-			& {W(\mathfrak{g})\otimes\Omega(P)} & {\Omega(P)} \\
-				{(S(\mathfrak{g}^*)\otimes\Omega(P))^G } &
-				{(W(\mathfrak{g})\otimes\Omega(P))_{\text{bas}}} &
-				{\Omega(P)_{\text{bas}}} &[-34pt] {\simeq\Omega(M)}
-					\arrow["H", from=2-1, to=2-2]
-						\arrow[from=1-2, to=2-2]
-							\arrow[from=1-3, to=2-3]
-								\arrow["w", from=1-2, to=1-3]
-									\arrow["w", from=2-2, to=2-3]
-			\end{tikzcd}\]
-\end{comment}
-	
+	\end{comment}
 \end{thm}
+A proof is given in chapter 5 of \citet{guillemin}, which constructs an explicit
+homotopy operator to show that the inclusion $i(\eta) \mapsto 1\otimes \eta$ is
+the homotopy inverse.
+The Cartan map will turn out be very useful in the next chapter for the
+Mathai-Quillen construction.
 
-
-$\overline{w} : (S(\mathfrak{g^*})\otimes \Omega(V))^G \to
-\Omega(P\times V)_{bas}$
-defined by $\overline{w}(a\otimes \varphi) = Hor(a(\Omega)\wedge \varphi)$ 
-
-
-
-
+% Meinrenken shows that it is the same map as H then weil homo
 
 
 \begin{comment}
@@ -886,7 +920,10 @@ it is an element of $H_G^*(M)$.
 \begin{itemize}
 	\item An excellent book on equivariant cohomology which this chapter is
 	largely based on is \citetitle{equivariant_tu} by
-	\citet{equivariant_tu}.
+	\citet{equivariant_tu}. The writing is more pedagogical. 
+	\item A more comprehensive treatment of equivariant cohomology is given in
+	\citet{guillemin}, which covers topics not included in Tu's book such as 
+	the Cartan map and the Mathai-Quillen construction. 
 \end{itemize}
 }
 
