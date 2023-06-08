@@ -1,6 +1,12 @@
 
 \chapter{Donaldson Invariants}
 \label{chapter1}
+Our goal in this chapter is to introduce the Donaldson polynomial invariants of
+smooth 4-manifolds. We will not be concerned with proofs of the results needed
+to construct them, as that would be beyond the scope of the thesis. 
+(something about the later chapters are proof based, this chapter is mainly to
+revisit in chapter 4)
+
 \section{Space of connections}
 \begin{prop}
 	Let $E_1,\ldots,E_k$ and $F$ be vector bundles over a manifold  $M$. 
@@ -46,8 +52,9 @@ $\Omega^1(M,\End E)$. There is a similar result for principal bundles.
 \end{prop}
 This follows from the fact that the difference of two connections
 $\theta_1-\theta_2\in \Omega^1(P,\g)$ is a horizontal and $\Ad$-equivariant form.
-Then we take the well known isomorphism into $\Omega^1(M,P\times_{\Ad}\g)$ 
-(see \cite[Theorem 31.9]{loringtu}). Conversely, the sum of $\theta_1$ with 
+Finally we identify this space as $\Omega^1(M,P\times_{\Ad}\g)$, by 
+the isomorphism between these spaces (see \cite[Theorem 31.9]{loringtu}). 
+Conversely, the sum of $\theta_1$ with 
 a horizontal and $\Ad$-equivariant form is again a connection on  $P$.
 
 % p33 DK
@@ -61,11 +68,6 @@ the space of connections on $E$ as $\Omega^1(M,\mathfrak{g}_E)$, where
 $\mathfrak{g}_E \subset \End E$ is the bundle, 
 where the restriction to $\g_E$ ensures that the new connection is
 compatible with the structure group of  $E$.
-
-% TODO explain what the bundle is
-
-Write $\g_E \subset \End E$ for the bundle of Lie algebras associated to the
-adjoint representation. 
 If the structure group is $\SU(2)$, for example, then
 $\g_E$ consists of skew-adjoint, trace-free endomorphisms of the rank two vector
 bundle $E$. 
@@ -78,9 +80,14 @@ bundle $E$.
 \end{defn}
 
 \begin{prop} % Lemma 4.1.2 Morgan
-	The group of sections $\Gamma(\Ad P)$ under fiber-wise multiplication is
-	isomorphic to $\Aut(P)$
+	The group of gauge transformations $\Aut(P)$ is isomorphic to 
+	sections $\Gamma(\Ad P)$ under fiber-wise multiplication 
 \end{prop}
+
+% TODO explain this and prove above
+Then $\mathcal{G}$ acts on $\mathcal{A}$ on the right by pullback 
+$\omega\mapsto f^*\omega$.
+
 The group $\Aut(P)$ is an infinte dimensional Lie group. 
 There is a fiberwise exponential map $\exp : \Omega^0(M,\ad P) \to
 \Omega^0(M,\Ad P)$ which assigns to any section  $\sigma \in \Gamma(\ad P)$ the
@@ -94,7 +101,7 @@ dimensional manifolds as well.
 
 The action of $u \in \Aut(P)$ on a connection  $\omega\in \Omega^1(P,\g)$ is
 $u^*\omega \in \Omega^1(P,\g)$. 
-% lemma 4.3.1 MF u^*`w is a connection one form
+% lemma 4.3.1 Morgan u^*`w is a connection one form
 % The stabiliser of a connection A are the sections which are horizontal in A
 
 \section{Quotient by Gauge group}
@@ -138,14 +145,13 @@ norm is up to equivalence, independent of the choices of metrics and connections
 	$\Omega^l(M,E)$ in the Sobolev norm  $\norm{\cdot}_{L^p_k}$.
 \end{defn}
 
-We are often interested in Lie algebra valued differential forms on a
-principal bundle $\Omega(P,\mathfrak{g})$, so we need to define a metric on both 
-$P$ and $\g$.
-
-We need a metric on $P$ and  $\mathfrak{g}$. Conection on $P$ defines a metric?
-
-
-\begin{thm}
+We are often interested in Lie algebra valued differential forms 
+$\Omega(P,\mathfrak{g})$ on a principal bundle , so we need to define a metric 
+on both $P$ and $\g$. The metric on $T_pP$ can be obtained by identifying the 
+horizontal subspace induced by the connection with  $T_{\pi(p)}M$, and the vertical
+subspace with $\g$. Assuming $G$ is compact, we can always construct a metric on
+ $\g$ as follows.
+ \begin{thm} \label{thm:lie_inner_product}
 	Let $G$ be a compact Lie group, with a representation  $\rho : G \to\GL(V)$.
 	Then there exits an invariant inner product on  $V$, i.e. 
 	$\gen{\rho(g)v,\rho(g)w} = \gen{v,w}$ for all $g\in G$. Consequently,
@@ -156,15 +162,67 @@ The construction is based on choosing an arbitrary inner product on $V$, and
 defining $\gen{v,w} := \int_G \gen{\rho(A)w,\rho(A)w}_V \odif{vol}(A)$, where
 $\odif{vol}(A)$ is a right-invariant differential form on $G$ (we can also
 construct the integral based on the right-invariant Haar measure on $G$).
+In particular, this gives an $\Ad$-invariant metric on $\g$. 
+This also gives an induced metric on $\ad P = P\times_{Ad}\g$, which is well 
+defined because the metric on both $P$ and  $\g$ are invariant under the action 
+of  $G$. 
 
+Denote that group of $L^2_3$-gauge transformations by  $\mathcal{G}_3(P) \subset
+\Gamma(\Ad P)$ and the space of $L^2_2$-connections by $\mathcal{A}_2(P) \subset
+\Omega^1(M,\ad P)$. The Sobolev spaces of sections are Banach manifolds, and 
+the $L^2_k$ spaces are in fact Hilbert manifolds. However, we could work with
+any Sobolev spaces for which the group of gauge transformations has at least two
+derivatives, and the space of connections has one few derivative. 
 
+% TODO 
+define irreducible connections
+
+\begin{thm} % Morgan 4.3.5 stabilisers, 4.4.5 local slices, and section 4.5
+	The quotient space of gauge equivalent irreducible connections
+    on a principal $\SU(2)$-bundle.
+	$\mathcal{B}^*_2(P) := \mathcal{A}^*_2(P) / \mathcal{G}_3(P)$ is a 
+	Hilbert manifold. 
+\end{thm}
+This is proved in \cite[Section 4.5]{morgan}. 
+
+% see corollary 4.3.5 and section 4.5 MF
+Provided that  $c_2(P)\neq 0$, the only possible stabilisers for elements of 
+$\mathcal{A}_2(P)$ are $\{\pm 1\}$ or $S^1$. The former connections are called
+irreducible and the latter ones reducible. 
+
+\section{Yang-Mills theory}
+\subsection{General definition}
+Let $P\to M$ be a principal $G$-bundle over a Riemannian manifold $M$, with 
+connection $A$ and associated curvature  $F$. Assume $G$ is a compact Lie group,
+though we will typically choose $G=\SU(2)$ or $G=\SO(3)$. 
+Since the curvature form of a principal bundle is horizontal and  
+$\Ad$-equivariant, we can interpret it as an $\ad(P)$-valued form on the base 
+$F\in\Omega(M,\ad P)$.
+The Yang-Mills functional is defined by the $L^2$ norm squared of the curvature 
+\[
+	S_{YM}(A) := \norm{F}^2_{L^2} = \int_M \abs{F}^2 dV_g
+\]
+where $\abs{F}^2$ comes from the metric on $T^*M^{\otimes 2}\otimes \ad P$. 
+The significance in physics is that this represents the energy of a free field, 
+generalising electromagnetism for non-abelian gauge groups.  
+(cite Baez)
+
+The principal of least action in physics dictates that the classical solutions
+are the connections that satisfy the Euler-Lagrange equations of this action 
+functional, that is, locally minimise $S_{YM}$. 
+
+Derive $d_A^* F = 0$ using wikipedia and introduce formal adjoint operator
+
+\subsection{Orthogonal or unitary structure group}
+In this subsection we assume $G=\SO(N)$ or  $G=\SU(N)$, which allows us to
+make a number of simplifications.
 \begin{defn}
 	Let $(M,g)$ be an oriented Riemannian  $n$-manifold. The \underline{Hodge}
 	\underline{star operator} $* : \Omega^k(M) \to \Omega^{n-k}(M)$ is the 
 	unique smooth bundle homomorphism satisfying 
-	\[
+	\begin{equation} \label{eq:hodge_property}
 	\omega \wedge *\eta = \gen{\omega,\eta}_g dV_g
-	\] 
+	\end{equation}
 	where $\gen{\cdot,\cdot}_g$ is the induced metric on $(T^*M)^{\otimes k}$.
 	In orthonormal coordinates, this is given by
 	\[
@@ -185,57 +243,40 @@ particular, since $\star : \Omega^2(M,\g)\to\Omega^2(M,\g)$ is a linear operator
 with $\star^2= 1$. The two eigenvalues 1 and -1 allow us to decompose into its
 eigenspaces $\Omega^2(M,\g) = \Omega^{2,+}(M,\g) \oplus \Omega^{2,-}(M,\g)$,
 called self-dual (SD) and anti-self-dual (ASD) two-forms respectively.
-Thus, for any $\alpha \in \Omega^{2,+}(M,\g), \beta \in \Omega^{2,-}(M,\g)$,
-\begin{equation}
-\alpha\wedge \alpha = \abs{\alpha}^2 \odif{V}_g, \qquad
-\beta\wedge \beta = -\abs{\beta}^2 \odif{V}_g, \qquad
+
+For an arbitrary Lie algebra valued form, equation (\ref{eq:hodge_property})
+will not hold. But for the case where $G=\SO(N)$ or  $\SU(N)$, we can choose the
+Hilbert-Schmidt metric  $\gen{X,Y}=\Tr(X^*Y)$ where $X^*$ is the adjoint, which
+is an $\Ad$-invariant metric on $\g$.  In this case, if 
+$\alpha \in \Omega^{2,+}(M,\g), \beta \in \Omega^{2,-}(M,\g)$, we have
+\begin{equation} \label{eq:trace_hodge}
+\Tr(\alpha\wedge \alpha) = -\abs{\alpha}^2 \odif{V}_g, \qquad
+\Tr(\beta\wedge \beta) = \abs{\beta}^2 \odif{V}_g, \qquad
 \alpha\wedge \beta = 0
 \end{equation}
-where $\abs{\cdot}^2$ is the norm induced by the metric on $T^*M^{\otimes
-2}\otimes \g$.
+using equation (\ref{eq:hodge_property}) and $\Tr(XY) = -\Tr(X^*Y)$ for
+$X,Y\in\g$. The last property follows from eigenspaces being orthogonal for any
+metric on $\Omega^2(M,\g)$.
 
-If we reverse the orientation of $M$, then this swaps the SD and ASD forms. 
-It may be tempting to infer that the two theories are completely
-equivalent, and we could just work with SD connections. However, there is an
-important class of 4-manifolds which have a natural orientation - complex
-manifolds. 
 
-% quotient space is a manifold: see MF prop 4.4.5, 
+The Yang-Mills functional can be rewritten using equation (\ref{eq:trace_hodge}) as
+\[
+	S_{YM}(A) = -\int_M \Tr (F\wedge \star F) 
+\] 
 
-The space $\mathcal{B}_2(P) = \mathcal{A}_2(P) / \mathcal{G}_3(P)$ of gauge
-equivalence classes of connections on a principal $\SU(2)$-bundle. 
-
-% see corollary 4.3.5 and section 4.5 MF
-Provided that  $c_2(P)\neq 0$, the only possible stabilisers for elements of 
-$\mathcal{A}_2(P)$ are $\{\pm 1\}$ or $S^1$. The former connections are called
-irreducible and the latter ones reducible. 
-
-\section{Yang-Mills theory}
+We now explain the significance of the Chern class.
 Recall from Chern-Weil theory that there are two important classes of
 $\Ad \GL(r,\mathbb{C})$ invariant polynomials on $\gl(r,\mathbb{C})$. 
 The first is the coefficients $f_k(X)$ of $\lambda^{r-k}$ in the characteristic
 polynomial $\det(\lambda I + X)$. Another class consists of the trace
 polynomials $\Tr(X^k)$. 
+The Chern classes of $P$ are defined by $c_k(P) =
+[f_k\paren{\frac{i}{2\pi}F}] \in H^{2k}(M)$. 
 \begin{thm}
 	The second Chern class $c_2(E)\in H^4(M,\mathbb{Z})$ classifies up to
 	isomorphism $\SU(2)$-bundles over any compact connected oriented 4-manifold
 	 $M$. (Theorem E.5 in Freed and Uhlenbeck)
 \end{thm}
-
-% Chapter 2 DK
-Let $P\to M$ be a principal $G$-bundle over a Riemannian manifold $M$, with 
-connection $A$ and associated curvature  $F$. Typically, we will take $G=\SU(2)$
-or $G=\SO(3)$.
-Its Chern classes are defined by $c_k(E) =
-[f_k\paren{\frac{i}{2\pi}F}] \in H^{2k}(M)$. 
-The Yang-Mills functional is defined by the integral
-\[
-	S_{YM}(A) = \int_M \Tr (F\wedge \star F) = \int_M \abs{F}^2 \odif{V}_g
-\] 
-%TODO why equivalent?
-Recall that the Hilbert-Schmidt norm on $\gl(r,\mathbb{C})$ is defined by 
-$\abs{X}^2 = \Tr(X^* X)$ , where $X^*$ denotes the adjoint matrix (conjugate 
-transpose). 
 
 From Newton's identity for symmetric polynomials with $k=2$ 
 (see \cite[Theorem B.2]{loringtu}), we have $\Tr(X^2)-f_1(X)\Tr(X)+2f_2(X)=0$, 
@@ -261,7 +302,7 @@ gives
 &= - (\abs[*]{F^+}^2 - \abs[*]{F^-}^2) dV_g 
 \end{align*}
 Hence, $c_2(E) = \frac{1}{8\pi^2}\int_M
-(\abs[*]{F^+}^2-\abs[*]{F^-}^2)$. 
+(\abs[*]{F^-}^2-\abs[*]{F^+}^2)$. 
 
 Comparing with the Yang-Mills action, 
 \begin{align*}
@@ -279,6 +320,8 @@ $F^+=0$.
 Thus the classical equations of motion are equivalent to $\star F = \pm F$,
 whose solutions are called (anti-)instantons. 
 
+\section{Moduli space}
+% chapter 4 Donaldson Kronheimer, Morgan
 Note that $\star F = - F$ is a non-linear differential equation for
 non-abelian gauge groups, and defines a subspace of the infinite dimensional
 space of connections $\mathcal{A}$. This subspace can be regarded as the zero
@@ -293,12 +336,21 @@ also ASD. The moduli space is defined by quotienting the space of ASD
 connections by the action of the gauge group. 
 
 
+\begin{remark}
+If we reverse the orientation of $M$, then this swaps the SD and ASD forms in
+$\Omega^2(M,\g)$. Since the two theories are completely
+equivalent, we could work with SD connections. However, there is an
+important class of 4-manifolds which have a natural orientation - complex
+manifolds. Over this orientation, it turns out that ASD connections are 
+associated to holomorphic objects, while SD connections to anti-holomorphic
+objects.\cite[p.95]{morgan} For this reason, we choose to work in terms of 
+ASD connections by default.
+\end{remark}
 
 The space of gauge connections $\mathcal{A}$ on a principal bundle is the
 universe bundle for the group of gauge transformations $\mathcal{G}$. (ch 15
 Cordes)
 
-% Read chapter 4 Donaldson Kronheimer
 
 % TODO 
 formal dimension of the moduli space
@@ -307,7 +359,6 @@ formal dimension of the moduli space
 % Lecture 7 morgan
 Finally, our goal is to sketch the definition of the Donaldson polynomials
 invariants. 
-% TODO blah blah about highly technical
 In this section, assume $M$ is a closed,
 oriented, simply connected smooth 4-manifold with a fixed orientation of
 $H^2_+(M;\mathbb{R})$. Further assume $b_2^+(M) > 1$. 
