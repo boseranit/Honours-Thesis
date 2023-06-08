@@ -1,38 +1,187 @@
 \chapter{Donaldson-Witten theory in MQ formalism}
 \label{chapter4}
-
+% See AJ intro
 In finite dimensions, the Mathai-Quillen formula gives an explicit differential
-form representative of the Euler class. However it was noticed by Atiyah and
-Jeffrey \cite{atiyahlagrangians} that the action principle of the theory can be
-recovered by constructing the Euler class of $\mathcal{E}$ using an extension of
-the Mathai-Quillen representative to the infinite-dimensional case. Conversely,
-the Mathai-Quillen formalism makes possible to construct a cohomological field
+form representative of the Euler class. 
+It was shown by Atiyah and
+Jeffrey \cite{atiyahlagrangians} that not only can the zero dimensional
+Donaldson invariant can be identified with the Euler number of a vector bundle
+over $\mathcal{A} /\mathcal{G}$, but the Donaldson invariants in general can be
+written as an integral of a Mathai-Quillen type form over the gauge equivalence
+classes of irreducible connections, similar to (reference Gauss-Bonnet formula
+with Mathai-Quillen).
+Moreover, they have been able to reproduce Witten's
+action functional from twisted SUSY YM theory term by term from purely geometric
+considerations.
+
+Conversely,
+the Mathai-Quillen formalism makes it possible to construct a cohomological field
 theory starting from a moduli problem.
 
-keywords: Donaldson-Witten theory, Donaldson invariants, see AJ intro
 
 \section{Atiyah-Jeffrey formula}
-This section provides a more detailed exposition of Atiyah and Jeffrey's paper
-\cite{atiyahlagrangians}, which derives another version of the Mathai-Quillen
-Thom form. We consider the following setup: $G$ is a compact connected Lie group
-acting freely on an oriented Riemannian manifold  $P$ of dimension  $2m+d$,
-where  $\dim G = d$. Let  $V$ be a real vector space of dimension  $2m$  with a
-representation $\rho : G \to \SO(V)$. Since  $G$ has a free action on  $P$, 
- $P\to P /G = X$ is a principal $G$-bundle, and we can form the associated
+This section derives another version of the Mathai-Quillen
+Thom form, which will be then be formally applied to the Donaldson-Witten context. 
+We consider the following setup: $G$ is a compact connected Lie group
+of dimension $d$ acting on a principal $G$-bundle  $P\to M$ of dimension  $2m+d$.
+By a similar construction as in Theorem \ref{thm:lie_inner_product}, we can
+construct an inner product on $P$ which is invariant under the action of  $G$,
+by averaging any Riemannian metric on $P$ with respect to the Haar measure on
+$G$. At each point $p\in P$, this Riemannian metric defines an orthogonal
+complement to the vertical tangent space. Since these subspaces are invariant
+under the action of $G$, this determines a connection  $\omega$ on  $P$.
+Moving forward, we will solely use this connection.
+Also let $V$ be a real vector space of dimension  $2m$  with a
+representation $\rho : G \to \SO(V)$, so we can form the associated
 vector bundle $E:= P\times_G V$. 
 
+% AJ p124, Naber p123
+Our starting point is the universal Mathai-Quillen formula
+(equation \ref{eq:universal_thom_form}), an element in the
+Cartan model $S(\mathfrak{g}^*)\otimes \Omega(V)$, restated here
+\begin{equation} \label{eq:universal_thom_form2}
+	U = (2\pi)^{-m}e^{-\abs{x}^2}\int^B
+	\exp\paren{\frac{1}{2}\chi^{\intercal}\rho_*\chi - idx^\intercal \chi}
+	\odif{\chi}
+\end{equation}
+where $\chi = (e_1,\ldots,e_{2m})$ is a basis for $V$.
+
+\vspace{1ex}\noindent
+\textbf{Manipulation 1: Replace $\Omega$ with  $d\omega$} \\
+Recall that we can obtain a Thom form on $E$ via the Cartan map, which is given
+by $\alpha\to \operatorname{Hor}(p_2^*\alpha(\Omega)) \in \Omega(P\times V)_{bas}$, 
+where $p_2:P\times V\to V$ is the projection onto $V$.  
+The curvature is related to the connection by 
+$\Omega = d\omega + \frac{1}{2}[\omega\wedge \omega]$, but $\omega=0$ on
+horizontal vectors (by definition of horizontal subspace). Since the Cartan map
+then only evaluates on the horizontal projection of tangent vectors, we can 
+replace  $\Omega$ by  $d\omega$ in the Cartan map. 
+
+\vspace{1ex}\noindent
+\textbf{Manipulation 2: Replace $d\omega$ with  $R^{-1}dC^*$} \\
+Recall that $C_p : \mathfrak{g} \to V_pP$ defined by  $C_p(X) = \odv{}{t}_{t=0}
+(p\cdot \exp(tX))$ is the canonical identification of the Lie algebra with the
+vectical tangent space at $p\in P$. Both spaces are inner product vector spaces,
+and hence $C_p$ has an adjoint  $C_p^* : T_pP \to \g$. For $X,Y\in \g$, it
+satisfies 
+\[
+	\gen{C_p(X), C_p(Y)} = \gen[*]{C_p^*C_p(X),Y}_{\g} = \gen{R_p X, Y}_{\g}
+\] 
+where $R := C_p^*\circ C_p : \g \to \g$. It is clear that $R_p$ is self-adjoint
+and an isomorphism since $C_p$ is an isomorphism. 
+Also note that $C_p^*$ vanishes on horizontal vectors, as 
+$\gen[*]{X,C_p^*(v)} = \gen{C_p(X),v}$ vanishes on
+all horizontal $v\in T_p$ due to $C_p(X)\in V_pP$. 
+
+If $\omega\in \Omega(P,\g)$ is 
+the connection 1-form, then $\omega_p(X) = C_p^{-1}(X)$. Thus, we have the
+pointwise matrix equation $C^* = R\omega$, or $\omega = R^{-1}C^*$. From this,
+we compute its differential 
+\[
+d\omega = R^{-1} dC^* + dR^{-1} \wedge C^*
+\] 
+The last term vanishes on a pair of horizontal vectors, so again, we can replace
+$d\omega$ with $R^{-1}dC^*$, since the Cartan map will only evaluate on the
+horizontal vectors.
 
 
-\section{TQFT as a generalisation of Mathai-Quillen}
-% section 4.2 MQintro
- This approach is
-due to \citet{atiyahlagrangians}, who showed that TQFT can be regarded as an
-infinite dimensional generalisation of the Mathai-Quillen construction. 
+\vspace{1ex}\noindent
+\textbf{Manipulation 3: Double Fourier transform to avoid inverting $R$} \\
+The next objective is to remove the explicit inverse $R^{-1}$ by using the
+Fourier inversion formula. Recall that the Fourier transform is an automorphism
+of the Schwartz space on any vector space $W$. If  $dw\in\bigwedge^n W$ is a
+volume element with corresponding dual volume element $dy\in \bigwedge^nW^*$,
+then the Fourier inversion formula states that 
+\[
+	f(w) =
+	(2\pi)^{-n}\int_{W^*}\int_{W}e^{i\gen{w,y}}e^{-i\gen{z,y}}f(z)\odif{z}\odif{y}
+\] 
+Note that for a real vector space the integral is the same if we multiply the
+exponent by -1.
+If we identify $W$ with  $W^*$ via some inner product, this becomes a double
+integral over $W$. For a self-adjoint matrix $R$ with positive determinant, we
+can compute  $f(R^{-1}w)$ by making the change of variables $w \to R^{-1}w$ and
+$y\to Ry$, in which case $\gen{R^{-1}w,Ry}=\gen{w,y}$ and $d(Ry)=\det R dy$. 
+The inversion formula becomes
+\[
+f(R^{-1}w) = (2\pi)^{-n}\iint_W e^{i\gen{w,y}}e^{-i\gen{z,Ry}}f(z)\det R\odif{z}\odif{y}
+\] 
+We now consider the universal Mathai-Quillen element as a $\Omega(V)$-valued 
+function $f:\g \to \Omega(V)$ on the vector space $\g$, 
+\[
+f(X) = (2\pi)^{-m}e^{-\abs{x}^2}\int^B
+	\exp\paren{\frac{1}{2}\chi^{\intercal}\rho_*(X)\chi - idx^\intercal \chi}
+	\odif{\chi}
+\] 
+which we wish to
+evaluate at $R^{-1}dC^* \in \Omega^2(P,\g)$. By the inversion formula above,
+\begin{align} \label{eq:fourier_thom}
+	f(R^{-1}dC^*) = (2\pi)^{-d-m}e^{-\abs{x}^2}\iint_{\g}\int^B 
+	&\exp\Big(\frac{1}{2}\chi^{\intercal}\rho_*(X)\chi - idx^\intercal \chi\\
+	&+i\gen{dC^*,\lambda}-i\gen{\phi,R\lambda}\Big) \det R
+	\odif{\chi} \odif{\phi}\odif{\lambda} \nonumber
+\end{align}
+where $\lambda, \phi \in \g$ are Lie algebra variables. 
+\begin{remark} % naber p126
+	Note that the original function $f(X)$ is a polynomial in $X\in\g$, and
+	therefore not in the Schwartz space. This can be made more precise by
+	inserting a rapidly decaying test function $e^{-\epsilon\gen{X,X}}$ and
+	taking the limit as $\epsilon\to 0$.
+\end{remark}
+
+\vspace{1ex}\noindent
+\textbf{Manipulation 4: Horizontal projection via integration along $G$-orbits} \\
+% naber p127
+The final step is to take the horizontal projection of the element in
+$\Omega^{2m}(P\times V)$. Our strategy is to take the wedge product with a
+certain 1-form $W\in\Omega^d(P\times V)$ which contains all vertical components. 
+Thus the result will
+only contain terms which did not have a vertical part but now with a factor of 
+$W$. We would then need to integrate out the vertical part of these terms so
+that the result is the horizontal part of the original element in
+$\Omega(P\times V)$.
+
+Denote by $\omega \in \Omega^1(P\times V,\g)$ the pullback connection on
+$P\times V$, and let $\eta_1,\ldots,\eta_d$ be an orthonormal basis for $\g$. We claim that
+\[
+W := \int^B \exp(\omega) d\eta 
+= \int^B \exp(\omega_i\eta_i) d\eta = \omega_1 \wedge \cdots \omega_d
+\] 
+is the desired vertical volume form. The integral along the fiber is defined in
+the standard way.??? see wikipedia
+
+Using a local trivialisation, we can 
+by pulling back to a form on $G$ via the diffeomorphism
+$G\xrightarrow{\simeq} \pi^{-1}(x)$ induced by a local trivialisation. Then
+integrating using the Haar measure from before, 
+normalised so that the volume of $G$ is 1. 
+The integral of $W$ is 1 ???
+
+\section{Interpretation of Donaldson-Witten theory}
+We can now apply the Atiyah-Jeffrey Thom form to the infinite dimensional
+setting of Donaldson-Witten theory. 
+The spaces we now consider are 
+\begin{itemize}
+	\item principal bundle $P$: space of irreducible connections  $\mathcal{A}$ 
+		over a compact oriented 4-manifold $M$
+	\item structure group $G$: group of bundle automorphisms  $\mathcal{G}$ 
+	\item vector space $V$: self dual 2-forms $\Omega^{2,+}(\ad P)$ ??
+	\item section $s:P\to V$: self-dual part of curvature  $s=-F^+$
+\end{itemize}
+Donaldson only treats the case $G=\SU(2)$ because of singularities in the moduli
+space, however we do not worry about this (??). Since our objective is to apply the
+formula to the infinite dimensional vector space $\Omega^{2,+}(\ad P)$, complete
+rigor (for this particular application) is out of the question anyway. 
+
 Although $e(E)$ and  $\int_X e(E)$ do not make sense for
 infinite dimensional  $E$ and  $X$, the Mathai-Quillen form  $e_{s,\Delta}$ can
 be used to formally define regularized Euler numbers $\chi_s(E) := \int_X
 e_{s,\Delta}(E)$. Although not independent of $s$, these numbers  $\chi_s(E)$
 are of topological interest for certain choices of  $s$.  
+
+
+\section{TQFT as a generalisation of Mathai-Quillen}
+% section 4.2 MQintro
 
 
 \vspace{5mm}
