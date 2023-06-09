@@ -32,47 +32,151 @@ the two approaches. It relies on the construction of a form $\chi_{s,\nabla}(E)$
 the Euler class which depends
 on both a section  $s$ and connection  $\nabla$.  
 
-\section{Thom isomorphism}
+\section{Integration along the fiber}
+Let $\pi: E\to B$ be an oriented fiber bundle over a manifold $B$ with fiber $F$.
+Suppose $\dim F = m$ and $\dim B = n$.
+\begin{defn}
+	\underline{Integration along the fiber} is a map $\pi_* : \Omega^*(E)\to
+	\Omega^{*-m}(B)$, defined as follows. Let $\alpha\in \Omega^k(E)$ and
+	$v_1,\ldots,v_{k-m} \in T_bB$ 
+	\[
+	(\pi_*\alpha)_b(v_1,\ldots,v_{k-m}) = \int_{\pi^{-1}(b)}
+	\alpha(\widetilde{v}_1,\ldots,\widetilde{v}_{k-m},-)
+	\] 
+	where $\widetilde{v}_i$ is any lift of $v_i$ to $TE$. 
+\end{defn}
+The integral is taken by pulling back the form via a trivialisation $\phi 
+:F \xrightarrow{\simeq} \pi^{-1}(b)$. 
+To show that this is well defined, we need to check 
+\begin{itemize}
+	\item the integral is independent of choice of trivialisation
+	\item definition is independent of the choices of lifts
+	\item integrand is a smooth differential form on $\pi^{-1}(b)$
+	\item $\pi_*\alpha$ is a smooth differential form on $B$
+\end{itemize}
+Denote $\beta = \alpha(\widetilde{v}_1,\ldots,\widetilde{v}_{k-m},-)$.\\
+(1) Choice of trivialisation. This comes from the fact that the trivialisation
+is oriented. Let $\phi_1,\phi_2 : \to F \to \pi^{-1}(b)$ be two trivialisations,
+so $\psi:=\phi_1^{-1}\phi_2 : F \to F$ is an orientation preserving diffeomorphism. 
+Hence, the integral is locally written as 
+\[
+\int_{F} \phi_1^*\beta \odif{f_1}\ldots\odif{f_m} 
+= \int_{F} \psi^*\phi_1^*\beta  \odif{g_1}\ldots\odif{g_m}
+\] 
+where $g_i = \psi(f_i)$ are the transformed coordinates. Note that
+$\det(D\psi)=1$ by assumption, so the two integrals are equal by the change of 
+coordinates theorem. 
+
+Moreover, for vector bundles and principal bnudles, the definition is also 
+independent of the choice of oriented trivialisation with the same orientation. 
+Even if $\phi_1,\phi_2$ are taken from different trivialisations, the
+transition function $\phi_1^{-1}\phi_2: F \to F$ will be an orientation
+preserving diffeomorphism due to the extra structure on $\phi_1$ and
+$\phi_2$, i.e. linear isomorphism or $G$-equivariant map. 
+
+(2) Choice of lifts. Fix $a\in \pi^{-1}(b)$, and let $\widetilde{v}_1'$ be 
+another lift of $v_1\in T_bB$. That is, 
+$D\pi|_a(\widetilde{v}_1)=D\pi|_a(\widetilde{v}_1')=v_1$. So
+$\widetilde{v}_1'-\widetilde{v}_1\in \ker D\pi|_a = T_a(p^{-1}(b))$.  
+
+Since the fiber dimension is $m$, $m+1$ vectors 
+$w_1,\ldots,w_m,\widetilde{v}_1'-\widetilde{v}_1 \in T_a(\pi^{-1}(b))$ are
+linearly dependent, and therefore 
+\[
+\alpha(\widetilde{v}_1'-\widetilde{v}_1,
+\widetilde{v}_2,\ldots,\widetilde{v}_{k-m},w_1,\ldots,w_m) = 0
+\] 
+which shows the integrand is independent of the choice of lifts.
+
+(3) Integrand is smooth on $\pi^{-1}(b)$. Since $\alpha$ is a smooth 
+differential form, we only need to check that its dependence on the lifted 
+vectors is smooth. Given a local trivialisation $\phi : U\times F
+\xrightarrow{\simeq} \pi^{-1}(U)$, at $a\in\pi^{-1}(b)$ we can choose the lift 
+$\widetilde{v}_1 = D\phi|_{\phi^{-1}(a)}(v_1)$. This is a smooth choice, and
+hence $\alpha$ is smooth by part (2). 
+
+(4) $\pi_*\alpha$ is a smooth differential form on $B$. To see this, we need
+to write it out in coordinates. Let 
+$dx_1,\ldots,dx_{n},dt_1,\ldots,dt_m \in T^*E$ be coordinates for $E|_U$ based
+on a trivialisation, such that 
+$t_i$ are coordinate functions for $F$ and $x_i$ are coordinate functions for
+$B$. Assume $\alpha$ is homogeneous and has a factor of 
+$dt_1\wedge \cdots\wedge dt_m$, since
+otherwise $\beta$ will not be a top form on $\pi^{-1}(b)$. Then integration
+along the fiber is locally described by 
+\[
+\alpha = f(x,t_1,\ldots,t_n) \odif{t_1}\cdots \odif{t_m} \wedge \pi^*\eta 
+\mapsto \int_{\pi^{-1}(b)} f(x,t_1,\ldots,t_n) \odif{t_1}\cdots \odif{t_m}
+\wedge \pi^*\eta
+\] 
+for some $\eta\in \Omega(B)$. It is now apparent that the dependence on $x$,
+i.e. the coordinates for  $B$, is smooth. 
+
+In this chapter, we are interested in integration along the fiber for oriented
+vector bundles in particular, however the general definition will be needed
+later when we integrate over $G$-orbits of principal bundles. The case of vector
+bundles is slightly simpler, because the fiber has global coordinates. Note that
+not all differential forms are integrable, so we typically define $\pi_*$ only
+on the subset which is compactly supported, or at least compactly supported
+along the fiber. 
+\begin{prop} % Bott Tu p62
+	Integration along the fiber $\pi_*$ commutes with the exterior derivative
+	$d$.
+\end{prop}
+\begin{proof}
+	
+\end{proof}
+
+Integration along the fiber can also be defined by the property (b) in the
+following proposition, where the existence of $\pi_*\alpha$ can be seen as a 
+generalisation of Fubini's theorem.
+\begin{prop}[Projection formula] %  Bott Tu Prop 6.15 p63, BGV 1.15
+	Let $\pi : E \to B$ be a fiber bundle with  $m$-dimensional fiber $F$, and
+	both $B$ and  $E$ are oriented. 
+	\begin{enumerate}[(a), leftmargin=\parindent]
+	    \item For $\alpha\in \Omega_{cv}(E)$ and $\beta\in\Omega(B)$, 
+	\[
+		\pi_*\alpha \wedge \beta = \pi_*(\alpha\wedge \pi^*\beta)  
+	\] 
+		\item If $\alpha \in \Omega_{cv}(E)$ and $\beta\in \Omega_{c}(B)$,
+			\[
+			\int_B \pi_*\alpha \wedge \beta = \int_E \alpha\wedge \pi^*\beta
+			\] 
+	\end{enumerate}
+\end{prop}
+\begin{proof}
+	(a) Write $\alpha = f(x,t) dt_1\wedge\cdots\wedge dt_m\wedge \pi^*\eta $
+	in terms of local coordinates on $E|_U$. Then 
+	\[
+	\pi_*(\alpha\wedge \pi^*\beta)
+	= \int_{\pi^{-1}(b)}f(x,t) dt_1\wedge\cdots\wedge dt_m \wedge
+	\pi^*(\eta\wedge \beta)
+	= \pi_*(\alpha) \wedge \beta
+	\] 
+	(b) It suffices to prove this on a trivialising subset $E|_U$. Let 
+	$U\times V_\alpha$ 
+	is an open cover of this subset such that 
+	that the manifold structure of the fiber is trivial, 
+	where $U \subset B, V\subset F$. After summing over the partition of unity, 
+	the result will still hold. The integral can be written
+	\begin{align*}
+		\int_{E|_U} \alpha\wedge \pi^*\beta 
+		&= \sum_\alpha\int_{U \times V_\alpha}\alpha\wedge \pi^*\beta \\
+		&= \sum_\alpha\int_{U}\int_{V_\alpha}\alpha\wedge \pi^*\beta \\
+		&= \int_{U}\int_{\pi^{-1}(b)}\alpha\wedge \pi^*\beta \\
+		&= \int_{U}\pi_*\alpha \wedge \beta 
+	\end{align*}
+	where we have applied Fubini's theorem in the second line, and the result of
+	part (a) in the last line.
+\end{proof}
+
+
 For an orientable vector bundle $\pi:E\to M$ of rank $n$ over a manifold $M$ 
 with a finite good cover, it can be shown that  $H_c^*(E)\simeq H_c^{*-n}(M)$.\cite[Prop
 6.13]{bott_tu} 
 % TODO should I formulate Thom isomorphism only for finite good cover manifolds,
 % in particular compact manifolds
 
-Let $E$ be an oriented rank  $n$ vector bundle. We will define integration along
-the fiber $\pi_* : \Omega^*_{cv}(E) \to \Omega^{*-n}(M)$. 
-Given a local trivialisation and chart on $U_\alpha$, let $x_1,\ldots,x_m$ be 
-coordinate functions on $U_\alpha$, and  $t_1,\ldots,t_n$ be fiber coordinates
-on $E|_{U_{\alpha}}$. Then a homogeneous form $\omega\in \Omega_{cv}(E)$ either 
-contains the $n$-form  $dt_1\wedge \ldots\wedge dt_n$ as a factor, or does not. 
-In the latter case, we define $\pi_*(\omega) = 0$, and otherwise 
-\[
-\omega = (\pi^*\phi)f(x,t_1,\ldots,t_n)dt_1\wedge\ldots\wedge dt_n
-\mapsto \phi\int_{\mathbb{R}^n} f(x,t_1,\ldots,t_n) \odif{t_1}\ldots\odif{t_n}
-\] 
-where $\phi\in\Omega(M)$ and  $f$ has compact support for each fixed  $x\in M$
-since  $\omega$ is compact in the vertical direction. 
-
-% exercise 6.14 Bott Tu
-The definition of $\pi_*$ is well defined, i.e. it agrees for different local
-trivialisations, and is independent of the choice of oriented trivialisation of
- $E$. % TODO 
-
-
-% TODO move this 
-We can similarly define integration along the fiber for $\omega\in
-W(\mathfrak{g})\otimes \Omega(V)$, which can be written as $\alpha
-f(t)dt_1\wedge\ldots\wedge dt_n$ globally.
-
-
-\begin{prop}[Projection formula] % Prop 6.15 Bott Tu p63
-	(a) Let $\pi : E \to M$ be an oriented vector bundle of rank  $n$,
-	$\tau\in\Omega^*(M)$ and  $\omega\in \Omega^*(E)$ with compact support
-	along the fiber. Then 
-	 \[
-	\pi_*((\pi^*\tau)  
-	\] 
-\end{prop}
 \begin{thm}[Thom Isomorphism] % Thm 6.17 Bott Tu
 	If a vector bundle $\pi: E \to M$ is orientable with rank $n$, and $M$ has a
 	finite good cover, then 
