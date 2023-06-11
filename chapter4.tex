@@ -18,22 +18,110 @@ Conversely,
 the Mathai-Quillen formalism makes it possible to construct a cohomological field
 theory starting from a moduli problem.
 
+\section{Thom analog for principal bundles}
+Before we construct the Atiyah-Jeffrey formula, we first need to develop an
+analog of the Thom form for a principal $G$-bundle $P\to M$. Assume $G$ is
+compact with $\dim G = d, \dim M = n$. 
+We wish to construct a differential form  $W\in \Omega^d(P)$
+such that its integral along the fiber equals 1, so that by 
+Proposition \ref{prop:projection_formula}, for all $\beta\in \Omega_c^B(P)$
+\[
+\int_M \beta = \int_P \pi^*\beta \wedge W
+\] 
+Of course, we will need an orientation on $M$ and $G$, which gives the local
+product orientation on $P$.   
+
+Denote by $\omega \in \Omega^1(P,\g)$ the connection on
+$P$ induced by the metric on $P$ so that the horizontal and
+vertical subspaces are orthogonal complements. Let $\eta_1,\ldots,\eta_d$ be an 
+orthonormal basis for $\g$ consistent with the orientation on $G$.
+We will show that
+\begin{equation} \label{eq:principal_thom}
+W := \int^B \exp(\omega) d\eta 
+= \int^B \exp(\omega_a\eta_a) d\eta = \omega_1 \wedge \cdots \wedge\omega_d
+\;\in \Omega^d(P\times V)
+\end{equation}
+is the desired vertical volume form. Multiplication inside the Berezin
+integral occurs in the graded tensor product $\Omega(P)\otimes \g$, 
+so $\omega_a\eta_a$ all have degree two.
+
+The integral along the $G$-orbit 
+$\pi_*:\Omega^{*}(P\times V) \to \Omega^{*-d}(P\times_G V)$ is defined as in 
+section \ref{section:fiber_integration}, where the integral defined by 
+pulling back to a form on $G$ via a trivialisation
+$\psi:G\xrightarrow{\simeq} \pi^{-1}(x)$.   
+
+% construct left invariant metric on $G$ first
+We will now turn $G$ into Riemannian manifold by choosing a metric on $\g$, then
+extend this metric to $T_gG$ via left translations. That is, define
+$\gen{u,v}_g = \gen{DL_g^{-1}(u),DL_g^{-1}(v)}_e$ where $L_g(h) = gh$.
+By construction, this is a left-invariant metric. In fact, because $G$ is
+compact we can turn it into a
+bi-invariant metric by Haar integrating the metric, but this is not needed.
+
+\begin{prop}
+	For all $p\in P$,  $L_p^* W \in \Omega^d(G)$ is equal to the unique
+	Riemannian volume form induced by the left-invariant metric on $G$. 
+\end{prop}
+\begin{proof}
+	Let $\epsilon_1,\ldots,\epsilon_d\in T^*_eG$ be the orthonormal coframe dual
+	to $\eta_1,\ldots,\eta_d$. At a point $g\in G$, the tangent vectors are
+	transported to  $DL_g \eta_i$ while the coframe is transported to 
+	$\epsilon_i\circ DL_{g}^{-1} \in T^*_gG$, where $L_g$ is left multiplication
+	by  $g$. Then the Riemannian volume form is given by
+	\[
+	    \epsilon_1\circ DL_{g}^{-1} \wedge \cdots\wedge \epsilon_d\circ DL_{g}^{-1}
+	\] 
+	The covectors are orthonormal because the metric is left invariant. 
+	For $X\in \g$, the pullback
+	by $L_p : G \to P_{\pi(p)}$ of $\theta := \omega_a \in \Omega^1(P)$ is
+	\begin{align*}
+		(L_p^*\theta)_g(DL_g X) 
+		&= \theta_{p\cdot g}(DL_p \circ DL_g(X)) \\
+		&= \theta_{p\cdot g}(DL_{p\cdot g} (X)) \\
+		&= \theta_{p\cdot g}\paren{\odv{}{t}_{t=0} (p\cdot g \exp(tX))} \\
+		&= \epsilon_a(X)
+		= (\epsilon_a DL_g^{-1})DL_g(X)
+	\end{align*}
+	which shows that $L_p^*\omega_a = \epsilon_a\circ DL_g^{-1}$, so 
+	\[
+	L_p^* (\omega_1\wedge \cdots\omega_d)
+	= \epsilon_1\circ DL_{g}^{-1} \wedge \cdots\wedge \epsilon_d\circ DL_{g}^{-1}
+	\] 
+	as required.
+\end{proof}
+normalised so that integral along the $G$-orbit $\pi_*W = 1$. 
+\begin{cor}
+	The integral along the fiber of $W$ is  $\pi^*W = 1 \in \Omega^0(G)$
+\end{cor}
+\begin{proof}
+	Show that a trivialisation $\psi : G \to \pi^{-1}(b)$ is of the form of 
+	$L_p : G \to \pi^{-1}(b)$ where $p= \Psi(e)$
+\end{proof}
+
+
+
 
 \section{Atiyah-Jeffrey formula}
 This section derives another version of the Mathai-Quillen
 Thom form, which will be then be formally applied to the Donaldson-Witten context. 
-We consider the following setup: $G$ is a compact connected Lie group
-of dimension $d$ acting on a principal $G$-bundle  $P\to M$ of dimension  $2m+d$.
-By a similar construction as in Theorem \ref{thm:lie_inner_product}, we can
-construct an inner product on $P$ which is invariant under the action of  $G$,
-by averaging any Riemannian metric on $P$ with respect to the Haar measure on
-$G$. At each point $p\in P$, this Riemannian metric defines an orthogonal
+We consider the following setup: 
+\begin{itemize}
+	\item $G$ is a compact connected Lie group of dimension $d$
+	\item $P\to M$ is a principal $G$-bundle  of dimension  $2m+d$.
+	\item Choose an $\Ad$-invariant metric on $\g$ using Theorem 
+		\ref{thm:lie_inner_product}
+	\item Similarly, construct a metric on $P$ which is invariant under the 
+		action of  $G$, by averaging any Riemannian metric on $P$ with respect 
+		to a Haar measure  
+	\item At each point $p\in P$, this Riemannian metric defines an orthogonal
 complement to the vertical tangent space. Since these subspaces are invariant
 under the action of $G$, this determines a connection  $\omega$ on  $P$.
 Moving forward, we will solely use this connection.
-Also let $V$ be a real vector space of dimension  $2m$  with a
-representation $\rho : G \to \SO(V)$, so we can form the associated
-vector bundle $E:= P\times_G V$. 
+	\item $V$ is a real vector space, with $\dim V = 2m$ and a
+rep $\rho : G \to \SO(V)$
+	\item $E:= P\times_G V$ is the associated vector bundle.
+\end{itemize}
 
 % AJ p124, Naber p123
 Our starting point is the universal Mathai-Quillen formula
@@ -96,8 +184,8 @@ then the Fourier inversion formula states that
 	f(w) =
 	(2\pi)^{-n}\int_{W^*}\int_{W}e^{i\gen{w,y}}e^{-i\gen{z,y}}f(z)\odif{z}\odif{y}
 \] 
-Note that for a real vector space the integral is the same if we multiply the
-exponent by -1.
+Note that for a real vector space the integral is the same if we multiply both
+exponents by -1.
 If we identify $W$ with  $W^*$ via some inner product, this becomes a double
 integral over $W$. For a self-adjoint matrix $R$ with positive determinant, we
 can compute  $f(R^{-1}w)$ by making the change of variables $w \to R^{-1}w$ and
@@ -132,30 +220,16 @@ where $\lambda, \phi \in \g$ are Lie algebra variables.
 \vspace{1ex}\noindent
 \textbf{Manipulation 4: Horizontal projection via integration along $G$-orbits} \\
 % naber p127
-The final step is to take the horizontal projection of the element in
-$\Omega^{2m}(P\times V)$. Our strategy is to take the wedge product with a
-certain 1-form $W\in\Omega^d(P\times V)$ which contains all vertical components. 
-Thus the result will
-only contain terms which did not have a vertical part but now with a factor of 
-$W$. We would then need to integrate out the vertical part of these terms so
-that the result is the horizontal part of the original element in
+The final step is to take the horizontal projection of the invariant element in
+$\Omega^{2m}(P\times V)$. 
+The intuition is that taking the wedge product with the invariant 
+volume form $W\in\Omega^d(P)$, which contains all vertical components, 
+gives only terms which did not have a vertical part but now with a factor of 
+$W$. After integrating out the vertical part of these terms,  
+the result is the horizontal part of the original element in
 $\Omega(P\times V)$.
 
-Denote by $\omega \in \Omega^1(P\times V,\g)$ the pullback connection on
-$P\times V$, and let $\eta_1,\ldots,\eta_d$ be an orthonormal basis for $\g$. We claim that
-\[
-W := \int^B \exp(\omega) d\eta 
-= \int^B \exp(\omega_i\eta_i) d\eta = \omega_1 \wedge \cdots \omega_d
-\] 
-is the desired vertical volume form. The integral along the fiber is defined in
-the standard way.??? see wikipedia
-
-Using a local trivialisation, we can 
-by pulling back to a form on $G$ via the diffeomorphism
-$G\xrightarrow{\simeq} \pi^{-1}(x)$ induced by a local trivialisation. Then
-integrating using the Haar measure from before, 
-normalised so that the volume of $G$ is 1. 
-The integral of $W$ is 1 ???
+% TODO prove this as a proposition
 
 \section{Interpretation of Donaldson-Witten theory}
 We can now apply the Atiyah-Jeffrey Thom form to the infinite dimensional
