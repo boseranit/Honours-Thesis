@@ -32,7 +32,7 @@ the two approaches. It relies on the construction of a form $\chi_{s,\nabla}(E)$
 the Euler class which depends
 on both a section  $s$ and connection  $\nabla$.  
 
-\section{Integration along the fiber}
+\section{Integration along the fiber} \label{section:fiber_integration}
 Let $\pi: E\to B$ be an oriented fiber bundle over a manifold $B$ with fiber $F$.
 Suppose $\dim F = m$ and $\dim B = n$.
 \begin{defn}
@@ -56,18 +56,19 @@ To show that this is well defined, we need to check
 \end{itemize}
 Denote $\beta = \alpha(\widetilde{v}_1,\ldots,\widetilde{v}_{k-m},-)$.\\
 (1) Choice of trivialisation. This comes from the fact that the trivialisation
-is oriented. Let $\phi_1,\phi_2 : \to F \to \pi^{-1}(b)$ be two trivialisations,
-so $\psi:=\phi_1^{-1}\phi_2 : F \to F$ is an orientation preserving diffeomorphism. 
-Hence, the integral is locally written as 
+is oriented: if $\phi_1,\phi_2 : F \to \pi^{-1}(b)$ are two trivialisations,
+then $\psi:=\phi_1^{-1}\phi_2 : F \to F$ is an orientation preserving diffeomorphism. 
+Hence, on an open subset $V_\alpha \subset F$ the integral is written in
+coordinates as  
 \[
-\int_{F} \phi_1^*\beta \odif{f_1}\ldots\odif{f_m} 
-= \int_{F} \psi^*\phi_1^*\beta  \odif{g_1}\ldots\odif{g_m}
+\int_{V_{\alpha}} \phi_1^*\beta \odif{f_1}\ldots\odif{f_m} 
+= \int_{V_\alpha} \psi^*\phi_1^*\beta  \odif{g_1}\ldots\odif{g_m}
 \] 
-where $g_i = \psi(f_i)$ are the transformed coordinates. Note that
-$\det(D\psi)=1$ by assumption, so the two integrals are equal by the change of 
+where $g_i = \psi(f_i)$ are the transformed coordinate functions. Since
+$\det(D\psi)=1$ by assumption, the two integrals are equal by the change of 
 coordinates theorem. 
 
-Moreover, for vector bundles and principal bnudles, the definition is also 
+Moreover, for vector bundles and principal bundles, the definition is also 
 independent of the choice of oriented trivialisation with the same orientation. 
 Even if $\phi_1,\phi_2$ are taken from different trivialisations, the
 transition function $\phi_1^{-1}\phi_2: F \to F$ will be an orientation
@@ -95,19 +96,17 @@ vectors is smooth. Given a local trivialisation $\phi : U\times F
 $\widetilde{v}_1 = D\phi|_{\phi^{-1}(a)}(v_1)$. This is a smooth choice, and
 hence $\alpha$ is smooth by part (2). 
 
-(4) $\pi_*\alpha$ is a smooth differential form on $B$. To see this, we need
-to write it out in coordinates. Let 
-$dx_1,\ldots,dx_{n},dt_1,\ldots,dt_m \in T^*E$ be coordinates for $E|_U$ based
-on a trivialisation, such that 
+(4) $\pi_*\alpha$ is a smooth differential form on $B$. To see this, we can
+write it out in coordinates. Let 
+$dx_1,\ldots,dx_{n},dt_1,\ldots,dt_m \in T^*E|_U$ be a basis, where
 $t_i$ are coordinate functions for $F$ and $x_i$ are coordinate functions for
 $B$. Assume $\alpha$ is homogeneous and has a factor of 
 $dt_1\wedge \cdots\wedge dt_m$, since
 otherwise $\beta$ will not be a top form on $\pi^{-1}(b)$. Then integration
 along the fiber is locally described by 
 \[
-\alpha = f(x,t_1,\ldots,t_n) \odif{t_1}\cdots \odif{t_m} \wedge \pi^*\eta 
-\mapsto \int_{\pi^{-1}(b)} f(x,t_1,\ldots,t_n) \odif{t_1}\cdots \odif{t_m}
-\wedge \pi^*\eta
+\alpha = \pi^*\eta \wedge f(x,t) \odif{t_1}\cdots \odif{t_m}   
+\mapsto \eta\wedge \int_{\pi^{-1}(b)} f(x,t) \odif{t_1}\cdots \odif{t_m}
 \] 
 for some $\eta\in \Omega(B)$. It is now apparent that the dependence on $x$,
 i.e. the coordinates for  $B$, is smooth. 
@@ -124,50 +123,77 @@ along the fiber.
 	$d$.
 \end{prop}
 \begin{proof}
-	
+	Since $\pi_*$ and  $d$ are linear,
+	it suffices to prove this proposition on the restriction $E|_U \simeq
+	U\times F$ to a subset in the trivialising open cover. If $\omega\in
+	\Omega_{cv}^*(E)$, to write it in coordinates we need to further choose a
+	subset $U\times V$ which is diffeomorphic to an open neighbourhood of
+	$\mathbb{R}^{n+m}$. Then
+	we can write it locally as $\omega = \pi^*\eta \wedge f(x,t) dt_1\cdots
+	dt_n$ for some $\eta\in \Omega^*(B)$. Then 
+	\begin{align*}
+		d\pi_*\omega
+		&= d \paren{\eta\wedge \int f(x,t)\odif{t_1}\cdots\odif{t_m} } \\
+		&= d\eta\wedge\int f(x,t)\odif{t_1}\cdots\odif{t_m}  
+		+\eta\wedge \sum_i dx_i\int \partial_{x_i} f(x,t)\odif{t_1}\cdots\odif{t_m} 
+	\end{align*}
+	and 
+	\begin{align*}
+		\pi_*d\omega
+		&= \pi_*\paren[2]{\pi^*d\eta\wedge f(x,t) dt_1\cdots
+		dt_n + \pi^*\eta \wedge\sum_i \partial_{x_i}f(x,t) dx_i dt_1\cdots
+		dt_n } \\
+		&= d\eta\wedge\int f(x,t)\odif{t_1}\cdots\odif{t_m} + \eta \wedge
+		\sum_i dx_i\int \partial_{x_i} f(x,t)\odif{t_1}\cdots\odif{t_m} 
+	\end{align*}
+	where we have used $d\pi^*\eta = \pi^*d\eta$ in the first line. The proof is
+	concluded by summing over the partition of unities subordinate to
+	trivialising covers of $F$ and $E$.
 \end{proof}
-
+Therefore, $\pi_*$ descends to a well defined map on de Rham cohomology. 
 Integration along the fiber can also be defined by the property (b) in the
 following proposition, where the existence of $\pi_*\alpha$ can be seen as a 
 generalisation of Fubini's theorem.
 \begin{prop}[Projection formula] %  Bott Tu Prop 6.15 p63, BGV 1.15
+	\label{prop:projection_formula}
 	Let $\pi : E \to B$ be a fiber bundle with  $m$-dimensional fiber $F$, and
 	both $B$ and  $E$ are oriented. 
 	\begin{enumerate}[(a), leftmargin=\parindent]
 	    \item For $\alpha\in \Omega_{cv}(E)$ and $\beta\in\Omega(B)$, 
 	\[
-		\pi_*\alpha \wedge \beta = \pi_*(\alpha\wedge \pi^*\beta)  
+		\beta\wedge \pi_*\alpha = \pi_*(\pi^*\beta\wedge\alpha)  
 	\] 
 		\item If $\alpha \in \Omega_{cv}(E)$ and $\beta\in \Omega_{c}(B)$,
 			\[
-			\int_B \pi_*\alpha \wedge \beta = \int_E \alpha\wedge \pi^*\beta
+			\int_B \beta\wedge \pi_*\alpha =  \int_E \pi^*\beta\wedge\alpha
 			\] 
 	\end{enumerate}
 \end{prop}
 \begin{proof}
-	(a) Write $\alpha = f(x,t) dt_1\wedge\cdots\wedge dt_m\wedge \pi^*\eta $
+	(a) Write $\alpha = \pi^*\eta \wedge f(x,t) dt_1\wedge\cdots\wedge dt_m $
 	in terms of local coordinates on $E|_U$. Then 
 	\[
-	\pi_*(\alpha\wedge \pi^*\beta)
-	= \int_{\pi^{-1}(b)}f(x,t) dt_1\wedge\cdots\wedge dt_m \wedge
-	\pi^*(\eta\wedge \beta)
-	= \pi_*(\alpha) \wedge \beta
+	\pi_*(\pi_*\beta\wedge \alpha)
+	=\pi^*(\beta\wedge\eta)\wedge \int_{\pi^{-1}(b)}f(x,t) 
+	dt_1\wedge\cdots\wedge dt_m 	
+	= \beta\wedge\pi_*(\alpha)
 	\] 
-	(b) It suffices to prove this on a trivialising subset $E|_U$. Let 
-	$U\times V_\alpha$ 
-	is an open cover of this subset such that 
-	that the manifold structure of the fiber is trivial, 
-	where $U \subset B, V\subset F$. After summing over the partition of unity, 
-	the result will still hold. The integral can be written
+	(b) Again, it suffices to prove this on the restriction $E|_U\simeq U\times F$ to a
+	subset in the trivialising open cover of $E$. Furthermore,
+	let $U\times V_\alpha$ be a trivialising open cover of $U\times F$, 
+	where $U$ and each $V_{\alpha}\subset F$ are diffeomorphic to an open subset of
+	$\mathbb{R}^d$. After summing over the partition of unity
+	subordinate to an open cover of $E$, 
+	the result will still hold. On $E|_U$, the integral can be written
 	\begin{align*}
-		\int_{E|_U} \alpha\wedge \pi^*\beta 
-		&= \sum_\alpha\int_{U \times V_\alpha}\alpha\wedge \pi^*\beta \\
-		&= \sum_\alpha\int_{U}\int_{V_\alpha}\alpha\wedge \pi^*\beta \\
-		&= \int_{U}\int_{\pi^{-1}(b)}\alpha\wedge \pi^*\beta \\
-		&= \int_{U}\pi_*\alpha \wedge \beta 
+		\int_{E|_U} \pi^*\beta\wedge \alpha
+		&= \sum_\alpha\int_{U \times V_\alpha}\pi^*\beta\wedge \alpha \\
+		&= \sum_\alpha\int_{U}\int_{V_\alpha}\pi^*\beta\wedge \alpha
+		= \int_{U}\int_{\pi^{-1}(b)}\pi^*\beta\wedge \alpha
+		= \int_{U}\beta\wedge \pi_*\alpha 
 	\end{align*}
 	where we have applied Fubini's theorem in the second line, and the result of
-	part (a) in the last line.
+	part (a) in the last equality.
 \end{proof}
 
 
