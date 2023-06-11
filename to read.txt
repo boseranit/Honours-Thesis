@@ -1,3 +1,9 @@
+Graphs: 
+principal bundle connection from metric: cordes p159
+graph for localisation in poincare hopf theorem
+graph for tubular neighbourhood
+invariant and horizontal form 
+
 Bryan questions:
 should I include a proof of nabla^2 = F
 should I include a proof Thom isomorphism? only for compact case?
