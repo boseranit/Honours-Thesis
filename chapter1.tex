@@ -46,7 +46,7 @@ direction, we only need to verify the Leibniz rule. Thus, a choice of connection
 on $E$, defines a bijection between the space of all connections and
 $\Omega^1(M,\End E)$. There is a similar result for principal bundles.
 
-\begin{prop} % Lemma 2.9.2 MF
+\begin{prop} \label{prop:connection_space}% Lemma 2.9.2 MF
 	The space of connections $\mathcal{A}$ on a principal $G$-bundle $P\to M$ is in bijection 
 	with the vector space $\Omega^1(M,\ad P) = \Omega^1(M,P\times_{\Ad} \mathfrak{g})$.
 \end{prop}
@@ -79,28 +79,50 @@ bundle $E$.
 	$\Aut(P)$.
 \end{defn}
 
-\begin{prop} % Lemma 4.1.2 Morgan
-	The group of gauge transformations $\Aut(P)$ is isomorphic to 
-	sections $\Gamma(\Ad P)$ under fiber-wise multiplication 
+\begin{prop} \label{prop:gauge_trans_space} % Lemma 4.1.2 Morgan
+	The group of gauge transformations $\mathcal{G}=\Aut(P)$ is isomorphic to 
+	sections $\Omega_{\Ad}^0(P,G)\simeq \Omega^0(M,\Ad P)$ under fiber-wise 
+	multiplication 
 \end{prop}
+\begin{proof}
+	A gauge transformation $f : P \to P$ preserves the fibers of  $P$ and
+	satisfies  $f(p\cdot g) = f(p) \cdot g$. For a fixed $p\in P$, we have 
+	$f(p) = p\cdot \psi(p)$ for some $\psi(p)\in G$ because the action is
+	transitive. Then $f$ acts by multiplication 
+	by $\psi(p)$ on the whole fiber. Hence, $f(p) =
+	p\cdot \psi(p)$ for a smooth function  $\psi : P \to G$. 
 
-% TODO explain this and prove above
-Then $\mathcal{G}$ acts on $\mathcal{A}$ on the right by pullback 
-$\omega\mapsto f^*\omega$.
+	Substituting this into $f(p\cdot g) = f(p)\cdot g$, we find  $\psi(p\cdot g)
+	= g^{-1}\psi(p) g$ since the action is free. So $R_g^*\psi =
+	\Ad_{g^{-1}}\psi$. Hence, $\psi \in \Omega^0_{\Ad}(P,G) \simeq
+	\Omega^0(M,P\times_{\Ad}G)$. The isomorphism can be proved in the same way
+	as the associated vector bundle case.
+	Finally, note that composition of automorphisms corresponds to
+	multiplication of $\psi$ in the fibers of groups. 
+\end{proof}
+
+The purpose of Propositions \ref{prop:gauge_trans_space} and
+\ref{prop:connection_space} is two-fold: this description allows us to identify
+$\mathcal{G}$ as an infinite dimensional Lie group with Lie algebra identified
+with the space of connections; the other purpose is to define Sobolev
+completions of the spaces as in the next section.
+
+
 
 The group $\Aut(P)$ is an infinte dimensional Lie group. 
 There is a fiberwise exponential map $\exp : \Omega^0(M,\ad P) \to
 \Omega^0(M,\Ad P)$ which assigns to any section  $\sigma \in \Gamma(\ad P)$ the
 section  $s(x)=\exp(\sigma(x))$. To see that this gives a well defined map, we
-need to use the fact that  $\exp : \g \to G$ satisfies
-$\exp(g^{-1}Ag)=g^{-1}\exp(A)g$. 
+use the fact that  $\exp : \g \to G$ satisfies
+$\exp(g^{-1}Ag)=g^{-1}\exp(A)g$. The Lie bracket on $\Omega^0(M,\ad P)$ is
+defined by the fiberwise bracket, which is well defined because ????
+% TODO why well defined?
 
-The exponential map identifies $\Gamma(\ad P)$ with the tangent space at the
-identity section of the space  $\Gamma(\Ad P)$, as holds for infinite
-dimensional manifolds as well. 
-
-The action of $u \in \Aut(P)$ on a connection  $\omega\in \Omega^1(P,\g)$ is
-$u^*\omega \in \Omega^1(P,\g)$. 
+% TODO explain this 
+Then $\mathcal{G}$ acts on $\mathcal{A}$ on the right by pullback 
+$\omega\mapsto f^*\omega$.
+The action of $f \in \Aut(P)$ on a connection  $\omega\in \Omega^1(P,\g)$ is
+$f^*\omega \in \Omega^1(P,\g)$. 
 % lemma 4.3.1 Morgan u^*`w is a connection one form
 % The stabiliser of a connection A are the sections which are horizontal in A
 
@@ -348,7 +370,7 @@ ASD connections by default.
 \end{remark}
 
 The space of gauge connections $\mathcal{A}$ on a principal bundle is the
-universe bundle for the group of gauge transformations $\mathcal{G}$. (ch 15
+universal bundle for the group of gauge transformations $\mathcal{G}$. (ch 15
 Cordes)
 
 
@@ -363,46 +385,55 @@ In this section, assume $M$ is a closed,
 oriented, simply connected smooth 4-manifold with a fixed orientation of
 $H^2_+(M;\mathbb{R})$. Further assume $b_2^+(M) > 1$. 
 
-For a principal $\SU(2)$-bundle  $P\to M$ with  $c_2(P) > 0$, let 
+Let $P\to M$ be a principal $\SU(2)$-bundle with  $c_2(P) > 0$, let 
 \[
 d = 4c_2(P) - \frac{3}{2}(1+b_2^+(M))
 \] 
-Note that $d$ is half of the formal dimension of the moduli space
-$\mathcal{M}^*(P)$. The Donaldson polynomial invariant associated to $P$ is a
-$\mathbb{Q}$-valued symmetric multilinear function of degree  $d$ on  
-$H_2(M;\mathbb{Z})$ 
+which is half of the formal dimension of the moduli space
+$\mathcal{M}^*(P)$. The Donaldson invariant associated to $P$ is a
+symmetric multilinear function of degree  $d$ on $H_2(M;\mathbb{Z})$ 
 \[
 \gamma_d(M) : H_2(M;\mathbb{Z})^{\otimes d} \to \mathbb{Q}
 \] 
-In order to define the Donaldson polynomial invariants, we define a map 
-
-% TODO check what is written and rephrase most of it
-The rough idea is to integrate the resulting classes (which classes???) over the
-fundamental class of the moduli space of ASD connections in order to give an
-element in the polynomial algebra on  $H^2(M,\mathbb{Z})$. The resulting element
-is the Donaldson invariant. 
-
-The moduli space is not compact, but restrcting $\mu$ to the moduli space
-induces a map from the polynomial algebra on  $H_2(M;\mathbb{Z})$ to
-$H^2(\mathcal{M}^*(P);\mathbb{Z})$. Then we define a compactification of the
-moduli space and extending the map from the polynomial algebra on the homology
-of $B$ into the cohomology ring of this compactification. Finally we can
-integrate over the fundamental cycle in order to define the invariants.
-
-
-Recall that we have a principal $\SO(3)$-bundle  $\xi:=\mathcal{A}_2^*(P)\times
-_{\mathcal{G}_3(P)} P \to \mathcal{B}^*(P) \times M$. 
-The slant product with the Pontrjagin class $p_1(\xi)$ defines a homomorphism 
-\[
-H_2(M;\mathbb{Z}) \to H^2(\mathcal{B}_2^*(P);\mathbb{Z})
-\qquad x\mapsto p_1(\xi)/ x
+Very roughly, the idea behind the definition is as follows: The Donaldson $\mu$ 
+map $\mu: H_2(M,\mathbb{Z}) \to H^2(\mathcal{M}^*(P),\mathbb{Z})$ associates
+homology classes in $M$ to cohomology classes in the moduli space. 
+Since the moduli space is not compact, we need to define the Uhlenbeck 
+compactification $\overline{\mathcal{M}}(P)$ of the
+moduli space and extend the $\mu$ map to take values in
+$H^2(\overline{\mathcal{M}}(P),\mathbb{Z})$.
+For $x_1,\ldots,x_d \in H_2(M,\mathbb{Z})$, we have $\mu(x_1),\ldots,\mu(x_d)\in
+H^2(\overline{\mathcal{M}}(P),\mathbb{Z})$ and we define the invariant to be the integral
+over the moduli space
+ \[
+\gamma_d(x_1,\ldots,x_d) 
+= \int_{\overline{\mathcal{M}}(P)} \mu(x_1)\wedge \cdots\wedge \mu(x_d)
 \] 
-Restricting this map to $\mathcal{M}^*(P) \subset \mathcal{B}_2^*(P)$ gives the
-map 
-\[
-\mu : H_2(M;\mathbb{Z}) \to H^2(\mathcal{M}^*(P),\mathbb{Z})
-\]
+Hence, the Donaldson invariant can be interpreted as 
+an element in the polynomial algebra of $H^2(M,\mathbb{Z})$, i.e. dual to
+$H_2(M,\mathbb{Z})$.  
 
+% naber donaldson theory p59
+The definition of the $\mu$ map relys on a certain $\SO(3)$-bundle, which we now
+sketch. We drop the Sobolev subscripts (rephrase). 
+Consider the principal $\mathcal{G}$-bundle
+\[
+\mathcal{A}^* \times P  \to \mathcal{A}^* \times_\mathcal{G} P 
+\]
+where the action is given by $(\omega,p)\cdot f = (f^*\omega, f^{-1}(p))$.
+This action is free because the elements of $\mathcal{A}^*$ are irreducible:
+$(f^*\omega,f^{-1}(p)) = (\omega,p)$ implies $f$ is a stabiliser of  $\omega$,
+and  $f^{-1}(p)=p$ leaves only the possibility that $f=\id$.
+
+There is a natural map $\mathcal{A}^* \times_\mathcal{G} P \to
+\mathcal{B}^*(P)\times M$ given by $[\omega,p] \mapsto ([\omega],\pi(p))$.
+The $\SU(2)$ action on  $\mathcal{A}^*\times P$ given by multiplication on $P$
+descends to the quotient $\mathcal{A}^* \times_\mathcal{G} P$ because it 
+commutes with the  $\mathcal{G}$ action.
+But this action $[\omega,p]\cdot g = [\omega,p\cdot g]$ is not free because 
+$g$ is a stabiliser if and only if $g=\pm \id\in \SU(2)$. Thus, there is a free
+$\SU(2) /\id \simeq \SO(3)$ action on  $\mathcal{A}^*\times_{\mathcal{G}} P$ and
+this becomes a principal $\SO(3)$-bundle.
 
 \vspace{5mm}
 \hrule 
