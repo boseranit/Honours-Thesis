@@ -18,18 +18,18 @@ Conversely,
 the Mathai-Quillen formalism makes it possible to construct a cohomological field
 theory starting from a moduli problem.
 
-\section{Thom analog for principal bundles}
+\section{Thom form analog for principal bundles}
 Before we construct the Atiyah-Jeffrey formula, we first need to develop an
 analog of the Thom form for a principal $G$-bundle $P\to M$. Assume $G$ is
-compact with $\dim G = d, \dim M = n$. 
+a connected compact Lie group with $\dim G = d, \dim M = n$. 
 We wish to construct a differential form  $W\in \Omega^d(P)$
 such that its integral along the fiber equals 1, so that by 
 Proposition \ref{prop:projection_formula}, for all $\beta\in \Omega_c^B(P)$
-\[
-\int_M \beta = \int_P \pi^*\beta \wedge W
-\] 
+\begin{equation} \label{eq:principal_thom_local}
+	\int_M \beta = \int_P \pi^*\beta \wedge W
+\end{equation}
 Of course, we will need an orientation on $M$ and $G$, which gives the local
-product orientation on $P$.   
+product orientation on $P$ (see \cite[p.64]{bott_tu}).   
 
 Denote by $\omega \in \Omega^1(P,\g)$ the connection on
 $P$ induced by the metric on $P$ so that the horizontal and
@@ -39,7 +39,7 @@ We will show that
 \begin{equation} \label{eq:principal_thom}
 W := \int^B \exp(\omega) d\eta 
 = \int^B \exp(\omega_a\eta_a) d\eta = \omega_1 \wedge \cdots \wedge\omega_d
-\;\in \Omega^d(P\times V)
+\;\in \Omega^d(P)
 \end{equation}
 is the desired vertical volume form. Multiplication inside the Berezin
 integral occurs in the graded tensor product $\Omega(P)\otimes \g$, 
@@ -52,28 +52,29 @@ pulling back to a form on $G$ via a trivialisation
 $\psi:G\xrightarrow{\simeq} \pi^{-1}(x)$.   
 
 % construct left invariant metric on $G$ first
-We will now turn $G$ into Riemannian manifold by choosing a metric on $\g$, then
-extend this metric to $T_gG$ via left translations. That is, define
-$\gen{u,v}_g = \gen{DL_g^{-1}(u),DL_g^{-1}(v)}_e$ where $L_g(h) = gh$.
+We will now turn $G$ into Riemannian manifold by 
+extending a metric on $\g$ to $T_gG$ via left translations. That is, define
+$\gen{u,v}_g = \gen[*]{DL_g^{-1}(u),DL_g^{-1}(v)}_e$ where $u,v\in T_gG,L_g(h) = gh$.
 By construction, this is a left-invariant metric. In fact, because $G$ is
-compact we can turn it into a
-bi-invariant metric by Haar integrating the metric, but this is not needed.
+connected and compact we can turn it into a
+bi-invariant metric by Haar integrating the metric: $\gen{u,v}:=\int_G
+\gen{DR_gu,DR_g v}$.
 
 \begin{prop}
 	For all $p\in P$,  $L_p^* W \in \Omega^d(G)$ is equal to the unique
-	Riemannian volume form induced by the left-invariant metric on $G$. 
+	Riemannian volume form induced by the bi-invariant metric on $G$. 
 \end{prop}
 \begin{proof}
 	Let $\epsilon_1,\ldots,\epsilon_d\in T^*_eG$ be the orthonormal coframe dual
 	to $\eta_1,\ldots,\eta_d$. At a point $g\in G$, the tangent vectors are
 	transported to  $DL_g \eta_i$ while the coframe is transported to 
 	$\epsilon_i\circ DL_{g}^{-1} \in T^*_gG$, where $L_g$ is left multiplication
-	by  $g$. Then the Riemannian volume form is given by
+	by  $g$. Then the unique Riemannian volume form is given by
 	\[
 	    \epsilon_1\circ DL_{g}^{-1} \wedge \cdots\wedge \epsilon_d\circ DL_{g}^{-1}
 	\] 
-	The covectors are orthonormal because the metric is left invariant. 
-	For $X\in \g$, the pullback
+	The covectors are orthonormal in the induced metric on $T^*G$ because the 
+	metric is left invariant. For $X\in \g$, the pullback
 	by $L_p : G \to P_{\pi(p)}$ of $\theta := \omega_a \in \Omega^1(P)$ is
 	\begin{align*}
 		(L_p^*\theta)_g(DL_g X) 
@@ -83,29 +84,75 @@ bi-invariant metric by Haar integrating the metric, but this is not needed.
 		&= \epsilon_a(X)
 		= (\epsilon_a DL_g^{-1})DL_g(X)
 	\end{align*}
-	which shows that $L_p^*\omega_a = \epsilon_a\circ DL_g^{-1}$, so 
+	where the second and third lines are applications of the chain rule, and the
+	last line uses the property $\omega(\underline{X}) = X$ of a
+	connection 1-form.
+	This shows that $L_p^*\omega_a = \epsilon_a\circ DL_g^{-1}$, so 
 	\[
 	L_p^* (\omega_1\wedge \cdots\omega_d)
 	= \epsilon_1\circ DL_{g}^{-1} \wedge \cdots\wedge \epsilon_d\circ DL_{g}^{-1}
 	\] 
 	as required.
 \end{proof}
-normalised so that integral along the $G$-orbit $\pi_*W = 1$. 
+Assume that the metric on $G$ is normalised so that the volume of $G$ is 1.
+In turn, we can show that the integral along the $G$-orbit $\pi_*W = 1$. 
 \begin{cor}
 	The integral along the fiber of $W$ is  $\pi^*W = 1 \in \Omega^0(G)$
 \end{cor}
 \begin{proof}
-	Show that a trivialisation $\psi : G \to \pi^{-1}(b)$ is of the form of 
-	$L_p : G \to \pi^{-1}(b)$ where $p= \Psi(e)$
+	For $b\in M$, by definition we have $\pi^*W = \int_{\pi^{-1}(b)} W$ which is
+	is computed by pulling back $W$ by a 
+	local trivialisation $\psi : G \to \pi^{-1}(b)$. 
+	Let $p=\psi(e)$, then $\psi(g) = \psi(e)\cdot g = p\cdot g = L_p(g)$ because
+	$\psi$ is a  $G$ equivariant map. Then by the previous proposition, the
+	pullback form $L_p^*W$ equals same volume form on $G$ at every point in the 
+	fiber. Therefore, $\pi_*W = 1$ is the constant function on  $G$.
+\end{proof}
+
+\begin{prop} \label{prop:integral_horizontal_proj}
+	Suppose $\eta \in \Omega^k(P)$ is an invariant differential form, then
+	 $\pi_*(\eta \wedge W) \in \Omega^k(M)$ is the horizontal projection of 
+	 $\eta$ onto $M$.
+\end{prop}
+\begin{proof}
+	Let $b\in M, p\in \pi^{-1}(b)$. 
+	We know  $W$ is a top form on the vertical tangent space, 
+	since  $\omega_a$ are all linearly independent in $V_p^*P$. Let
+	$dx_1,\ldots,dx_n \in H_p^*P$ be an orthonormal basis for the horizontal
+	cotangent space. 
+
+	WLOG assume $\eta$ is homogeneous. If $\eta$ contains any factor of
+	$\omega_a$, then its evaluation on all horizontal vectors will be zero, which
+	agrees with $\pi_*(\eta\wedge W) = 0$. Now suppose $\eta = dx_I$, for 
+	an ordered multi-index $I\subset\{1,\ldots,n\}$.
+	By definition of the fiber integral, for $v_1,\ldots,v_k \in T_bM$
+	\begin{align*}
+		\pi_*(\eta\wedge W)_b(v_1,\ldots,v_k) 
+		= \int_{\pi^{-1}(b)} (\eta\wedge W)(\widetilde{v}_1,\ldots,\widetilde{v}_n,-)
+	\end{align*}
+	where $\widetilde{v}_i \in TP$ is any lift of $v_i$. In particular, at a
+	point $p\in \pi^{-1}(b)$, we can choose them to be horizontal lifts, then
+	extend to the whole fiber by right translation $R_g$. Note that if  $v\in H_pP$, is
+	horizontal, then  $DR_g(v) \in H_{p\cdot g}P$ is still horizontal because 
+	the connection form $\omega$ satisfies  $\Ad_g R_g^* \omega = \omega$. 
+	\begin{align*}
+		\pi_*(\eta\wedge W)_b(v_1,\ldots,v_k) 
+		&= \int_{\pi^{-1}(b)} \eta(\widetilde{v}_1,\ldots,\widetilde{v}_n)\wedge W \\
+		&= \eta_p(\widetilde{v}_1,\ldots,\widetilde{v}_n)\int_{\pi^{-1}(b)} W \\
+		&= \eta_p(\widetilde{v}_1,\ldots,\widetilde{v}_n) 
+	\end{align*}
+	the second line follows from $\eta$ being an invariant form: 
+	$R_g^*\eta = \eta$ and that is how we've chosen the lifted horizontal
+	vectors. 
 \end{proof}
 
 
-
-
 \section{Atiyah-Jeffrey formula}
-This section derives another version of the Mathai-Quillen
-Thom form, which will be then be formally applied to the Donaldson-Witten context. 
-We consider the following setup: 
+This section is a much more thorough explanation of section 2 of the paper by
+\citet{atiyahlagrangians}, where a formula for the Euler number is obtained
+starting from the Mathai-Quillen Thom form. 
+The purpose is to formally apply it to the Donaldson-Witten context in the next
+section. We consider the following setup: 
 \begin{itemize}
 	\item $G$ is a compact connected Lie group of dimension $d$
 	\item $P\to M$ is a principal $G$-bundle  of dimension  $2m+d$.
@@ -138,8 +185,11 @@ where $\chi = (e_1,\ldots,e_{2m})$ is a basis for $V$.
 \textbf{Manipulation 1: Replace $\Omega$ with  $d\omega$} \\
 Recall that we can obtain a Thom form on $E$ via the Cartan map, which is given
 by $\alpha\to \operatorname{Hor}(p_2^*\alpha(\Omega)) \in \Omega(P\times V)_{bas}$, 
-where $p_2:P\times V\to V$ is the projection onto $V$.  
-The curvature is related to the connection by 
+where $p_2:P\times V\to V$ is the projection onto $V$, and $\Omega$ is the
+curvature form associated to the connection $\omega$ induced by the
+metric on $P\times V$.
+
+The structural equation gives the relation
 $\Omega = d\omega + \frac{1}{2}[\omega\wedge \omega]$, but $\omega=0$ on
 horizontal vectors (by definition of horizontal subspace). Since the Cartan map
 then only evaluates on the horizontal projection of tangent vectors, we can 
@@ -149,22 +199,28 @@ replace  $\Omega$ by  $d\omega$ in the Cartan map.
 \textbf{Manipulation 2: Replace $d\omega$ with  $R^{-1}dC^*$} \\
 Recall that $C_p : \mathfrak{g} \to V_pP$ defined by  $C_p(X) = \odv{}{t}_{t=0}
 (p\cdot \exp(tX))$ is the canonical identification of the Lie algebra with the
-vectical tangent space at $p\in P$. Both spaces are inner product vector spaces,
-and hence $C_p$ has an adjoint  $C_p^* : T_pP \to \g$. For $X,Y\in \g$, it
+vectical tangent space at $p\in P$. Define $C_p^{-1} : T_pP \to \g$ on
+$T_pP=H_pP\oplus V_pP$ by
+defining the image of the horizontal subspace to be zero. 
+Therefore if $\omega\in \Omega(P,\g)$ is 
+the connection 1-form, then $\omega_p(X) = C_p^{-1}(X)$ since they agree on
+all tangent vectors. 
+
+Both $\g$ and  $T_P$ are inner product vector spaces,
+so $C_p$ has an adjoint  $C_p^* : T_pP \to \g$. For $X,Y\in \g$, it
 satisfies 
 \[
 	\gen{C_p(X), C_p(Y)} = \gen[*]{C_p^*C_p(X),Y}_{\g} = \gen{R_p X, Y}_{\g}
 \] 
-where $R := C_p^*\circ C_p : \g \to \g$. It is clear that $R_p$ is self-adjoint
+where $R_p := C_p^*\circ C_p : \g \to \g$. It is clear that $R_p$ is self-adjoint
 and an isomorphism since $C_p$ is an isomorphism. 
 Also note that $C_p^*$ vanishes on horizontal vectors, as 
 $\gen[*]{X,C_p^*(v)} = \gen{C_p(X),v}$ vanishes on
 all horizontal $v\in T_p$ due to $C_p(X)\in V_pP$. 
 
-If $\omega\in \Omega(P,\g)$ is 
-the connection 1-form, then $\omega_p(X) = C_p^{-1}(X)$. Thus, we have the
+Hence, we have the
 pointwise matrix equation $C^* = R\omega$, or $\omega = R^{-1}C^*$. From this,
-we compute its differential 
+we compute its differential to be
 \[
 d\omega = R^{-1} dC^* + dR^{-1} \wedge C^*
 \] 
@@ -195,17 +251,17 @@ The inversion formula becomes
 f(R^{-1}w) = (2\pi)^{-n}\iint_W e^{i\gen{w,y}}e^{-i\gen{z,Ry}}f(z)\det R\odif{z}\odif{y}
 \] 
 We now consider the universal Mathai-Quillen element as a $\Omega(V)$-valued 
-function $f:\g \to \Omega(V)$ on the vector space $\g$, 
+function $U:\g \to \Omega(V)$ on the vector space $\g$, 
 \[
-f(X) = (2\pi)^{-m}e^{-\abs{x}^2}\int^B
-	\exp\paren{\frac{1}{2}\chi^{\intercal}\rho_*(X)\chi - idx^\intercal \chi}
+U(\phi) = (2\pi)^{-m}e^{-\abs{x}^2}\int^B
+	\exp\paren{\frac{1}{2}\chi^{\intercal}\rho_*(\phi)\chi - idx^\intercal \chi}
 	\odif{\chi}
 \] 
 which we wish to
 evaluate at $R^{-1}dC^* \in \Omega^2(P,\g)$. By the inversion formula above,
 \begin{align} \label{eq:fourier_thom}
-	f(R^{-1}dC^*) = (2\pi)^{-d-m}e^{-\abs{x}^2}\iint_{\g}\int^B 
-	&\exp\Big(\frac{1}{2}\chi^{\intercal}\rho_*(X)\chi - idx^\intercal \chi\\
+	U(R^{-1}dC^*) = (2\pi)^{-d-m}e^{-\abs{x}^2}\iint_{\g}\int^B 
+	&\exp\Big(\frac{1}{2}\chi^{\intercal}\rho_*(\phi)\chi - idx^\intercal \chi\\
 	&+i\gen{dC^*,\lambda}-i\gen{\phi,R\lambda}\Big) \det R
 	\odif{\chi} \odif{\phi}\odif{\lambda} \nonumber
 \end{align}
@@ -221,31 +277,101 @@ where $\lambda, \phi \in \g$ are Lie algebra variables.
 \textbf{Manipulation 4: Horizontal projection via integration along $G$-orbits} \\
 % naber p127
 The final step is to take the horizontal projection of the invariant element in
-$\Omega^{2m}(P\times V)$. 
+$\Omega^{2m}(P\times V)$ into $\Omega^{2m}(P\times_\rho V)$ using Proposition
+\ref{prop:integral_horizontal_proj}. 
 The intuition is that taking the wedge product with the invariant 
-volume form $W\in\Omega^d(P)$, which contains all vertical components, 
-gives only terms which did not have a vertical part but now with a factor of 
+volume form $W\in\Omega^d(P\times V)$ introduced in the previous section 
+kills all the vertical components. Hence we are only left with
+terms which did not have a vertical part but now with a factor of 
 $W$. After integrating out the vertical part of these terms,  
 the result is the horizontal part of the original element in
 $\Omega(P\times V)$.
 
-% TODO prove this as a proposition
+In order to define $W\in \Omega^d(P\times V)$, we use the connection $\omega$ 
+on $P\times V$, and assume $M$ is an oriented manifold. Also we
+extend the metric on  $\g$ to a left-invariant Riemannian metric on $G$ as before.
+Recall that the invariant volume form $W$ can be written as the Berezin integral
+\[
+W = \int^B \exp(\omega) \odif{\eta_1}\cdots \odif{\eta_d}
+\] 
+where $\eta_1,\ldots,\eta_d$ is an orthonormal basis for $\g$ consistent with
+the orientation. We wish to rewrite $W$ using the relation $\omega = R^{-1}C^*$,
+and we claim that this gives 
+\[
+W = (\det R)^{-1}\int^B \exp(C^*) \odif{\eta_1}\cdots \odif{\eta_d}
+\] 
+Let us write $C^* = a_i\eta_i$, where  $a_i \in \Omega^1(P\times V)$. 
+If the top degree term of $\exp(C^*)$ is  $A \eta_1\wedge\cdots\eta_d$, then
+the top degree term in $\exp(R^{-1}C^*)$ is 
+\[
+A (R^{-1}\eta_1)\wedge\cdots\wedge(R^{-1}\eta_d)
+=(\det R^{-1}) A \eta_1\wedge\cdots\wedge\eta_d
+\] 
+which proves the claim, since $\det R^{-1} = (\det R)^{-1}$.
+Taking the wedge product of the form 
+$U(R^{-1}dC^*) \in \Omega^{2m}(P\times V)$ in equation 
+(\ref{eq:fourier_thom}) with $W$,
+\begin{align} \label{eq:AJ_formula_thom}
+U(R^{-1}dC^*)\wedge W	
+= (2\pi)^{-d-m}e^{-\abs{x}^2}\iint_{\g}&\iint^B 
+	\exp\Big(\frac{1}{2}\chi^{\intercal}\rho_*(\phi)\chi - idx^\intercal \chi\\
+	&+i\gen{dC^*,\lambda}-i\gen{\phi,R\lambda} + C^*\Big)  \odif{\eta}
+	\odif{\chi} \odif{\phi}\odif{\lambda}  \nonumber 
+\end{align}
+Note that $C^*$ should be interpreted as a combination in the $\eta$ variables. 
+In this step we have only taken the wedge product with $W$, so we would be left 
+with a differential form on  $P\times V$, which we would need to integrate along 
+the fibers to obtain the Thom form on $P\times_\rho V$. 
+
+\vspace{1ex}\noindent
+\textbf{Manipulation 5: Euler number of associated vector bundle} \\
+% naber p131
+Recall that the pullback by any section $s:M\to P\times_\rho V$ will give a
+representative of the Euler class. 
+Then the integral over $M$ (assuming $M$ is compact) is the Euler number of the 
+vector bundle, which is a topological invariant by the Chern-Weil homomorphism. 
+But any section of the associated bundle is of the form $x\mapsto
+[s(x),S(s(x))]$ where $s$ is a section of  $P$ and  $S:P \to V$ can be extended
+to a $\rho$-equivariant map $S(p\cdot g)=\rho(g^{-1})S(p)$. 
+
+We claim that instead of integrating over the fiber, pulling back by $s$, then
+integrating over $M$, we can just pullback by  $S$ to a form on $P$ then
+integrate over $P$, that is,
+$\int_P S^*(U(R^{-1}dC^*) \wedge W) = \int_M s^*(\int_G U(R^{-1}dC^*)\wedge W)$
+
+\begin{align} \label{eq:AJ_formula_euler}
+S^*(U(R^{-1}dC^*)\wedge W)	
+= &(2\pi)^{-d-m}\iint_{\g}\iint^B 
+\exp\Big(\!\!-\abs{S}^2+\frac{1}{2}\chi^{\intercal}\rho_*(\phi)\chi \\
+	&- idS^\intercal \chi
+	+i\gen{dC^*,\lambda}-i\gen{\phi,R\lambda} + C^*\Big)  \odif{\eta}
+	\odif{\chi} \odif{\phi}\odif{\lambda}  \nonumber 
+\end{align}
+, and
+the result is called the Atiyah-Jeffrey formula for the Euler number.
 
 \section{Interpretation of Donaldson-Witten theory}
-We can now apply the Atiyah-Jeffrey Thom form to the infinite dimensional
-setting of Donaldson-Witten theory. 
-The spaces we now consider are 
+We can now apply the Atiyah-Jeffrey formula for the Euler number to the infinite 
+dimensional setting of Donaldson-Witten theory. As eloquently put by \citet{naber},
+the content of this section is not mathematics, and certainly not physics. The
+objective is to find an analogue of the Euler number of the
+infinite-dimensional vector bundle associated with the Donaldson invariant. In
+the process, the well defined integrals transmute into Feynman integrals
+over spaces of fields, with their accompanying mathematical difficulties.  
+% some may argue that this is meaningless manipulation of symbols 
+
+The objects we consider are 
 \begin{itemize}
-	\item principal bundle $P$: space of irreducible connections  $\mathcal{A}$ 
+	\item principal bundle $P$: space of irreducible connections  $\mathcal{A}^*$ 
 		over a compact oriented 4-manifold $M$
 	\item structure group $G$: group of bundle automorphisms  $\mathcal{G}$ 
-	\item vector space $V$: self dual 2-forms $\Omega^{2,+}(\ad P)$ ??
+	\item vector space $V$: self dual 2-forms $\Omega^{2,+}(M,\ad P)$ 
 	\item section $s:P\to V$: self-dual part of curvature  $s=-F^+$
 \end{itemize}
 Donaldson only treats the case $G=\SU(2)$ because of singularities in the moduli
 space, however we do not worry about this (??). Since our objective is to apply the
 formula to the infinite dimensional vector space $\Omega^{2,+}(\ad P)$, complete
-rigor (for this particular application) is out of the question anyway. 
+rigor is out of the question for this particular application anyway. 
 
 Although $e(E)$ and  $\int_X e(E)$ do not make sense for
 infinite dimensional  $E$ and  $X$, the Mathai-Quillen form  $e_{s,\Delta}$ can
