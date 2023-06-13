@@ -33,8 +33,8 @@ the Euler class which depends
 on both a section  $s$ and connection  $\nabla$.  
 
 \section{Integration along the fiber} \label{section:fiber_integration}
-Let $\pi: E\to B$ be an oriented fiber bundle over a manifold $B$ with fiber $F$.
-Suppose $\dim F = m$ and $\dim B = n$.
+Let $\pi: E\to B$ be an oriented fiber bundle over a manifold $B$ with oriented
+fiber $F$. Suppose $\dim F = m$ and $\dim B = n$.
 \begin{defn}
 	\underline{Integration along the fiber} is a map $\pi_* : \Omega^*(E)\to
 	\Omega^{*-m}(B)$, defined as follows. Let $\alpha\in \Omega^k(E)$ and
@@ -493,14 +493,13 @@ Pullback by zero section is Pfaffian.
 % cordes pg 103
 Let $E\to M$ be an oriented vector bunde or rank  $n$ with a
 metric and compatible connection, and fiber $V$. 
-Let $P=\Fr_{\SO}(E)$, so 
-$E$ can be identified as the associated bundle $P\times_G V$ with the
-induced connection. 
+Then $E$ can be identified as the associated bundle $\Fr_{\SO}(E)\times_{\SO} V$ 
+with the induced connection. 
 
-More generally, let $G$ be a connected Lie group and 
-consider a principal $G$-bundle  $P\to M$ over a manifold of
-dimension $n$ with a connection. Let $\rho : G \to \SO(V)$ be a representation 
-on a vector bundle of rank  $n$. 
+More generally, consider a connected Lie group $G$ and 
+principal $G$-bundle  $P\to M$ over a manifold of
+dimension $n$ with a connection $\omega$. Let $\rho : G \to \SO(V)$ be a 
+representation of rank $n$ (same as $\dim M$). 
 This determines the associated vector bundle  $E:=P\times_\rho V \to M$
 with typical fiber $V$. 
 
@@ -508,17 +507,20 @@ with typical fiber $V$.
 % naber p113
 % guillemin 7.2, ch10
 % constantinescu 2.2
-The Cartan map associated to the 
-connection on $P\times V$ can be viewed as a map 
+Let $p_1,p_2$ be the projection maps from $P\times V$ to  $P$ and  $V$
+respectively. Note that both maps are $G$-equivariant, where 
+$V$ is considered as a $G$-manifold with action $v\cdot g = \rho(g)^{-1} v$.
+The principal bundle $P\times V \to P\times_\rho V$ has the connection 
+$p_1^*\omega$ (the reader should check this is a valid connection).
+The Cartan map associated to this 
+connection gives the homomorphism
 \[
-	\Omega_G(V) \simeq (S(\mathfrak{g}^*)\otimes \Omega(V))^G 
+	\Omega_G(V) \xrightarrow{p_2^*} \Omega_G(P\times V) 
 	\xrightarrow{\operatorname{Car}_{\omega}} \Omega(P\times V)_{bas}\simeq
 	\Omega(E)
 \] 
-given by $\alpha\otimes f \mapsto \operatorname{Hor}_{\omega}(\alpha(\Omega) 
-\wedge p_2^* f)$, where $p_2 : P\times V \to V$ is the projection onto $V$.
-Here $V$ is considered as a $\SO(n)$-manifold. 
-Since  $P\times V \to P\times_G V \simeq E$ is a principal bundle,
+given by $\alpha \mapsto \operatorname{Hor}_{\omega}((p_2^*\alpha)(\Omega))$. 
+Since  $P\times V \to E$ is a principal bundle,
 $\Omega^*(E)\simeq \Omega^*(P\times V)_{bas}$ by definition of basic forms on a
 principal bundle.
 
@@ -573,28 +575,76 @@ Therefore, $w \circ i$ is a $\mathfrak{g}$-dga morphism and descends to the map
 \end{itemize}
 \end{comment}
 
+% def depends on next proposition
 \begin{defn} 
+	An element $U\in (S(\g^*)\otimes \Omega(V))^G$ is a
+	\underline{universal Thom form} if for any principal $G$-bundle $P\to M$ 
+	with a connection, a representation $\rho : G\to \SO(V)$ and oriented
+	associated bundle $P\times_\rho V$, the
+	Cartan map $\operatorname{Car}_{\omega} : \Omega_{G}(V) \to
+	\Omega(P\times_\rho V)$
+	carries $U$ to a form representing the Thom class of $P\times_\rho V$.
+
+	\begin{comment}
 	A form $U\in (S(\so(V)^*)\otimes \Omega_{cv}(V))^G$ is a
 	\underline{universal Thom form} if for any oriented vector
 	bundle $E$ of rank $n$ with a metric and compatible connection, the 
 	Cartan map $\operatorname{Car}_{\omega} : \Omega_{\SO(V)}(V) \to \Omega(E)$
 	carries $U$ to a form representing the Thom class of $E$.
+	\end{comment}
 \end{defn} 
 
+The integral over $V$ for equivariant forms
+is a map  $\int_V : S(\g^*)\otimes \Omega(V) \to S(\g^*)$ defined by 
+$\paren{\int_V \alpha}(X) = \int_V \alpha(X)$, where elements of $S(\g^*)$ are 
+viewed as  polynomials on $\g$. 
+
 \begin{prop} 
-	A differential form $U\in (S(\mathfrak{g}^*)\otimes \Omega_{cv}(V))^G$ is a 
-	universal Thom form if and only $U$ is closed and  $\int_V U = 1$.
+	A differential form $U\in (S(\mathfrak{g}^*)\otimes \Omega(V))^G$ is a 
+	universal Thom form if and only if $U$ is closed and  $\int_V U = 1$.
 \end{prop}
 \begin{proof}
-	Denote $\overline{U}\in \Omega(P\times V)_{bas}$ to be the image of the
-	Weil homomorphism $\overline{w}$. Then $\overline{U}$ will be closed because
-	$\overline{w}$ is commutes with the differential operators. 
+	Assume we have the same objects as above.
+	When we pull back the form on $\Omega(V)$ to $\Omega(P\times V)$, it
+	will still be a basic element because the projection $p_2$ is 
+	$G$-equivariant. Next, the image of Weil homomorphism   
+	$(S(\g)^*\otimes \Omega(P\times V))^G \to \Omega(P\times V)_{hor}$ 
+	will be closed because it
+	commutes with the differential operators. Finally, the result
+	after taking the horizontal projection is also closed. 
 
-	It only remains to check that integration along the fiber gives 1. 
+	% guillemin p157
+	It remains to check that integration along the fiber of
+	$\tau:=\operatorname{Car}_{\omega}(p_2^*U)\in\Omega(E)$ equals 
+	$1\in\Omega^0(M)$. 
+	Fix a point $x_0\in M$, let $P_0=\pi^{-1}(x_0)$ be the fiber over $x_0$
+	and $E_0$ be the fiber of $E$ over  $x_0$. 
+	The fiber integral of $\tau$ only depends on the value of $\tau$ at the
+	tangent space of the fiber submanifold, i.e. in the vertical direction (see
+	figure ???). 
+	So to evaluate the fiber integral at any point in $E_0$, it suffices to 
+	consider the restriction to the principal $G$-bundle 
+	$P_0\times V \to E_0$.
+
+	The tangent space at $(p,v)\in P_0\times V$ 
+	is $V_pP \oplus V$. But the connection on $P\times V$ is the pullback 
+	$p_1^*\omega$, which is constant in the $V$ direction, and the curvature
+	form vanishes on  $V_pP\oplus V$ since it is also a horizontal form. 
+	If $\alpha_1,\ldots,\alpha_d$ is a dual basis for
+	$\g^*$, the element $p_2^*U$ is a sum of terms of the form 
+	$\beta_I \alpha_I$, where  $\beta_I \in \Omega(P\times V)$ are invariant
+	forms. 
+	After we replace the $\alpha_i$ by the curvature forms  $\Omega_i$, as a
+	form on $P_0\times V$ we are only left with the term $\beta_0$. 
+	Then taking the horizontal component amounts to only evaluating tangent
+	vectors in $V$ at each point $(p,v)\in P_0\times V$ (see figure ???). 
+	Subsequently, the fiber integral is the same as the integral of 
+	$\beta_0$ over $V$, which equals 1 because $\int_V U = 1$.  
+	% TODO draw diagram showing fiber integral, submanifold, horizontal proj
+	\begin{comment} % first attempt
 	This is defined on $\Omega(P\times_G V)\simeq \Omega(E)$ in exactly the same
 	way, since coordinate functions on $E$ can be pulled back via the canonical
 	isomorphism to coordinate functions on $P\times_G V$. 
-	\begin{comment}
 	Recall that a local trivialisation 
 	$\phi_\alpha : E|_{U_\alpha} \to U_\alpha \times
 	\mathbb{R}^n$ gives coordinate functions $[t_1\cdots t_n] = p_2\phi_\alpha
@@ -602,17 +652,16 @@ Therefore, $w \circ i$ is a $\mathfrak{g}$-dga morphism and descends to the map
 	This can be identified with coordinate functions on the associated bundle
 	$[x_1\cdots]$
 	\end{comment}
-	% TODO 
-	(check integral is 1)
 \end{proof}
 
 % Guillemin 7.2
+We shall now construct the Mathai-Quillen universal Thom form.
 Let $V$ be a real vector space with standard inner product, and $\rho : G \to
 \SO(V)$ be a rep of the Lie group $G$, with induced rep $\rho_* :
 \mathfrak{g}\to \so(V)$.
-We will construct a form in $S(\mathfrak{g}^*)\otimes \Omega(V) \otimes
-\bigwedge V$, which we will apply the Berezin integral to, followed by the
-Cartan map.  Fix an oriented orthonormal basis $\{e_1,\ldots,e_n\}$ for
+We will apply the Berezin integral to a form in $S(\mathfrak{g}^*)\otimes 
+\Omega(V) \otimes \bigwedge V$. 
+Fix an oriented orthonormal basis $\{e_1,\ldots,e_n\}$ for
 $V$, which allows us to define the Berezin integral, with corresponding
 coordinate functions $x_1,\ldots,x_n$.   
 Let  $\{X_1,\ldots,X_m\}$ be a basis of $\mathfrak{so}(V)$, with corresponding
@@ -632,7 +681,7 @@ Denote $dx := \sum_i dx_i \otimes e_i \in \Omega^1(V)\otimes V$. Define the elem
 \end{equation}
 which is analogous to $\omega_1$ as defined in Prop \ref{prop:closed_prop}.
 Note that $u_a \rho_* \in \mathfrak{g}^*$.
-In components, if we let $M^a = [\gen{ X_ae_i,e_j}]_{ji}$, we can write the same
+In components, if $M^a = [\gen{ X_ae_i,e_j}]_{ji}$, we can write the same
 element as 
 \begin{equation} \label{eq:universal_thom_exponent2}
 \sigma = -\frac{1}{2}\abs{x}^2 - i\sum_i dx_i\otimes e_i 
@@ -672,7 +721,7 @@ that $\iota_X$ and  $\iota_{\rho(X)}$ act the same way on $\Omega(V)$.
 For the first term, only $d$ acts to give $\delta_C \abs{x}^2 = 2x_i dx_i$.
 On the second term, $d^2=0$ and we need to evaluate $u_a\iota_a dx_i$. 
 Since $x_i$ projects to the $i$th component of a vector in $V$, and the action
-of $e^{tX_k}$ is a matrix multiplication, for $v\in V$ in the tangent space
+of $e^{tX_k}$ is matrix multiplication, for $v\in V$ in the tangent space
 \begin{align} \label{eq:interior_dx}
 	\iota_a dx_i(v)
 	= d x_i \paren{\odv{}{t}_{t=0} e^{-tX_a} v} 
