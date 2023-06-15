@@ -1,11 +1,12 @@
 
 \chapter{Donaldson Invariants}
 \label{chapter1}
-Our goal in this chapter is to introduce the Donaldson polynomial invariants of
-smooth 4-manifolds. We will not be concerned with proofs of the results needed
-to construct them, as that would be beyond the scope of the thesis. 
-(something about the later chapters are proof based, this chapter is mainly to
-revisit in chapter 4)
+In order to discuss the Atiyah and Jeffrey's interpretation of Witten's TQFT
+using the Mathai-Quillen form, we first need to take a brief detour to introduce
+the Donaldson polynomial invariants of smooth 4-manifolds. 
+The details of the construction of the invariants are highly technical, which
+this chapter will not be concerned with, as that would be beyond the scope of 
+the thesis. 
 
 \section{Space of connections}
 \begin{prop}
@@ -40,7 +41,7 @@ revisit in chapter 4)
 	\] 
 	is again a connection on  $E$. 
 \end{prop}
-In one direction, it is easy to show $\nabla^B-\nabla^B$ is tensorial (meaning
+In one direction, it is easy to show $\nabla^A-\nabla^B$ is tensorial (meaning
 $C^\infty(M)$ linear in both components), and apply the previous proposition. In the other
 direction, we only need to verify the Leibniz rule. Thus, a choice of connection
 on $E$, defines a bijection between the space of all connections and
@@ -65,12 +66,12 @@ structure group. For example,
 if $E$ is a complex vector bundle with a Hermitian metric, we get a principal
 $\U(n)$-bundle of orthonormal frames in  $E$. In these cases, we can identify
 the space of connections on $E$ as $\Omega^1(M,\mathfrak{g}_E)$, where
-$\mathfrak{g}_E \subset \End E$ is the bundle, 
-where the restriction to $\g_E$ ensures that the new connection is
+the restriction to $\g_E \subset \End E$ ensures that the new connection is
 compatible with the structure group of  $E$.
 If the structure group is $\SU(2)$, for example, then
 $\g_E$ consists of skew-adjoint, trace-free endomorphisms of the rank two vector
-bundle $E$. 
+bundle $E$. The point is, we may view connections on principal bundles as a
+generalisation of the vector bundle case, so we work with the former.
 
 \begin{defn}
 	The \underline{gauge group} $\mathcal{G}$ of a vector bundle $E\to M$ is the group of all
@@ -95,22 +96,24 @@ bundle $E$.
 	Substituting this into $f(p\cdot g) = f(p)\cdot g$, we find  $\psi(p\cdot g)
 	= g^{-1}\psi(p) g$ since the action is free. So $R_g^*\psi =
 	\Ad_{g^{-1}}\psi$. Hence, $\psi \in \Omega^0_{\Ad}(P,G) \simeq
-	\Omega^0(M,P\times_{\Ad}G)$. The isomorphism can be proved in the same way
+	\Omega^0(M,P\times_{\Ad}G)$. This isomorphism can be proved in the same way
 	as the associated vector bundle case.
 	Finally, note that composition of automorphisms corresponds to
 	multiplication of $\psi$ in the fibers of groups. 
 \end{proof}
+The action of $f \in \Aut(P)$ on a connection  $\omega\in \Omega^1(P,\g)$ is
+$f^*\omega \in \Omega^1(P,\g)$. Consequently, the action of $\Omega^0(M,\Ad
+P)$ on  $\Omega^1(M,\ad P)$ is still denoted the same way.
+% lemma 4.3.1 Morgan u^*`w is a connection one form
+% The stabiliser of a connection A are the sections which are horizontal in A
 
 The purpose of Propositions \ref{prop:gauge_trans_space} and
-\ref{prop:connection_space} is two-fold: this description allows us to identify
-$\mathcal{G}$ as an infinite dimensional Lie group with Lie algebra identified
-with the space of connections; the other purpose is to define Sobolev
-completions of the spaces as in the next section.
-
-
-
-The group $\Aut(P)$ is an infinte dimensional Lie group. 
-There is a fiberwise exponential map $\exp : \Omega^0(M,\ad P) \to
+\ref{prop:connection_space} is two-fold: this description allows us to 
+define Sobolev completions of the spaces as in the next section; the other 
+purpose is to identify $\mathcal{G}$ as an infinite dimensional Lie group with 
+Lie algebra $\Omega^0(M,\ad P)$.
+The gauge group $\mathcal{G}$ has  
+the fiberwise exponential map $\exp : \Omega^0(M,\ad P) \to
 \Omega^0(M,\Ad P)$ which assigns to any section  $\sigma \in \Gamma(\ad P)$ the
 section  $s(x)=\exp(\sigma(x))$. To see that this gives a well defined map, we
 use the fact that  $\exp : \g \to G$ satisfies
@@ -118,13 +121,8 @@ $\exp(g^{-1}Ag)=g^{-1}\exp(A)g$. The Lie bracket on $\Omega^0(M,\ad P)$ is
 defined by the fiberwise bracket, which is well defined because ????
 % TODO why well defined?
 
-% TODO explain this 
-Then $\mathcal{G}$ acts on $\mathcal{A}$ on the right by pullback 
-$\omega\mapsto f^*\omega$.
-The action of $f \in \Aut(P)$ on a connection  $\omega\in \Omega^1(P,\g)$ is
-$f^*\omega \in \Omega^1(P,\g)$. 
-% lemma 4.3.1 Morgan u^*`w is a connection one form
-% The stabiliser of a connection A are the sections which are horizontal in A
+
+
 
 \section{Quotient by Gauge group}
 % 4.4 MF
@@ -138,10 +136,10 @@ Let $E\to M$ be vector bundle with a metric connection over an oriented
 Riemannian manifold. 
 Denote $\nabla : \Omega^k(M,E) \to \Omega^{k+1}(M,E)$ to be the exterior
 covariant derivative. Using the metric on $TM$ and  $E$, this induces a
-metric on  $(T^*M)^{\otimes k}\otimes E$. We denote the induced norm as 
+metric on  $\bigwedge^k(T^*M)\otimes E$. We denote the induced norm as 
 $\norm{\cdot}_g$ below, but later just as $\abs{\cdot}$.
-The metric $g$ on $M$ also gives rise to the Riemannian volume form $\odif{V}_g$
-(see \cite[Prop 2.41]{riemannian_manifolds}).
+The metric $g$ on $M$ also gives rise to the unique Riemannian volume form 
+$\odif{V}_g$ (see \cite[Prop 2.41]{riemannian_manifolds}).
 \begin{defn}
     For $1 \leq p < \infty$, and $s \in \Omega^l(M,E)$, 
 	define the \underline{$L^p$ norm}
@@ -189,15 +187,16 @@ This also gives an induced metric on $\ad P = P\times_{Ad}\g$, which is well
 defined because the metric on both $P$ and  $\g$ are invariant under the action 
 of  $G$. 
 
-Denote that group of $L^2_3$-gauge transformations by  $\mathcal{G}_3(P) \subset
+Denote the group of $L^2_3$-gauge transformations by  $\mathcal{G}_3(P) \subset
 \Gamma(\Ad P)$ and the space of $L^2_2$-connections by $\mathcal{A}_2(P) \subset
 \Omega^1(M,\ad P)$. The Sobolev spaces of sections are Banach manifolds, and 
-the $L^2_k$ spaces are in fact Hilbert manifolds. However, we could work with
+the $L^2_k$ spaces are in fact Hilbert manifolds with the inner product defined
+similarly to the $L^2$ norm. However, we could work with
 any Sobolev spaces for which the group of gauge transformations has at least two
 derivatives, and the space of connections has one few derivative. 
 
 % TODO 
-define irreducible connections
+define irreducible connections; see Freed, Uhlenbeck 3.1
 
 \begin{thm} % Morgan 4.3.5 stabilisers, 4.4.5 local slices, and section 4.5
 	The quotient space of gauge equivalent irreducible connections
@@ -214,8 +213,9 @@ irreducible and the latter ones reducible.
 
 \section{Yang-Mills theory}
 \subsection{General definition}
-Let $P\to M$ be a principal $G$-bundle over a Riemannian manifold $M$, with 
-connection $A$ and associated curvature  $F$. Assume $G$ is a compact Lie group,
+Let $P\to M$ be a principal $G$-bundle over an $n$-dimensional Riemannian 
+manifold $M$, with connection $A$ and associated curvature $F$. 
+Assume $G$ is a compact Lie group,
 though we will typically choose $G=\SU(2)$ or $G=\SO(3)$. 
 Since the curvature form of a principal bundle is horizontal and  
 $\Ad$-equivariant, we can interpret it as an $\ad(P)$-valued form on the base 
@@ -224,16 +224,36 @@ The Yang-Mills functional is defined by the $L^2$ norm squared of the curvature
 \[
 	S_{YM}(A) := \norm{F}^2_{L^2} = \int_M \abs{F}^2 dV_g
 \]
-where $\abs{F}^2$ comes from the metric on $T^*M^{\otimes 2}\otimes \ad P$. 
+where $\abs{F}^2$ comes from the metric on $\bigwedge^2T^*M\otimes \ad P$. 
 The significance in physics is that this represents the energy of a free field, 
 generalising electromagnetism for non-abelian gauge groups.  
 (cite Baez)
 
 The principal of least action in physics dictates that the classical solutions
 are the connections that satisfy the Euler-Lagrange equations of this action 
-functional, that is, locally minimise $S_{YM}$. 
-
-Derive $d_A^* F = 0$ using wikipedia and introduce formal adjoint operator
+functional, that is, locally minimise $S_{YM}$. Given a perturbation
+$A+ta$ of a connection  $A$ in the affine space $\Omega^1(M,\ad P)$, the 
+curvature is related by
+\[
+F_{A+ta} = d_A(A+ta) + (A+ta)\wedge (A+ta) = F_A + td_A a + t^2a\wedge a
+\] 
+Therefore,
+\begin{align*}
+	&\quad\;\odv{}{t}_{t=0}S_{YM}(A+ta)\\
+	&= \odv{}{t}_{t=0} \int_M \abs{F_A + td_A a + t^2a\wedge a}^2 \\
+	&= \odv{}{t}_{t=0} \int_M \paren{\abs{F_A}^2 + 2t\gen{F_A,d_A a} 
+	+ 2t^2\gen{F_A,a\wedge a} + t^4 \abs{a\wedge a}^2} dV_g \\
+	&=  2\int_M  \gen{F_A,d_A a}  dV_g 
+	=  2\int_M  \gen{d_A^*F_A, a}  dV_g 
+\end{align*}
+where $d_A^* :\Omega^{k}(M,\ad P)\to \Omega^{k-1}(M,\ad P)$ is the formal adjoint of 
+$d_A$ using the $L^2$ inner product on
+$\Omega^k(M,\ad P)$, defined by $\gen{d_A s, t}_{L^2} = \gen{s,d_A^*t}_{L^2}$.
+It can be shown that its explicit form is $d_A^* = (-1)^{n(k+1)-1}\star d_A \star$.
+The equation above shows that the connection $A$ is a critical point if and only
+if  $d_A^* F_A = 0$, or $d_A \star F_A = 0$. A connection satisfying this
+condition is called a Yang-Mills connection.
+If $\star F_A = \pm F_A$, then by the Bianchi identity it is a YM connection.
 
 \subsection{Orthogonal or unitary structure group}
 In this subsection we assume $G=\SO(N)$ or  $G=\SU(N)$, which allows us to
@@ -245,7 +265,7 @@ make a number of simplifications.
 	\begin{equation} \label{eq:hodge_property}
 	\omega \wedge *\eta = \gen{\omega,\eta}_g dV_g
 	\end{equation}
-	where $\gen{\cdot,\cdot}_g$ is the induced metric on $(T^*M)^{\otimes k}$.
+	where $\gen{\cdot,\cdot}_g$ is the induced metric on $\bigwedge^k(T^*M)$.
 	In orthonormal coordinates, this is given by
 	\[
 	*(dx_{i_1}\wedge \cdots\wedge dx_{i_k}) = \sgn(I)dx_{i_{k+1}}\wedge \cdots \wedge
@@ -254,7 +274,7 @@ make a number of simplifications.
 	where $dx_1\wedge\cdots\wedge dx_n = dV_g$ on some open subset.
 \end{defn}
 The Hodge star extends to vector valued forms by only acting on the
-$(T^*M)^{\otimes k}$ part. Recall that 
+$\bigwedge^k(T^*M)$ part. Recall that 
 for matrix Lie algebra valued forms $\omega,\eta\in\Omega(M,\g)$, the wedge 
 product is defined as 
 \begin{equation}
@@ -278,26 +298,30 @@ $\alpha \in \Omega^{2,+}(M,\g), \beta \in \Omega^{2,-}(M,\g)$, we have
 \end{equation}
 using equation (\ref{eq:hodge_property}) and $\Tr(XY) = -\Tr(X^*Y)$ for
 $X,Y\in\g$. The last property follows from eigenspaces being orthogonal for any
-metric on $\Omega^2(M,\g)$.
-
-
+metric on $\Omega^2(M,\g)$. 
 The Yang-Mills functional can be rewritten using equation (\ref{eq:trace_hodge}) as
 \[
-	S_{YM}(A) = -\int_M \Tr (F\wedge \star F) 
+	S_{YM}(A) 
+	=-\int_M \Tr (F\wedge \star F) 
 \] 
-
-We now explain the significance of the Chern class.
+because 
+\[
+-\Tr(F\wedge \star F) = - \Tr(F^+\wedge F^+) + \Tr(F^-\wedge F^-)
+= (\abs[*]{F^+}^2+\abs[*]{F^-}^2) dV_g = \abs{F}^2 dV_g
+\] 
+\noindent
 Recall from Chern-Weil theory that there are two important classes of
 $\Ad \GL(r,\mathbb{C})$ invariant polynomials on $\gl(r,\mathbb{C})$. 
 The first is the coefficients $f_k(X)$ of $\lambda^{r-k}$ in the characteristic
 polynomial $\det(\lambda I + X)$. Another class consists of the trace
 polynomials $\Tr(X^k)$. 
 The Chern classes of $P$ are defined by $c_k(P) =
-[f_k\paren{\frac{i}{2\pi}F}] \in H^{2k}(M)$. 
-\begin{thm}
+[f_k\paren{\frac{i}{2\pi}F}] \in H^{2k}(M)$. Their importance is due to the
+following theorem:
+\begin{thm}[{\cite[Theorem E.5]{freed_uhlenbeck}}]
 	The second Chern class $c_2(E)\in H^4(M,\mathbb{Z})$ classifies up to
-	isomorphism $\SU(2)$-bundles over any compact connected oriented 4-manifold
-	 $M$. (Theorem E.5 in Freed and Uhlenbeck)
+	isomorphism $\SU(2)$-bundles over any compact connected oriented 
+	four-manifold $M$. 
 \end{thm}
 
 From Newton's identity for symmetric polynomials with $k=2$ 
@@ -316,29 +340,26 @@ Now, we can
 decompose the field strength $F = F^+ + F^-$ into SD and ASD 
 parts. Using the fact that $\Omega^{2,+}$ and $\Omega^{2,-}$ are orthogonal in
 the Riemannian inner product, and
-that $\Tr(X^2) = -\abs{X}^2$ for skew adjoint matrices, this 
-gives 
+equation (\ref{eq:trace_hodge}), this gives 
 \begin{align*}
-\Tr(F^2) 
-&= \Tr(F^{+}\wedge  F^{+}) - \Tr(F^{-}\wedge F^{-}) \\
-&= - (\abs[*]{F^+}^2 - \abs[*]{F^-}^2) dV_g 
+c_2(E)
+= \frac{1}{8\pi^2}\int_M\Tr(F^2) 
+&= \frac{1}{8\pi^2}\int_M(\Tr(F^{+}\wedge  F^{+}) + \Tr(F^{-}\wedge F^{-})) \\
+&= \frac{1}{8\pi^2}\int_M(-\abs[*]{F^+}^2 + \abs[*]{F^-}^2) dV_g 
 \end{align*}
-Hence, $c_2(E) = \frac{1}{8\pi^2}\int_M
-(\abs[*]{F^-}^2-\abs[*]{F^+}^2)$. 
-
 Comparing with the Yang-Mills action, 
 \begin{align*}
 	S_{YM}(A) = \int_M (\abs[*]{F^+}^2+\abs[*]{F^-}^2) 
 	= \begin{cases}
-		8\pi^2 c_2(E) + 2\int_M \abs[*]{F^-}^2 \\
-		-8\pi^2 c_2(E) + 2\int_M \abs[*]{F^+}^2
+		8\pi^2 c_2(E) + 2\int_M \abs[*]{F^+}^2 \\
+		-8\pi^2 c_2(E) + 2\int_M \abs[*]{F^-}^2
 	\end{cases}
 \end{align*}
 We see that for $c_2(E)>0$, the action is bounded below by 
-$S(A) >= 8\pi^2\abs{c_2(A)}$ and the self-dual connections $F^-=0$ are
+$S(A) >= 8\pi^2\abs{c_2(E)}$ and the ASD connections $F^+=0$ are
 minimisers. For $c_2(E)<0$ the action is bounded
-below by $S(A)\geq -8\pi^2c_2(E)$, and minimised by anti-self-dual connections
-$F^+=0$. 
+below by $S(A)\geq -8\pi^2c_2(E)$, and minimised by SD connections
+$F^-=0$. 
 Thus the classical equations of motion are equivalent to $\star F = \pm F$,
 whose solutions are called (anti-)instantons. 
 
@@ -376,6 +397,15 @@ Cordes)
 
 % TODO 
 formal dimension of the moduli space
+% fundamental elliptic complex, virtual dimension 
+% naber witten conjecture p73, naber p118, physical p25
+\[
+\begin{tikzcd}
+	0 \arrow[r] &\Omega^0(\ad P) \arrow[r,"\nabla"] 
+				&\Omega^1(\ad P) \arrow[r,"\nabla^+"] &\Omega^{2,+}(\ad P)
+\end{tikzcd} 
+\] 
+
 
 \section{Donaldson invariants}
 % Lecture 7 morgan
@@ -383,9 +413,8 @@ Finally, our goal is to sketch the definition of the Donaldson polynomials
 invariants. 
 In this section, assume $M$ is a closed,
 oriented, simply connected smooth 4-manifold with a fixed orientation of
-$H^2_+(M;\mathbb{R})$. Further assume $b_2^+(M) > 1$. 
-
-Let $P\to M$ be a principal $\SU(2)$-bundle with  $c_2(P) > 0$, let 
+$H^2_+(M;\mathbb{R})$, and 
+$P\to M$ is a principal $\SU(2)$-bundle with  $c_2(P) > 0$. Define 
 \[
 d = 4c_2(P) - \frac{3}{2}(1+b_2^+(M))
 \] 
@@ -407,15 +436,23 @@ H^2(\overline{\mathcal{M}}(P),\mathbb{Z})$ and we define the invariant to be the
 over the moduli space
  \[
 \gamma_d(x_1,\ldots,x_d) 
-= \int_{\overline{\mathcal{M}}(P)} \mu(x_1)\wedge \cdots\wedge \mu(x_d)
+= \int_{\overline{\mathcal{M}}(P)} \overline{\mu}(x_1)\wedge \cdots\wedge
+\overline{\mu}(x_d)
 \] 
-Hence, the Donaldson invariant can be interpreted as 
+Hence the Donaldson invariant can be interpreted as 
 an element in the polynomial algebra of $H^2(M,\mathbb{Z})$, i.e. dual to
 $H_2(M,\mathbb{Z})$.  
+% naber Witten II p70 TODO reference
+To be more precise, $\overline{\mathcal{M}}(P)$ is generally not a manifold, and the above
+refers to the pairing of the cup products of $\mathcal{\mu}(x_i)$ with the fundamental 
+homology class $[\overline{\mathcal{M}}(P)]$. One finds that
+$\overline{\mathcal{M}}(P)$ admits a fundamental class only if $k$ is in what is 
+called the stable range of $M$:  $k > \frac{3}{4}(1+b_2^*(M))$.
 
 % naber donaldson theory p59
 The definition of the $\mu$ map relys on a certain $\SO(3)$-bundle, which we now
-sketch. We drop the Sobolev subscripts (rephrase). 
+sketch. For convenience, we drop the Sobolev subscripts for
+$\mathcal{A},\mathcal{G}$ and $\mathcal{B}$. 
 Consider the principal $\mathcal{G}$-bundle
 \[
 \mathcal{A}^* \times P  \to \mathcal{A}^* \times_\mathcal{G} P 
@@ -425,15 +462,41 @@ This action is free because the elements of $\mathcal{A}^*$ are irreducible:
 $(f^*\omega,f^{-1}(p)) = (\omega,p)$ implies $f$ is a stabiliser of  $\omega$,
 and  $f^{-1}(p)=p$ leaves only the possibility that $f=\id$.
 
-There is a natural map $\mathcal{A}^* \times_\mathcal{G} P \to
-\mathcal{B}^*(P)\times M$ given by $[\omega,p] \mapsto ([\omega],\pi(p))$.
+There is a natural projection $\mathcal{A}^* \times_\mathcal{G} P \to
+\mathcal{B}^*\times M$ given by $[\omega,p] \mapsto ([\omega],\pi(p))$.
 The $\SU(2)$ action on  $\mathcal{A}^*\times P$ given by multiplication on $P$
 descends to the quotient $\mathcal{A}^* \times_\mathcal{G} P$ because it 
 commutes with the  $\mathcal{G}$ action.
 But this action $[\omega,p]\cdot g = [\omega,p\cdot g]$ is not free because 
 $g$ is a stabiliser if and only if $g=\pm \id\in \SU(2)$. Thus, there is a free
-$\SU(2) /\id \simeq \SO(3)$ action on  $\mathcal{A}^*\times_{\mathcal{G}} P$ and
-this becomes a principal $\SO(3)$-bundle.
+$\SU(2) /\{\pm\id\} \simeq \SO(3)$ action and we have a principal $\SO(3)$-bundle
+\[
+\xi := \mathcal{A}^*\times_{\mathcal{G}} P \to \mathcal{B}^*\times M
+\] 
+As an $\SO(3)$-bundle, it can be shown that the first Pontryagin class
+$p_1(\xi) \in H^4(\mathcal{B}^*\times M,\mathbb{Z})$ is divisible by
+4.\cite[Lemma 7.2.1]{morgan} 
+Recall that the slant product in algebraic topology is a map 
+\[
+H^{p+q}(X\times Y) \times H_p(Y) \to H^q(X), \qquad 
+(\gamma,\alpha) \mapsto \gamma / \alpha
+\] 
+Then we can define the map $H_2(M,\mathbb{Z})\to H^2(\mathcal{B}^*,\mathbb{Z})$
+given by $x \mapsto -\frac{1}{4} p_1(\xi) / x$. The reason for the $-1 /4$ is
+that when an $\SO(3)$-bundle $\mathcal{P}$ lifts  to an $\SU(2)$-bundle
+$\mathcal{P}'$, we have the relation % TODO reference
+$c_2(\mathcal{P}')=-\frac{1}{4}p_1(\mathcal{P})$. Finally, the $\mu$ map is
+defined as the restriction to the moduli space:
+ \[
+\mu : H_2(M,\mathbb{Z}) \to H^2(\mathcal{M}^*,\mathbb{Z}),\qquad
+\mu(x) = -\frac{1}{4}p_1(\xi) /x
+\] 
+The extension of this map to the Uhlenbeck compactification 
+$\overline{\mathcal{M}}(P)$ requires the Taubes
+gluing procedure, for details refer to \cite{morgan} or \cite{donaldson_kronheimer}.
+
+
+
 
 \vspace{5mm}
 \hrule 
@@ -446,11 +509,13 @@ this becomes a principal $\SO(3)$-bundle.
 \begin{itemize}
 	\item A great overview of the main ideas in the two approaches to
 		constructing a Witten type TFT is given in \citet{TQFTbook}.
-	\item The local model for $\mathcal{M}_{ASD}$ was first obtained by 
-		\citet{local_moduli}.
-	\item The geometry of the space of connections and the moduli space, 
-		as well as the Donaldson polynomial invariants are
-		discussed in more detail in \citet{morgan}. 
-	\item DK
+	\item The local model for $\mathcal{M}$ obtained from the elliptic complex 
+		first studied by \citet{local_moduli}.
+	\item The geometry of the the moduli space, and the theory leading up to the
+		Donaldson polynomial invariants are
+		discussed in more detail in \citet{morgan} and
+		\citet{donaldson_kronheimer}. 
+	\item A succint review of Donaldson theory and the invariants can be found
+		in the conference paper by \cite{naber_donaldson}.
 \end{itemize}
 }
