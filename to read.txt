@@ -3,20 +3,26 @@ principal bundle connection from metric: cordes p159
 graph for localisation in poincare hopf theorem
 graph for tubular neighbourhood
 invariant and horizontal form 
+fiber integral diagram
 
 Bryan questions:
 should I include a proof of nabla^2 = F
 should I include a proof Thom isomorphism? only for compact case?
 proof of equivariant de rham theorem 
 
+
 To write:
-why i commutes with d
+if I have an orientation for M and G, then is there a product orientation for P -> M 
+No (e.g. mobius bundle): so check statements for fiber integral and universal thom
+
+pullback in cartan map works only because projection is G equivariant
+
 how integration along the fiber maps into associated bundle via Weil homo
-define theta, Omega and x in universal Thom form in Weil model
+
 
 ch4 Donaldson Kronheimer
 1.6 BGV Transgression formulas, pullback of thom class, Poincare-hopf theorem
-local model for moduli space (atiyah, hitchin, singer)
+local model for moduli space, elliptic complex (atiyah, hitchin, singer)
 
 equivariant deRham theorem, 
 Weil-cartan isomorphism

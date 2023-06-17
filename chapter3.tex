@@ -1,36 +1,25 @@
 
 \chapter{Mathai-Quillen formula}
 \label{chapter3}
-\section{Introduction}
-Topological quantum fields theories can be constructed based on the
-Mathai-Quillen formalism. Although the main breakthroughs in these theories have
-been provided in their formulation as twisted $\mathcal{N}=2$ supersymmetric
-theories, this provides a useful geometric framework.\cite{TQFTbook}
-
-In general, Witten type TQFTs are associated with a moduli problem characterized
-by three basic data: fields, symmetries, and equations.
-In the case of Donaldson-Witten theory, the configuration space is the space of
-connections $\mathcal{A}$ on a bundle $E$, whose elements are fields 
-$\phi$ over a four-manifold  $X$.  the group $\mathcal{G}$ is the group of gauge
-transformations associated with $G$, so we are led to consider the quotient
-space  $\mathcal{A}/\mathcal{G}$. Within this quotient, the moduli space is
-defined by a set of equations $s(\phi)=0$, and the self-duality equations can be
-regarded as sections of a bundle
-$\mathcal{E}=\mathcal{A}\times_{\mathcal{G}}\Omega^{2,+}(X,g_E)$. (What does
-this mean?)
-  
+The Mathai-Quillen formula is an explicit differential form representative of 
+the Thom class of a vector bundle. The significance of the Thom class is 
+that its pullback to the base manifold gives a representative of the Euler
+class, thus it can be used to calculate the Euler number.  
 Recall that there are two quite different approaches for calculating the Euler number
 $\chi(X) = \chi(TX)$ of an oriented even dimensional manifold $X$. 
 This first is topological, and counts
-the signed isolated zeros of a vector field on $X$, via the Hopf theorem. The
+the signed isolated zeros of a vector field on $X$, via the Poincar\'e-Hopf theorem. The
 second is differential geometric and represents  $\chi(X)$ as the integral over
 $X$ of a density constructed from the curvature of a connection on $X$, via
 the Gauss-Bonnet theorem. 
+The Mathai-Quillen representative of the class depends on both a section $s$ and 
+connection  $\nabla$ on the vector bundle, and can be regarded as a formula 
+which interpolates between the two approaches.  
 
-The Mathai-Quillen formula \cite{MQformula} is a more general formula which interpolates between
-the two approaches. It relies on the construction of a form $\chi_{s,\nabla}(E)$ in
-the Euler class which depends
-on both a section  $s$ and connection  $\nabla$.  
+Our interest in the formula is further motivated by its application in providing a
+geometric interpretation of the action principle of Witten's TQFT, where he
+characterised Donaldson invariants as correlation functions of observables, as
+we will see later in Chapter \ref{chapter4}. 
 
 \section{Integration along the fiber} \label{section:fiber_integration}
 Let $\pi: E\to B$ be an oriented fiber bundle over a manifold $B$ with oriented
@@ -45,7 +34,7 @@ fiber $F$. Suppose $\dim F = m$ and $\dim B = n$.
 	\] 
 	where $\widetilde{v}_i$ is any lift of $v_i$ to $TE$. 
 \end{defn}
-The integral is taken by pulling back the form via a trivialisation $\phi 
+The integral is computed by pulling back the form via a trivialisation $\phi 
 :F \xrightarrow{\simeq} \pi^{-1}(b)$. 
 To show that this is well defined, we need to check 
 \begin{itemize}
@@ -100,7 +89,7 @@ hence $\alpha$ is smooth by part (2).
 write it out in coordinates. Let 
 $dx_1,\ldots,dx_{n},dt_1,\ldots,dt_m \in T^*E|_U$ be a basis, where
 $t_i$ are coordinate functions for $F$ and $x_i$ are coordinate functions for
-$B$. Assume $\alpha$ is homogeneous and has a factor of 
+$B$. Assume $\alpha$ is a product of 1-forms and has a factor of 
 $dt_1\wedge \cdots\wedge dt_m$, since
 otherwise $\beta$ will not be a top form on $\pi^{-1}(b)$. Then integration
 along the fiber is locally described by 
@@ -110,14 +99,16 @@ along the fiber is locally described by
 \] 
 for some $\eta\in \Omega(B)$. It is now apparent that the dependence on $x$,
 i.e. the coordinates for  $B$, is smooth. 
-
+\begin{remark}
+	Note that not all differential forms in $\Omega^*(E)$ are integrable, 
+	so we typically restrict $\pi_*$ to forms which
+	are compactly supported, compactly supported along the fiber, or rapidly
+	decreasing. 
+\end{remark}
 In this chapter, we are interested in integration along the fiber for oriented
 vector bundles in particular, however the general definition will be needed
 later when we integrate over $G$-orbits of principal bundles. The case of vector
-bundles is slightly simpler, because the fiber has global coordinates. Note that
-not all differential forms are integrable, so we typically define $\pi_*$ only
-on the subset which is compactly supported, or at least compactly supported
-along the fiber. 
+bundles is slightly simpler, because the fiber has global coordinates. 
 \begin{prop} % Bott Tu p62
 	Integration along the fiber $\pi_*$ commutes with the exterior derivative
 	$d$.
@@ -197,24 +188,108 @@ generalisation of Fubini's theorem.
 \end{proof}
 
 
-For an orientable vector bundle $\pi:E\to M$ of rank $n$ over a manifold $M$ 
-with a finite good cover, it can be shown that  $H_c^*(E)\simeq H_c^{*-n}(M)$.\cite[Prop
-6.13]{bott_tu} 
-% TODO should I formulate Thom isomorphism only for finite good cover manifolds,
-% in particular compact manifolds
+\section{Thom isomorphism}
+\begin{thm}[Poincar\'e duality {\cite[p.44]{bott_tu}}] 
+	\label{thm:poincare_duality}
+	If $M$ is a compact orientable manifold of dimension $n$, then the pairing 
+	\[
+	\int_M : H^q(M)\otimes H_c^{n-q}(M) \to \mathbb{R}
+	\] 
+	is non-degenerate. Equivalently, $H^q(M)\simeq (H^{n-q}_c(M))^*$
+\end{thm}
+% In fact, the compactness assumption on $M$ is not necessary.
+Consider a vector bundle $E\to M$ of rank  $n$, over a manifold of dimension $m$. 
+Since the zero section embeds
+$M$ diffeomorphically in  $E$, $M$ is a deformation retract of  $E$. Since
+homotopic maps induce the same map in de Rham cohomology, it follows that
+\[
+H^*(E) \simeq H^*(M)
+\] 
+If we further assume $E$ and  $M$ are orientable manifolds, and $M$ is
+compact, then a similar statement also holds for compact cohomology using 
+Poincar\'e duality % Bott Tu pg 60
+\[
+H^*_c(E) \simeq (H^{n+m-*}(E))^* \simeq (H^{n+m-*}(M))^* \simeq H^{*-n}_c(M)
+\] 
+The Thom isomorphism is concerned with compact vertical cohomology: the chain
+complex of forms with compact support along the fiber $\Omega_{cv}^*(E)$. An
+$n$-form  $\omega$ is in $\Omega_{cv}^*(E)$ if for every compact set $K \subset M$, 
+$\pi^{-1}(K)\cap \supp(\omega)$ is compact in $E$. 
+From the previous section, integration along the fiber descends to a map 
+on compact vertical cohomology
+$\pi_* : H_{cv}^*(E) \to H^*(M)$. In fact, we can show that it induces an
+isomorphism, called the Thom isomorphism.
+We first prove this in the trivial bundle case $M\times \mathbb{R}^n \to M$.
+\begin{prop} % Bott Tu Prop 6.16 
+	Integration along the fiber defines an isomorphism
+	\[
+	\pi_* : H_{cv}^*(M\times \mathbb{R}^n) \to H^{*-n}(M)
+	\] 
+\end{prop}
+\begin{proof} % p38 
+	Let $\pi^n_* : H_{cv}^*(M\times \mathbb{R}^n) \to H_{cv}^{*-1}(M\times
+	\mathbb{R}^{n-1})$ be integration along the last component of
+	$\mathbb{R}^n$, and for ease of notation denote $H_{cv}^*(M\times
+	\mathbb{R}^0) := H^*(M)$. We will prove that $\pi^n_*$ defines an
+	isomorphism, because then the proposition follows by taking the composition
+	$\pi_* = \pi^1_* \circ \cdots\circ \pi^n_*$ (using Fubini's theorem).
+
+	Let $dt:=dt_1\wedge \cdots\wedge dt_n\in\Omega^n(\mathbb{R}^n)$ be the top 
+	form corresponding to orthonormal coordinates on $\mathbb{R}^n$. 
+	To produce a map in the reverse direction to $\pi^n_*$, let $e(t)dt \in
+	\Omega^1_c(\mathbb{R})$ be a compactly supported $1$-form with integral 1,
+	and define 
+	\begin{align*}
+	e_* : \Omega_{cv}^*(M\times \mathbb{R}^{n-1}) \to 
+	\Omega^{*+1}_{cv}(M\times \mathbb{R}^n), \qquad  
+	\omega \mapsto \omega \wedge e(t_n)\, dt_n 
+	\end{align*}
+	It is clear that $e_*$ commutes with  $d$, so induces a map on cohomology.
+	Moreover,  $\pi_*^n \circ e_* = 1$ on  $\Omega_{cv}^*(M\times
+	\mathbb{R}^{n-1})$. While $e_*\circ
+	\pi_*^n \neq 1$ on the levels of forms, our strategy is to construct a
+	homotopy operator  $K:\Omega^{*}(M\times \mathbb{R}^n) \to
+	\Omega^{*-1}(M\times \mathbb{R}^n)$ such that 
+	\begin{equation} \label{eq:homotopy_operator}
+		1-e_*\pi_*^n = (-1)^{q-1}(dK-Kd), \qquad 
+		\text{on } \Omega^q(M\times \mathbb{R}^n)
+	\end{equation}
+	This will imply that for any closed $\omega \in \Omega^*(M\times
+	\mathbb{R}^n)$, $(1-e_*\pi_*^n)\omega$ is proportional to  $dK\omega$, 
+	which is exact. Thus $e_*\pi_*^n=1$ on cohomology.
+	Let $\omega \in \Omega^*(M\times \mathbb{R}^n)$. If $\omega$ does not 
+	contain a factor of  $dt_n$, define $K(\omega) = 0$. Otherwise define 
+	\[
+		\omega = (\pi^*\phi) f(x,t) dt_I dt_n \mapsto 
+		\pi^*\phi dt_I\paren[2]{\int_{-\infty}^t f \odif{t_n} 
+		- \int_{-\infty}^t e \odif{t_n} \int_{\mathbb{R}} f \odif{t_n}}
+	\] 
+	where $I \subset \{1,\ldots,n-1\}$.
+	It is now straightforward to prove equation (\ref{eq:homotopy_operator}):
+	compute compare $(dK-Kd)\omega$ with $(1-e_*\pi_*^n)\omega$ for the cases 
+	where $\omega$ contains a factor of $dt_n$ or not.
+\end{proof}
+The proof above shows that the inverse map in cohomology is given by the wedge
+product with a compactly supported form $\Phi \in \Omega^{n}(\mathbb{R}^n)$ 
+whose integral along each component is 1. This can be generalised to arbitrary 
+vector bundles $E\to M$, known as the Thom isomorphism. 
 
 \begin{thm}[Thom Isomorphism] % Thm 6.17 Bott Tu
-	If a vector bundle $\pi: E \to M$ is orientable with rank $n$, and $M$ has a
-	finite good cover, then 
+	For a compact manifold $M$,
+	integration along the fiber induces an isomorphism
 	 $H^*_{cv}(E) \simeq H^{*-n}(M)$
 \end{thm}
 \begin{defn}
-	Under the Thom isomorphism $\mathcal{F}:H^*(M)\to H_{cv}^{*+n}(E)$, the
+	Under the Thom isomorphism $H^*(M)\to H_{cv}^{*+n}(E)$, the
 	image of $1\in H^0(M)$ is called the \underline{Thom class}  $\Phi\in
 	H_{cv}^n(E)$ of the vector bundle.
 \end{defn}
+In other words, the representatives of the Thom class are precisely the forms
+which are compactly supported along the fiber and have integral 1 along the
+fibers.
 
-
+% compact implies finite good cover = finite type 
+% TODO generalise to non compact manifolds?
 
 \section{Mathai-Quillen construction of Thom form}
 \label{section:mq_formula}
@@ -223,23 +298,34 @@ Differential forms with compact support in each fibre are replaced by forms
 which are rapidly decreasing in the fibre directions. 
 
 \begin{defn}
+	Let $E\to M$ be a vector bundle with fiber  $V$ of rank  $n$.
 	A differential form $\omega\in \Omega(E)$ is \underline{rapidly decreasing
-	along the fiber} if  $\omega_x$ is in Schwartz space
+	along the fiber} if the restriction to the fiber 
+	$\omega_{\pi^{-1}(x)} : V \to \mathbb{R}$ is a Schwartz function for all $x\in M$,
+	i.e.
+	 \[
+		 \fall a,b \in \mathbb{N}^n, \norm[*]{\omega_{\pi^{-1}(x)}}_{a,b} < \infty
+	\] 
+	where $\displaystyle \norm{f}_{a,b} := \sup_{x\in \mathbb{R}^n}\abs[*]{x^a(D^bf)(x)}$.
+	The space of such forms is denoted $\Omega_{rd}(E)$.
 \end{defn}
 
+\vspace{-1ex}
 Using the diffeomorphism $h : E \to E$ taking the unit ball to $\mathbb{R}^n$
 \[
-	h(y) = \frac{y}{\sqrt{1-\abs{y^2}} }
+	h(y) = \frac{y}{\sqrt{1-\norm{y^2}} }
 \] 
-we can pull back a rapidly decreasing form to a smooth form which is supported
-on the unit ball bundle. 
-All derivatives must approach zero as $y \to 1$
+we can pull back a rapidly decreasing form $\omega\in \Omega_{rd}^*(E)$ to 
+$\Omega_{cv}^*(E)$ which is supported on the unit ball bundle. 
+Note that the Schwartz property guarantees that $h^*\omega$ is smooth, i.e. 
+all derivatives approach zero as $y \to 1$ since $\omega$ decays faster than any
+polynomial.
 
 
 Let us first look at the construction on an oriented Euclidean vector bundle
 $E\xrightarrow{\pi} M$ of rank $n$ over a point $M=\{x_0\}$. 
 Given coordinates $x^1,\ldots,x^n$ on $E$ from the local trivialisation,
-a Thom form $U\in \Omega^n_{cv}(E)$ can be defined as
+a Thom form $U\in \Omega^n_{rd}(E)$ can be defined as
 \[
 	U(x) = (2\pi)^{-n/2}e^{-\abs{x}^2 /2} dx^1\wedge \ldots\wedge dx^n
 \] 
@@ -599,24 +685,26 @@ is a map  $\int_V : S(\g^*)\otimes \Omega(V) \to S(\g^*)$ defined by
 $\paren{\int_V \alpha}(X) = \int_V \alpha(X)$, where elements of $S(\g^*)$ are 
 viewed as  polynomials on $\g$. 
 
-\begin{prop} 
+\begin{thm} 
 	A differential form $U\in (S(\mathfrak{g}^*)\otimes \Omega(V))^G$ is a 
 	universal Thom form if and only if $U$ is closed and  $\int_V U = 1$.
-\end{prop}
+\end{thm}
 \begin{proof}
 	Assume we have the same objects as above.
 	When we pull back the form on $\Omega(V)$ to $\Omega(P\times V)$, it
 	will still be a basic element because the projection $p_2$ is 
-	$G$-equivariant. Next, the image of Weil homomorphism   
-	$(S(\g)^*\otimes \Omega(P\times V))^G \to \Omega(P\times V)_{hor}$ 
-	will be closed because it
-	commutes with the differential operators. Finally, the result
-	after taking the horizontal projection is also closed. 
+	$G$-equivariant. Next, the image of    
+	$w:(S(\g)^*\otimes \Omega(P\times V))^G \to \Omega(P\times V)_{inv}$ 
+	will be closed because the Weil homomorphism
+	commutes with the differential operators. Finally, its horizontal
+	projection is also closed. The same argument
+	in reverse proves that $U$ must be closed if  $\Car_\omega(p_2^*U))$ is
+	closed.
 
 	% guillemin p157
 	It remains to check that integration along the fiber of
-	$\tau:=\operatorname{Car}_{\omega}(p_2^*U)\in\Omega(E)$ equals 
-	$1\in\Omega^0(M)$. 
+	$\tau:=\operatorname{Car}_{\omega}(p_2^*U)\in\Omega(E)$ equals the integral
+	over  $V$ of the universal Thom form.
 	Fix a point $x_0\in M$, let $P_0=\pi^{-1}(x_0)$ be the fiber over $x_0$
 	and $E_0$ be the fiber of $E$ over  $x_0$. 
 	The fiber integral of $\tau$ only depends on the value of $\tau$ at the
@@ -653,6 +741,12 @@ viewed as  polynomials on $\g$.
 	$[x_1\cdots]$
 	\end{comment}
 \end{proof}
+
+The above theorem is proved in chapter 10 of \cite{guillemin} in the more
+general context of a $K$-manifold $E=P\times_\rho V$, and a principal
+$G$-bundle  $P\times V \to P\times_\rho V$, with associated Cartan map
+$\Car_\omega : \Omega_{G\times K}(P\times V)\to\Omega_K(E)$. The Thom form is
+obtained from the map $\Car_{\omega}(p_2^*U)$ where $U\in\Omega_{G\times K}(V)$.
 
 % Guillemin 7.2
 We shall now construct the Mathai-Quillen universal Thom form.
@@ -881,18 +975,17 @@ applying the Weil-Cartan isomorphism $(S(\mathfrak{g}^*)\otimes \Omega(V))^G
 \section{Localisation}
 One of the primitive applications of the Mathai-Quillen formula is to prove the
 Poincar\'e-Hopf theorem. 
-
-Let $E\to M$ be a vector bundle over  $M$, and $v\in\Gamma(E)$ be a section of $E$.
-At a zero $p\in M$ of  $v$, the Lie bracket gives an endomorphism 
-$\mathcal{L}_p(v) : T_pM \to T_pM$ defined by  $X\mapsto [X,v]$. In a coordinate system in
+Let $v\in\mathcal{X}(M)$ be a vector field on $M$.
+At a zero $p\in M$ of  $v$, the Lie bracket of vector fields defines an endomorphism 
+$\mathcal{L}_p(v) : T_pM \to T_pM$ by  $X\mapsto [X,v]$. In a coordinate system in
 which  $p=0$ and  $v= v^i \partial_i$,  $\mathcal{L}_p(v)$ is given by 
  \[
 	 \mathcal{L}_p(v)\partial_i = \sum_{j=1}^{n} [\partial_i, v^j(p)\partial^j] 
 	 = \sum_{j=1}^{n} (\partial_i v_j(p)) \partial_j
 \] 
-A zero of $p$ is called \underline{non-degenerate} if  $\mathcal{L}_p(v)$ is
-invertible. Denote by $\nu(p,v) \in \{\pm 1\}$ the sign of the determinant of
-$\mathcal{L}_p(v)$. If all of the zeroes of $v$ are non-degenerate, we call  $v$
+A zero $p\in M$ is called \underline{non-degenerate} if  $\mathcal{L}_p(v)$ is
+invertible. In this case, denote $\nu(p,v) = \sgn \det(\mathcal{L}_p(v)) 
+\in \{\pm 1\}$. If all of the zeros of $v$ are non-degenerate, we call  $v$
 non-degenerate. 
 
 \begin{thm}[Poincare-Hopf] % Thm 1.56 BGV
@@ -928,7 +1021,7 @@ non-degenerate.
 	Riemannian metric and associated Levi-Civita connection. 
 	Let $f : \mathbb{R}_+ \to [0,1]$ be a smooth bump function such that $f(s)=1$
 	if  $s < \epsilon^2 /4$ and $f(s)=0$ if  $s>\epsilon^2$. Then for all $t>0$
-	\begin{equation} \label{eq:euler_zeroes}
+	\begin{equation} \label{eq:euler_zeros}
 			\int_M \chi(TM) = \int_M v_t^* U 
 		= \int_M (1-f(\norm{v}^2))v_t^*U  + \int_M f(\norm{v}^2)v_t^*U
 	\end{equation}
@@ -938,7 +1031,7 @@ non-degenerate.
 		v_t^*U = e^{-t^2\norm{v}^2 /2} \sum_{k=0}^{n} t^k \alpha_k
 	\] 
 	where $\alpha_k \in \Omega(M)$. Therefore, the first integral in equation
-	(\ref{eq:euler_zeroes}) is rapidly decreasing in $t$ since $\norm{v}^2 >
+	(\ref{eq:euler_zeros}) is rapidly decreasing in $t$ since $\norm{v}^2 >
 	\epsilon^2 /4$, and approaches zero as $t\to\infty$.
 
 	On each $V_p$, the metric and connection are trivial since they are induced 
@@ -964,92 +1057,149 @@ non-degenerate.
 		&= \nu(p,v) 
 	\end{align*}
 	where we have made the change of variables $x=t^{-1}y$. Summing over each of
-	the neighbourhoods $V_p$ of zeroes, we get the result.
+	the neighbourhoods $V_p$ of zeros, we get the result.
 \end{proof}
 
-There is a generalisation of this result, where we assume that the zeroes
+There is a generalisation of this result, where we assume that the zeros
 of $v$ are isolated instead of non-degenerate.\cite[Theorem 1.58]{bgv} 
+It is desirable to generalise this further to relate the Euler number of
+arbitrary vector bundles to zeros of a section, but the Poincar\'e-Hopf theorem
+relies on the Lie bracket of vector fields to define the orientation of each
+zero. As we will see below, there is in fact such a generalisation.
 
 % p51 Bott Tu
-To every closed (as a subspace) and oriented submanifold $i: S
-\xhookrightarrow{} M$ of dimension  $k$, we can
-associate a unique cohomology class  $[\eta_s]\in H^{n-k}(M)$ called its
-\underline{Poincare dual} as follows. Let $\omega\in \Omega_c^k(M)$ be closed.
-Since $\operatorname{supp}(\omega|_S) \subset \operatorname{supp}(\omega) \cap
-S$ is a closed subset of a compact set, $i^*\omega$ also has compact support on
-$S$, so  $\int_S i^*\omega$ is defined. Hence integration over  $S$ is a  
-linear functional on $H^k_c(M)$. It follows by Poincare duality:
-$(H_c^k(M))^*\simeq H^{n-k}(M)$, that integration over $S$ corresponds to a
-unique cohomology class $[\eta_S]\in H^{n-k}(M)$. 
-From the construction of the Poincare duality map, $\eta_S$ satisfies
-for any closed $\omega\in \Omega^k_c(M)$
+Poincar\'e duality (Theorem \ref{thm:poincare_duality}) can be used to associate 
+every compact and oriented 
+submanifold $i: S \xhookrightarrow{} M$ of dimension  $k$, 
+to a unique cohomology class  $[\eta_s]\in H^{n-k}_c(M)$ called its
+\underline{Poincare dual} as follows. Define the linear functional
+\[
+H^k(M) \to \mathbb{R}, \qquad 
+\omega \mapsto \int_S i^*\omega
+\] 
+Note that $\int_S i^*\omega$ is defined because $S$ is compact. 
+It follows by Poincare duality that integration over $S$ corresponds to a
+unique cohomology class $[\eta_S]\in H^{n-k}_c(M)$, with the property that 
+for any closed $\omega\in \Omega^k(M)$
 \[
 \int_S i^*\omega = \int_M \omega \wedge \eta_S
 \] 
+Now, if $W\subset M$ is an open subset containing $S$, then the Poincar\'e dual
+of  $S$ in  $W$,  $\eta_S' \in H_c^{n-k}(W)$ extends by 0 to a representative 
+$\eta_S\in H_c^{n-k}(M)$ of the Poincar\'e dual in $M$. 
+Therefore, the support of $\eta_S$ can be shrunk into an arbitrarily small
+neighbourhood of  $S$, and this is called the \underline{localisation
+principle}. 
+
+However, we would still like to relate these ideas to the Euler/Thom class, which
+requires constructing a vector bundle. We can do this by introducing the concept
+of a tubular neighbourhood.
 \begin{defn}
 	Let $S$ be a submanifold of dimension  $k$ in a manifold  $M$ of dimension
 	$n$. A \underline{tubular neighbourhood} of  $S$ in  $M$ is an open
 	neighbourhood of  $S$ in  $M$ diffeomorphic to a vector bundle of rank
 	$n-k$ over  $S$, such that  $S$ is diffeomorphic to the zero section.
 
-	The \underline{normal bundle} of $S$ in  $M$ is the vector bundle on  $S$
-	is the quotient bundle $N$ defined by the exact sequence 
+	The \underline{normal bundle} of $S$ in  $M$ is the quotient vector bundle
+	$N\to S$ defined by the exact sequence 
 	\[
 	\begin{tikzcd}[column sep = 1.6em]
-		0 \arrow[r] & TS \arrow[r] & TM|_S \arrow[r] 
+		0 \arrow[r] & TS \arrow[r,"i_*"] & TM|_S \arrow[r] 
 						& N \arrow[r] & 0
 	\end{tikzcd}
 	\] 	
+	For a Riemannian manifold, one can identify $N$ with the orthogonal
+	complement.
 \end{defn}
 
-%TODO reference See 
 % https://luis.impa.br/aulas/anvar/Spivak_Vol1_3ed.pdf Spival p346
 % https://www.math.tecnico.ulisboa.pt/~acannas/Books/lsg.pdf p37
 % http://alpha.math.uga.edu/~usher/8210-notes2.pdf Thm 2.11
-\begin{thm}[Tubular neighbourhood theorem] 
-	Every $S$ submanifold of a smooth manifold $M$ has a 
-	tubular neighbourhood  $T$ in $M$, and  
+\begin{thm}[Tubular neighbourhood theorem {\cite[Theorem 6.5]{anacannas}}] 
+	Every submanifold $S$ of a smooth manifold $M$ has a 
+	tubular neighbourhood  $T\subset M$, and  
 	$T$ is diffeomorphic to the normal bundle of $S$ in $M$.
 \end{thm}
 %TODO diagram of tubular neighbourhood
 
-Let $S$ be an oriented submanifold of an oriented manifold $M$, which is closed
-as a subspace. Let $j:T \hookrightarrow M$ be the inclusion
-of a tubular neighborhood of  $S$. Since $S$ and  $M$ are orientable, the normal
-bundle is also orientable. % TODO why?
-
-Let $j_*: H_{cv}^{*}(T) \to H^*(M)$ be extension by zero, which is defined 
-because % TODO why does Thom form vanish near boundary of S?
-
-\begin{thm}[Poincare dual as a Thom class] % p67 Bott Tu
-	The Poincare dual of a submanifold $S^k \subset M^n$ is the Thom class of the
-	normal bundle of $S$ in  $M$, i.e. 
+Let $S$ be a compact oriented submanifold of an oriented manifold $M$. 
+% which is closed as a subspace. % Not using closed homology, see BottTu p51 
+If $j:T \hookrightarrow M$ is the inclusion of a tubular neighborhood of $S$, 
+we have a Thom class $U \in H^{n-k}_{cv}(T)$ by identifying $T$ with the normal
+bundle of $S$. 
+We can define a map $j_*:H_{cv}^{*}(T) \to H^*(M)$ which extends by zero,
+because forms that are compactly supported along the fiber go to zero near 
+the boundary of $T$. 
+The normal bundle $N\to S$ is given an orientation
+such that $N\oplus TS = TM|_S$ has the direct sum orientation. 
+The following
+theorem relates the Poincar\'e dual to the Thom class:
+\begin{thm}[Poincar\'e dual as a Thom class] % p67 Bott Tu
+	The Poincar\'e dual of $S$ is the Thom class of the
+	normal bundle $N \to S$. More precisely, 
 	\[
-		\int_M \omega\wedge j_*\Phi = \int_S i^*\omega 
+		\int_M \omega\wedge j_*U = \int_S i^*\omega 
 	\] 
-	for all $\omega\in H^k_c(M)$, and $\Phi\in H^{n-k}(T)$.
+	for all $\omega\in H^k(M)$, where $U\in H^{n-k}_{cv}(T)$ is the Thom form.
 \end{thm}
 \begin{proof}
+	Let $\omega \in H^k(M)$. Consider $\omega$ as a form on  $T$, since
+	we are not concerned with its values outside this region, so we may view
+	the inclusion $i : S \to T$ as the zero section. Note that $\pi : T \to S$
+	induces a deformation retraction of $T$ onto $S$, so $\pi$ and  $i$
+	are inverse isomorphisms in cohomology. This means $\omega$ differs from
+	$\pi^*i^*\omega$ by an exact form:  $\omega = \pi^*i^*\omega + d\tau$.
 	\begin{align*}
-		\int_M \omega\wedge j_*\Phi 
-		&= \int_T \omega \wedge \Phi \\
-		&=  
+		\int_M \omega\wedge j_*U 
+		= \int_T \omega \wedge U 
+		&= \int_T (\pi^*i^*\omega + d\tau) \wedge U \\
+		&= \int_T (\pi^*i^*\omega) \wedge U \tag{by Stokes' theorem}\\
+		&= \int_S i^*\omega  \wedge \pi_*U 
+		\tag{by Proposition \ref{prop:projection_formula}}\\
+		&= \int_S i^*\omega \tag{since $\pi_*U = 1$} 
 	\end{align*}
 \end{proof}
-
-\begin{thm}[Localisation property] % see pg 69 Bott Tu
-	Let $f\in C^\infty(M',M)$ be an orientation-preserving map of oriented
-	manifolds, and $S\subset M$ be a closed oriented submanifold. 
-	If $f$ is transversal to  $S$ and  $T$, then
-	$\eta_{f^{-1}(S)} = f^*\eta_S$, i.e. for all  $\omega\in \Omega^k_c(M')$,
+\vspace{-1.5ex}
+In particular, this means that the Poincar\'e dual of the zero section of a
+vector bundle $E\to M$ is the same as the Thom class of  $E$, since the normal
+bundle of the zero section is  $E$ itself. It will be useful to review
+transversality in Appendix \ref{appendix4} before reading the rest of this
+chapter.
+\begin{thm} % Bott Tu pg 69 
+	Suppose $f\in C^\infty(N,M)$ is an orientation-preserving map of oriented
+	manifolds, $S\subset M$ is a compact oriented submanifold, and $T\subset M$
+	is a tubular neighbourhood of $S$. 
+	If $f$ is transverse to  $S$ and  $T$, then
+	$\eta_{f^{-1}(S)} = f^*\eta_S$, i.e. for all  $\omega\in H^k(N)$,
 	\[
-	\int_{M'} \omega \wedge f^*\eta_S =\int_{f^{-1}(S)} i^*\omega  
+	\int_{N} \omega \wedge f^*\eta_S =\int_{f^{-1}(S)} i^*\omega  
 	\] 
-	where $i: f^{-1}(S) \to M'$ is the inclusion map.
+	where $i: f^{-1}(S) \to N$ is the inclusion map.
 \end{thm}
 \begin{proof}
-	%TODO why is dimension of f^-1 S the same as S ?, complete proof
-	claim $f^{-1}T$ is a tubular neighborhood of $f^{-1}S$ in $M'$
+	Let the dimensions of $N,M$ and  $S$ be  $n,m$ and  $k$ respectively.
+	By Theorem \ref{thm:inverse_submanifold}, $f^{-1}S\subset N$ is a submanifold 
+	of dimension $n-m+k$. Similarly, $f^{-1}T \subset N$ is a neighbourhood of 
+	dimension $n$. So the normal bundles of $S$ and  $f^{-1}(S)$ are of the same
+	rank. 
+	We can choose $T$ to be a sufficiently small tubular
+	neighbourhood of  $S$ such that  
+
+	$f^{-1}T$ is contained within a tubular
+	neighbourhood of $f^{-1}S$ in $N$, and hence diffeomorphic to 
+
+	\begin{comment} % normal bundle is pullback
+	First observe that $f \pitchfork S$ if and only if  $Df|_x$ maps
+	surjectively to the quotient vector space $T_{f(x)}M /T_{f(x)} S =
+	(N_S)_{f(x)}$ for all $x\in f^{-1}(S)$. Denote by $N_{f^{-1}(S)}$ the normal
+	bundle of $f^{-1}(S)$ in $N$. Since $Df|_x$ sends  $T_xf^{-1}(S)$ to
+	$T_{f(x)}S$, it descends to a surjective map on the quotient vector spaces
+	$Df|_x : (N_{f^{-1}(S)})_x \to (N_S)_{f(x)}$. So it must be a linear
+	isomorphism because the dimensions are both equal to $m-k$.
+	Therefore, $Df : N_{f^{-1}(S)} \to f^*N_{S}$ is a bundle isomorphism. 
+	\end{comment}
+
+	%TODO why T sufficiently small 
 
 	The following diagram commutes (why?)
 	% https://q.uiver.app/?q=WzAsNixbMCwwLCJIXiooUykiXSxbMSwwLCJIXnsqK2t9KFQpIl0sWzIsMCwiSF4qKE0pIl0sWzIsMSwiSF4qKE0nKSJdLFsxLDEsIkheeyora30oZl57LTF9VCkiXSxbMCwxLCJIXiooZl57LTF9UykiXSxbMCw1LCJmXioiXSxbMSw0LCJmXioiXSxbMiwzLCJmXioiXSxbMCwxLCJcXHdlZGdlIFxcUGhpKFQpIl0sWzEsMiwial8qIl0sWzQsMywial8qIl0sWzUsNCwiXFx3ZWRnZSBcXFBoaShmXnstMX1UKSJdXQ==
@@ -1075,7 +1225,7 @@ because % TODO why does Thom form vanish near boundary of S?
 \begin{cor} \label{cor:vb_localisation} % prop 12.8 Bott Tu
 	Let $E\to M$ be an oriented vector bundle of rank $k$ over an oriented 
 	manifold of dimension $n$, 
-	and $s\in\Gamma(M,E)$ be a section which is transverse to .
+	and $s\in M\to E$ be a section which is transverse to the zero section.
 	Then for all $\omega\in \Omega^{n-k}_c(M)$,
 	\[
 	\int_M \omega \wedge s^* \Phi(E) =\int_{s^{-1}(0)} i^*\omega  
@@ -1098,29 +1248,32 @@ because % TODO why does Thom form vanish near boundary of S?
 	Hence $\eta_0 = \Phi(E)$. 
 \end{proof}
 
-% discussion from Witten N matrix model 3.3, see also cordes 11.10.3
+% discussion from Witten N matrix model 3.3, cordes 11.10.3, physical p15
 % TODO
 There is an extension of the previous result for a section $s$ which is not
 transverse to the zero section, but with constant rank so that $s^{-1}(0)$ is a
 manifold. 
 
 Let $E\to M$ be a vector bundle over a finite-dimensional compact manifold  $M$.
-Let $s\in\Gamma(M,E)$ be a generic section and assuming $\dim M \geq \rank E$, 
+If $s\in\Gamma(M,E)$ is a generic section and $\dim M \geq \rank E$, 
 $S=s^{-1}(0)$ is a submanifold with
 Poincare dual $s^*\Phi(E)=\chi(E)$ by Corollary \ref{cor:vb_localisation}. 
-By the rank-nullity theorem, we would have $\dim S = \rank M - \rank E$, but 
-we wish to consider a non-generic section $s$ of a certain type with 
-$\dim S > \dim(M)-\rank(E)$. 
+By the rank-nullity theorem, we would have $\dim S = \rank M - \rank E$. But 
+we wish to consider a non-generic section $s$, i.e. not transverse to the zero
+section: $\dim S > \dim(M)-\rank(E)$ such that the fibers of $\coker(\nabla s)$
+has constant rank and defines a smooth vector bundle. Given orientations of  $M$
+and  $E$,  $\coker(\nabla s)$ is canonically oriented.
 
 \begin{thm}[Generalised localisation theorem]
-	Let  $N\to S$ be the normal bundle of dimension
-	$\dim(M)-\dim(S)$.  More like $N = \coker (\nabla s)$
+	Let  $\coker(\nabla s) \to S$ be the vector bundle of dimension
+	$\dim(M)-\dim(S)$.  
 
 	Let  $u\in\Gamma(S,N)$ be a generic section and
 	$P=u^{-1}(0)$ which has Poincare dual $\chi(V')$. Since  $P\subset S \subset M$,
 	we claim that $i(P)$ is Poincare dual to  $\chi(E)$.
 \[
-\int_M \chi(E\to M)\wedge \omega = \int_{S} i^*\omega \wedge \chi(N\to S)
+\int_M \chi(E\to M)\wedge \omega 
+= \int_{S} i^*\omega \wedge \chi(\coker(\nabla s)\to S)
 \]
 \end{thm}
 
