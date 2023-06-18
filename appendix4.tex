@@ -9,24 +9,24 @@
 	a submersion  $G : U \to \mathbb{R}^{n-k}$ such that $S\cap U = G^{-1}(0)$.
 \end{thm}
 
-% prop 5.38 Lee manifolds
-\begin{thm}
+\begin{thm}[{\cite[Proposition 5.38]{lee_smooth}}]
 	If $S \subset E$ is a submanifold, and $f: U \to N$ is any local defining
 	submersion map for $S$, then $T_xS = \ker Df|_x$ for each $x\in S\cap U$.
 \end{thm}
-
+\noindent
+Suppose $f : N^n \to M^m$ is a smooth map and  $S^k \subset M^m$ is a submanifold..
 \begin{defn}
-	A smooth map $f: M\to N$ is \underline{transversal} to a submanifold
-	$S\subset N$, denoted $f \pitchfork S$, if for every $x\in f^{-1}(S)$ 
+	A smooth map $f: N\to M$ is \underline{transversal} to a submanifold
+	$S\subset M$, denoted $f \pitchfork S$, if for every $x\in f^{-1}(S)$ 
 	\[
-	Df(T_xM) + T_{f(x)}S = T_{f(x)}M
+	Df|_x(T_xN) + T_{f(x)}S = T_{f(x)}M
 	\] 
 \end{defn}
 
 % corollary of IFT
-\begin{thm} 
-	If $f \pitchfork S$, then  $f^{-1}S \hookrightarrow M$ is a 
-	submanifold.
+\begin{thm}[{\cite[Theorem 6.30]{lee_smooth}}] \label{thm:inverse_submanifold}
+	 If $f \pitchfork S$, then  $f^{-1}S \hookrightarrow N$ is a 
+	submanifold of dimension $n-m+k$.
 \end{thm}
 
 % https://sites.math.northwestern.edu/~jnkf/classes/mflds/4transversality.pdf
