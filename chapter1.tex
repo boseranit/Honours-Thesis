@@ -8,130 +8,9 @@ The details of the construction of the invariants are highly technical, which
 this chapter will not be concerned with, as that would be beyond the scope of 
 the thesis. 
 
-\section{Space of connections}
-\begin{prop}
-	Let $E_1,\ldots,E_k$ and $F$ be vector bundles over a manifold  $M$. 
-	There is a bijection
-	\[
-	\set{
-		\begin{array}{c}
-			C^\infty\text{-multilinear maps} \\
-			T:\Gamma(E_1)\times \cdots \times \Gamma(E_k) \to \Gamma(F)
-		\end{array}
-	} \longleftrightarrow
-	\set{
-		\begin{array}{c}
-			\text{sections}\\
-			  \Gamma(M,E_1^*\otimes \cdots \otimes E_k^*\otimes F)
-		
-		\end{array}
-	}
-	\] 
-\end{prop}
-\begin{prop}
-	If $\nabla^A,\nabla^B : \mathcal{X}(M) \times \Gamma(E) \to \Gamma(E)$ are
-	two connections on a vector bundle $E\to M$, then 
-	 \[
-	\nabla^A - \nabla^B \in \Omega^1(X,\End E)
-	\] 
-	Conversely, given $a\in \Omega^1(X,\End E) \simeq \Hom(T^*M\otimes E,E)$, 
-	then $\nabla^A+a$ interpreted as 
-	\[
-		(\nabla^A + a)_X(s) = \nabla^A_X s + a(X\otimes s)
-	\] 
-	is again a connection on  $E$. 
-\end{prop}
-In one direction, it is easy to show $\nabla^A-\nabla^B$ is tensorial (meaning
-$C^\infty(M)$ linear in both components), and apply the previous proposition. In the other
-direction, we only need to verify the Leibniz rule. Thus, a choice of connection
-on $E$, defines a bijection between the space of all connections and
-$\Omega^1(M,\End E)$. There is a similar result for principal bundles.
-
-\begin{prop} \label{prop:connection_space}% Lemma 2.9.2 MF
-	The space of connections $\mathcal{A}$ on a principal $G$-bundle $P\to M$ is in bijection 
-	with the vector space $\Omega^1(M,\ad P) = \Omega^1(M,P\times_{\Ad} \mathfrak{g})$.
-\end{prop}
-This follows from the fact that the difference of two connections
-$\theta_1-\theta_2\in \Omega^1(P,\g)$ is a horizontal and $\Ad$-equivariant form.
-Finally we identify this space as $\Omega^1(M,P\times_{\Ad}\g)$, by 
-the isomorphism between these spaces (see \cite[Theorem 31.9]{loringtu}). 
-Conversely, the sum of $\theta_1$ with 
-a horizontal and $\Ad$-equivariant form is again a connection on  $P$.
-
-% p33 DK
-Given a real or complex vector bundle $E$ of rank $n$, we can always construct 
-its frame bundle with structure group $\GL(n)$ (or $\GL(n,\mathbb{C})$).
-Additional algebraic structure on $E$ yields a principal bundle with smaller
-structure group. For example,
-if $E$ is a complex vector bundle with a Hermitian metric, we get a principal
-$\U(n)$-bundle of orthonormal frames in  $E$. In these cases, we can identify
-the space of connections on $E$ as $\Omega^1(M,\mathfrak{g}_E)$, where
-the restriction to $\g_E \subset \End E$ ensures that the new connection is
-compatible with the structure group of  $E$.
-If the structure group is $\SU(2)$, for example, then
-$\g_E$ consists of skew-adjoint, trace-free endomorphisms of the rank two vector
-bundle $E$. The point is, we may view connections on principal bundles as a
-generalisation of the vector bundle case, so we work with the former.
-
-\begin{defn}
-	The \underline{gauge group} $\mathcal{G}$ of a vector bundle $E\to M$ is the group of all
-	vector bundle automorphisms $\Aut(E)$. Similarly, the gauge group of a
-	principal bundle $P\to M$ is the group of principal bundle automorphisms
-	$\Aut(P)$.
-\end{defn}
-
-\begin{prop} \label{prop:gauge_trans_space} % Lemma 4.1.2 Morgan
-	The group of gauge transformations $\mathcal{G}=\Aut(P)$ is isomorphic to 
-	sections $\Omega_{\Ad}^0(P,G)\simeq \Omega^0(M,\Ad P)$ under fiber-wise 
-	multiplication 
-\end{prop}
-\begin{proof}
-	A gauge transformation $f : P \to P$ preserves the fibers of  $P$ and
-	satisfies  $f(p\cdot g) = f(p) \cdot g$. For a fixed $p\in P$, we have 
-	$f(p) = p\cdot \psi(p)$ for some $\psi(p)\in G$ because the action is
-	transitive. Then $f$ acts by multiplication 
-	by $\psi(p)$ on the whole fiber. Hence, $f(p) =
-	p\cdot \psi(p)$ for a smooth function  $\psi : P \to G$. 
-
-	Substituting this into $f(p\cdot g) = f(p)\cdot g$, we find  $\psi(p\cdot g)
-	= g^{-1}\psi(p) g$ since the action is free. So $R_g^*\psi =
-	\Ad_{g^{-1}}\psi$. Hence, $\psi \in \Omega^0_{\Ad}(P,G) \simeq
-	\Omega^0(M,P\times_{\Ad}G)$. This isomorphism can be proved in the same way
-	as the associated vector bundle case.
-	Finally, note that composition of automorphisms corresponds to
-	multiplication of $\psi$ in the fibers of groups. 
-\end{proof}
-The action of $f \in \Aut(P)$ on a connection  $\omega\in \Omega^1(P,\g)$ is
-$f^*\omega \in \Omega^1(P,\g)$. Consequently, the action of $\Omega^0(M,\Ad
-P)$ on  $\Omega^1(M,\ad P)$ is still denoted the same way.
-% lemma 4.3.1 Morgan u^*`w is a connection one form
-% The stabiliser of a connection A are the sections which are horizontal in A
-
-The purpose of Propositions \ref{prop:gauge_trans_space} and
-\ref{prop:connection_space} is two-fold: this description allows us to 
-define Sobolev completions of the spaces as in the next section; the other 
-purpose is to identify $\mathcal{G}$ as an infinite dimensional Lie group with 
-Lie algebra $\Omega^0(M,\ad P)$.
-The gauge group $\mathcal{G}$ has  
-the fiberwise exponential map $\exp : \Omega^0(M,\ad P) \to
-\Omega^0(M,\Ad P)$ which assigns to any section  $\sigma \in \Gamma(\ad P)$ the
-section  $s(x)=\exp(\sigma(x))$. To see that this gives a well defined map, we
-use the fact that  $\exp : \g \to G$ satisfies
-$\exp(g^{-1}Ag)=g^{-1}\exp(A)g$. The Lie bracket on $\Omega^0(M,\ad P)$ is
-defined by the fiberwise bracket, which is well defined because ????
-% TODO why well defined?
-
-
-
-
-\section{Quotient by Gauge group}
-% 4.4 MF
-We wish to form the quotient space $\mathcal{A} /\mathcal{G}$ 
-of the space of connections by the action of
-the group of gauge transformations $\Aut(P)$. By working with Sobolev completion
-spaces, the quotient space can be shown to have a manifold structure by 
-application of the slice theorem.
-
+\section{Differential forms as normed spaces}
+We must first describe how to consider the space of differential forms
+as a normed space, because this will be central to the concepts of this chapter.
 Let $E\to M$ be vector bundle with a metric connection over an oriented 
 Riemannian manifold. 
 Denote $\nabla : \Omega^k(M,E) \to \Omega^{k+1}(M,E)$ to be the exterior
@@ -183,35 +62,12 @@ defining $\gen{v,w} := \int_G \gen{\rho(A)w,\rho(A)w}_V \odif{vol}(A)$, where
 $\odif{vol}(A)$ is a right-invariant differential form on $G$ (we can also
 construct the integral based on the right-invariant Haar measure on $G$).
 In particular, this gives an $\Ad$-invariant metric on $\g$. 
-This also gives an induced metric on $\ad P = P\times_{Ad}\g$, which is well 
+This also gives an induced metric on $\ad P = P\times_{\Ad}\g$, which is well 
 defined because the metric on both $P$ and  $\g$ are invariant under the action 
 of  $G$. 
 
-Denote the group of $L^2_3$-gauge transformations by  $\mathcal{G}_3(P) \subset
-\Gamma(\Ad P)$ and the space of $L^2_2$-connections by $\mathcal{A}_2(P) \subset
-\Omega^1(M,\ad P)$. The Sobolev spaces of sections are Banach manifolds, and 
-the $L^2_k$ spaces are in fact Hilbert manifolds with the inner product defined
-similarly to the $L^2$ norm. However, we could work with
-any Sobolev spaces for which the group of gauge transformations has at least two
-derivatives, and the space of connections has one few derivative. 
-
-% TODO 
-define irreducible connections; see Freed, Uhlenbeck 3.1
-
-\begin{thm} % Morgan 4.3.5 stabilisers, 4.4.5 local slices, and section 4.5
-	The quotient space of gauge equivalent irreducible connections
-    on a principal $\SU(2)$-bundle.
-	$\mathcal{B}^*_2(P) := \mathcal{A}^*_2(P) / \mathcal{G}_3(P)$ is a 
-	Hilbert manifold. 
-\end{thm}
-This is proved in \cite[Section 4.5]{morgan}. 
-
-% see corollary 4.3.5 and section 4.5 MF
-Provided that  $c_2(P)\neq 0$, the only possible stabilisers for elements of 
-$\mathcal{A}_2(P)$ are $\{\pm 1\}$ or $S^1$. The former connections are called
-irreducible and the latter ones reducible. 
-
 \section{Yang-Mills theory}
+
 \subsection{General definition}
 Let $P\to M$ be a principal $G$-bundle over an $n$-dimensional Riemannian 
 manifold $M$, with connection $A$ and associated curvature $F$. 
@@ -362,26 +218,197 @@ below by $S(A)\geq -8\pi^2c_2(E)$, and minimised by SD connections
 $F^-=0$. 
 Thus the classical equations of motion are equivalent to $\star F = \pm F$,
 whose solutions are called (anti-)instantons. 
+\section{Space of connections}
+\begin{prop}
+	Let $E_1,\ldots,E_k$ and $F$ be vector bundles over a manifold  $M$. 
+	There is a bijection
+	\[
+	\set{
+		\begin{array}{c}
+			C^\infty\text{-multilinear maps} \\
+			T:\Gamma(E_1)\times \cdots \times \Gamma(E_k) \to \Gamma(F)
+		\end{array}
+	} \longleftrightarrow
+	\set{
+		\begin{array}{c}
+			\text{sections}\\
+			  \Gamma(M,E_1^*\otimes \cdots \otimes E_k^*\otimes F)
+		
+		\end{array}
+	}
+	\] 
+\end{prop}
+\begin{prop}
+	If $\nabla^A,\nabla^B : \mathcal{X}(M) \times \Gamma(E) \to \Gamma(E)$ are
+	two connections on a vector bundle $E\to M$, then 
+	 \[
+	\nabla^A - \nabla^B \in \Omega^1(X,\End E)
+	\] 
+	Conversely, given $a\in \Omega^1(X,\End E) \simeq \Hom(T^*M\otimes E,E)$, 
+	then $\nabla^A+a$ interpreted as 
+	\[
+		(\nabla^A + a)_X(s) = \nabla^A_X s + a(X\otimes s)
+	\] 
+	is again a connection on  $E$. 
+\end{prop}
+In one direction, it is easy to show $\nabla^A-\nabla^B$ is tensorial (meaning
+$C^\infty(M)$ linear in both components), and apply the previous proposition. In the other
+direction, we only need to verify the Leibniz rule. Thus, a choice of connection
+on $E$, defines a bijection between the space of all connections and
+$\Omega^1(M,\End E)$. There is a similar result for principal bundles.
+
+\begin{prop} \label{prop:connection_space}% Lemma 2.9.2 MF
+	The space of connections $\mathcal{A}$ on a principal $G$-bundle $P\to M$ is in bijection 
+	with the vector space $\Omega^1(M,\ad P) = \Omega^1(M,P\times_{\Ad} \mathfrak{g})$.
+\end{prop}
+This follows from the fact that the difference of two connections
+$\theta_1-\theta_2\in \Omega^1(P,\g)$ is a horizontal and $\Ad$-equivariant form.
+Finally we identify this space as $\Omega^1(M,P\times_{\Ad}\g)$, by 
+the isomorphism between these spaces (see \cite[Theorem 31.9]{loringtu}). 
+Conversely, the sum of $\theta_1$ with 
+a horizontal and $\Ad$-equivariant form is again a connection on  $P$.
+
+% p33 DK
+Given a real or complex vector bundle $E$ of rank $n$, we can always construct 
+its frame bundle with structure group $\GL(n)$ (or $\GL(n,\mathbb{C})$).
+Additional algebraic structure on $E$ yields a principal bundle with smaller
+structure group. For example,
+if $E$ is a complex vector bundle with a Hermitian metric, we get a principal
+$\U(n)$-bundle of orthonormal frames in  $E$. In these cases, we can identify
+the space of connections on $E$ as $\Omega^1(M,\mathfrak{g}_E)$, where
+the restriction to $\g_E \subset \End E$ ensures that the new connection is
+compatible with the structure group of  $E$.
+If the structure group is $\SU(2)$, for example, then
+$\g_E$ consists of skew-adjoint, trace-free endomorphisms of the rank two vector
+bundle $E$. The point is, we may view connections on principal bundles as a
+generalisation of the vector bundle case, so we work with the former.
+
+\begin{defn}
+	The \underline{gauge group} $\mathcal{G}$ of a vector bundle $E\to M$ is the group of all
+	vector bundle automorphisms $\Aut(E)$. Similarly, the gauge group of a
+	principal bundle $P\to M$ is the group of principal bundle automorphisms
+	$\Aut(P)$.
+\end{defn}
+
+\begin{prop} \label{prop:gauge_trans_space} % Lemma 4.1.2 Morgan
+	The group of gauge transformations $\mathcal{G}=\Aut(P)$ is isomorphic to 
+	sections $\Omega_{\Ad}^0(P,G)\simeq \Omega^0(M,\Ad P)$ under fiber-wise 
+	multiplication 
+\end{prop}
+\begin{proof}
+	A gauge transformation $f : P \to P$ preserves the fibers of  $P$ and
+	satisfies  $f(p\cdot g) = f(p) \cdot g$. For a fixed $p\in P$, we have 
+	$f(p) = p\cdot \psi(p)$ for some $\psi(p)\in G$ because the action is
+	transitive. Then $f$ acts by multiplication 
+	by $\psi(p)$ on the whole fiber. Hence, $f(p) =
+	p\cdot \psi(p)$ for a smooth function  $\psi : P \to G$. 
+
+	Substituting this into $f(p\cdot g) = f(p)\cdot g$, we find  $\psi(p\cdot g)
+	= g^{-1}\psi(p) g$ since the action is free. So $R_g^*\psi =
+	\Ad_{g^{-1}}\psi$. Hence, $\psi \in \Omega^0_{\Ad}(P,G) \simeq
+	\Omega^0(M,P\times_{\Ad}G)$. This isomorphism can be proved in the same way
+	as the associated vector bundle case.
+	Finally, note that composition of automorphisms corresponds to
+	multiplication of $\psi$ in the fibers of groups. 
+\end{proof}
+The action of $f \in \Aut(P)$ on a connection  $\omega\in \Omega^1(P,\g)$ is
+$f^*\omega \in \Omega^1(P,\g)$. Consequently, the action of $\Omega^0(M,\Ad
+P)$ on  $\Omega^1(M,\ad P)$ is still denoted the same way.
+% lemma 4.3.1 Morgan u^*`w is a connection one form
+% The stabiliser of a connection A are the sections which are horizontal in A
+
+The purpose of Propositions \ref{prop:gauge_trans_space} and
+\ref{prop:connection_space} is two-fold: this description allows us to 
+define Sobolev completions of these spaces; the other 
+purpose is to identify $\mathcal{G}$ as an infinite dimensional Lie group with 
+Lie algebra $\Omega^0(M,\ad P)$.
+The gauge group $\mathcal{G}$ has  
+the fiberwise exponential map $\exp : \Omega^0(M,\ad P) \to
+\Omega^0(M,\Ad P)$ which assigns to any section  $\sigma \in \Gamma(\ad P)$ the
+section  $s(x)=\exp(\sigma(x))$. To see that this gives a well defined map, we
+use the fact that  $\exp : \g \to G$ satisfies
+$\exp(g^{-1}Ag)=g^{-1}\exp(A)g$. The Lie bracket on $\Omega^0(M,\ad P)$ is
+defined by the fiberwise bracket, which is well defined because ????
+% TODO why well defined?
+
+
 
 \section{Moduli space}
+% 4.4 MF
+We wish to form the quotient space $\mathcal{A} /\mathcal{G}$ of gauge equivalent connections.  
+Singularities in this quotient space are characterised by reducible connections,
+as defined below.
+\begin{defn} % freed uhlenbeck p54
+	A connection $\omega\in \Omega(P,\g)$ on a principal $G$-bundle  $P\to M$ 
+	is \underline{reducible} if the gauge group $\mathcal{G}$ modulo its center 
+	does not act freely on the connection $\omega$.
+\end{defn}
+% freed p36
+\noindent
+For the group $G=\SU(2)$, the center of 
+$\mathcal{G}\simeq \Gamma(P\times_{\Ad} \SU(2))$ is $Z:=\Gamma(P\times_{\Ad}
+\mathbb{Z}_2)$, since $\mathbb{Z}_2$ is the center of $\SU(2)$. 
+
+% also corollary 4.3.5 and section 4.5 morgan
+\begin{thm}[{\cite[Theorem 3.1]{freed_uhlenbeck}}] % Freed, Uhlenbeck 3.1, 10.8
+	Suppose $\omega$ is a connection on the principal $\SU(2)$-bundle  $P\to M$ 
+	which is not flat. Then the following are equivalent:
+	\begin{enumerate}[(a)]
+		\item  $\omega$ is reducible, i.e.  $\mathcal{G}_\omega / Z \neq 1$, 
+			where $\mathcal{G}_\omega$ is the stabiliser of $\omega$
+	    \item $\mathcal{G}_{\omega} / Z \simeq U(1)$ 	
+		\item $\nabla : \Omega^0(\ad P) \to \Omega^1(\ad P)$ has a nonzero
+			kernel, where  $\nabla$ is the induced covariant derivative
+		\item For any associated bundle $\eta = P\times_G V$ and induced 
+			connection $D$,  the bundle $\eta = \eta_1 \oplus \eta_2$ and the
+			connection $D= d_1\oplus d_2$ both split.
+	\end{enumerate}
+\end{thm}
+Let us denote by $\mathcal{A}^*$ the space of irreducible connections on a
+principal bundle, and $\mathcal{B}^* := \mathcal{A^*} / \mathcal{G}$ the
+topological quotient by the gauge group. 
+
+By working with Sobolev completion
+spaces, $\mathcal{B}^*$ can be shown to have a manifold structure by 
+application of the slice theorem. Denote
+\begin{itemize}
+	\item the group of $L^2_l$-gauge transformations by $\mathcal{G}_l(P) \subset
+\Gamma(\Ad P)$ 
+	\item the space of $L^2_l$-connections by $\mathcal{A}_l(P) \subset
+\Omega^1(M,\ad P)$. 
+	\item the vector space of $L^2_l$ forms by  $\Omega^*_{l}$
+\end{itemize}
+The Sobolev spaces of sections are Banach manifolds, and 
+the $L^2_k$ spaces are in fact Hilbert manifolds with the inner product defined
+similarly to the $L^2$ norm. However, we could work with
+any Sobolev spaces for which the group of gauge transformations has at least two
+derivatives, and the space of connections has one fewer derivative. 
+
+\begin{thm}[{\cite[Section 4.5]{morgan}}] 
+	% Morgan 4.3.5 stabilisers, 4.4.5 local slices, and section 4.5
+	The space of gauge equivalent irreducible connections
+    on a principal $\SU(2)$-bundle
+	$\mathcal{B}^*_2(P) := \mathcal{A}^*_2(P) / \mathcal{G}_3(P)$ is a 
+	Hilbert manifold. 
+\end{thm}
+
 % chapter 4 Donaldson Kronheimer, Morgan
-Note that $\star F = - F$ is a non-linear differential equation for
+The classical equation of motion $\star F = - F$ is a non-linear differential equation for
 non-abelian gauge groups, and defines a subspace of the infinite dimensional
 space of connections $\mathcal{A}$. This subspace can be regarded as the zero
-locus of the section $s : \mathcal{A} \to \Omega^{2,+}$ given by $s(A) =
+locus of the section $s : \mathcal{A} \to \Omega^{2,+}(\ad P)$ given by $s(A) =
 F_A+\star F_A$. The main goal is to define a finite-dimensional moduli space
-starting from  $s^{-1}(0)$. 
+from  $s^{-1}(0)$. 
 The key property used to do this is that the section is equivariant with respect
-to the action of the gauge group: $s(u^*(A))=u^*(s(A))$.
-
-Hence if a connection is ASD, i.e. $s(A)=0$, then the transformed connection is
-also ASD. The moduli space is defined by quotienting the space of ASD
-connections by the action of the gauge group. 
+to the action of the gauge group: $s(u^*(A))=u^*(s(A))$. 
+So if a connection is ASD, i.e. $s(A)=0$, then the transformed connection is
+also ASD. Therefore, we can interpret ASD connections as a subspace of 
+$\mathcal{B}^*$, which we call the moduli space.
 
 
 \begin{remark}
 If we reverse the orientation of $M$, then this swaps the SD and ASD forms in
-$\Omega^2(M,\g)$. Since the two theories are completely
+$\Omega^2(M,\ad P)$. Since the two theories are completely
 equivalent, we could work with SD connections. However, there is an
 important class of 4-manifolds which have a natural orientation - complex
 manifolds. Over this orientation, it turns out that ASD connections are 
@@ -390,22 +417,59 @@ objects.\cite[p.95]{morgan} For this reason, we choose to work in terms of
 ASD connections by default.
 \end{remark}
 
+\begin{comment}
 The space of gauge connections $\mathcal{A}$ on a principal bundle is the
 universal bundle for the group of gauge transformations $\mathcal{G}$. (ch 15
 Cordes)
+\end{comment}
 
+Our goal is now to study the local structure of the moduli space, which will
+allow us to understand the Donaldson invariants better. However, the details
+rely on elliptic theory and is quite involved, so we only sketch the arguments.
+% freed, uhlenbeck p54, A.4
+\begin{prop}[{\cite[p.54]{freed_uhlenbeck}}]
+Fix a reference connection $\omega_0$ to identify
+$\mathcal{A}$ with the affine space $\Omega^1(M,\ad P)$. 
+The curvature operator $F:\Omega^1_{l}(M,\ad P) \to \Omega^2_{l-1}(M,\ad P)$ is smooth, and
+its differential at $\omega$ is the covariant derivative
+\[
+d_{\omega} : \Omega^1_{l}(M,\ad P) \to \Omega^2_{l-1}(M,\ad P)
+\]
+\end{prop}
+\noindent
+This is not hard to see, because at $\omega = \omega_0 + A$,
+\[
+F(\omega_0 + A) = F(\omega_0) + d^{\omega_0}A + A\wedge A 
+\] % since $\omega_0 \wedge A + A\wedge\omega_0 = 0$
+since the exterior derivative $d$ on $\Omega(P,\g)$ corresponds to the covariant
+derivative $d^{\omega_0}$ on $\Omega(M,P\times_{\Ad}\g)$. 
 
-% TODO 
-formal dimension of the moduli space
-% fundamental elliptic complex, virtual dimension 
-% naber witten conjecture p73, naber p118, physical p25
+% naber witten conjecture p69-73, naber p117-119, physical p25
+If $d^*_\omega$ is the formal adjoint of $d_\omega : \Omega^k(M,\ad P) \to
+\Omega^{k+1}(M,\ad P)$, then it can be shown that $d^*_\omega \circ d_\omega$ is
+an elliptic operator. By the generalised Hodge decomposition theorem,
+there is an orthogonal decomposition 
+ \[
+\Omega^1(M,\ad P) = \Im(d_\omega) \oplus \ker(d^*_\omega)
+\] 
+$\Im(d_\omega)$ is the tangent spce to the orbit  $\omega \cdot \mathcal{G}$ at
+$\omega$. 
+If $\omega$ is irreducible, there is a sufficiently small neighbourhood of 
+$\omega$ in  $\ker(d^*_\omega)$ (thought of as a subset of connections)
+which intersects an orbit no more than once, so projects injectively into the
+moduli space. So it provides a local model for the moduli space.
+
+The structure of the moduli space is unraveled by studying what is called the
+fundamental elliptic complex associated with an ASD connection $\omega$:
 \[
 \begin{tikzcd}
-	0 \arrow[r] &\Omega^0(\ad P) \arrow[r,"\nabla"] 
-				&\Omega^1(\ad P) \arrow[r,"\nabla^+"] &\Omega^{2,+}(\ad P)
+	0 \arrow[r] &\Omega^0(M,\ad P) \arrow[r,"d_\omega"] 
+				&\Omega^1(M,\ad P) \arrow[r,"d^+_\omega"] &\Omega^{2,+}(M,\ad P)
 \end{tikzcd} 
-\] 
-
+\]
+The generalised Hodge decomposition guarantees that the cohomology of this
+complex is finite-dimensional. 
+% TODO see naber 119-120 for formal dimension of the moduli space
 
 \section{Donaldson invariants}
 % Lecture 7 morgan
@@ -510,12 +574,12 @@ gluing procedure, for details refer to \cite{morgan} or \cite{donaldson_kronheim
 	\item A great overview of the main ideas in the two approaches to
 		constructing a Witten type TFT is given in \citet{TQFTbook}.
 	\item The local model for $\mathcal{M}$ obtained from the elliptic complex 
-		first studied by \citet{local_moduli}.
+		was first studied by \citet{local_moduli}.
 	\item The geometry of the the moduli space, and the theory leading up to the
 		Donaldson polynomial invariants are
 		discussed in more detail in \citet{morgan} and
 		\citet{donaldson_kronheimer}. 
 	\item A succint review of Donaldson theory and the invariants can be found
-		in the conference paper by \cite{naber_donaldson}.
+		in the conference paper by \citet{naber_donaldson}.
 \end{itemize}
 }
