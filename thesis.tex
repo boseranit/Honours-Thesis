@@ -42,7 +42,12 @@
   \makeatother
 \begin{document}
 
+% no separation between list items
 \setlist{nosep} % default approx 1ex
+% bold proofs
+\let\oldproofname=\proofname
+\renewcommand{\proofname}{\rm\textit{\textbf{\oldproofname}}}
+
 % set page numbers to roman and suppress chapter numbers
 \frontmatter
 
