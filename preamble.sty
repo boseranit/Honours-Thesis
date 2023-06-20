@@ -106,3 +106,23 @@
 %\addtolength{\jot}{0.5em} % increase spacing in align environment
 \RequirePackage{verbatim} % for multiline comments
 
+\RequirePackage{mdframed}
+
+\ExplSyntaxOn
+\DeclareExpandableDocumentCommand{\IfNoValueOrEmptyTF}{mmm}
+ {
+  \IfNoValueTF{#1}{#2}
+   {
+    \tl_if_empty:nTF {#1} {#2} {#3}
+   }
+ }
+\ExplSyntaxOff
+
+\NewDocumentEnvironment{subproof}{o O{}}
+  {\par\nopagebreak%
+  \begin{mdframed}[
+     bottomline=false,topline=false,rightline=false,
+   ] \noindent\normalfont\textit{\IfNoValueOrEmptyTF{#1}{
+	\IfNoValueTF{#1}{Proof.}{}
+   }{Proof #1.}}}
+  {#2\end{mdframed}}

@@ -96,7 +96,6 @@ zero. In order to describe such a generalisation we first need to introduce some
 intersection theory.
 
 \section{Intersection theory}
-
 % p51 Bott Tu
 Poincar\'e duality (Theorem \ref{thm:poincare_duality}) can be used to associate 
 every compact and oriented 
@@ -111,9 +110,9 @@ Note that $\int_S i^*\omega$ is defined because $S$ is compact.
 It follows by Poincare duality that integration over $S$ corresponds to a
 unique cohomology class $[\eta_S]\in H^{n-k}_c(M)$, with the property that 
 for any closed $\omega\in \Omega^k(M)$
-\[
-\int_S i^*\omega = \int_M \omega \wedge \eta_S
-\] 
+\begin{equation} \label{eq:poincare_dual_property}
+	\int_S i^*\omega = \int_M \omega \wedge \eta_S
+\end{equation}
 Now, if $W\subset M$ is an open subset containing $S$, then the Poincar\'e dual
 of  $S$ in  $W$,  $\eta_S' \in H_c^{n-k}(W)$ extends by 0 to a representative 
 $\eta_S\in H_c^{n-k}(M)$ of the Poincar\'e dual in $M$. 
@@ -121,16 +120,17 @@ Therefore, the support of $\eta_S$ can be shrunk into an arbitrarily small
 neighbourhood of  $S$, and this is called the \underline{localisation
 principle}. 
 
-However, we would still like to relate these ideas to the Euler/Thom class, which
-requires constructing a vector bundle. This leads to the concept
-of a tubular neighbourhood.
+Notice that the Poincar\'e dual has a remarkably similar property to the 
+Thom class (c.f. equation (\ref{eq:thom_form_property})). 
+To relate the two ideas, this requires constructing a vector bundle over the
+submanifold $S$, which leads to the concept of a tubular neighbourhood.
 \begin{defn}
 	The \underline{normal bundle} of $S$ in  $M$ is the quotient vector bundle
 	$N_S\to S$ defined by the exact sequence 
 	\[
 	\begin{tikzcd}[column sep = 1.6em]
 		0 \arrow[r] & TS \arrow[r] & TM|_S \arrow[r] 
-						& N \arrow[r] & 0
+						& N_S \arrow[r] & 0
 	\end{tikzcd}
 	\]
 	Let $S$ be a submanifold of dimension  $k$ in a manifold  $M$ of dimension
@@ -141,16 +141,10 @@ of a tubular neighbourhood.
 For a Riemannian manifold, one can identify $N_S$ with the orthogonal
 complement. If we further assume $S$ and $M$ are oriented, then there is an
 induced orientation on the normal bundle via 
-\[
+\begin{equation} \label{eq:normal_orientation}
 	\operatorname{or}(TM|_S) = \operatorname{or}(TS)\wedge \operatorname{or}(N_S)
-\] 
-where $\operatorname{or}(NS)$ denotes the orientation form. The next theorem
-shows that the tubular neighbourhood is of the form
-\[
-	T^\delta = \set[*]{(x,v)\in N_S \mid \abs{v}_g < \delta(x)}
-\] 
-for some positive continuous function $\delta : S \to \mathbb{R}$, called the
-radius. 
+\end{equation}
+where $\operatorname{or}(N_S)$ denotes the orientation form on the vector bundle. 
 
 % https://luis.impa.br/aulas/anvar/Spivak_Vol1_3ed.pdf Spival p346
 % https://www.math.tecnico.ulisboa.pt/~acannas/Books/lsg.pdf p37
@@ -184,8 +178,79 @@ radius.
 	neighbourhood.
 \end{proof}
 \end{comment}
-%TODO diagram of tubular neighbourhood
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=\textwidth]{figs/tubular_neighbourhood.pdf}
+	\caption{A tubular neighbourhood}
+	\label{fig:tubular_neighbourhood}
+\end{figure}
+The proof of the theorem shows that the tubular neighbourhood is the
+diffeomorphic image under the exponential map of a subset of the form
+\begin{equation} \label{eq:tubular_radius}
+	V^\delta_g = \set[*]{(x,v)\in N_S \mid \abs{v}_g < \delta(x)}
+	\;\mapsto\; 
+	T^\delta_g = \set{x \in M \mid \operatorname{dist}_g(x,S) < \delta(x)}
+\end{equation}
+for some positive smooth function $\delta : S \to \mathbb{R}$, called the
+radius, which can be chosen as small as desired. Note that $V^\delta_g$ is 
+diffeomorphic to  $N_S$.
 
+It will be useful at this stage to review transversality in Appendix
+\ref{appendix4} before continuing. 
+\begin{defn} % def 2.5 nicolescu
+	Let $S$ and  $L$ be closed (as subspaces) and oriented submanifolds of the
+	oriented manifold  $M$ such that  $\dim S + \dim L = \dim M$. Suppose 
+	 $S$ and  $L$ intersect transversely. Then for each  $p\in L\cap S$, define
+	 $\epsilon(S,L,p) \in \{\pm 1\}$ via
+	 \[
+		 \operatorname{or}(T_pS) \wedge \operatorname{or}(T_pL)
+		 = \epsilon(S,L,p) \operatorname{or}(T_p M)
+	 \] 
+	 If $S$ is also compact, then  $S\cap L$ is finite ($\ast$), and we define the
+	 \underline{intersection number} of  $L$ and  $S$ to be the integer
+	  \[
+		  [S]\cdot [L] = \sum_{p\in S\cap L} \epsilon(S,L,p)
+	 \] 
+\end{defn}
+\noindent
+($\ast$) Theorem \ref{thm:inverse_submanifold} applied to
+the inclusion $i: S \to M$ and  $L$ tells us that  $S\cap L$ is a zero
+dimensional submanifold. It is also compact because $S$ is compact, while  $L$
+is closed. If $S\cap L$ is not finite, there is a sequence  
+$(x_n)_{n\in \mathbb{N}} \subset S\cap L$ such that $x_n \to x \in S\cap L$. So 
+there is no neighbourhood of $x$ in $M$ whose restriction to $S\cap L$ is a
+point, contradicting that $S\cap L$ is a zero dimensional submanifold. 
+
+\begin{thm} \label{thm:intersection_poincare} % nicolescu theorem 2.6 p7
+	Suppose $S$ and  $L$ are oriented submanifolds of the compact manifold  $M$.
+	Assume  $S \pitchfork L$ and  $\dim L + \dim S = \dim M$.
+	Then 
+	\[ % TODO should this be reversed?
+		[S] \cdot [L] = \int_M \eta_L \wedge \eta_S = \int_L \eta_S
+	\] 
+\end{thm}
+\begin{proof}
+	% TODO
+\end{proof}
+
+\begin{comment} % Poincare dual for smooth cycles
+We can generalise the notion of Poincar\'e dual of submanifolds to smooth
+cycles.  The pair  $(N,f)$ determines a linear
+functional 
+\[
+H^n(M) \to \mathbb{R}, \qquad \omega \mapsto \int_N f^*\omega
+\] 
+The integral is well defined because $N$ is compact. We call this linear
+functional a smooth cycle, and denote it $f_*[N]$. As before, it follows by
+Poincar\'e duality that integration over $N$ corresponds to a unique
+$[\eta_{f_*[N]}] \in H^{m-n}(M)$ such that 
+\[
+	\int_N f^*\omega = \int_M \omega \wedge \eta_{f_*[N]} \quad\; 
+	\fall \omega \in H^n(M)
+\] 
+\end{comment}
+
+\section{Poincar\'e dual of submanifolds}
 Let $S$ be a compact oriented submanifold of an oriented manifold $M$. 
 % which is closed as a subspace. % Not using closed homology, see BottTu p51 
 If $j:T \hookrightarrow M$ is the inclusion of a tubular neighborhood of $S$, 
@@ -194,10 +259,11 @@ bundle of $S$.
 We can define a map $j_*:H_{cv}^{*}(T) \to H^*(M)$ which extends by zero,
 because forms that are compactly supported along the fiber go to zero near 
 the boundary of $T$. 
-The following theorem relates the Poincar\'e dual to the Thom class:
-\begin{thm}[Poincar\'e dual as a Thom class] % p67 Bott Tu
-	The Poincar\'e dual of $S$ is the Thom class of the
-	normal bundle $N \to S$. More precisely, 
+The following theorem illuminates the relation between the Poincar\'e dual and Thom class:
+
+\begin{thm}[Poincar\'e dual as a Thom class] \label{thm:poincare_thom} % p67 Bott Tu
+	The Poincar\'e dual $\eta_S$ of $S$ is equal to Thom class $U$ of the
+	normal bundle $N_S \to S$. That is, 
 	\[
 		\int_M \omega\wedge j_*U = \int_S i^*\omega 
 	\] 
@@ -223,92 +289,130 @@ The following theorem relates the Poincar\'e dual to the Thom class:
 \vspace{-1.5ex}
 In particular, this means that the Poincar\'e dual of the zero section of a
 vector bundle $E\to M$ is the same as the Thom class of  $E$, since the normal
-bundle of the zero section is  $E$ itself. It will be useful to review
-transversality in Appendix \ref{appendix4} before reading the rest of this
-chapter.
+bundle of the zero section is  $E$ itself. We can generalise this even further
+by finding the Poincar\'e dual of the zero set of an arbitrary section, or more
+generally the inverse image of a submanifold.
 
-% TODO insert nicolescu proofs here starting from def 2.5
-df gives isomorphism of pullback normal bundle
-\begin{comment} % normal bundle is pullback
-	First observe that $f \pitchfork S$ if and only if  $Df|_x$ maps
-	surjectively to the quotient vector space $T_{f(x)}M /T_{f(x)} S =
-	(N_S)_{f(x)}$ for all $x\in f^{-1}(S)$. Denote by $N_{f^{-1}(S)}$ the normal
-	bundle of $f^{-1}(S)$ in $N$. Since $Df|_x$ sends  $T_xf^{-1}(S)$ to
-	$T_{f(x)}S$, it descends to a surjective map on the quotient vector spaces
-	$Df|_x : (N_{f^{-1}(S)})_x \to (N_S)_{f(x)}$. So it must be a linear
-	isomorphism because the dimensions are both equal to $m-k$.
-	Therefore, $Df : N_{f^{-1}(S)} \to f^*N_{S}$ is a bundle isomorphism. 
-\end{comment}
+Suppose $M$ and $N$ are oriented manifolds of dimensions $m$
+and $n$, $f:N\to M$ is a smooth map, $N$ is compact, and
+$S \subset M$ is a submanifold of dimension $k$ that is transverse to $f$. 
+By Theorem \ref{thm:inverse_submanifold}, $f^{-1}S\subset N$ is a submanifold 
+of dimension $n-m+k$. The following lemma gives an orientation on the normal
+bundle $N_{f^{-1}(S)}$, which in turn gives a natural orientation on $f^{-1}(S)$
+via equation (\ref{eq:normal_orientation}). 
 
-\begin{defn} % def 2.5 nicolescu
-	Let $S$ and  $L$ be closed (as a subspace) and oriented submanifolds of the
-	oriented manifold  $M$ such that  $\dim S + \dim L = \dim M$. Suppose 
-	 $S$ and  $L$ intersect transversely. Then for each  $p\in L\cap S$, define
-	 $\epsilon(S,L,p) \in \{\pm 1\}$ via
-	 \[
-		 \operatorname{or}(T_pS) \wedge \operatorname{or}(T_pL)
-		 = \epsilon(S,L,p) \operatorname{or}(T_p M)
-	 \] 
-	 If $S$ is compact, then  $S\cap L$ is finite, and we define the
-	 \underline{intersection number} of  $L$ and  $S$ to be the integer
-	  \[
-		  [S]\cdot [L] = \sum_{p\in S\cap L} \epsilon(S,L,p)
-	 \] 
-\end{defn}
-
-\begin{thm} % nicolescu theorem 2.6 p7
-	Suppose $S$ and  $L$ are oriented submanifolds of the compact manifold  $M$.
-	Assume  $S \pitchfork L$ and  $\dim L + \dim S = \dim M$.
-	Then 
-	\[ % TODO should this be reversed?
-		[S] \cdot [L] = \int_M \eta_L \wedge \eta_S = \int_L \eta_S
-	\] 
-\end{thm}
+\begin{lem} \label{lem:normal_isomorphism}
+	There is a bundle isomorphism $Df : N_{f^{-1}(S)} \to f^*N_{S}$.
+\end{lem}
 \begin{proof}
-	% TODO
+	First observe that $f \pitchfork S$ if and only if  $Df|_x : T_x N \to
+	T_{f(x)}M$ maps surjectively to the quotient vector space $T_{f(x)}M /T_{f(x)} S =
+	(N_S)_{f(x)}$ for all $x\in f^{-1}(S)$. Note that $Df|_x$ maps
+	$T_xf^{-1}(S)$ into $T_{f(x)}S$ (this is true in general), and hence
+	the kernel of the map $Df|_x : T_x N \to (N_S)_{f(x)}$ is $T_xf^{-1}(S)$. 
+	The kernel cannot be any larger due to dimension constraints from
+	surjectivity. Therefore, by the first isomorphism theorem 
+	$Df|_x : (N_{f^{-1}(S)})_x \to (N_S)_{f(x)}$ is a linear
+	isomorphism. Consequently, 
+	$Df : N_{f^{-1}(S)} \to f^*N_{S}$ is a bundle isomorphism. 
 \end{proof}
 
-
-We can generalise the notion of Poincar\'e dual of submanifolds to smooth
-cycles. Suppose $M$ and $N$ are compact, oriented manifolds of dimensions $m$
-and $n$; let  $f:N\to M$ be a smooth map. The pair  $(N,f)$ determines a linear
-functional 
-\[
-H^n(M) \to \mathbb{R}, \qquad \omega \mapsto \int_N f^*\omega
-\] 
-The integral is well defined because $N$ is compact. We call this linear
-functional a smooth cycle, and denote it $f_*[N]$. As before, it follows by
-Poincar\'e duality that integration over $N$ corresponds to a unique
-$[\eta_{f_*[N]}] \in H^{m-n}(M)$ such that 
-\[
-	\int_N f^*\omega = \int_M \omega \wedge \eta_{f_*[N]} \quad\; 
-	\fall \omega \in H^n(M)
-\] 
-Suppose  $S \subset M$ is a submanifold	transverse to $f$. (give $f^{-1}(S)$ an
-orientation using $(Df)^*$) 
 
 \begin{thm} % nicolescu thm 3.4 % Bott Tu pg 69 
 	Let $f : N \to M$ and  $S \subset M$ as above. Then $f^*\eta_S =
 	\eta_{f^{-1}(S)}$,  i.e. for all  $\omega\in H^k(N)$,
 	\[
-	\int_{M} \omega \wedge f^*\eta_S =\int_{f^{-1}(S)} f^*\omega  
-	\] 
-\end{thm}
-\begin{proof}
-	Bott Tu version:
-	\[
 	\int_{N} \omega \wedge f^*\eta_S =\int_{f^{-1}(S)} i^*\omega  
 	\]
 	where $i: f^{-1}(S) \to N$ is the inclusion map.
+\end{thm}
+\begin{proof} 
+	Fix a Riemannian metric on $g$ on $N$ and $h$ on $M$.
+	Let $T^\epsilon_g \to f^{-1}(S)$ and $T^\delta_h \to S$ be tubular
+	neighbourhoods of  $f^{-1}(S)$ in $N$ and  $S$ in $M$, of the form in
+	equation (\ref{eq:tubular_radius}). Since $N$ is compact, assume  $\epsilon$
+	is constant. Denote the natural fiber over  $x\in f^{-1}(S)$ by
+	\[
+		T^\epsilon_g(x) = \{z \in N \mid \operatorname{dist}_g(z,f^{-1}(S)) 
+		= d_g(z,x) < \epsilon\}
+	\] 
+	We claim that there exists $\epsilon > 0$ such that the restriction of  $f$
+	to  $T^\epsilon_g(x)$ is diffeomorphism to its image for all  
+	$x\in f^{-1}(S)$. % lemma 3.5
+	\begin{subproof}
+		By Lemma \ref{lem:normal_isomorphism}, 
+		$Df|_x : (N_{f^{-1}(S)})_x \to (N_S)_{f(x)}$ is an isomorphism.
+		By construction of the tubular neighbourhood, we can identify the fibers
+		as tangent spaces to the fibers, to get
+		$Df|_x : T_xT_g^\epsilon(x) \to T_{f(x)}T_h^\delta(f(x))$. 
+		This can be interpreted as the differential of the restriction to the
+		fibers. So by the inverse function theorem, for each $x\in f^{-1}(S)$,
+		there exists a neighbourhood $U_x \subset N$ of $x$ and  $\epsilon(x)>0$
+		such that the restriction to  $T^{\epsilon(x)}_g(x)$ is an embedding.
+		Since $N$ is compact, there is a finite subcover $U_{x_1},\ldots,U_{x_r}$
+		and define 
+		$
+			\epsilon = \min\{\epsilon(x_1),\ldots,\epsilon(x_r)\}
+		$. 
+	\end{subproof}
+	\begin{figure}[htb]
+		\centering
+		\includegraphics[width=\textwidth]{figs/normal_fiber_map.pdf}
+		\caption{The diffeomorphism $f:T^\epsilon_g(x) \to L_x^\epsilon$ mapping
+		the normal fiber}
+		\label{fig:normal_fiber_map}
+	\end{figure}
+	For such an $\epsilon$,  denote the image of the embedding  $L_x^\epsilon :=
+	f(T^\epsilon_g(x))$. We claim that there exists 
+	$\rho > 0$ such that for any  $x\in f^{-1}(S)$ the intersection 
+	$L_x^\epsilon \cap T_h^\rho$ is closed in $T^\rho_h$.
+	\begin{subproof}
+		Denote the boundary of the tubular neighbourhood $\Sigma_\epsilon = \{z\in
+		N \mid \operatorname{dist}_g(z,f^{-1}(S)) = \epsilon\}$. 
+		Then $f(\Sigma_\epsilon)$ is a compact image of a compact set, and is
+		disjoint from $S$.  Thus, 
+		$\operatorname{dist}_h(f(\Sigma_\epsilon),S) > 0$.
 
-	Let the dimensions of $N,M$ and  $S$ be  $n,m$ and  $k$ respectively.
-	By Theorem \ref{thm:inverse_submanifold}, $f^{-1}S\subset N$ is a submanifold 
-	of dimension $n-m+k$. Also $f^{-1}T \subset N$ is a neighbourhood of 
+		We will show $\rho = \frac{1}{2}\operatorname{dist}_h(f(\Sigma_\epsilon),S)$
+		is the desired value. Suppose $(y_n)_{n\in \mathbb{N}} \subset 
+		L_x^\epsilon \cap T_h^\rho$ is a sequence that converges to $y\in T^\rho_h$. 
+		We need to show $y\in L_x^\epsilon$. We can choose points 
+		 $p_n \in T^\epsilon_g(x)$ such that $f(p_n) = x_n$. Since  $N$ is
+		 compact, there is a subsequence which converges to a point $p$ such
+		 that $d(p,x) \leq \epsilon$. Since $y$ is the unique limit, we have 
+		 $f(p) = y$. And since $\operatorname{dist}_h(y_n,S) < \rho$,   
+		 \[
+			 \operatorname{dist}_h(y,S) \leq \rho < \dist_h(f(\Sigma_\epsilon),S)
+		 \] 
+		Then $f(p) \notin f(\Sigma_\epsilon)$ implies $p\notin \Sigma_\epsilon$,
+		i.e. $d(p,x) < \epsilon$ is a strict inequality. Thus  $p\in
+		T^\epsilon_g(x)$ so $y\in L_x^\epsilon$.
+	\end{subproof}
+	Replace $\delta$ with a smooth function bounded above by $\min(\delta(x),\rho)$ 
+	so that the above holds, and $T_h^\delta$ is a tubular neighbourhood.
+	Choose a form $\eta_S$ representing the Poincar\'e dual with support in
+	$T^\delta_h$. The integral of $f^*\eta_S$ along the fiber  $T^\epsilon_g(x)$
+	is 
+	 \[
+	\int_{T^\epsilon_g(x)} f^*\eta_S 
+	= \int_{L_x^\epsilon} \eta_S = [S] \cdot [L_x^\epsilon] = 1
+	\] 
+	The first equality applies change of variables via the diffeomorphism
+	$f:T^\epsilon_g(x) \to L_x^\delta$. Also note that the integral is defined
+	because  $L_x^\epsilon$ is closed on the support  $T^\delta_h$.
+	The second equality follows from Theorem \ref{thm:intersection_poincare}.
+	
+	Therefore, $f^*\eta_S$ is the Thom class on the normal bundle over
+	$f^{-1}(S)$, so it is equal to the Poincar\'e dual of $f^{-1}(S)$ by Theorem 
+	\ref{thm:intersection_poincare}.
+\end{proof}
+\begin{comment} % old proof using Bott Tu
+\begin{proof}
+	Bott Tu version:
+	Also $f^{-1}T \subset N$ is a neighbourhood of 
 	dimension $n$ (why?). 
-	So the normal bundles of $S$ and  $f^{-1}(S)$ are of the same rank. 
 	We can choose $T$ to be a sufficiently small tubular
 	neighbourhood of  $S$ such that  
-
 	$f^{-1}T$ is contained within a tubular
 	neighbourhood of $f^{-1}S$ in $N$, and hence diffeomorphic to 
 
@@ -333,6 +437,7 @@ orientation using $(Df)^*$)
 	On the other hand, the maps on the bottom row gives
 	$\eta_{f^{-1}S} \mapsto \eta_{f^{-1}S} \in H^{n-k}$
 \end{proof}
+\end{comment}
 
 % TODO is there a dimension condition? dim m \geq dim W
 \begin{cor} \label{cor:vb_localisation} % prop 12.8 Bott Tu
