@@ -1,6 +1,6 @@
 
 \chapter{Donaldson Invariants}
-\label{chapter1}
+\label{chapter_donaldson}
 In order to discuss the Atiyah and Jeffrey's interpretation of Witten's TQFT
 using the Mathai-Quillen form, we first need to take a brief detour to introduce
 the Donaldson polynomial invariants of smooth 4-manifolds. 
@@ -119,12 +119,12 @@ make a number of simplifications.
 	\underline{star operator} $* : \Omega^k(M) \to \Omega^{n-k}(M)$ is the 
 	unique smooth bundle homomorphism satisfying 
 	\begin{equation} \label{eq:hodge_property}
-	\omega \wedge *\eta = \gen{\omega,\eta}_g dV_g
+	\omega \wedge \star\eta = \gen{\omega,\eta}_g dV_g
 	\end{equation}
 	where $\gen{\cdot,\cdot}_g$ is the induced metric on $\bigwedge^k(T^*M)$.
 	In orthonormal coordinates, this is given by
 	\[
-	*(dx_{i_1}\wedge \cdots\wedge dx_{i_k}) = \sgn(I)dx_{i_{k+1}}\wedge \cdots \wedge
+	\star(dx_{i_1}\wedge \cdots\wedge dx_{i_k}) = \sgn(I)dx_{i_{k+1}}\wedge \cdots \wedge
 	dx_{i_n} 
 	\] 
 	where $dx_1\wedge\cdots\wedge dx_n = dV_g$ on some open subset.
@@ -133,7 +133,7 @@ The Hodge star extends to vector valued forms by only acting on the
 $\bigwedge^k(T^*M)$ part. Recall that 
 for matrix Lie algebra valued forms $\omega,\eta\in\Omega(M,\g)$, the wedge 
 product is defined as 
-\begin{equation}
+\begin{equation} \label{eq:matrix_form_wedge}
     \omega\wedge\eta = \sum_{j,k} \omega_j\wedge \eta_k X_j X_k 
 \end{equation}
 We are interested in the Hodge star acting on 2-forms on a 4-manifolds in
@@ -144,26 +144,22 @@ called self-dual (SD) and anti-self-dual (ASD) two-forms respectively.
 
 For an arbitrary Lie algebra valued form, equation (\ref{eq:hodge_property})
 will not hold. But for the case where $G=\SO(N)$ or  $\SU(N)$, we can choose the
-Hilbert-Schmidt metric  $\gen{X,Y}=\Tr(X^*Y)$ where $X^*$ is the adjoint, which
-is an $\Ad$-invariant metric on $\g$.  In this case, if 
-$\alpha \in \Omega^{2,+}(M,\g), \beta \in \Omega^{2,-}(M,\g)$, we have
-\begin{equation} \label{eq:trace_hodge}
-\Tr(\alpha\wedge \alpha) = -\abs{\alpha}^2 \odif{V}_g, \qquad
-\Tr(\beta\wedge \beta) = \abs{\beta}^2 \odif{V}_g, \qquad
-\alpha\wedge \beta = 0
-\end{equation}
-using equation (\ref{eq:hodge_property}) and $\Tr(XY) = -\Tr(X^*Y)$ for
-$X,Y\in\g$. The last property follows from eigenspaces being orthogonal for any
-metric on $\Omega^2(M,\g)$. 
-The Yang-Mills functional can be rewritten using equation (\ref{eq:trace_hodge}) as
+$\Ad$-invariant Hilbert-Schmidt metric on $\g$ defined by
+$\gen{X,Y}=\Tr(X^*Y)$ where $X^*$ is the adjoint. 
+In this case, if $\alpha,\beta \in \Omega^k(M,\g)$, we have 
+\begin{align} 
+	-\Tr(\alpha \wedge \star \beta)
+	%&= -\Tr(\alpha^+ \wedge \beta^+) +\Tr(\alpha^- \wedge \beta^-) \nonumber \\
+	%&= \gen[*]{\alpha^+,\beta^+}dV_g + \gen[*]{\alpha^-,\beta^-}dV_g \nonumber \\
+	&= \gen{\alpha,\beta}dV_g \label{eq:trace_hodge}
+\end{align} 
+which follows from expanding using equation (\ref{eq:matrix_form_wedge}),
+applying the property property $\Tr(X^*Y)=-\Tr(XY)$ for $X,Y\in\g$, and
+finally using equation (\ref{eq:hodge_property}). 
+Hence the Yang-Mills functional can be rewritten using equation (\ref{eq:trace_hodge}) as
 \[
 	S_{YM}(A) 
 	=-\int_M \Tr (F\wedge \star F) 
-\] 
-because 
-\[
--\Tr(F\wedge \star F) = - \Tr(F^+\wedge F^+) + \Tr(F^-\wedge F^-)
-= (\abs[*]{F^+}^2+\abs[*]{F^-}^2) dV_g = \abs{F}^2 dV_g
 \] 
 \noindent
 Recall from Chern-Weil theory that there are two important classes of
