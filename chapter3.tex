@@ -33,9 +33,19 @@ fiber $F$. Suppose $\dim F = m$ and $\dim B = n$.
 	\alpha(\widetilde{v}_1,\ldots,\widetilde{v}_{k-m},-)
 	\] 
 	where $\widetilde{v}_i$ is any lift of $v_i$ to $TE$. 
-\end{defn}
 The integral is computed by pulling back the form via a trivialisation $\phi 
 :F \xrightarrow{\simeq} \pi^{-1}(b)$. 
+\end{defn}
+\begin{figure}[htb]
+	\hfill
+	\begin{minipage}[c]{0.5\textwidth}
+	\includegraphics[trim={5cm 5mm 5cm 3mm},clip,width=\textwidth]{figs/fiber_integral.pdf}
+	\end{minipage} 
+	\begin{minipage}[c]{0.44\textwidth}
+	\caption{Lift of tangent vectors along $\pi^{-1}(b)$}
+	\label{fig:fiber_integral}
+	\end{minipage} 
+\end{figure}
 To show that this is well defined, we need to check 
 \begin{itemize}
 	\item the integral is independent of choice of trivialisation
@@ -286,7 +296,11 @@ vector bundles $E\to M$, known as the Thom isomorphism.
 \end{defn}
 In other words, the representatives of the Thom class are precisely the forms
 which are compactly supported along the fiber and have integral 1 along the
-fibers.
+fibers. As a direct consequence of Proposition \ref{prop:projection_formula},
+the Thom class $\Phi \in H_{cv}^n(E)$ satisfies for all $\beta \in \Omega^*_c(M)$
+\begin{equation} \label{eq:thom_form_property}
+	\int_M \beta = \int_E \pi^*\beta \wedge \Phi
+\end{equation}
 
 % compact implies finite good cover = finite type 
 % TODO generalise to non compact manifolds?
@@ -311,10 +325,18 @@ which are rapidly decreasing in the fibre directions.
 \end{defn}
 
 \vspace{-1ex}
-Using the diffeomorphism $h : E \to E$ taking the unit ball to $\mathbb{R}^n$
-\[
+
+\hspace{-7mm}
+\begin{minipage}{0.5\textwidth}
+Using the diffeomorphism $h : E \to E$ mapping the unit ball to $\mathbb{R}^n$
+	\[
 	h(y) = \frac{y}{\sqrt{1-\norm{y^2}} }
-\] 
+	\] 
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[trim={3cm 0 3cm 0},clip,width=\textwidth]{figs/rd_diffeomorphism.pdf}
+\end{minipage}
 we can pull back a rapidly decreasing form $\omega\in \Omega_{rd}^*(E)$ to 
 $\Omega_{cv}^*(E)$ which is supported on the unit ball bundle. 
 Note that the Schwartz property guarantees that $h^*\omega$ is smooth, i.e. 
