@@ -184,33 +184,35 @@ giving the following relation for any complex vector bundle
 \] 
 where we have used the fact that $f_1(X)=\Tr(X)$. 
 In the case where the structure group is $\SU(n)$ or $\SO(n)$, the trace of the
-curvature is zero, so $c_1(E)=0$ is trivial and 
-\[
-c_2(E) = \frac{1}{8\pi^2}\int_M \Tr(F^2)
-\] 
+curvature is zero, so $c_1(E)=0$ is trivial and we can define 
+\begin{equation} \label{eq:k}
+	k := c_2(E)[M] = \frac{1}{8\pi^2}\int_M \Tr(F^2)
+\end{equation}
 Now, we can
 decompose the field strength $F = F^+ + F^-$ into SD and ASD 
-parts. Using the fact that $\Omega^{2,+}$ and $\Omega^{2,-}$ are orthogonal in
-the Riemannian inner product, and
-equation (\ref{eq:trace_hodge}), this gives 
-\begin{align*}
-c_2(E)
+parts. Using the fact that $\Omega^{2,+}$ and $\Omega^{2,-}$ are orthogonal, 
+$\Tr(X^*Y) = -\Tr(XY)$ and the properties of the hodge star,
+this gives 
+\begin{align}
+k
 = \frac{1}{8\pi^2}\int_M\Tr(F^2) 
-&= \frac{1}{8\pi^2}\int_M(\Tr(F^{+}\wedge  F^{+}) + \Tr(F^{-}\wedge F^{-})) \\
+&= \frac{1}{8\pi^2}\int_M(\Tr(F^{+}\wedge  F^{+}) + \Tr(F^{-}\wedge F^{-}))
+\nonumber \\
 &= \frac{1}{8\pi^2}\int_M(-\abs[*]{F^+}^2 + \abs[*]{F^-}^2) dV_g 
-\end{align*}
+\label{eq:second_chern}
+\end{align}
 Comparing with the Yang-Mills action, 
 \begin{align*}
-	S_{YM}(A) = \int_M (\abs[*]{F^+}^2+\abs[*]{F^-}^2) 
+	S_{YM}(A) = \int_M (\abs[*]{F^+}^2+\abs[*]{F^-}^2) dV_g 
 	= \begin{cases}
-		8\pi^2 c_2(E) + 2\int_M \abs[*]{F^+}^2 \\
-		-8\pi^2 c_2(E) + 2\int_M \abs[*]{F^-}^2
+		8\pi^2 k + 2\int_M \abs[*]{F^+}^2 dV_g\\
+		-8\pi^2 k + 2\int_M \abs[*]{F^-}^2 dV_g
 	\end{cases}
 \end{align*}
-We see that for $c_2(E)>0$, the action is bounded below by 
-$S(A) >= 8\pi^2\abs{c_2(E)}$ and the ASD connections $F^+=0$ are
-minimisers. For $c_2(E)<0$ the action is bounded
-below by $S(A)\geq -8\pi^2c_2(E)$, and minimised by SD connections
+We see that for $k>0$, the action is bounded below by 
+$S(A) \geq 8\pi^2k$ and the ASD connections $F^+=0$ are
+minimisers. For $k<0$ the action is bounded
+below by $S(A)\geq -8\pi^2k$, and minimised by SD connections
 $F^-=0$. 
 Thus the classical equations of motion are equivalent to $\star F = \pm F$,
 whose solutions are called (anti-)instantons. 
@@ -372,7 +374,7 @@ application of the slice theorem. Denote
 \Gamma(\Ad P)$ 
 	\item the space of $L^2_l$-connections by $\mathcal{A}_l(P) \subset
 \Omega^1(M,\ad P)$. 
-	\item the vector space of $L^2_l$ forms by  $\Omega^*_{l}$
+	\item the vector space of $L^2_l$ $\ad P$-valued forms by  $\Omega^*_{l}(M,\ad P)$
 \end{itemize}
 The Sobolev spaces of sections are Banach manifolds, and 
 the $L^2_k$ spaces are in fact Hilbert manifolds with the inner product defined
@@ -423,7 +425,7 @@ Our goal is now to study the local structure of the moduli space, which will
 allow us to understand the Donaldson invariants better. However, the details
 rely on elliptic theory and is quite involved, so we only sketch the arguments.
 % freed, uhlenbeck p54, A.4
-\begin{prop}[{\cite[p.54]{freed_uhlenbeck}}]
+\begin{prop}[{\cite[p.54]{freed_uhlenbeck}}] \label{prop:curvature_derivative}
 Fix a reference connection $\omega_0$ to identify
 $\mathcal{A}$ with the affine space $\Omega^1(M,\ad P)$. 
 The curvature operator $F:\Omega^1_{l}(M,\ad P) \to \Omega^2_{l-1}(M,\ad P)$ is smooth, and
@@ -433,12 +435,44 @@ d_{\omega} : \Omega^1_{l}(M,\ad P) \to \Omega^2_{l-1}(M,\ad P)
 \]
 \end{prop}
 \noindent
-This is not hard to see, because at $\omega = \omega_0 + A$,
+This is not hard to see, because at $\omega + tA$,
 \[
-F(\omega_0 + A) = F(\omega_0) + d^{\omega_0}A + A\wedge A 
+F(\omega + tA) = F(\omega) + t d_{\omega}A + t^2 A\wedge A 
 \] % since $\omega_0 \wedge A + A\wedge\omega_0 = 0$
 since the exterior derivative $d$ on $\Omega(P,\g)$ corresponds to the covariant
-derivative $d^{\omega_0}$ on $\Omega(M,P\times_{\Ad}\g)$. 
+derivative $d_{\omega}$ on $\Omega(M,P\times_{\Ad}\g)$. 
+
+\begin{prop} \label{prop:gauge_derivative} % DK p 131 
+	Fix $\omega \in \mathcal{A}$ as a reference connection. 
+	The derivative of the gauge group action 
+	$L_\omega : \mathcal{G} \to \mathcal{A}$, where $L_\omega(f) = f^*\omega$, 
+	is given by 
+	\[
+	DL_\omega|_{\id}(\phi) = \odv{}{t}_{t=0} L_\omega(\exp(t\phi)) = d_\omega \phi
+	\] 
+	where $d_\omega : \Omega^0(M,\ad P) \to \Omega^1(M,\ad P)$ is the covariant
+	derivative.
+\end{prop}
+\begin{proof}
+	Viewing $\omega$ as a connection on  $\ad P \to M$, 
+	consider the connection 1-form $A_\alpha \in \Omega^1(U_\alpha,\gl(\g))$ in a 
+	local trivialisation for $\ad P$. Any $u \in \Omega^0(M,\Ad P)$ acts as a 
+	gauge transformation of $\ad P$, and the connection 1-form transforms as 
+	\[
+	u_\alpha^*A_\alpha = (du_\alpha) u_\alpha^{-1} + u_\alpha^{-1}A_\alpha u_\alpha
+	\] 
+	where $u_\alpha : U_\alpha \to\GL(\g)$ is a matrix valued function 
+	under the trivialisation.  
+	Therefore, the derivative of the gauge action at $\phi\in \Omega^0(M,\ad P)$ is 
+	\begin{align*}
+		\odv{}{t}_{t=0} (\exp(t\phi)^* A_\alpha)
+		&= \odv{}{t}_{t=0} (d(\exp(t\phi))\exp(-t\phi)
+		+ \exp(-t\phi)A_\alpha\exp(t\phi)) \\
+		&= d\phi -\phi A_\alpha + A_\alpha\phi \\
+		&= d\phi + [A_\alpha, \phi] 
+	\end{align*}
+	which is precisely the covariant derivative $d_\omega \phi$ under the trivialisation.
+\end{proof}
 
 % naber witten conjecture p69-73, naber p117-119, physical p25
 If $d^*_\omega$ is the formal adjoint of $d_\omega : \Omega^k(M,\ad P) \to
