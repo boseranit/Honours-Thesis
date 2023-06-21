@@ -328,7 +328,8 @@ U(R^{-1}dC^*)\wedge W
 	&+i\gen{dC^*,\lambda}-i\gen{\phi,R\lambda} + C^*\Big)  \odif{\eta}
 	\odif{\chi} \odif{\phi}\odif{\lambda}  \nonumber 
 \end{align}
-Note that $C^*$ should be interpreted as a combination in the $\eta$ variables. 
+Note that $C^*$ should be interpreted as 1-form in the $\eta$ basis,
+so we will write it as the sum $\gen{C^*,\eta}$ to avoid confusion.
 In this step we have only taken the wedge product with $W$, so we would be left 
 with a differential form on  $P\times V$, which we would need to integrate along 
 the fibers to obtain the Thom form on $P\times_\rho V$. 
@@ -451,10 +452,18 @@ S^*(U(R^{-1}dC^*)\wedge W)
 = &(2\pi)^{-d-m}\iint_{\g}\iint^B 
 \exp\Big(\!\!-\abs{S}^2+\frac{1}{2}\chi^{\intercal}\rho_*(\phi)\chi \\
 	&- idS^\intercal \chi
-	+i\gen{dC^*,\lambda}-i\gen{\phi,R\lambda} + C^*\Big)  \odif{\eta}
+	+i\gen{dC^*,\lambda}-i\gen{\phi,R\lambda} + \gen{C^*,\eta}\Big)  \odif{\eta}
 	\odif{\chi} \odif{\phi}\odif{\lambda}  \nonumber 
 \end{align}
 This result is called the Atiyah-Jeffrey formula for the Euler number.
+
+\vspace{1ex}\noindent
+\textbf{Manipulation 6: Integration as successive fermionic and bosonic integrals} \\
+In order to integrate over $P$, there is a common notational device in
+supersymmetric physics where the integral of a top rank form is written as a
+Berezin (fermionic) integral followed by a normal (bosonic) integral. 
+If $\alpha \in \Omega^*(P)$ is a form written in terms of local coordinates  
+
 
 \section{Interpretation of Donaldson-Witten theory}
 We can now apply the Atiyah-Jeffrey formula for the Euler number to the infinite 
@@ -465,31 +474,19 @@ infinite-dimensional vector bundle associated with the Donaldson invariant. In
 the process, the well defined integrals transmute into Feynman integrals
 over spaces of fields, with their accompanying mathematical difficulties.  
 % some may argue that this is meaningless manipulation of symbols 
-
-In general, Witten type TQFTs are associated with a moduli problem characterized
-by three basic data: fields, symmetries, and equations.
-In the case of Donaldson-Witten theory, the configuration space is the space of
-connections $\mathcal{A}$ on a bundle $E$, whose elements are fields 
-$\phi$ over a four-manifold  $X$.  the group $\mathcal{G}$ is the group of gauge
-transformations associated with $G$, so we are led to consider the quotient
-space  $\mathcal{A}/\mathcal{G}$. Within this quotient, the moduli space is
-defined by a set of equations $s(\phi)=0$, and the self-duality equations can be
-regarded as sections of a bundle
-$\mathcal{E}=\mathcal{A}\times_{\mathcal{G}}\Omega^{2,+}(M,\ad P)$. 
- 
-
 The objects we consider are 
 \begin{itemize}
 	\item principal bundle: $\mathcal{A}^* \to \mathcal{A}^* /\mathcal{G}$ where 
 	$\mathcal{A}^* \subset \Omega^1(M,\ad P)$ is the
-		space of irreducible connections   on a principal $\SU(2)$-bundle  $P\to M$
-		over a compact oriented 4-manifold $M$. 
+	space of irreducible connections   on a principal $\SU(2)$-bundle  $P\to M$
+	over a compact oriented 4-manifold $M$, whose elements are called gauge
+	fields.
 	\item structure group: gauge group $\mathcal{G}\simeq \Omega^0(M,\Ad P)$
 	\item vector space: self dual 2-forms $\Omega^{2,+}(M,\ad P)$ 
-	\item equivariant section: self-dual part of curvature $s : \mathcal{A}^* \to
-		\Omega^{2,+}(M,\ad P)$ defined by $s(A)=-F_A^+$
 	\item associated vector bundle: $\mathcal{A}^* \times_\mathcal{G}
-		\Omega^{2,+}(M,\ad P)$
+		\Omega^{2,+}(M,\ad P)  \to \mathcal{A}^* /\mathcal{G}$
+	\item equivariant section: self-dual part of curvature $S : \mathcal{A}^* \to
+		\Omega^{2,+}(M,\ad P)$ defined by $S(A)=-F_A^+$
 \end{itemize}
 \begin{comment} % need su(n) or so(n) anyway
 Donaldson only treats the case $G=\SU(2)$ due to technical reasons relating to 
@@ -498,12 +495,24 @@ Since our objective is to apply the Atiyah-Jeffrey
 formula to the infinite dimensional vector space $\Omega^{2,+}(\ad P)$, complete
 rigor is out of the question for this application anyway. 
 \end{comment}
+We are interested in the moduli space of ASD connections, so this leads us to
+consider the section of the associated vector bundle 
+$\sigma : \mathcal{A}^* /\mathcal{G} \to \mathcal{A}^*\times_\mathcal{G}
+\Omega^{2,+}(M,\ad P)$ defined by $[A]\mapsto [A,-F_A^+]$. 
+The associated $\mathcal{G}$-equivaiant map $S : \mathcal{A}^* \to
+\Omega^{2,+}(M,\ad P)$ is $A \mapsto -F_A^+$.
+
+The main idea of Atiyah and Jeffrey is that we can 
+obtain an interpretation of the Donaldson invariants as the
+localisation of the integral of certain differential forms to $\sigma^{-1}(0)$.
+ 
 
 % naber 133
 We need a metric on the principal bundle $\mathcal{A}^*$ which is invariant 
 under the isometries in $\mathcal{G}$. The natural $\Ad \SU(2)$-invariant metric 
-on $\su(2)$ is $\gen{X,Y}=-\Tr(XY)$. 
-Then we can define the metric on $\mathcal{A}^*$ by 
+on $\su(2)$ is $\gen{X,Y}=-\Tr(XY)$. There is also a natural $L^2$ inner product
+on each of the vector spaces  $\Omega^k(M,\ad P)$. The metric on $\mathcal{A}^*$ 
+can be written using equation (\ref{eq:trace_hodge}) as
 \[
 	\gen{\alpha,\beta} = \int_M \gen{\alpha,\beta}_{\ad P} dV_g = -\int_M
 	\Tr(\alpha \wedge \star \beta)
@@ -511,45 +520,107 @@ Then we can define the metric on $\mathcal{A}^*$ by
 Since the metric on $\su(2)$ is  $\Ad \SU(2)$ invariant, the above metric is
 $\Ad\Omega(M,\Ad P)$ invariant, since $\mathcal{G}$ acts on curvature forms by
 conjugation. As usual, this metric defines a connection on $\mathcal{A}^*$ whose
-horizontal spaces are orthogonal to the vertical spaces. 
+horizontal spaces are orthogonal to the gauge orbits. 
 
+Next, we need to work out the analogues of the maps $C,C^*$ and $R$. 
+Recall that $\operatorname{Lie}(\mathcal{G}) \simeq
+\Omega^0(M,\ad P)$ and $T_A \mathcal{A} \simeq \Omega^1(M,\ad P)$. 
+By Proposition \ref{prop:gauge_derivative}, given $A \in \mathcal{A}$, the map 
+$C_A : \operatorname{Lie}(\mathcal{G}) \to T_A \mathcal{A}$ is given by $d_A$.
+Then relative to the inner products, the formal adjoint of this operator is 
+$C_A^*=d_A^* : T_\mathcal{A} \to \operatorname{Lie}(\mathcal{G})$. 
+Therefore the operator $R$ on $\Omega^0(M,\ad P)$ is the Laplacian
+$\Delta=d^*_A d_A$. 
 
-We now interpret each individual term in equation (\ref{eq:AJ_formula_euler})
+We can now interpret each individual term in equation (\ref{eq:AJ_formula_euler})
 for this application. 
-\begin{enumerate}[(1), leftmargin=\parindent]
+\begin{itemize}[leftmargin=\parindent]
     \item 
 $-\abs{S}^2$ : The norm on the vector space $\Omega^{2,+}(M,\ad P)$ is the 
-$L^2$ norm, so this term is $-\int_M \abs{F^+}^2$. Using equation (reference),
-another way to write this term is $-\frac{1}{2}\int_M \abs{F}^2 - \frac{1}{2}k$.
+$L^2$ norm, so this term is 
+\[
+	-\int_M \abs[*]{F^+}^2 dV_g = -\frac{1}{2}\int_M \abs{F}^2 dV_g + 4\pi^2k
+\] 
+where we have used the property in equation $(\ref{eq:second_chern})$ for the 
+second Chern number $k$ of the associated vector bundle.
 
 	\item 
-$-i\gen{\phi,R\lambda}$ :
+$-i\gen{\phi,R\lambda}$ : We know $\phi$ and  $\lambda$ are Lie algebra
+variables in  $\Omega^0(M,\ad P)$. From above, we found that  $R$ is the
+Laplacian $\Delta_A$. So we write this term as  
+$-i\gen{\phi,\Delta_A\lambda}$. 
 
 	\item 
-$C^*$ :
+$\gen{C^*,\eta}$ : We have determined $C^*$ to be the formal adjoint $d_A^*$. 
+This term is meant to be interpreted as a 1-form in
+$\Omega^1(\mathcal{A},\operatorname{Lie}(\mathcal{G}))$, written as a sum over
+the basis $\eta$ for $\operatorname{Lie}(\mathcal{G})$. By defintion of the
+adjoint, we can also write this term as $\gen{d_A^*,\eta}=\gen{-,d_A\eta}$. 
+The latter expression uses the inner product on $\mathcal{A}^*$. 
+
+	\item 
+$i\gen{dC^*,\lambda}$ : Recall that $dC^*$ is interpreted as a 2-form 
+$\Omega^2(\mathcal{A},\operatorname{Lie}(\mathcal{G}))$. Fix $\psi_1,\psi_2\in
+T_A \mathcal{A}^*$. Since $\mathcal{A}^*$ is contained in an affine space, 
+$\psi_1$ and $\psi_2$ are associated to constant vector fields. Then 
+\begin{align*}
+	dC^*(\psi_1,\psi_2) 
+	&= \psi_1(C^*\psi_2) - \psi_2(C^*\psi_1) - C^*([\psi_1,\psi_2]) \\
+	&= \psi_1(C^*\psi_2) - \psi_2(C^*\psi_1) 
+\end{align*}
+since the Lie bracket of constant vector fields is zero. 
+
+% TODO naber p136
+(TODO)
 
 
 	\item 
-$-idS^\intercal \chi$ :
+$-idS^\intercal \chi$ : The remaining two terms come from the Berezin integral
+in the Mathai-Quillen formula, involving the odd degree
+variable $\chi$ which is a basis for the vector space $\Omega^{2,+}(M,\ad P)$.
+So this term can also be written as $i \chi^{\intercal} dS$.
+But since the vector space is infinite dimensional, we instead interpret the Berezin
+integral as an ordinary integral, treat $\chi$ as an element 
+$\Omega^{2,+}(M,\ad P)$ (called a fermionic field in physics), and turn the 
+sum $\chi^\intercal dS$ into the inner product $\gen{\chi,dS}$.
+
+From Proposition \ref{prop:curvature_derivative}, the
+differential of the curvature operator $A \mapsto F_A$ is the covariant
+derivative  $d_A$. Therefore, the differential of the section is $dS = -d_A^+$.
+Hence, our interpretation of this term is $-i\gen[*]{\chi,d_A^+} =
+-i\gen{\chi,d_A}$ ($\chi$ is self-dual).
 
 	\item 
 $\frac{1}{2}\chi^\intercal \rho_*(\phi)\chi$ :
+Here $\phi \in \operatorname{Lie}(\mathcal{G})$ is the other Lie algebra 
+variable that we integrate over. The representation $\rho$ corresponds to the
+invariant action of $\mathcal{G}$ on $\Omega^{2,+}(M,\ad P)$, given by pointwise
+conjugation. Hence, the induced action on the Lie algebra acts on $\chi\in
+\Omega^{2,+}(M,\ad P)$ pointwise by $\rho_*(\phi) \chi = [\chi,\phi]$. 
+Then as before, the sum involving  $\chi^\intercal$ is interpreted as the inner
+product on the vector space, and our result is  $\frac{1}{2} \gen{\chi,
+[\chi,\phi]}$. 
 
-	\item 
-$i\gen{dC^*,\lambda} $
-\end{enumerate}
 
+\end{itemize}
 
+% TODO
+TODO: write all the terms using the inner product on the vector space, and write
+final exponent as integral over the base $M$. 
+
+\begin{comment}
+	
 Although $e(E)$ and  $\int_X e(E)$ do not make sense for
 infinite dimensional  $E$ and  $X$, the Mathai-Quillen form  $e_{s,\Delta}$ can
 be used to formally define regularized Euler numbers $\chi_s(E) := \int_X
 e_{s,\Delta}(E)$. Although not independent of $s$, these numbers  $\chi_s(E)$
 are of topological interest for certain choices of  $s$.  
+\end{comment}
 
 
 
-\section{TQFT as a generalisation of Mathai-Quillen}
 % section 4.2 MQintro
+% Birmingham 198-247
 
 
 \vspace{5mm}
@@ -559,10 +630,11 @@ are of topological interest for certain choices of  $s$.
 \textbf{Bibliographical notes}
 {\small
 \begin{itemize}
-	\item The lecture notes by \citet{cordes95} explores these topics from the
-	from the perspective of physics, and how it relates to twisted
-	$\mathcal{N}=2$ topological field theory.
-	\item 
+	\item The lecture notes by \citet{cordes95} explores this topic from the
+	perspective of physics, and how it relates to twisted 
+	$\mathcal{N}=2$ SUSY YM theory.
+	\item The conference paper by \citet{naber} provides more detailed
+	explanations of Atiyah and Jeffrey's paper \cite{atiyahlagrangians}.
 \end{itemize}
 }
 
