@@ -119,6 +119,8 @@ In turn, we can show that the integral along the $G$-orbit $\pi_*W = 1$.
 	fiber. Therefore, $\pi_*W = 1$ is the constant function on  $G$.
 \end{proof}
 
+The next proposition explains why $W$ is also called the projection form in
+\cite{cordes95}.
 \begin{prop} \label{prop:integral_horizontal_proj}
 	Suppose $\eta \in \Omega^k(P)$ is an invariant differential form, then
 	 $\pi_*(\eta \wedge W) \in \Omega^k(M)$ is the horizontal projection of 
@@ -155,7 +157,6 @@ In turn, we can show that the integral along the $G$-orbit $\pi_*W = 1$.
 	$R_g^*\eta = \eta$ and that is how we've chosen the lifted horizontal
 	vectors. 
 \end{proof}
-
 
 \section{Atiyah-Jeffrey formula}
 This section is a much more thorough explanation of section 2 of the paper by
@@ -499,7 +500,7 @@ We are interested in the moduli space of ASD connections, so this leads us to
 consider the section of the associated vector bundle 
 $\sigma : \mathcal{A}^* /\mathcal{G} \to \mathcal{A}^*\times_\mathcal{G}
 \Omega^{2,+}(M,\ad P)$ defined by $[A]\mapsto [A,-F_A^+]$. 
-The associated $\mathcal{G}$-equivaiant map $S : \mathcal{A}^* \to
+The associated $\mathcal{G}$-equivariant map $S : \mathcal{A}^* \to
 \Omega^{2,+}(M,\ad P)$ is $A \mapsto -F_A^+$.
 
 The main idea of Atiyah and Jeffrey is that we can 
@@ -511,15 +512,17 @@ localisation of the integral of certain differential forms to $\sigma^{-1}(0)$.
 We need a metric on the principal bundle $\mathcal{A}^*$ which is invariant 
 under the isometries in $\mathcal{G}$. The natural $\Ad \SU(2)$-invariant metric 
 on $\su(2)$ is $\gen{X,Y}=-\Tr(XY)$. There is also a natural $L^2$ inner product
-on each of the vector spaces  $\Omega^k(M,\ad P)$. The metric on $\mathcal{A}^*$ 
+on each of the vector spaces  $\Omega^k(M,\ad P)$, which  
 can be written using equation (\ref{eq:trace_hodge}) as
 \[
 	\gen{\alpha,\beta} = \int_M \gen{\alpha,\beta}_{\ad P} dV_g = -\int_M
 	\Tr(\alpha \wedge \star \beta)
 \] 
+for $\alpha,\beta\in \Omega^k(M,\ad P)$.
 Since the metric on $\su(2)$ is  $\Ad \SU(2)$ invariant, the above metric is
-$\Ad\Omega(M,\Ad P)$ invariant, since $\mathcal{G}$ acts on curvature forms by
-conjugation. As usual, this metric defines a connection on $\mathcal{A}^*$ whose
+$\Ad \mathcal{G}$ invariant. And since $\Omega^0(M,\Ad P)$ acts on curvature forms by
+conjugation, $\mathcal{G}$ acts by isometries on the vector space $\Omega^2(M,\ad P)$.
+As usual, this metric also defines a connection on $\mathcal{A}^*$ whose
 horizontal spaces are orthogonal to the gauge orbits. 
 
 Next, we need to work out the analogues of the maps $C,C^*$ and $R$. 
@@ -530,16 +533,53 @@ $C_A : \operatorname{Lie}(\mathcal{G}) \to T_A \mathcal{A}$ is given by $d_A$.
 Then relative to the inner products, the formal adjoint of this operator is 
 $C_A^*=d_A^* : T_\mathcal{A} \to \operatorname{Lie}(\mathcal{G})$. 
 Therefore the operator $R$ on $\Omega^0(M,\ad P)$ is the Laplacian
-$\Delta=d^*_A d_A$. 
+$\Delta_A=d^*_A d_A$. 
 
-We can now interpret each individual term in equation (\ref{eq:AJ_formula_euler})
-for this application. 
+Finally, we need to interpret the Berezin and ordinary integrals. 
+The Berezin integral on infinite dimensional vector spaces is well defined, 
+but the issue is that our expression now has an infinite number of Berezin
+integrals over the bases $\chi \in \Omega^{2,+}(M,\ad P)$ and 
+$\eta\in\Omega^0(M, \ad P)$, and we no longer have a top
+degree form $\chi_1\wedge\cdots\wedge\chi_n$ arising from the exponential. 
+In quantum field theory, the infinite 
+dimensional analogue is of this called the fermionic functional integral, where 
+the integral is taken over the space of all fields/sections. 
+Quantities like $\chi$ are regarded as a single element, while 
+quantities like $\chi^\intercal dS$ are interpreted as an inner product $\gen{\chi,dS}$ 
+with the element. The path integral of analytic functions of the fields is 
+defined to be a formal limit of the finite dimensional case, e.g. a limit of the
+identities in section \ref{section:berezin_identities}. For instance, the limit
+of Lemma \ref{lem:berezin_det} becomes
+\[
+\int \exp(\overline{\eta}^\intercal K \eta) 
+\odif{\overline{\eta}_i}\odif{\eta_i} = \det (K)
+\to 
+\int \exp(\gen[*]{\overline{\psi},K\psi}) \mathcal{D}\overline{\psi}
+\mathcal{D}\psi = \det (K)
+\] 
+A similar interpretation holds for the ordinary integrals over $\phi,\lambda \in
+\operatorname{Lie}(\mathcal{G})$. In fact, the formal limit of the ordinary
+integral analogue of Prop \ref{prop:berezin_formula} is considered to be central
+to quantum field theory (see Appendix A or Chapter I.2 in \cite{zee_qft}).
+
+
+
+\begin{comment} % integral over $P$
+In order to integrate over $P$, there is a common notational device in
+supersymmetric physics where the integral of a top rank form is written as a
+Berezin (fermionic) integral followed by a normal (bosonic) integral. 
+If $\alpha \in \Omega^*(P)$ is a form written in terms of local coordinates  
+\end{comment}
+
+
+
+We can now interpret each term in equation (\ref{eq:AJ_formula_euler}).
 \begin{itemize}[leftmargin=\parindent]
     \item 
 $-\abs{S}^2$ : The norm on the vector space $\Omega^{2,+}(M,\ad P)$ is the 
 $L^2$ norm, so this term is 
 \[
-	-\int_M \abs[*]{F^+}^2 dV_g = -\frac{1}{2}\int_M \abs{F}^2 dV_g + 4\pi^2k
+	-\int_M \abs[*]{F^+_A}^2 dV_g = -\frac{1}{2}\int_M \abs{F_A}^2 dV_g + 4\pi^2k
 \] 
 where we have used the property in equation $(\ref{eq:second_chern})$ for the 
 second Chern number $k$ of the associated vector bundle.
@@ -551,7 +591,7 @@ Laplacian $\Delta_A$. So we write this term as
 $-i\gen{\phi,\Delta_A\lambda}$. 
 
 	\item 
-$\gen{C^*,\eta}$ : We have determined $C^*$ to be the formal adjoint $d_A^*$. 
+$\gen{C^*,\eta}$ : We have determined $C_A^*$ to be the formal adjoint $d_A^*$. 
 This term is meant to be interpreted as a 1-form in
 $\Omega^1(\mathcal{A},\operatorname{Lie}(\mathcal{G}))$, written as a sum over
 the basis $\eta$ for $\operatorname{Lie}(\mathcal{G})$. By defintion of the
@@ -560,18 +600,28 @@ The latter expression uses the inner product on $\mathcal{A}^*$.
 
 	\item 
 $i\gen{dC^*,\lambda}$ : Recall that $dC^*$ is interpreted as a 2-form 
-$\Omega^2(\mathcal{A},\operatorname{Lie}(\mathcal{G}))$. Fix $\psi_1,\psi_2\in
-T_A \mathcal{A}^*$. Since $\mathcal{A}^*$ is contained in an affine space, 
-$\psi_1$ and $\psi_2$ are associated to constant vector fields. Then 
+$\Omega^2(\mathcal{A},\operatorname{Lie}(\mathcal{G}))$. Our first goal is to
+compute $dC^*$ at the point $A \in \mathcal{A}^*$. 
+Fix $\psi_1,\psi_2\in T_A \mathcal{A}^*$. 
+Since $\mathcal{A}^*$ is contained in an affine space, 
+$\psi_1$ and $\psi_2$ are associated to constant vector fields, i.e.
+$\psi_i(A)=A+\psi_i$. Then 
 \begin{align*}
 	dC^*(\psi_1,\psi_2) 
 	&= \psi_1(C^*\psi_2) - \psi_2(C^*\psi_1) - C^*([\psi_1,\psi_2]) \\
 	&= \psi_1(C^*\psi_2) - \psi_2(C^*\psi_1) 
 \end{align*}
-since the Lie bracket of constant vector fields is zero. 
-
+since the Lie bracket of constant vector fields is zero. To evaluate these
+terms, note that $C^*\psi_2$ is a map from points $A\in \mathcal{A}^*$ to 
+$C^*_A\psi_2$. Hence,
+\begin{align*}
+	\psi_1(C^*\psi_2) 
+	= \odv{}{t}_{t=0}(C^*_{A+t\psi_1}\psi_2) 
+	= \odv{}{t}_{t=0}(d^*_{A+t\psi_1}\psi_2) 
+\end{align*}
+since $C_A^*$ acts as the adjoint covariant
+derivative on the affine space.
 % TODO naber p136
-(TODO)
 
 
 	\item 
@@ -579,16 +629,15 @@ $-idS^\intercal \chi$ : The remaining two terms come from the Berezin integral
 in the Mathai-Quillen formula, involving the odd degree
 variable $\chi$ which is a basis for the vector space $\Omega^{2,+}(M,\ad P)$.
 So this term can also be written as $i \chi^{\intercal} dS$.
-But since the vector space is infinite dimensional, we instead interpret the Berezin
-integral as an ordinary integral, treat $\chi$ as an element 
-$\Omega^{2,+}(M,\ad P)$ (called a fermionic field in physics), and turn the 
-sum $\chi^\intercal dS$ into the inner product $\gen{\chi,dS}$.
+Recall that we interpret the Berezin integral by treating $\chi$ as an element 
+$\Omega^{2,+}(M,\ad P)$, and 
+sum $\chi^\intercal dS$ as the inner product $\gen{\chi,dS}$.
 
 From Proposition \ref{prop:curvature_derivative}, the
 differential of the curvature operator $A \mapsto F_A$ is the covariant
 derivative  $d_A$. Therefore, the differential of the section is $dS = -d_A^+$.
-Hence, our interpretation of this term is $-i\gen[*]{\chi,d_A^+} =
--i\gen{\chi,d_A}$ ($\chi$ is self-dual).
+Since $\chi$ is self-dual, our interpretation of this term is $-i\gen[*]{\chi,d_A^+} =
+-i\gen{\chi,d_A}$.
 
 	\item 
 $\frac{1}{2}\chi^\intercal \rho_*(\phi)\chi$ :
