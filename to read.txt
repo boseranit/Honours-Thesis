@@ -4,18 +4,16 @@ invariant and horizontal form
 
 Bryan questions:
 should I include a proof of nabla^2 = F
-should I include a proof Thom isomorphism? only for compact case?
+should I include a proof Thom isomorphism for compact case? 
 proof of equivariant de rham theorem 
 
 
-To write:
 if I have an orientation for M and G, then is there a product orientation for P -> M 
 No (e.g. mobius bundle): so check statements for fiber integral and universal thom
 
-pullback in cartan map works only because projection is G equivariant
 
-how integration along the fiber maps into associated bundle via Weil homo
-
+To write:
+Include introductions at the start of every section
 
 ch4 Donaldson Kronheimer
 1.6 BGV Transgression formulas, pullback of thom class, Poincare-hopf theorem
