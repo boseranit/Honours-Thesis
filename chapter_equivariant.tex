@@ -1,5 +1,5 @@
 \chapter{Equivariant Cohomology}
-\label{chapter2}
+\label{chapter_equivariant}
 
 \section{Preliminaries}
 Equivariant differential topology extends the results of differential topology
@@ -81,7 +81,7 @@ fiber bundle.
 
 \begin{prop} \label{prop:total_base_iso}
 	If $E \xrightarrow{\pi} B$ is a fiber bundle with weakly contractible fiber $F$,
-	and path-connected base $B$, $\pi$ is a weak homotopy equivalence.
+	and path-connected base $B$, then $\pi$ is a weak homotopy equivalence.
 	Furthermore if $B$ and $F$ are CW complexes, 
 	then $\pi$ is a homotopy equivalence.  
 \end{prop}
@@ -315,7 +315,8 @@ The definition similarly extends to vector valued forms.
 
 \begin{thm}[Cartan's homotopy formula {\cite[Theorem 20.10]{intro_tu}}] 
 	\label{thm:cartan_homotopy} % thm 10.4 tu equivariant, p18 BGV
-	Let $X\in \Gamma(TM)$ be a vector field on $M$, and $\alpha\in \Omega(M)$. Then
+	Let $X\in \mathcal{M}$ be a vector field on a manifold $M$, and 
+	$\alpha\in \Omega(M)$. Then
 	\[
 	\mathcal{L}(X) = d\iota(X)+\iota(X) d
 	\] 
@@ -330,15 +331,15 @@ The definition similarly extends to vector valued forms.
 	\end{comment}
 \end{thm}
 
-\begin{thm}[{\cite[Theorem 17.4]{equivariant_tu}}] \label{thm:pb_curvature_properties}
+\begin{thm}[{\cite[Theorem 30.4]{loringtu}}] \label{thm:pb_curvature_properties}
 	The curvature $F$ of a connection  $\omega$ on a principal  bundle $P\to M$
 	satisfies the following properties:
 	\begin{enumerate}[(i)]
-	    \item For $p\in P$ and  $X_p,Y_p\in T_pP$,  $F_p(X_p,Y_p) =
-			(d\omega)_p(hX_p,hY_p)$
-		 \item $F$ is horizontal, i.e. $\iota_X F = 0$ for any vertical
-			 vector  $X\in T_pP$
-		\item (Right equivariance) $R_g^*F = \Ad_{g^{-1}}\circ F$
+	    \item (Horizontality) For $p\in P$ and  $X_p,Y_p\in T_pP$,  $F_p(X_p,Y_p) =
+			(d\omega)_p(hX_p,hY_p)$ where $hX_p$ is the horizontal projection.
+		Consequently, $F$ is horizontal, i.e. $\iota_X F = 0$ for any vertical
+		 vector  $X\in T_pP$
+		\item ($G$-equivariance) $R_g^*F = \Ad_{g^{-1}}\circ F$
 	\end{enumerate}
 \end{thm}
 
