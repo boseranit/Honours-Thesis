@@ -186,7 +186,7 @@ Our starting point is the universal Mathai-Quillen formula
 (equation \ref{eq:universal_thom_form}), an element in the
 Cartan model $S(\mathfrak{g}^*)\otimes \Omega(V)$, restated here
 \begin{equation} \label{eq:universal_thom_form2}
-	U = (2\pi)^{-m}e^{-\abs{x}^2}\int^B
+	U = (2\pi)^{-m}e^{-\abs{x}^2 /2}\int^B
 	\exp\paren{\frac{1}{2}\chi^{\intercal}\rho_*\chi - idx^\intercal \chi}
 	\odif{\chi}
 \end{equation}
@@ -271,7 +271,7 @@ U(\phi) = (2\pi)^{-m}e^{-\abs{x}^2}\int^B
 which we wish to
 evaluate at $R^{-1}dC^* \in \Omega^2(P,\g)$. By the inversion formula above,
 \begin{align} \label{eq:fourier_thom}
-	U(R^{-1}dC^*) = (2\pi)^{-d-m}e^{-\abs{x}^2}\iint_{\g}\int^B 
+	U(R^{-1}dC^*) = (2\pi)^{-d-m}e^{-\abs{x}^2 /2}\iint_{\g}\int^B 
 	&\exp\Big(\frac{1}{2}\chi^{\intercal}\rho_*(\phi)\chi - idx^\intercal \chi\\
 	&+i\gen{dC^*,\lambda}-i\gen{\phi,R\lambda}\Big) \det R
 	\odif{\chi} \odif{\phi}\odif{\lambda} \nonumber
@@ -324,7 +324,7 @@ $U(R^{-1}dC^*) \in \Omega^{2m}(P\times V)$ in equation
 (\ref{eq:fourier_thom}) with $W$,
 \begin{align} \label{eq:AJ_formula_thom}
 U(R^{-1}dC^*)\wedge W	
-= (2\pi)^{-d-m}e^{-\abs{x}^2}\iint_{\g}&\iint^B 
+= (2\pi)^{-d-m}e^{-\abs{x}^2 /2}\iint_{\g}&\iint^B 
 	\exp\Big(\frac{1}{2}\chi^{\intercal}\rho_*(\phi)\chi - idx^\intercal \chi\\
 	&+i\gen{dC^*,\lambda}-i\gen{\phi,R\lambda} + C^*\Big)  \odif{\eta}
 	\odif{\chi} \odif{\phi}\odif{\lambda}  \nonumber 
@@ -451,7 +451,7 @@ integral over $P$ is also the Euler number:
 \begin{align} \label{eq:AJ_formula_euler}
 S^*(U(R^{-1}dC^*)\wedge W)	
 = &(2\pi)^{-d-m}\iint_{\g}\iint^B 
-\exp\Big(\!\!-\abs{S}^2+\frac{1}{2}\chi^{\intercal}\rho_*(\phi)\chi \\
+\exp\Big(\!\!-\frac{1}{2}\abs{S}^2+\frac{1}{2}\chi^{\intercal}\rho_*(\phi)\chi \\
 	&- idS^\intercal \chi
 	+i\gen{dC^*,\lambda}-i\gen{\phi,R\lambda} + \gen{C^*,\eta}\Big)  \odif{\eta}
 	\odif{\chi} \odif{\phi}\odif{\lambda}  \nonumber 
@@ -459,14 +459,39 @@ S^*(U(R^{-1}dC^*)\wedge W)
 This result is called the Atiyah-Jeffrey formula for the Euler number.
 
 \vspace{1ex}\noindent
-\textbf{Manipulation 6: Integration as successive fermionic and bosonic integrals} \\
-In order to integrate over $P$, there is a common notational device in
-supersymmetric physics where the integral of a top rank form is written as a
-Berezin (fermionic) integral followed by a normal (bosonic) integral. 
-If $\alpha \in \Omega^*(P)$ is a form written in terms of local coordinates  
+\textbf{Manipulation 6: Successive fermionic and bosonic integrals} \\
+In order to integrate over $P$, there is a common notational tool in
+supersymmetric physics where the integral of a differential form is written as a
+Berezin (fermionic) integral followed by an ordinary (bosonic) integral. 
+Suppose $\alpha \in \Omega^{2m+d}(P)$ is a top rank form, and $dV$ is a volume form
+on $P$. Then we can write $\alpha = f(p) dV$. 
+Let us denote the same form $d\psi = dV $ to indicate
+Grassman variables for the purpose of the following Berezin integral:
+\[
+f(p) = \int^B \alpha(p,\psi) d\psi
+\]
+where the integral is defined locally by writing $\psi$ and $\alpha$ in terms of 
+any basis $\{dx_i\}$. This naturally isolates $f(p)$, which can then be integrated
+against the volume form:
+ \[
+\int_P \alpha = \int_P \int^B \alpha(p,\psi) d\psi dV_p
+\] 
+Therefore, the integral over $P$ of the element in $\Omega(P)$ in equation 
+(\ref{eq:AJ_formula_euler}) can be written as 
+\begin{align} 
+&\int_M \chi(P\times_\rho V)\nonumber \\	
+= &(2\pi)^{-d-m}\int_P\iint_{\g}\iiint^B 
+\exp\Big(\!\!-\frac{1}{2}\abs{S(p)}^2+\frac{1}{2}\chi^{\intercal}\rho_*(\phi)\chi 
+	\label{eq:AJ_formula_susy} \\
+	&- idS_p^\intercal(\psi) \chi
+	+i\gen[*]{dC^*_p(\psi),\lambda}-i\gen{\phi,R_p\lambda} 
+	+ \gen[*]{C^*_p(\psi),\eta}\Big)  
+	\odif{\psi}\odif{\eta} \odif{\chi} \odif{\phi}\odif{\lambda}\odif{V_p} \nonumber 
+\end{align}
+Note that terms like $C^*_p(\psi)$ merely indicates that we write the
+covectors in $T^*_pP$ in terms of the variables $\psi$. 
 
-
-\section{Interpretation of Donaldson-Witten theory}
+\section{Application to Donaldson-Witten theory}
 We can now apply the Atiyah-Jeffrey formula for the Euler number to the infinite 
 dimensional setting of Donaldson-Witten theory. As eloquently put by \citet{naber},
 the content of this section is not mathematics, and certainly not physics. The
@@ -574,61 +599,92 @@ If $\alpha \in \Omega^*(P)$ is a form written in terms of local coordinates
 
 
 We can now interpret each term in equation (\ref{eq:AJ_formula_euler}).
+We will evaluate the terms at the point $A\in \mathcal{A}^*$, corresponding to
+$p\in P$ in the formula.
 \begin{itemize}[leftmargin=\parindent]
+	\setlength\itemsep{0.5ex}
     \item 
-$-\abs{S}^2$ : The norm on the vector space $\Omega^{2,+}(M,\ad P)$ is the 
+$-\frac{1}{2}\abs{S(p)}^2$ : 
+The norm on the vector space $\Omega^{2,+}(M,\ad P)$ is the 
 $L^2$ norm, so this term is 
 \[
-	-\int_M \abs[*]{F^+_A}^2 dV_g = -\frac{1}{2}\int_M \abs{F_A}^2 dV_g + 4\pi^2k
+-\frac{1}{2}\int_M \abs[*]{F^+_A}^2 dV_g 
+= -\frac{1}{4}\int_M \abs{F_A}^2 dV_g + 2\pi^2k
 \] 
 where we have used the property in equation $(\ref{eq:second_chern})$ for the 
 second Chern number $k$ of the associated vector bundle.
 
 	\item 
-$-i\gen{\phi,R\lambda}$ : We know $\phi$ and  $\lambda$ are Lie algebra
+$-i\gen{\phi,R_p\lambda}$ : We know $\phi$ and  $\lambda$ are Lie algebra
 variables in  $\Omega^0(M,\ad P)$. From above, we found that  $R$ is the
 Laplacian $\Delta_A$. So we write this term as  
-$-i\gen{\phi,\Delta_A\lambda}$. 
+\[
+-i\gen{\phi,\Delta_A\lambda} 
+= i \int_M \Tr (\phi \wedge \star (\Delta_A\lambda))
+= i \int_M \Tr (\star (\phi\,\Delta_A\lambda))
+\] 
 
 	\item 
-$\gen{C^*,\eta}$ : We have determined $C_A^*$ to be the formal adjoint $d_A^*$. 
+$\gen[*]{C_p^*,\eta}$ : We have determined $C_A^*$ to be the formal adjoint $d_A^*$. 
 This term is meant to be interpreted as a 1-form in
 $\Omega^1(\mathcal{A},\operatorname{Lie}(\mathcal{G}))$, written as a sum over
 the basis $\eta$ for $\operatorname{Lie}(\mathcal{G})$. By defintion of the
-adjoint, we can also write this term as $\gen{d_A^*,\eta}=\gen{-,d_A\eta}$. 
-The latter expression uses the inner product on $\mathcal{A}^*$. 
+adjoint, we can also write this term as 
+\[
+\gen{d_A^*,\eta}=\gen{-,d_A\eta} = -\int_M \Tr(- \wedge \star d_A\eta)
+\] 
 
-	\item 
-$i\gen{dC^*,\lambda}$ : Recall that $dC^*$ is interpreted as a 2-form 
+	\item  
+$i\gen[*]{dC^*_p,\lambda}$ : Recall that $dC^*$ is interpreted as a 2-form 
 $\Omega^2(\mathcal{A},\operatorname{Lie}(\mathcal{G}))$. Our first goal is to
 compute $dC^*$ at the point $A \in \mathcal{A}^*$. 
-Fix $\psi_1,\psi_2\in T_A \mathcal{A}^*$. 
+Fix $a_1,a_2\in T_A \mathcal{A}^* \subset \Omega^1(M, \ad P)$. 
 Since $\mathcal{A}^*$ is contained in an affine space, 
-$\psi_1$ and $\psi_2$ are associated to constant vector fields, i.e.
-$\psi_i(A)=A+\psi_i$. Then 
+$a_1$ and $a_2$ are associated to constant vector fields, i.e.
+$a_i(A)=A+a_i$. Then 
 \begin{align*}
-	dC^*(\psi_1,\psi_2) 
-	&= \psi_1(C^*\psi_2) - \psi_2(C^*\psi_1) - C^*([\psi_1,\psi_2]) \\
-	&= \psi_1(C^*\psi_2) - \psi_2(C^*\psi_1) 
+	dC^*(a_1,a_2) 
+	&= a_1(C^*a_2) - a_2(C^*a_1) - C^*([a_1,a_2]) \\
+	&= a_1(C^*a_2) - a_2(C^*a_1) 
 \end{align*}
 since the Lie bracket of constant vector fields is zero. To evaluate these
-terms, note that $C^*\psi_2$ is a map from points $A\in \mathcal{A}^*$ to 
-$C^*_A\psi_2$. Hence,
+terms, note that $C^*a_2$ is a map from points $A\in \mathcal{A}^*$ to 
+$C^*_Aa_2 = d^*_Aa_2$. Hence,
 \begin{align*}
-	\psi_1(C^*\psi_2) 
-	= \odv{}{t}_{t=0}(C^*_{A+t\psi_1}\psi_2) 
-	= \odv{}{t}_{t=0}(d^*_{A+t\psi_1}\psi_2) 
+	a_1(C^*a_2)_A 
+	= \odv{}{t}_{t=0}(C^*_{A+ta_1}a_2) 
+	= \odv{}{t}_{t=0}(d^*_{A+ta_1}a_2) 
 \end{align*}
-since $C_A^*$ acts as the adjoint covariant
-derivative on the affine space.
-% TODO naber p136
-
+since $C_A^*$ acts as the codifferential on the affine space. 
+We can compute $d^*_{A+ta_1}$ as follows. 
+For any $\lambda \in \Omega^0(M,\ad P)$, from Corollary \ref{cor:adP_connection}
+we have
+\[
+	d_{A+ta_1}(\lambda) = d_A\lambda + t[a_1,\lambda]
+\] 
+Recall that the formal adjoint is explicitly described by 
+$d^*_{A+ta_1} = -\star d_{A+ta_1} \star$ for a four-manifold, so in this case,
+\[
+	d^*_{A+ta_1}(a_2) = d^*_A a_2 - t \star [a_1,\star a_2]
+\] 
+and computing the derivative at $t=0$ gives
+$a_1(C^*a_2) = -\star [a_1, \star a_2]$. Similarly, 
+$a_2(C^*a_1) = -\star [a_2, \star a_1] = \star [a_1, \star a_2]$, 
+where the Lie bracket introduces a minus sign. 
+Note that these are independent of $A$. 
+Therefore, $dC^*(a_1,a_2) = -2 \star [a_1,\star a_2]$.
+Finally, our interpretation of the term $i\gen{dC^*_A,\lambda}$ is 
+\[
+-2i \gen{\star[-,\star -], \lambda}
+= 2i \int_M \Tr(\lambda \wedge \star^2[-,\star -] )
+= -2i \int_M \Tr( [-,\star -]\lambda )
+\] 
 
 	\item 
-$-idS^\intercal \chi$ : The remaining two terms come from the Berezin integral
+$-idS^\intercal_p \chi$ : The remaining two terms come from the Berezin integral
 in the Mathai-Quillen formula, involving the odd degree
 variable $\chi$ which is a basis for the vector space $\Omega^{2,+}(M,\ad P)$.
-So this term can also be written as $i \chi^{\intercal} dS$.
+So commuting the variables gives $i \chi^{\intercal} dS_p$.
 Recall that we interpret the Berezin integral by treating $\chi$ as an element 
 $\Omega^{2,+}(M,\ad P)$, and 
 sum $\chi^\intercal dS$ as the inner product $\gen{\chi,dS}$.
@@ -636,8 +692,11 @@ sum $\chi^\intercal dS$ as the inner product $\gen{\chi,dS}$.
 From Proposition \ref{prop:curvature_derivative}, the
 differential of the curvature operator $A \mapsto F_A$ is the covariant
 derivative  $d_A$. Therefore, the differential of the section is $dS = -d_A^+$.
-Since $\chi$ is self-dual, our interpretation of this term is $-i\gen[*]{\chi,d_A^+} =
--i\gen{\chi,d_A}$.
+Since $\chi$ is self-dual, our interpretation of this term is 
+\[
+	i\gen[*]{\chi,d_A^+} =i\gen{\chi,d_A}
+	= -i\int_M \Tr(d_A(-)\wedge \chi)
+\] 
 
 	\item 
 $\frac{1}{2}\chi^\intercal \rho_*(\phi)\chi$ :
@@ -647,23 +706,66 @@ invariant action of $\mathcal{G}$ on $\Omega^{2,+}(M,\ad P)$, given by pointwise
 conjugation. Hence, the induced action on the Lie algebra acts on $\chi\in
 \Omega^{2,+}(M,\ad P)$ pointwise by $\rho_*(\phi) \chi = [\chi,\phi]$. 
 Then as before, the sum involving  $\chi^\intercal$ is interpreted as the inner
-product on the vector space, and our result is  $\frac{1}{2} \gen{\chi,
-[\chi,\phi]}$. 
-
-
+product on the vector space, and our result is  
+\[
+\frac{1}{2} \gen{\chi,[\chi,\phi]} 
+= -\frac{1}{2} \int_M \Tr([\chi,\phi]\wedge \chi)
+\] 
 \end{itemize}
 
-% TODO
-TODO: write all the terms using the inner product on the vector space, and write
-final exponent as integral over the base $M$. 
+Not that all of the terms above are written in terms of the inner product on
+$\Omega^k(M,\ad P)$, i.e. an integral over $M$ of the trace of a $\ad P$-valued
+form. We can interpret the terms inside the trace integral as minus the terms 
+in the Lagrangian
+density. So putting together all of the terms above, we have the
+Donaldson-Witten Lagrangian density
+\begin{align}
+	\mathcal{L}_{\text{DW}}
+	= &-\frac{1}{4}F_A\wedge\star F_A - \frac{1}{4}F_A\wedge F_A
+	+\frac{1}{2} [\chi,\phi]\wedge \chi + id_A\psi\wedge \chi \nonumber \\
+	& +2i[\psi,\star\psi]\lambda - \star(i\phi \Delta_A\lambda) + 
+	\psi\wedge \star d_A\eta \label{eq:dw_lagrangian}
+\end{align}
+where we have replaced the $(-)$ signs for the argument of differential forms on
+the principal bundle with  $\psi$, since the Berezin integral over $\psi$ in 
+equation (\ref{eq:AJ_formula_susy}) becomes a fermionic path integral, in the
+same way as for the variables $\eta$ and $\chi$. 
+Thus, our ``Euler number" for the vector bundle $\mathcal{A}^*
+\times_\mathcal{G}\Omega^{2,+}(M,\ad P)$ is proportional to
+\[
+	\int \exp \paren{-\int_M \Tr \mathcal{L}_{\text{DW}} }
+	\odif{\psi}\odif{\eta} \odif{\chi} \odif{\phi}\odif{\lambda}\odif{V_A} 
+\] 
+Note that we have omitted the $(2\pi)^{-d-m}$ factor because both $m$ and  $d$
+would be infinite in this circumstance. 
+
+\section{Interpretation of Donaldson-Witten theory}
+When the dimension of the zero set 
+of the section $\sigma : \mathcal{A}^* \to \Omega^{2,+}(M,\ad P)$ (i.e.
+the moduli space) $\dim \mathcal{M}^*$ is zero, the significance of the result 
+is that after Wick rotation, our Lagrangian and 
+Euler number are precisely Witten's Lagrangian and associated partition function
+for his TQFT for Donaldson theory.\cite{wittenTQFT} 
+In this case, Wick rotation is performed by replacing 
+$\phi \in \operatorname{Lie}(\mathcal{G})$ with $i\phi$, corresponding
+to analytic continuation. Witten showed that the partition function computes the
+0-dimensional Donaldson invariant of a smooth 4-manifold, and hence we can
+interpret this ``Euler number" as the intersection number of the section of the 
+vector bundle, analogous to the Poincar\'e-Hopf theorem. 
+
+In the more general case $\dim \mathcal{M}^* \neq 0$, we can take the analogy a 
+step further, hoping for a representation of the
+Donaldson invariants as the Euler class integrated against
+other differential forms on $\mathcal{A}^*$, similar to [reference Witten's theorem] 
+
+[explain why Euler class has codimension $\dim\mathcal{M}^*$ using elliptic
+complex]
+
 
 \begin{comment}
-	
-Although $e(E)$ and  $\int_X e(E)$ do not make sense for
-infinite dimensional  $E$ and  $X$, the Mathai-Quillen form  $e_{s,\Delta}$ can
-be used to formally define regularized Euler numbers $\chi_s(E) := \int_X
-e_{s,\Delta}(E)$. Although not independent of $s$, these numbers  $\chi_s(E)$
-are of topological interest for certain choices of  $s$.  
+Unlike the finite dimensional case, we do not expect	
+the ``Euler number" $\chi_s(E) := \int_X e_{s,\Delta}(E)$ to be independent of 
+$s$.  
 \end{comment}
 
 
@@ -680,7 +782,7 @@ are of topological interest for certain choices of  $s$.
 {\small
 \begin{itemize}
 	\item The lecture notes by \citet{cordes95} explores this topic from the
-	perspective of physics, and how it relates to twisted 
+	perspective of physics, using the language of twisted 
 	$\mathcal{N}=2$ SUSY YM theory.
 	\item The conference paper by \citet{naber} provides more detailed
 	explanations of Atiyah and Jeffrey's paper \cite{atiyahlagrangians}.

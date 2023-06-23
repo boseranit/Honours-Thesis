@@ -14,6 +14,10 @@ No (e.g. mobius bundle): so check statements for fiber integral and universal th
 
 To write:
 Include introductions at the start of every section
+zero dimensional donaldson invariant
+write witten's localisation properly
+The case of dim M neq 0, and witten's observables
+intersection number proof
 
 ch4 Donaldson Kronheimer
 1.6 BGV Transgression formulas, pullback of thom class, Poincare-hopf theorem

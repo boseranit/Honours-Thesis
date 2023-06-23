@@ -551,6 +551,9 @@ Pullback by zero section is Pfaffian.
 	\odv{}{t} U_t = -i\epsilon(N) d\int^B x e^{-\omega_t}
 	\] 
 \end{prop}
+\begin{proof}
+	
+\end{proof}
 \begin{prop} \label{prop:thom_pullback}
 	Let $s\in \Gamma(M,E)$ be a section of $E$.
 	The cohomology class of the pullback $s^*\Phi_\nabla(E) \in \Omega^{n}(M)$
@@ -573,6 +576,7 @@ Pullback by zero section is Pfaffian.
 		it\nabla s + F} \odif{t}
 	\] 
 	% TODO: complete proof
+	TODO: complete proof
 \end{proof}
 
 
@@ -972,14 +976,14 @@ as $\frac{1}{2} e_i \wedge (\rho_*)_{ij} e_j = \frac{1}{2} \chi^\intercal
 (\rho_*) \chi$. Then the Mathai-Quillen Thom form 
 $U\in S(\mathfrak{g}^*)\otimes \Omega(V)$ can be alternatively written as 
 \begin{equation} \label{eq:universal_thom_form} % AJ 2.1
-	U = \epsilon(n)(2\pi)^{-n /2}e^{-\abs{x}^2} 
+	U = \epsilon(n)(2\pi)^{-n /2}e^{-\abs{x}^2 /2} 
 	\int^B \exp \paren{\frac{1}{2}\chi^{\intercal}(\rho_*)\chi -
 idx^{\intercal}\chi} \odif{\chi} 
 \end{equation}
 If $\rho_*(X)\in\so(V)$ is always invertible, we can apply
 Proposition \ref{prop:berezin_formula}, to get
 \[
-	U = \epsilon(n)(2\pi)^{-n/2} \Pf(\rho_*) \exp(-\abs{x}^2-dx^{\intercal} (\rho_*)^{-1}dx)
+U = \epsilon(n)(2\pi)^{-n/2} \Pf(\rho_*) \exp(-\abs{x}^2 /2-dx^{\intercal} (\rho_*)^{-1}dx)
 \] 
 We can also obtain a universal Thom form in the Weil model, by 
 applying the Weil-Cartan isomorphism $(S(\mathfrak{g}^*)\otimes \Omega(V))^G

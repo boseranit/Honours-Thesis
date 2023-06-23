@@ -116,7 +116,7 @@ In this subsection we assume $G=\SO(N)$ or  $G=\SU(N)$, which allows us to
 make a number of simplifications.
 \begin{defn}
 	Let $(M,g)$ be an oriented Riemannian  $n$-manifold. The \underline{Hodge}
-	\underline{star operator} $* : \Omega^k(M) \to \Omega^{n-k}(M)$ is the 
+	\underline{star operator} $\star : \Omega^k(M) \to \Omega^{n-k}(M)$ is the 
 	unique smooth bundle homomorphism satisfying 
 	\begin{equation} \label{eq:hodge_property}
 	\omega \wedge \star\eta = \gen{\omega,\eta}_g dV_g
@@ -257,7 +257,7 @@ $\Omega^1(M,\End E)$. There is a similar result for principal bundles.
 
 \begin{prop} \label{prop:connection_space}% Lemma 2.9.2 MF
 	The space of connections $\mathcal{A}$ on a principal $G$-bundle $P\to M$ is in bijection 
-	with the vector space $\Omega^1(M,\ad P) = \Omega^1(M,P\times_{\Ad} \mathfrak{g})$.
+	with the vector space $\Omega^1(M,\ad P) \simeq \Omega^1(M,P\times_{\Ad} \mathfrak{g})$.
 \end{prop}
 This follows from the fact that the difference of two connections
 $\theta_1-\theta_2\in \Omega^1(P,\g)$ is a horizontal and $\Ad$-equivariant form.
@@ -280,6 +280,30 @@ If the structure group is $\SU(2)$, for example, then
 $\g_E$ consists of skew-adjoint, trace-free endomorphisms of the rank two vector
 bundle $E$. The point is, we may view connections on principal bundles as a
 generalisation of the vector bundle case, so we work with the former.
+
+\begin{cor} \label{cor:adP_connection}
+	To every connection $\omega \in \Omega^1(M,\ad P)$ on a principal
+	$G$-bundle $P\to M$, there is an associated vector bundle connection
+	$d_\omega$ on  $\ad P \to M$, where  $\ad P$ acts on itself by the fiberwise 
+	Lie bracket. Assume $G$ is a matrix Lie group.
+\end{cor}
+\begin{proof}
+	For $v\in \mathcal{X}(M), \lambda \in \Gamma(\ad P)$, we are defining the 
+	connection by $d_\omega(v,X) = [\omega(v),\lambda]_{\ad P}$, where the Lie bracket
+	is defined by 
+	\[
+		[[p,A],[p,B]]_{\ad P} := [p,[A,B]_{\g}]
+	\] 
+	Then $d_\omega$ is $C^\infty$-linear in  $v$, and linear in  $\lambda$, so 
+	we only need to check that the fiberwise Lie bracket is well defined. 
+	But this is clear since 
+	\[
+		[p\cdot g, [g^{-1}Ag,g^{-1}Bg]] 
+		= [p\cdot g, g^{-1}[A,B]g]
+		= [p, gg^{-1}[A,B]gg^{-1}] = [p,[A,B]]
+	\] 
+	% TODO is this only for matrix lie group
+\end{proof}
 
 \begin{defn}
 	The \underline{gauge group} $\mathcal{G}$ of a vector bundle $E\to M$ is the group of all
@@ -326,8 +350,7 @@ the fiberwise exponential map $\exp : \Omega^0(M,\ad P) \to
 section  $s(x)=\exp(\sigma(x))$. To see that this gives a well defined map, we
 use the fact that  $\exp : \g \to G$ satisfies
 $\exp(g^{-1}Ag)=g^{-1}\exp(A)g$. The Lie bracket on $\Omega^0(M,\ad P)$ is
-defined by the fiberwise bracket, which is well defined because ????
-% TODO why well defined?
+defined by the fiberwise bracket, which we have shown is well defined. 
 
 
 
