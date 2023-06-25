@@ -539,7 +539,7 @@ which is half of the formal dimension of the moduli space
 $\mathcal{M}^*(P)$. The Donaldson invariant associated to $P$ is a
 symmetric multilinear function of degree  $d$ on $H_2(M;\mathbb{Z})$ 
 \[
-\gamma_d(M) : H_2(M;\mathbb{Z})^{\otimes d} \to \mathbb{Q}
+D_{M,d} : H_2(M;\mathbb{Z})^{\otimes d} \to \mathbb{Q}
 \] 
 Very roughly, the idea behind the definition is as follows: The Donaldson $\mu$ 
 map $\mu: H_2(M,\mathbb{Z}) \to H^2(\mathcal{M}^*(P),\mathbb{Z})$ associates
@@ -548,21 +548,21 @@ Since the moduli space is not compact, we need to define the Uhlenbeck
 compactification $\overline{\mathcal{M}}(P)$ of the
 moduli space and extend the $\mu$ map to take values in
 $H^2(\overline{\mathcal{M}}(P),\mathbb{Z})$.
-For $x_1,\ldots,x_d \in H_2(M,\mathbb{Z})$, we have $\mu(x_1),\ldots,\mu(x_d)\in
-H^2(\overline{\mathcal{M}}(P),\mathbb{Z})$ and we define the invariant to be the integral
-over the moduli space
+For $\gamma_1,\ldots,\gamma_d \in H_2(M,\mathbb{Z})$, we have 
+$\mu(\gamma_1),\ldots,\mu(\gamma_d)\in H^2(\overline{\mathcal{M}}(P),\mathbb{Z})$ 
+and we define the invariant to be the integral over the moduli space
  \[
-\gamma_d(x_1,\ldots,x_d) 
-= \int_{\overline{\mathcal{M}}(P)} \overline{\mu}(x_1)\wedge \cdots\wedge
-\overline{\mu}(x_d)
+D_{M,d}(\gamma_1,\ldots,\gamma_d) 
+= \int_{\overline{\mathcal{M}}(P)} \overline{\mu}(\gamma_1)\wedge \cdots\wedge
+\overline{\mu}(\gamma_d)
 \] 
 Hence the Donaldson invariant can be interpreted as 
 an element in the polynomial algebra of $H^2(M,\mathbb{Z})$, i.e. dual to
 $H_2(M,\mathbb{Z})$.  
 % naber Witten II p70 TODO reference
 To be more precise, $\overline{\mathcal{M}}(P)$ is generally not a manifold, and the above
-refers to the pairing of the cup products of $\mathcal{\mu}(x_i)$ with the fundamental 
-homology class $[\overline{\mathcal{M}}(P)]$. One finds that
+refers to the pairing of the cup products of $\mathcal{\mu}(\gamma_i)$ with the 
+fundamental homology class $[\overline{\mathcal{M}}(P)]$. One finds that
 $\overline{\mathcal{M}}(P)$ admits a fundamental class only if $k$ is in what is 
 called the stable range of $M$:  $k > \frac{3}{4}(1+b_2^*(M))$.
 
@@ -596,17 +596,18 @@ $p_1(\xi) \in H^4(\mathcal{B}^*\times M,\mathbb{Z})$ is divisible by
 Recall that the slant product in algebraic topology is a map 
 \[
 H^{p+q}(X\times Y) \times H_p(Y) \to H^q(X), \qquad 
-(\gamma,\alpha) \mapsto \gamma / \alpha
+(x,\alpha) \mapsto x / \alpha
 \] 
 Then we can define the map $H_2(M,\mathbb{Z})\to H^2(\mathcal{B}^*,\mathbb{Z})$
-given by $x \mapsto -\frac{1}{4} p_1(\xi) / x$. The reason for the $-1 /4$ is
+given by $\gamma \mapsto -\frac{1}{4} p_1(\xi) / \gamma$. 
+The reason for the $-1 /4$ is
 that when an $\SO(3)$-bundle $\mathcal{P}$ lifts  to an $\SU(2)$-bundle
 $\mathcal{P}'$, we have the relation % TODO reference
 $c_2(\mathcal{P}')=-\frac{1}{4}p_1(\mathcal{P})$. Finally, the $\mu$ map is
-defined as the restriction to the moduli space:
+defined as the restriction of $\mathcal{B}^*$ to the moduli space:
  \[
 \mu : H_2(M,\mathbb{Z}) \to H^2(\mathcal{M}^*,\mathbb{Z}),\qquad
-\mu(x) = -\frac{1}{4}p_1(\xi) /x
+\mu(\gamma) = -\frac{1}{4}p_1(\xi) /\gamma
 \] 
 The extension of this map to the Uhlenbeck compactification 
 $\overline{\mathcal{M}}(P)$ requires the Taubes
