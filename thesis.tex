@@ -60,7 +60,6 @@
 % add contents to bookmarks 
 \pdfbookmark{\contentsname}{toc}
 \tableofcontents%\blanknonumber
-\input{preface}
 \input{acknowledgements}%\blanknonumber
 \input{notation}%\blanknonumber
 
@@ -70,6 +69,7 @@
 \renewcommand{\thefootnote}{\arabic{footnote}}
 
 % assuming there are files chapter1.tex etc...
+\input{introduction}
 \input{chapter_equivariant}
 \input{chapter_mq}
 \input{chapter_local}
