@@ -511,6 +511,9 @@ The objects we consider are
 	\item vector space: self dual 2-forms $\Omega^{2,+}(M,\ad P)$ 
 	\item associated vector bundle: $\mathcal{A}^* \times_\mathcal{G}
 		\Omega^{2,+}(M,\ad P)  \to \mathcal{A}^* /\mathcal{G}$
+	\item section: self-dual part of curvature 
+		$\sigma : \mathcal{A}^* /\mathcal{G} \to \mathcal{A}^*\times_\mathcal{G}
+\Omega^{2,+}(M,\ad P)$ defined by $[A]\mapsto [A,-F_A^+]$.
 	\item equivariant section: self-dual part of curvature $S : \mathcal{A}^* \to
 		\Omega^{2,+}(M,\ad P)$ defined by $S(A)=-F_A^+$
 \end{itemize}
@@ -521,12 +524,11 @@ Since our objective is to apply the Atiyah-Jeffrey
 formula to the infinite dimensional vector space $\Omega^{2,+}(\ad P)$, complete
 rigor is out of the question for this application anyway. 
 \end{comment}
-We are interested in the moduli space of ASD connections, so this leads us to
-consider the section of the associated vector bundle 
-$\sigma : \mathcal{A}^* /\mathcal{G} \to \mathcal{A}^*\times_\mathcal{G}
-\Omega^{2,+}(M,\ad P)$ defined by $[A]\mapsto [A,-F_A^+]$. 
-The associated $\mathcal{G}$-equivariant map $S : \mathcal{A}^* \to
-\Omega^{2,+}(M,\ad P)$ is $A \mapsto -F_A^+$.
+We are interested in the moduli space of ASD connections, which is why we
+have defined the section of the associated vector bundle so that its zero set
+is identified with $\mathcal{M}^*$. Note that the 
+$\mathcal{G}$-equivariant map $S : \mathcal{A}^* \to
+\Omega^{2,+}(M,\ad P)$ is the unique map associated to $\sigma$.
 
 The main idea of Atiyah and Jeffrey is that we can 
 obtain an interpretation of the Donaldson invariants as the
@@ -732,10 +734,10 @@ equation (\ref{eq:AJ_formula_susy}) becomes a fermionic path integral, in the
 same way as for the variables $\eta$ and $\chi$. 
 Thus, our ``Euler number" for the vector bundle $\mathcal{A}^*
 \times_\mathcal{G}\Omega^{2,+}(M,\ad P)$ is proportional to
-\[
+\begin{equation} \label{eq:dw_euler_number}
 	\int \exp \paren{-\int_M \Tr \mathcal{L}_{\text{DW}} }
 	\odif{\psi}\odif{\eta} \odif{\chi} \odif{\phi}\odif{\lambda}\odif{V_A} 
-\] 
+\end{equation}
 Note that we have omitted the $(2\pi)^{-d-m}$ factor because both $m$ and  $d$
 would be infinite in this circumstance. 
 \begin{comment}
@@ -758,19 +760,68 @@ In this case, Wick rotation is performed by replacing
 $\phi \in \operatorname{Lie}(\mathcal{G})$ with $i\phi$, corresponding
 to analytic continuation. Witten showed that the partition function computes the
 0-dimensional Donaldson invariant of a smooth 4-manifold, and hence we can
-interpret this ``Euler number" as the intersection number of the section of the 
-vector bundle, analogous to the Poincar\'e-Hopf theorem. 
+interpret this invariant as the intersection number of the section $\sigma$ 
+and the zero section of the vector bundle, analogous to the Poincar\'e-Hopf theorem. 
 
 In the more general case $\dim \mathcal{M}^* \neq 0$, we can take the analogy a 
 step further, hoping for a representation of the
 Donaldson invariants as the Euler class integrated against
-other differential forms on $\mathcal{A}^*$, similar to [reference Witten's theorem] 
+other differential forms on $\mathcal{A}^*$, analogous to Corollary
+\ref{cor:vb_localisation}. Note that $\mathcal{M}^*$ is the zero set of the
+section $\sigma$, so we can say the ``codimension" of the Euler class
+is $\dim \mathcal{M}^*$, as in the case of a transverse section of a finite
+dimensional vector bundle. Let us briefly describe Witten's formulation of the
+Donaldson invariants.
 
-[explain why Euler class has codimension $\dim\mathcal{M}^*$ using elliptic
-complex]
-
-
-
+Let $\xi = \mathcal{A}^*\times_\mathcal{G} P \to \mathcal{B}^*\times M$ be the
+principal $\SO(3)$-bundle introduced in chapter \ref{chapter_donaldson}. 
+Recall that the map $\mu : H_2(M,\mathbb{Z}) \to H^2(\mathcal{M}^*,\mathbb{Z})$ 
+is defined by the slant product $-\frac{1}{4}p_1(\xi) / \gamma$, which we can
+denote as an integral over $\gamma$ for convenience.
+There is a connection on this bundle induced by a metric on $\xi$, which comes
+from the metric on $\mathcal{A}^*\times P$. 
+The curvature of this connection 
+$\mathcal{F}\in \Omega^{2}(\xi, \so(3))$ can be written in terms of the
+components $(2,0)$,  $(1,1)$ and  $(0,2)$ in terms of the product
+$\mathcal{A}^*\times_{\mathcal{G}} P$, describing
+the multiplicity of cotangent vectors in the two components. 
+Similarly, the Pontryagin class 
+$\Tr(\mathcal{F}\wedge \mathcal{F}) \in \Omega^4(\xi)$ can be written
+in terms of five components $(4,0),(3,1),(2,2),(1,3)$ and  $(0,4)$. 
+The three components of $\mathcal{F}$ can be written in terms of the fields 
+to obtain $\mathcal{F} = F_A + \psi + i\phi$, and thus Witten writes the five
+components of $\Tr(\mathcal{F}\wedge \mathcal{F})$ as 
+% Siye wu says this is Equivariant curvature in the Cartan model 
+\begin{align*}
+	W_0 &= \frac{1}{2} \Tr \phi^2 && W_1 = \Tr(\phi \wedge \psi)  \\
+	W_2 &= \Tr \paren{\frac{1}{2}\psi\wedge \psi + i\phi \wedge F_A} 
+		&& W_3 = i\Tr(\psi \wedge F_A) 
+		&& W_4 = -\frac{1}{2}\Tr(F_A\wedge F_A)
+\end{align*}
+See \cite{witten_operators} for details on how $\mathcal{F}$ can be written this 
+way. Let us denote 
+\[
+W_{\gamma}(A,\psi,\phi) = \int_{\gamma} \Tr(\mathcal{F}\wedge \mathcal{F}) 
+=\int_\gamma W_i
+\] 
+Given $\gamma_1,\ldots,\gamma_d \in H^2(M,\mathbb{Z})$, where 
+$d = \frac{1}{2}\dim \mathcal{M}^*$,
+Witten formulates the associated Donaldson invariant as the expectation value of
+the operator $W_{\gamma_1} \cdots W_{\gamma_d}$ in terms of the path
+integral and action \cite[eq. 3.40]{wittenTQFT}:
+% Siye wu eq 5.9, witten eq 3.40
+\[
+\gen{W_{\gamma_1}\cdots W_{\gamma_d}}
+= \int W_{\gamma_1}\cdots W_{\gamma_d} 
+\exp \paren{-\int_M \Tr \mathcal{L}_{\text{DW}} }
+\odif{\psi}\odif{\eta} \odif{\chi} \odif{\phi}\odif{\lambda}\odif{V_A} 
+\] 
+up to some constant factor. 
+This should be interpreted as the integral over $\mathcal{A}^*$ of the product
+of the Euler class with classes $\mu(\gamma_i)$. Thus by Corollary 
+\ref{cor:vb_localisation}, the integral localises to the moduli space, and this
+provides another way to understand Witten's formulation of
+Donaldson invariants in the framework of topological quantum field theory.
 
 % section 4.2 MQintro
 % Birmingham 198-247
