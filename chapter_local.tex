@@ -86,6 +86,11 @@ non-degenerate.
 	where we have made the change of variables $x=t^{-1}y$. Summing over each of
 	the neighbourhoods $V_p$ of zeros, we get the result.
 \end{proof}
+The Mathai-Quillen formula also gives us intuition on why the Euler number
+should only depend on the zeroes of a section. 
+The $e^{-\abs{\epsilon s(x)}^2/2}$ term in the formula tells us that as
+$\epsilon \to 0$, the integral of the Euler form rapidly decays to zero at any
+point outside $s^{-1}(0)$. 
 
 There is a generalisation of this result, where we assume that the zeros
 of $v$ are isolated instead of non-degenerate.\cite[Theorem 1.58]{bgv} 
@@ -416,7 +421,7 @@ via equation (\ref{eq:normal_orientation}).
 \end{proof}
 
 
-\begin{thm} % nicolescu thm 3.4 % Bott Tu pg 69 
+\begin{thm} \label{thm:localisation}% nicolescu thm 3.4 % Bott Tu pg 69 
 	Let $f : N \to M$ and  $S \subset M$ as above such that $f^{-1}(S)$ is
 	compact. Then $f^*\eta_S = \eta_{f^{-1}(S)}$,  i.e. 
 	\[
@@ -562,47 +567,150 @@ via equation (\ref{eq:normal_orientation}).
 	$\eta_{M_0} = \Phi(E)$, and the result follows.
 \end{proof}
 
+Note that $s^*\Phi(E) = \chi(E)$ is the Euler class of the vector bundle for any
+choice of section, as we have proved. This is remarkable, because the left side
+is independent of the section, but can be computed as the integral over the zero
+set of any transverse section.
+
+The result above can be viewed as the generalisation of the Poincar\'e-Hopf
+theorem that we alluded to, when we take the vector bundle to be the
+tangent space and $\omega=1$, in which case $s^{-1}(0)$ is zero dimensional. 
+The integral computes the intersection number between the images of the zero
+section and $s$, which gives us a new perspective on the Euler number. 
+
 % discussion from cordes 11.10.3, physical p15
-% TODO
 There is an extension of the previous result for a section $s$ which is not
 transverse to the zero section. Set $s= \dim s^{-1}(0)$. Choose a connection on
 $E$, which defines a linear map $\nabla_x s : T_xM \to E_x$ for each  $x\in M$.
 Recall that when $s \pitchfork M_0$, 
-there is a surjection $Ds : T_x M \to T_{f(x)} E / T_{f(x)} M_0$ from which 
+there is a surjection $Ds : T_x M \to T_{s(x)} E / T_{s(x)} M_0$ from which 
 we deduce that $n = k + s$. 
 But now suppose instead that  $s > n - k$, so
 the section is not transverse to $M_0$, but such that the fibers of 
-$\coker (\nabla s)$ defined fiberwise by 
+$\coker (\nabla s)$ defined by 
 \[
 0 \to \Im(\nabla_x s) \to E_x \to \coker (\nabla_x s) \to 0
 \] 
-have finite rank so that $\coker \nabla s$ is a vector bundle over  $s^{-1}(0)$.
+have constant rank so that $\coker \nabla s$ is a vector bundle over  $s^{-1}(0)$.
+The rank of $\coker (\nabla s)$ is $r := k-(n-s)$.
 Notice that $\nabla_x s = Ds|_x$ for all  $x\in s^{-1}(0)$. 
 Given orientations of  $M$ and  $E$, $\coker(\nabla s)$ is canonically oriented.
 
 
 \begin{thm}[Generalised localisation theorem]
 	Let $E \xrightarrow{\pi} M$ be an oriented vector bundle over an oriented
-	manifold, and  $s : M \to E$ be a section with the properties above. 
-	Then 
+	manifold, and  $s : M \to E$ be a section with the properties 
+	above such that $s^{-1}(0)$ is compact. Then for all $\omega\in H^{s-r}(M)$
 	\[
-		\int_M \chi(E\to M)\wedge \omega 
+		\int_M \omega \wedge \chi(E\to M)
 		= \int_{s^{-1}(0)} i^*\omega \wedge \chi(\coker(\nabla s)\to s^{-1}(0))
 \]
 \end{thm}
-\begin{proof} % witten N matrix model p229
-	There is a relation between $\chi(E\to M)$ and  
-	$\chi(\coker(\nabla s)\to s^{-1}(0))$. To uncover this relation, pick
-	a generic section $u : s^{-1}(0) \to \coker(\nabla s)$. Then the image of
-	the zero set $S_0 \subset \coker(\nabla s)$ is Poincar\'e dual to 
-	$\chi(\coker(\nabla s)\to s^{-1}(0))$. Since  $P\subset S \subset M$,
-	we claim that $i(P)$ is Poincare dual to  $\chi(E)$.
+\begin{proof}[\textbf{\textit{Proof}} (sketch)] % witten N matrix model p229
+	In the following, $E$ is understood to be a vector bundle over  $M$, while
+	 $\coker(\nabla s)$ is a vector bundle over  $s^{-1}(0)$. 
+	To uncover the relation between $\chi(E)$ and  
+	$\chi(\coker(\nabla s))$, pick
+	a generic section $u : s^{-1}(0) \to \coker(\nabla s)$. Then by Corollary
+	\ref{cor:vb_localisation}, the zero set $u^{-1}(0) \subset s^{-1}(0)$ is 
+	Poincar\'e dual to  $\chi(\coker(\nabla s))$, i.e. 
+	\[
+	\int_{s^{-1}(0)} \omega \wedge \chi(\coker(\nabla s)) 
+	= \int_{u^{-1}(0)} \omega, \qquad
+	\text{for all } \omega\in H^{s-r}(s^{-1}(0))
+	\] 
+	Since $u^{-1}(0) \subset s^{-1}(0) \subset M$, $u^{-1}(0)$ also determines a
+	cohomology class of $M$. We claim that the Poincar\'e dual of $u^{-1}(0)$ in
+	$M$ is $\chi(E)$, i.e. 
+	\[
+	\int_{M} \omega \wedge \chi(E) 
+	= \int_{u^{-1}(0)} \omega, \qquad
+	\text{for all } \omega\in H^{s-r}(M)
+	\] 
+	from which the theorem follows directly.
+	To prove this, lift and extend $u$ to $\overline{u} : M \to E$
+	such that $\overline{u}$ vanishes outside some tubular neighbourhood of
+	$s^{-1}(0)$. The lift can be done by identifying $\coker(\nabla s) 
+	= (\Im \nabla s)^{\perp}$ via a metric on $E$. 
+
+	The main idea is that the section $s+ \epsilon \overline{u}$ is now
+	transverse to $M_0 \subset E$ for all $\epsilon > 0$ at points $x\in
+	u^{-1}(0)$. This is because 
+	$\nabla_x s : T_x M / T_x s^{-1}(0) \to \Im(\nabla_x s)$ is surjective, 
+	while  $\nabla_x \overline{u} : T_x s^{-1}(0) \to \Im(\nabla_x s)^\perp$ 
+	is surjective. Hence, $\nabla_x(s+\epsilon \overline{u}) : T_xM \to E_x$ is
+	surjective. Moreover, we extend $u$ to the neighbourhood of  $s^{-1}(0)$ such
+	that $s + \epsilon\overline{u}$ is transverse to the zero section for all
+	$\epsilon > 0$. 
+	\begin{figure}[htb]
+		\begin{minipage}[c]{0.46\textwidth}
+			\includegraphics[trim={43mm 5mm 41mm 2.8mm},clip,width=\textwidth]{figs/witten_coker.pdf}
+		\end{minipage} 
+		\begin{minipage}[c]{0.52\textwidth}
+			% https://q.uiver.app/#q=WzAsNSxbMiwwLCJFIl0sWzIsMSwiTSJdLFsxLDEsInNeey0xfSgwKSJdLFswLDEsInVeey0xfSgwKSJdLFsxLDAsIlxcb3BlcmF0b3JuYW1le2Nva2VyfShcXG5hYmxhIHMpIl0sWzMsMiwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiwxLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDEsIiIsMix7Im9mZnNldCI6MX1dLFsyLDQsInUiLDIseyJvZmZzZXQiOjF9XSxbNCwyLCIiLDAseyJvZmZzZXQiOjF9XSxbMSwwLCJzIiwyLHsib2Zmc2V0IjoxfV1d
+				\[\begin{tikzcd}
+						& {\operatorname{coker}(\nabla s)} & E \\
+							{u^{-1}(0)} & {s^{-1}(0)} & M
+								\arrow[hook, from=2-1, to=2-2]
+									\arrow[hook, from=2-2, to=2-3]
+										\arrow[shift right=1, from=1-3, to=2-3]
+											\arrow["u"', shift right=1,
+											from=2-2, to=1-2]
+												\arrow[shift right=1, from=1-2,
+												to=2-2]
+													\arrow["s"', shift right=1,
+													from=2-3, to=1-3]
+						\end{tikzcd}\]
+			
+		\end{minipage} 
+	    \hfill
+	\end{figure}
+	Although $s+ \epsilon \overline{u}$ may have zeros outside of
+	$u^{-1}(0)$ where the two functions cancel out, these values must
+	become non-zero as $\epsilon\to 0$. This is because outside  $s^{-1}(0)$,
+	$\epsilon\overline{u} \to 0$ while $s$ is non-zero, and on 
+	$s^{-1}(0) \setminus u^{-1}(0)$,  $s=0$ while  $\epsilon \overline{u}$ is
+	non-zero. Hence as $\epsilon \to 0$, the zero set approaches a
+	neighbourhood of  $u^{-1}(0)$. 
+
+	Therefore, we have 
+	\[
+	\int_{M} \omega \wedge \chi(E) 
+	= \int_{(s+\epsilon \overline{u})^{-1}(0)} \omega
+	\xrightarrow{\epsilon \to 0} 
+	\int_{u^{-1}(0)} \omega, \qquad
+	\text{for all } \omega\in H^{s-r}(M)
+	\]
+	The limit is defined because $u^{-1}(0)$ is compact. 
+	Also note $(s+\epsilon \overline{u})^{-1}(0)$ has dimension $n-k$, while 
+	$u^{-1}(0)$ has dimension $s-r$, which are equal because
+	$r = k-(n-s)$. 
+	\begin{comment}
+	Want to say that we can find a neighbourhood of $s^{-1}(0)$ such that the
+	zero set is only $u^{-1}(0)$ and there is no path of zeros into $u^{-1}(0)$.
+	
+	$\nabla_x s(v)$ and $\nabla_x \overline{u}(v)$ are linearly independent in 
+	$E_x$ for all  $v\in T_x M$. 
+	The problem is that $\overline{u}$ and $s$ may have derivative zero in some
+	direction, and all the subsequent derivatives may match. 
+
+		
+	An important observation is that it is not possible for there to be a path
+	$\gamma(t) : (0,1) \to M \setminus u^{-1}(0)$ such that $\gamma$ approaches
+	a point in $u^{-1}(0)$ and $(s+\epsilon \overline{u})(\gamma(t)) = 0$. 
+	Otherwise, this would mean $Ds$
+
+	For any $x\in u^{-1}(0)$, the derivatives of $\overline{u}$ in a certain
+	direction $v \in T_x M$ are always contained in $(\Im(\nabla_x s))^\perp$
+
+	\end{comment}
 \end{proof}
 
 Note that if $s$ is a generic section then  $\coker (\nabla s) = \{0\}$, which
-reduces to Corollary \ref{cor:vb_localisation}.
-
-
+reduces to Corollary \ref{cor:vb_localisation}. This generalisation is due to
+\citet[Sec 3.3]{witten_coker}, which is the only paper I found where any 
+justification of this is given, and the proof is my best attempt to make it
+precise.  
  
 
 \vspace{5mm}
@@ -612,6 +720,10 @@ reduces to Corollary \ref{cor:vb_localisation}.
 \textbf{Bibliographical notes}
 {\small
 \begin{itemize}
-	\item Reference Nicolescu
+	\item The intersection theory in this chapter is largely owed to
+	\citet{nicolaescu_intersection}, whose writing is very detailed and
+	precise. The notes are intended to provide a complete proof of Theorem
+	\ref{thm:localisation}, which is claimed at the end of page 69 in 
+	\citet{bott_tu}.
 \end{itemize}
 }
