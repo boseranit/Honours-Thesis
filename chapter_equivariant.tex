@@ -17,9 +17,8 @@ argument works in the other direction.
 
 There are two main formulations of equivariant
 cohomology: the Borel construction which uses classifying spaces, and the Cartan model.
-These have been proven to be equivalent in the case of compact Lie groups 
+These have been proven to be equivalent in the case of compact, connected Lie groups 
 by Cartan (Theorem \ref{thm:equivariant_de_Rham} and \ref{thm:weil_cartan_iso}). 
-
 First let us recall some basic definitions in algebraic topology. All maps
 considered are continuous.
 \begin{defn}
@@ -33,8 +32,8 @@ considered are continuous.
 	such that $f\circ g \sim 1_Y$ and $g\circ f \sim 1_X$.
 	Then we say $X$ and  $Y$ have the same homotopy type.
 
-	A topological space $(X,x_0)$ is \underline{contractible} if it has the
-	homotopy type of a point. 
+	If $X$ has the homotopy type of a point, we call it
+	\underline{contractible}.
 
 	A map $f:X\to Y$ is a \underline{weak homotopy equivalence} if
 	it induces an isomorphism of homotopy groups
@@ -80,7 +79,7 @@ fiber bundle.
 \end{thm}
 
 \begin{prop} \label{prop:total_base_iso}
-	If $E \xrightarrow{\pi} B$ is a fiber bundle with weakly contractible fiber $F$,
+	If $E \xrightarrow{\pi} B$ is a fiber bundle with weakly contractible fiber $F$
 	and path-connected base $B$, then $\pi$ is a weak homotopy equivalence.
 	Furthermore if $B$ and $F$ are CW complexes, 
 	then $\pi$ is a homotopy equivalence.  
@@ -109,9 +108,9 @@ If  $P$ is a right  $G$-space and  $M$ is a left  $G$-space, the
 $P\times_G M:= (P\times M) / \sim$ by the 
 equivalence relation $(p,m)\sim (pg,g^{-1}m) \textrm{ for all }g\in G$.
 Equivalently, this is the orbit space $(P\times M) /G$ under the diagonal action
-$g(p,m) = (pg,g^{-1}m)$.
+$(p,m)\cdot g = (pg,g^{-1}m)$.
 
-If in addition $P\xrightarrow{\pi} B$ is a principal $G$-bundle, define the projection
+If $P\xrightarrow{\pi} B$ is a principal $G$-bundle, also define the projection
 $\tau_1:P\times_GM\to B$ by $\tau_1([p,m])=\pi(p)$. This is well defined because
 $\pi$ preserves the fiber.
 
@@ -134,8 +133,9 @@ $\pi$ preserves the fiber.
 \end{proof}
 
 \section{Borel construction}
-Given a $G$-space  $M$, the  aim of equivariant cohomology is to study the
-cohomology of the quotient space by the group action. But if the $G$-action is not free,
+The motivation of equivariant cohomology is to study the
+cohomology of the quotient space of a $G$-space $M$ by the group action. 
+But if the $G$-action is not free,
 the space $M/G$ doesn't capture information from non-trivial stabilisers. For
 instance, if  $S^1$ acts on $S^2$ by rotation about the vertical axis, the
 quotient is a segment which has trivial cohomology. Furthermore, if the action is not
@@ -161,10 +161,8 @@ depend on it.
 \end{defn}
 Of course, for this definition to make sense we need to show that it is
 independent of the choice of weakly contractible $EG$ and find out when $EG$ 
-exists, which we do in this section. 
-
-The following result shows that when the action is free, equivariant cohomology
-is the cohomology of the orbit space.
+exists, which we do in this section. But first, let us show that when the action 
+is free, equivariant cohomology is the cohomology of the orbit space.
 \begin{prop} \label{prop:free_action_cohomology}
 	If $M$ has a free  $G$-action, then $H^*(M_G)\simeq H^*(M /G)$. 
 \end{prop}
@@ -229,12 +227,12 @@ defined below.
 	The base space $BG$ of a universal  $G$-bundle is called a
 	\underline{classifying space} for  $G$.
 \end{defn}
-\begin{thm}[Steenrod 1951] % thm 5.2 Tu % TODO: reference
+\begin{thm}[{\citet[p. 102]{steenrod}}] % thm 5.2 Tu 
 	Let $E\to B$ be a principal  $G$-bundle. If  $E$ is weakly contractible,
 	then  $E\to B$ is a universal bundle. Conversely, if  $E\to B$ is a
 	universal bundle and  $B$ is a CW complex, then  $E$ is weakly contractible.
 \end{thm}
-\begin{thm}[Milnor's construction] % TODO reference
+\begin{thm}[Milnor's construction {\cite{milnor}}] 
 	A universal $G$-bundle exists for any topological group  $G$.
 \end{thm}
 
@@ -266,11 +264,18 @@ $\varphi:[X,BG]\to\mathcal{P}_G(X)$ given by $h\mapsto h^*(EG)$ is surjective
 
 
 \section{Weil model}
+The Weil model of equivariant cohomology, introduced by Cartan based on
+unpublished work of Andr\'e Weil, is an algebraic alternative to the
+Borel construction. It is akin to the de Rham chain complex of
+differential forms as a model for singular cohomology.  
+To motivate the definition, we first recall some basic facts about differential
+forms on principal bundles and $G$-manifolds. 
+
 \subsection{Results on principal bundles}
-\begin{defn} % tu intro to manifolds 4.6
+\begin{defn} \label{defn:antiderivation}% tu intro to manifolds 4.6
 	An \underline{antiderivation} of a graded algebra $A=\bigoplus_{k=0}^\infty
 	A^k$ is a linear map $D : A\to A$ such that 
-	 \[
+	\[ 
 	D(ab) = (Da)b + (-1)^{\deg a} a(Db)
 	\] 
 	If there is an integer $m$ such that  $D A^k \subset A^{k+m}$ for all $k$,
@@ -315,7 +320,7 @@ The definition similarly extends to vector valued forms.
 
 \begin{thm}[Cartan's homotopy formula {\cite[Theorem 20.10]{intro_tu}}] 
 	\label{thm:cartan_homotopy} % thm 10.4 tu equivariant, p18 BGV
-	Let $X\in \mathcal{M}$ be a vector field on a manifold $M$, and 
+	Let $X\in \mathcal{X}(M)$ be a vector field on a manifold $M$, and 
 	$\alpha\in \Omega(M)$. Then
 	\[
 	\mathcal{L}(X) = d\iota(X)+\iota(X) d
@@ -332,8 +337,8 @@ The definition similarly extends to vector valued forms.
 \end{thm}
 
 \begin{thm}[{\cite[Theorem 30.4]{loringtu}}] \label{thm:pb_curvature_properties}
-	The curvature $F$ of a connection  $\omega$ on a principal  bundle $P\to M$
-	satisfies the following properties:
+	If a principal  bundle $P\to M$ has connection $\omega\in \Omega^1(P,\g)$ ,
+	its curvature form $F$ satisfies the following properties:
 	\begin{enumerate}[(i)]
 	    \item (Horizontality) For $p\in P$ and  $X_p,Y_p\in T_pP$,  $F_p(X_p,Y_p) =
 			(d\omega)_p(hX_p,hY_p)$ where $hX_p$ is the horizontal projection.
@@ -346,6 +351,8 @@ The definition similarly extends to vector valued forms.
 \subsection{Differential graded algebras}
 We would like to introduce the concept of equivariant differential forms on a
 $G$-manifold  $M$, which should play the role of differential forms on  $M_G$.
+Our starting point is to abstract some of the properties above to a more
+general algebra.
 \begin{defn}
 	Let $\mathfrak{g}$ be a Lie algebra. A \underline{$\mathfrak{g}$-differential graded
 	algebra} is a graded-commutative algebra $\Omega= \bigoplus_{k\geq
@@ -365,7 +372,7 @@ $G$-manifold  $M$, which should play the role of differential forms on  $M_G$.
 \end{defn}
 Note that graded-commutative algebra means that if $a\in
 \Omega^k,b\in\Omega^l$ then $ba = (-1)^{kl}ab$. 
-From Theorem \ref{thm:cartan_homotopy} in the previous section, it is
+From the previous subsection, it is
 clear that differential forms $\Omega(N)$ on a $G$-manifold  $N$ is an example
 of a $\mathfrak{g}$-dga. 
 
@@ -548,12 +555,13 @@ d\omega^k = \Omega^k - \frac{1}{2}\sum c_{ij}^k \omega^i\wedge \omega^j,
 d\Omega^k = \sum c_{ij}^k \Omega^i\wedge \omega^j
 \] 
 where $[X_i,X_j]=\sum c_{ij}^kX_k$ are the structure constants of the Lie
-algebra. Hence, we must define $\delta$ by
+algebra. Hence, we define $\delta$ by
 \begin{equation} \label{eq:weil_differential}
 \delta\theta_k = u_k - \frac{1}{2}\sum c_{ij}^k \theta_i\theta_j, \qquad
 \delta u_k = \sum c_{ij}^k u_i\theta_j
 \end{equation}
-and extend $\delta$ to  $W(\mathfrak{g})$ as an antiderivation. 
+and extend $\delta$ to  $W(\mathfrak{g})$ as an antiderivation as in Definition
+\ref{defn:antiderivation}. 
 Similarly, we will define interior multiplication. On $\Omega(P)$, we have
 for $A\in\mathfrak{g}$
 \[
@@ -562,8 +570,8 @@ for $A\in\mathfrak{g}$
 \] 
 the first property follows from $\omega(\underline{A})=A$ for a connection form,
 and the second property follows from $\Omega$ being a horizontal form (see Theorem
-\ref{thm:pb_curvature_properties}). Hence in order for $w$ to preserve the
-interior multiplication,  $\iota_A$ should be defined by
+\ref{thm:pb_curvature_properties}). Hence in order for the Weil homomorphism to 
+preserve interior multiplication,  $\iota_A$ should be defined by
 \begin{equation} \label{eq:weil_interior}
 \iota_A \theta_k = \alpha^k(A), \qquad \iota_A u_k = 0
 \end{equation}
@@ -579,13 +587,25 @@ Since  $w$ commutes with
  $\delta$ and  $\iota_A$, it will commute with  $\mathcal{L}_A$.
 The final property to check for $W(\mathfrak{g})$ to be a  $\mathfrak{g}$-dga
 is that  $\delta^2 = 0$. 
-\begin{thm} % equivariant tu Thm 19.1
+\begin{thm}[{\cite[Theorem 19.1]{equivariant_tu}}] % equivariant tu Thm 19.1
 	On the Weil algebra $W(\mathfrak{g})$, $\delta^2=0$
 \end{thm}
+\begin{proof}[\textbf{\textit{Proof}} (sketch)]
+	Since $\delta$ is an antiderivation,  $\delta^2$ is a derivation. So it
+	suffices to check $\delta^2=0$ on a set of algebra generators of $W(\g)$.
+	One such set is
+	$\{\theta_1,\ldots,\theta_n,\delta\theta_1,\ldots,\delta\theta_n\}$, 
+	noting that $u_k$ is generated by this set via equation
+	(\ref{eq:weil_differential}). Thus it suffices to show  $\delta^2 \theta_k
+	= 0$, which can be computed directly using 
+	equation (\ref{eq:weil_differential}).
+\end{proof}
 
 % TODO : p156 why operators don't depend on basis
-
-\begin{thm}[Equivariant de Rham theorem] \label{thm:equivariant_de_Rham} % 19.4 Tu
+Finally, we are ready to state the relation between the Weil model and the Borel
+construction of equivariant cohomology.
+\begin{thm}[Equivariant de Rham theorem {\cite[Theorem 19.4]{equivariant_tu}}] 
+	\label{thm:equivariant_de_Rham} % 19.4 Tu
 	For a compact connected Lie group $G$ with Lie algebra $\mathfrak{g}$, and
 	$G$-manifold  $M$, there is a graded-algebra isomorphism 
 	 \[
@@ -602,7 +622,8 @@ Proposition \ref{prop:dga_operations}.
 \section{Cartan model}
 \subsection{Weil-Cartan isomorphism}
 The Cartan model arises from algebraically solving for the horizontal forms of the
-Weil model $W(\mathfrak{g})\otimes \Omega(M)$. 
+Weil model $W(\mathfrak{g})\otimes \Omega(M)$. This leads to a $\g$-dga that is 
+equivalent to the Weil model and simpler to work with.
 We consider the same generating elements for $W(\mathfrak{g})$ as in equation 
 (\ref{eq:weil_basis}). Then for a $\mathfrak{g}$-dga  $\mathcal{A}$, we can write 
 \[
@@ -698,8 +719,8 @@ the commutative diagram
 			{(S(\mathfrak{g}^*)\otimes\Omega(M))^G}
 				\arrow["{\delta_W}"', from=1-1, to=2-1]
 					\arrow["{\delta_C}"', dashed, from=1-2, to=2-2]
-						\arrow["H"', from=1-2, to=1-1]
-							\arrow["F", from=2-1, to=2-2]
+					\arrow["H"', "\simeq", from=1-2, to=1-1]
+							\arrow["F","\simeq"', from=2-1, to=2-2]
 \end{tikzcd}\]
 This ensures that the Cartan model is isomorphic to the basic subcomplex as a
 differential graded algebra, so becomes another model of equivariant
@@ -848,13 +869,22 @@ free action is isomorphic to the singular cohomology of the quotient
 $H_G(P)\simeq H^*(P /G)$. The Cartan map can be used to establish an algebraic
 counterpart of this same result. 
 % naber p113-114 % Thm 5.17 meinrenken
-\begin{thm}[Cartan] % Theorem 5.2 meinrenken
-	Suppose $P\xrightarrow{\pi}M$ is a principal $G$-bundle with a connection, 
-	and $\operatorname{Car}_{\omega} : (S(\mathfrak{g}^*) \otimes \Omega(P))^G 
-	\to \Omega(P)_{bas}$ is the associated  Cartan map. Then the Cartan map 
-	is a quasi-isomorphism, i.e. a chain map that
-	induces isomorphisms on all cohomology groups
-	$H_G^*(P)\simeq H^*(\Omega(P)_{bas}) \simeq H^*(M)$.
+\begin{thm}[Cartan's theorem] % Theorem 5.2 meinrenken
+	Suppose $P\xrightarrow{\pi}M$ is a principal $G$-bundle with a connection
+	$\omega$, where $G$ is a connected Lie group.
+	Then the associated Cartan map defines a quasi-isomorphism
+	\[
+	\begin{tikzcd}
+		(S(\mathfrak{g}^*) \otimes \Omega(P))^G
+		\arrow[shift left=0.4ex]{r}{\operatorname{Car}_{\omega}}
+		& \Omega(P)_{bas} \simeq \Omega(M) \arrow[shift left=0.4ex]{l}{i}	
+	\end{tikzcd}
+	\] 
+	where $i : \omega \mapsto 1\otimes \omega$ is the inclusion.
+	Here a quasi-isomorphism means a chain map that
+	induces isomorphisms 
+	$H_G^*(P)\simeq H^*(M)$ on all cohomology
+	groups. 
 	\begin{comment}
 	% https://q.uiver.app/#q=WzAsNSxbMCwwLCJXKFxcbWF0aGZyYWt7Z30pXFxvdGltZXNcXE9tZWdhKFApIl0sWzEsMCwiXFxPbWVnYShQKSJdLFswLDEsIihXKFxcbWF0aGZyYWt7Z30pXFxvdGltZXNcXE9tZWdhKFApKV97XFx0ZXh0e2Jhc319Il0sWzEsMSwiXFxPbWVnYShQKV97XFx0ZXh0e2Jhc319Il0sWzIsMSwiXFxzaW1lcVxcT21lZ2EoTSkiXSxbMCwyXSxbMSwzXSxbMCwxLCJ3Il0sWzIsMywidyJdXQ==
 	\[\begin{tikzcd}[column sep = 3.5em]
@@ -868,13 +898,26 @@ counterpart of this same result.
 			\end{tikzcd}\]
 	\end{comment}
 \end{thm}
-A proof is given in chapter 5 of \citet{guillemin}, which constructs an explicit
-homotopy operator to show that the inclusion $i(\eta) \mapsto 1\otimes \eta$ is
-the homotopy inverse.
+\citet{cartan} constructs an explicit homotopy operator to show that the 
+inclusion $i$ is the homotopy inverse. The original paper can be found in
+appendix A of the text by \citet{guillemin}, and also summarised in chapter 5 of
+the same book. A more detailed proof is given in Appendix A of the book by
+\citet{equivariant_tu}. 
 The Cartan map will turn out be very useful in the next chapter for the
 Mathai-Quillen construction.
 
-% Meinrenken shows that it is the same map as H then weil homo
+
+The broader significance of Cartan's theorem is that it can be used to prove the 
+equivariant de Rham theorem (Theorem \ref{thm:equivariant_de_Rham}), by showing
+that $H^*(M_G) \simeq H^*(\Omega_G(M))$.
+However, the total space $EG$ of the universal bundle 
+ of a Lie group $G$ is not a finite-dimensional manifold, which is necessary
+in order to apply Cartan's theorem. If $G$ is compact and connected,
+the idea is to approximate $EG$ by
+finite-dimensional manifolds, which reproduce the cohomology of $EG$. 
+These details are all also given in Appendix A of \cite{equivariant_tu}.
+
+% Meinrenken shows that Cartan map is the same map as H then weil homo
 
 
 \begin{comment}
@@ -931,10 +974,14 @@ it is an element of $H_G^*(M)$.
 \begin{itemize}
 	\item An excellent book on equivariant cohomology which this chapter is
 	largely based on is \citetitle{equivariant_tu} by
-	\citet{equivariant_tu}. The writing is more pedagogical. 
+	\citet{equivariant_tu}.  
 	\item A more comprehensive treatment of equivariant cohomology is given in
 	\citet{guillemin}, which covers topics not included in Tu's book such as 
-	the Cartan map and the Mathai-Quillen construction. 
+	equivariant symplectic forms and the Mathai-Quillen construction. 
+	However, Tu's writing is more pedagogical.
+	\item The main results of this chapter stem from Cartan's seminal paper 
+	\cite{cartan} where he introduces the Weil model and proves that it computes
+	the cohomology of the base of a principal bundle.
 \end{itemize}
 }
 
