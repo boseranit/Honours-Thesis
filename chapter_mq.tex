@@ -3,8 +3,8 @@
 \label{chapter_mq}
 The Mathai-Quillen formula is an explicit differential form representative of 
 the Thom class of a vector bundle. The significance of the Thom class is 
-that its pullback to the base manifold gives a representative of the Euler
-class, thus it can be used to calculate the Euler number.  
+that its pullback by a section to the base manifold gives a representative of the Euler
+class, thus it can be used to calculate the Euler number of the vector bundle.  
 Recall that there are two quite different approaches for calculating the Euler number
 $\chi(X) = \chi(TX)$ of an oriented even dimensional manifold $X$. 
 This first is topological, and counts
@@ -27,7 +27,7 @@ fiber $F$. Suppose $\dim F = m$ and $\dim B = n$.
 \begin{defn}
 	\underline{Integration along the fiber} is a map $\pi_* : \Omega^*(E)\to
 	\Omega^{*-m}(B)$, defined as follows. Let $\alpha\in \Omega^k(E)$ and
-	$v_1,\ldots,v_{k-m} \in T_bB$ 
+	$v_1,\ldots,v_{k-m} \in T_bB$, then $\pi_*$ is given by 
 	\[
 	(\pi_*\alpha)_b(v_1,\ldots,v_{k-m}) = \int_{\pi^{-1}(b)}
 	\alpha(\widetilde{v}_1,\ldots,\widetilde{v}_{k-m},-)
@@ -111,9 +111,8 @@ for some $\eta\in \Omega(B)$. It is now apparent that the dependence on $x$,
 i.e. the coordinates for  $B$, is smooth. 
 \begin{remark}
 	Note that not all differential forms in $\Omega^*(E)$ are integrable, 
-	so we typically restrict $\pi_*$ to forms which
-	are compactly supported, compactly supported along the fiber, or rapidly
-	decreasing. 
+	so we typically restrict the domain of $\pi_*$ to some space of integrable
+	forms. For now, assume this has been done.
 \end{remark}
 In this chapter, we are interested in integration along the fiber for oriented
 vector bundles in particular, however the general definition will be needed
@@ -127,7 +126,7 @@ bundles is slightly simpler, because the fiber has global coordinates.
 	Since $\pi_*$ and  $d$ are linear,
 	it suffices to prove this proposition on the restriction $E|_U \simeq
 	U\times F$ to a subset in the trivialising open cover. If $\omega\in
-	\Omega_{cv}^*(E)$, to write it in coordinates we need to further choose a
+	\Omega^*(E)$, to write it in coordinates we need to further choose a
 	subset $U\times V$ which is diffeomorphic to an open neighbourhood of
 	$\mathbb{R}^{n+m}$. Then
 	we can write it locally as $\omega = \pi^*\eta \wedge f(x,t) dt_1\cdots
@@ -155,6 +154,10 @@ Therefore, $\pi_*$ descends to a well defined map on de Rham cohomology.
 Integration along the fiber can also be defined by the property (b) in the
 following proposition, where the existence of $\pi_*\alpha$ can be seen as a 
 generalisation of Fubini's theorem.
+Here $\Omega_c^*(E)$ denotes the space of forms with compact support, while 
+$\Omega_{cv}^*(E)$ denotes the space of forms with compact support along the
+fiber: $\omega$ is in $\Omega_{cv}^*(E)$ if for every compact set $K \subset B$, 
+$\pi^{-1}(K)\cap \supp(\omega)$ is compact in $E$. 
 \begin{prop}[Projection formula] %  Bott Tu Prop 6.15 p63, BGV 1.15
 	\label{prop:projection_formula}
 	Let $\pi : E \to B$ be a fiber bundle with  $m$-dimensional fiber $F$, and
@@ -174,13 +177,14 @@ generalisation of Fubini's theorem.
 	(a) Write $\alpha = \pi^*\eta \wedge f(x,t) dt_1\wedge\cdots\wedge dt_m $
 	in terms of local coordinates on $E|_U$. Then 
 	\[
-	\pi_*(\pi_*\beta\wedge \alpha)
+	\pi_*(\pi^*\beta\wedge \alpha)
 	=\pi^*(\beta\wedge\eta)\wedge \int_{\pi^{-1}(b)}f(x,t) 
 	dt_1\wedge\cdots\wedge dt_m 	
 	= \beta\wedge\pi_*(\alpha)
 	\] 
+	Note that there is an implicit sum over a partition of unity for $F$.\\
 	(b) Again, it suffices to prove this on the restriction $E|_U\simeq U\times F$ to a
-	subset in the trivialising open cover of $E$. Furthermore,
+	subset in the trivialising cover for $E$. Furthermore,
 	let $U\times V_\alpha$ be a trivialising open cover of $U\times F$, 
 	where $U$ and each $V_{\alpha}\subset F$ are diffeomorphic to an open subset of
 	$\mathbb{R}^d$. After summing over the partition of unity
@@ -201,36 +205,32 @@ generalisation of Fubini's theorem.
 \section{Thom isomorphism}
 \begin{thm}[Poincar\'e duality {\cite[p.44]{bott_tu}}] 
 	\label{thm:poincare_duality}
-	If $M$ is a compact orientable manifold of dimension $n$, then the pairing 
+	If $M$ is an oriented manifold of dimension $n$, then the pairing 
 	\[
 	\int_M : H^q(M)\otimes H_c^{n-q}(M) \to \mathbb{R}
 	\] 
 	is non-degenerate. Therefore, $H^q(M)\simeq (H^{n-q}_c(M))^*$. 
-	In fact, the isomorphism holds even when $M$ is not compact.
 \end{thm}
 
 Consider a vector bundle $E\to M$ of rank  $n$, over a manifold of dimension $m$. 
 Since the zero section embeds
-$M$ diffeomorphically in  $E$, $M$ is a deformation retract of  $E$. Since
+$M$ in  $E$, $M$ is a deformation retract of  $E$. Since
 homotopic maps induce the same map in de Rham cohomology, it follows that
 \[
 H^*(E) \simeq H^*(M)
 \] 
-If we further assume $E$ and  $M$ are orientable manifolds, and $M$ is
-compact, then a similar statement also holds for compact cohomology using 
+If we further assume $E$ and  $M$ are orientable manifolds, 
+then a similar statement also holds for compact cohomology using 
 Poincar\'e duality % Bott Tu pg 60
 \[
 H^*_c(E) \simeq (H^{n+m-*}(E))^* \simeq (H^{n+m-*}(M))^* \simeq H^{*-n}_c(M)
 \] 
-The Thom isomorphism is concerned with compact vertical cohomology: the chain
-complex of forms with compact support along the fiber $\Omega_{cv}^*(E)$. An
-$n$-form  $\omega$ is in $\Omega_{cv}^*(E)$ if for every compact set $K \subset M$, 
-$\pi^{-1}(K)\cap \supp(\omega)$ is compact in $E$. 
+The Thom isomorphism is concerned with compact vertical cohomology. 
 From the previous section, integration along the fiber descends to a map 
 on compact vertical cohomology
 $\pi_* : H_{cv}^*(E) \to H^*(M)$. In fact, we can show that it induces an
 isomorphism, called the Thom isomorphism.
-We first prove this in the trivial bundle case $M\times \mathbb{R}^n \to M$.
+We shall prove this in the trivial bundle case $M\times \mathbb{R}^n \to M$.
 \begin{prop} % Bott Tu Prop 6.16 
 	Integration along the fiber defines an isomorphism
 	\[
@@ -277,7 +277,7 @@ We first prove this in the trivial bundle case $M\times \mathbb{R}^n \to M$.
 	\] 
 	where $I \subset \{1,\ldots,n-1\}$.
 	It is now straightforward to prove equation (\ref{eq:homotopy_operator}):
-	compute compare $(dK-Kd)\omega$ with $(1-e_*\pi_*^n)\omega$ for the cases 
+	compute and compare $(dK-Kd)\omega$ with $(1-e_*\pi_*^n)\omega$ for the cases 
 	where $\omega$ contains a factor of $dt_n$ or not.
 \end{proof}
 The proof above shows that the inverse map in cohomology is given by the wedge
@@ -285,8 +285,8 @@ product with a compactly supported form $\Phi \in \Omega^{n}(\mathbb{R}^n)$
 whose integral along each component is 1. This can be generalised to arbitrary 
 vector bundles $E\to M$, known as the Thom isomorphism. 
 
-\begin{thm}[Thom Isomorphism] % Thm 6.17 Bott Tu
-	For a compact manifold $M$,
+\begin{thm}[Thom Isomorphism {\cite[Theorem 6.17]{bott_tu}}] % Thm 6.17 Bott Tu
+	For a vector bundle $E$ over compact manifold $M$,
 	integration along the fiber induces an isomorphism
 	 $H^*_{cv}(E) \simeq H^{*-n}(M)$
 \end{thm}
@@ -358,7 +358,9 @@ $x^1,\ldots,x^n$, denote the map $dx = dx^k \otimes e_k \in
 of wedge products.
 We can express this form in terms of the Berezin integral,
 considered as a map $\int^B := \int \odif{e_1}\cdots\odif{e_n} 
-: \Omega^*(E,\bigwedge V) \to \Omega^*(E)$.
+: \Omega^*(E,\bigwedge V) \to \Omega^*(E)$. The reader is advised at this stage
+to refer to Appendix \ref{appendix2} for the definition and properties of the 
+Berezin integral, which will be utilised extensively in this chapter. 
 
 \begin{lem} \label{lem:gaussian_integral} %1.49 BGV
 	The form $U\in \Omega^n_{cv}(E)$ equals 
@@ -387,39 +389,38 @@ considered as a map $\int^B := \int \odif{e_1}\cdots\odif{e_n}
 	The lemma now follows, since
 	$(-i)^n(-1)^{n(n-1)/2}$ equals 1 if $n$ is even, and otherwise  $-i$. 
 \end{proof}
-We will define the Thom form on a more general manifold by modification of the
-above lemma. Denote $x \in \Omega^0(E,\pi^*E)$ as the \underline{tautological
-section}, defined by $e\in E_p \mapsto e\in (\pi^*E)_{e} = E_{p}$.
-Then choosing a Euclidean connection $\nabla^E$ on  $E$, we may replace  $dx$ by 
-$\nabla^{\pi^*E} x \in \Omega^1(E,\pi^*E)$.
+Our goal is to now define the Thom form on a more general manifold by 
+modification of the above lemma. We define the   
+\underline{tautological section} $x \in \Omega^0(E,\pi^*E)$ 
+by $e\in E_p \mapsto e\in (\pi^*E)_{e} = E_{p}$.
+Then choosing a Euclidean connection $\nabla^E$ on  $E$, we have an induced
+covariant derivative $\nabla^{\pi^* E}$ on $\pi^* E \to E$, which we denote by
+just $\nabla$.
+Our idea is to replace  $dx$ by $\nabla^{\pi^*E} x \in \Omega^1(E,\pi^*E)$. 
+In the rest of this section, denote $V=\pi^*E$ to simplify notation.
 
-\begin{prop} \label{prop:derivative_berezin} %1.50 BGV
-	If $\nabla$ is a metric connection on  $E$, this induces a covariant
-	derivative on $\bigwedge E$. Then for any
-	$\alpha\in\Omega(M,\bigwedge E)$, we have 
-	\[
-	d\int^B \alpha = \int^B \nabla\alpha
-	\] 
-\end{prop}
-\begin{proof} 
-	Given a non-vanishing section $\nu\in \Omega^1(M,\bigwedge^nE)$,
-	the Berezin integral is given by the induced inner product on $\bigwedge E$
-	with  $\nu$. Then  $\nabla$ induced on  $\bigwedge E$ is compatible with
-	this inner product, and 
-	\[
-	d\gen{\nu,\omega} = \gen{\nabla \nu, \omega} + \gen{\nu, \nabla \omega}
-	=\int^B \nabla\omega
-	\] 
-	where we have used the fact that $\nabla \nu = 0$, by definition of the
-	Berezin integral on an oriented vector bundle with a metric connection.
-\end{proof}
+Next, recall that the curvature is a form in $\Omega^2(E,\End(V))$ 
+which is skew-symmetric valued. We can identify $\mathfrak{so}(V)$ with 
+$\bigwedge^2 V$ in the following way:
+\begin{equation} \label{eq:so_wedge}
+	A\in \mathfrak{so}(V) \mapsto \sum_{i<j} \gen{Ae_i,e_j} e_i\wedge e_j
+\end{equation}
+given a frame of $V$. Hence, we denote the curvature form as $F \in
+\Omega^2(E,\bigwedge^2V)$.
 
-We will apply this proposition to the pullback vector bundle $\pi^*E \to E$, 
-with induced connection $\nabla^{\pi^*E}=\pi^*\nabla^E$. Denote $V=\pi^*E$ to
-simplify notation.
-Let $\iota(s):\Omega^i(E,\bigwedge^j V) \to
-\Omega^i(E,\bigwedge^{j-1} V)$ for $s\in\Gamma(V)$ be a contraction operator
-defined in a similar fashion as \ref{def:contraction}, by the following
+We now define the Mathai-Quillen Thom form (corresponding to $t=1$)
+\begin{equation}
+	U_t = (2\pi)^{-n/2}\epsilon(n) \int^B e^{-\frac{1}{2}t^2\abs{x}^2-it\nabla x - F} \in \Omega^n(E)
+\end{equation}
+To justify why $U_t\in\Omega^n(E)$, note that
+$\omega_t\in\bigoplus_{i=0}^2 \Omega^i(E,\bigwedge^iV)$, and hence 
+$e^{-\omega_t} \in \bigoplus_{i=0}^n \Omega^i(E,\bigwedge^iV)$. The Berezin
+integral then only retains the top degree part. 
+
+To prove that $U$ is indeed a Thom form, we first need
+to define a contraction operator $\iota(s):\Omega^i(E,\bigwedge^j V) \to
+\Omega^i(E,\bigwedge^{j-1} V)$ for $s\in\Gamma(V)$ in
+a similar fashion to definition \ref{def:contraction}, by the following
 properties:
 \begin{enumerate}[(1)]
     \item If $w\in \Omega^0(E,V)$, then  $\iota(s)w = \gen{s,w}$
@@ -431,20 +432,35 @@ properties:
 	\] 
 \end{enumerate}
 Note that this uniquely defines $\iota(s)$ because the formulas can be applied
-to a basis of $\bigwedge^iT^*E\otimes \bigwedge^jV$.
+to a basis of the graded tensor product $\bigwedge^iT^*E\otimes \bigwedge^jV$.
 
-Denote $\nabla = \nabla^{\pi^*E}$. 
-Recall that the curvature is a form in $\Omega^2(E,\End(V))$ 
-which is skew-symmetric valued. We can identify $\mathfrak{so}(V)$ with 
-$\bigwedge^2 V$ in the following way:
-\begin{equation} \label{eq:so_wedge}
-	A\in \mathfrak{so}(V) \mapsto \sum_{i<j} \gen{Ae_i,e_j} e_i\wedge e_j
-\end{equation}
-given a frame of $V$. Hence, we denote the curvature form as $F \in
-\Omega^2(E,\bigwedge^2V)$.
+\begin{prop} \label{prop:derivative_berezin} %1.50 BGV
+	If $\nabla$ is a metric connection on  $\pi^*E$, this induces a covariant
+	derivative on $\bigwedge \pi^*E$. Then for any
+	$\alpha\in\Omega(E,\bigwedge V)$ and $s\in \Gamma(E,V)$, we have 
+	\[
+	d\int^B \alpha = \int^B \nabla\alpha = \int^B (\nabla-it\iota(s))\alpha
+	\] 
+\end{prop}
+\begin{proof} 
+	Given a non-vanishing section $\nu\in \Omega^1(E,\bigwedge^nV)$,
+	the Berezin integral is given by the induced metric on $\bigwedge V$
+	with  $\nu$. From section \ref{section:berezin_forms}, the induced covariant
+	derivative $\nabla$ on $\bigwedge V$ is compatible with this metric, and 
+	\[
+	d\int^B\omega = d\gen{\nu,\omega} = \gen{\nabla \nu, \omega} + \gen{\nu, \nabla \omega}
+	=\int^B \nabla\omega
+	\] 
+	where we have used the fact that $\nabla \nu = 0$, by definition of the
+	Berezin integral on an oriented vector bundle with a metric connection.
+	We can extend this to 
+	$d\int^B\alpha = \int^B (\nabla-it\iota(s))\alpha$ for any section of
+	$\pi^*E$ because $\iota(s)\alpha$ has no component in 
+	the top exterior power.	
+\end{proof}
 
 \begin{prop} \label{prop:closed_prop} % 1.51 BGV
-	Let $x \in \Omega^0(V)$ be the tautological section on $E$, and $\nabla$ the
+	Let $x \in \Gamma(E,V)$ be the tautological section on $E$, and $\nabla$ the
 	induced connection on $\bigwedge V$.
 	Let $\omega_t = \frac{1}{2}t^2\abs{x}^2 + it\nabla x + F 
 	\in \Omega(E,\bigwedge V)$. Then 
@@ -464,17 +480,8 @@ given a frame of $V$. Hence, we denote the curvature form as $F \in
 	\[
 	it\iota(x)\omega_t = -t^2\iota(x) \nabla x + it\iota(x)F
 	\] 
+	from which it follows that $(\nabla - it\iota(x))\omega_t = 0$.
 \end{proof}
-
-We now define the Mathai-Quillen Thom form 
-\begin{equation}
-	U = (2\pi)^{-n/2}\epsilon(N) \int^B e^{-\frac{1}{2}\abs{x}^2-i\nabla x - F} \in \Omega^n(E)
-\end{equation}
-and its parameterised version $U_t = (2\pi)^{-n/2}\epsilon(N) \int^B e^{-\omega_t} \in
-\Omega^n(E)$. To justify why $U_t\in\Omega^n(E)$, note that
-$\omega_t\in\bigoplus_{i=0}^2 \Omega^i(E,\bigwedge^iV)$, and hence 
-$e^{-\omega_t} \in \bigoplus_{i=0}^n \Omega^i(E,\bigwedge^iV)$. The Berezin
-integral then only retains the top degree part. 
 
 \begin{thm}
 	The Mathai-Quillen form $U \in \Omega^n_{rd}(E)$ is a Thom form. 
@@ -493,11 +500,8 @@ integral then only retains the top degree part.
 	Since $\nabla - it\iota(x)$ is an antiderivation, it follows from
 	Proposition \ref{prop:closed_prop} that $(\nabla-it\iota(x)) e^{-\omega_t} =
 	0$. 
-	We can extend Proposition \ref{prop:derivative_berezin} to 
-	$d\int^B\alpha = \int^B (\nabla-it\iota(s))\alpha$ for any	
-	$\alpha\in\Omega(\bigwedge V)$ since $\iota(s)\alpha$ has no component in 
-	the top exterior power.	
-	Therefore it follows that $U_t \propto \int^B e^{-\omega_t}$ is closed.
+	And therefore by Proposition \ref{prop:derivative_berezin}
+	it follows that $U_t \propto \int^B e^{-\omega_t}$ is closed.
 	
 	% BGV prop 1.52 says integral reduces to the case where $M$ is a point
 	% Proof is found from Blau 
@@ -508,8 +512,8 @@ integral then only retains the top degree part.
 	To integrate $U_t \in \Omega(E)$ along the fiber of $V=\pi^*E$, we extract from
 	the Berezin integral the part which is a $n$-form on the fiber of $V$,
 	\begin{align*}
-		\int_E (2\pi)^{-n/2}\epsilon(N) e^{-\frac{1}{2}\abs{x}^2}\int^B e^{-i\nabla x -F}
-		&= (2\pi)^{-n/2}\epsilon(N) \int_E e^{-\frac{1}{2}\abs{x}^2}\int^B 
+		\int_E (2\pi)^{-n/2}\epsilon(n) e^{-\frac{1}{2}\abs{x}^2}\int^B e^{-i\nabla x -F}
+		&= (2\pi)^{-n/2}\epsilon(n) \int_E e^{-\frac{1}{2}\abs{x}^2}\int^B 
 		e^{-idx}
 		= 1 
 	\end{align*}
@@ -546,43 +550,90 @@ Pullback by zero section is Pfaffian.
 \end{comment} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{prop} % prop 1.53 BGV
-	We have the transgression formula
+Next, we will show one of the key properties of the Thom form: its pullback to
+$M$ by any section  $s:M\to E$ is a representative of the Euler class of the
+vector bundle. The Mathai-Quillen formula gives us a direct way to prove this, 
+via the following transgression formula, which is the reason we defined the 
+parameter $t$. 
+\begin{lem} % prop 1.53 BGV
+	The form $U_t \in \Omega^n(E)$ satisfies the transgression formula
 	\[
-	\odv{}{t} U_t = -i\epsilon(N) d\int^B x e^{-\omega_t}
+	\odv{}{t} U_t = -i(2\pi)^{-n /2}\epsilon(n) d\int^B x e^{-\omega_t}
 	\] 
-\end{prop}
+\end{lem}
 \begin{proof}
-	
+	With $\omega_t = \frac{1}{2}t^2\abs{x}^2+it\nabla x + F \in
+	\Omega(E,\bigwedge V)$ as before, we have 
+	\[
+		\odv{\omega_t}{t} = t\abs{x}^2 + i\nabla x = i(\nabla - it\iota(x)) x
+	\] 
+	Since $(\nabla - it\iota(x))\omega_t = 0$ by Proposition
+	\ref{prop:closed_prop}, we have 
+	 \[
+	\odv{}{t}e^{-\omega_t} = - \odv{\omega_t}{t} e^{-\omega_t} 
+	= -i((\nabla	-it\iota(x))x) e^{-\omega_t}
+	= -i(\nabla	-it\iota(x))(x e^{-\omega_t})
+	\] 
+	and hence by application of Proposition \ref{prop:derivative_berezin},
+	\begin{align*}
+		\odv{U_t}{t} 
+		&= -i(2\pi)^{-n /2}\epsilon(n) \int^B (\nabla-it\iota(x))(x e^{-\omega_t})\\
+		&= -i(2\pi)^{-n /2}\epsilon(n) d\int^B x e^{-\omega_t} 
+	\end{align*}
 \end{proof}
 \begin{prop} \label{prop:thom_pullback}
 	Let $s\in \Gamma(M,E)$ be a section of $E$.
-	The cohomology class of the pullback $s^*\Phi_\nabla(E) \in \Omega^{n}(M)$
-	is independent of the section  $s\in\Gamma(E)$.
+	The cohomology class of the pullback $s^*U \in \Omega^{n}(M)$
+	is independent of the section  $s\in\Gamma(E)$, and is a representative of
+	the Euler class for even $n$.
 \end{prop}
 \begin{proof}
-	Integrating the transgression formula above from 0 to 1, 
-	\[
-		U_1 - U_0 = -id\int_0^1\int^B x e^{-t^2\abs{x}^2/2 +
-		it\nabla x + F} \odif{t}
+	First observe that $s^*U_0 = (2\pi)^{-n /2}\epsilon(n)\int^B e^{-s^*F} \in \Omega(M)$. 
+	From equation (\ref{eq:so_wedge}), $F\in \Omega^2(E,\bigwedge^2 V)$ is 
+	given in a frame of $V$ by
+	 \[
+	F = \sum_{i< j} F_{ji} e_i \wedge e_j
+	= -\frac{1}{2}\sum_{i,j} F_{ij} e_i \wedge e_j
 	\] 
-	Note that $s^*U_0 = \epsilon(n)\int^B e^{-s^*F} \in \Omega(M)$. Since $F$ is
-	the pullback curvature on $V = \pi^*E$, it is constant on 
-	(why is $s^*U$ equal to the Pfaffian? use basis of V).
+	Since $F= \pi^* \Omega$ is the pullback of the curvature $\Omega$ on $E\to M$, the
+	pullback of $F$ by any section $s$ gives the original curvature form, since
+	$s^*\pi^* = (\pi\circ s)^*$. Therefore, $s^*U_0$ does not depend on $s$, and
+	is equal to  $s^*U_0 = (2\pi)^{-n /2}\epsilon(n) \Pf(\Omega)$ by 
+	Lemma \ref{lem:berezin_pf}, which is a representative of the Euler class
+	from standard Chern-Weil theory. 
 
-	Taking the pullback by $s$ on both sides, we find that $s^*U_1$ is
-	cohomologous to the Euler class for any section $s$:  
+	To show this also holds for $s^*U$, 
+	we can integrate the transgression formula above from 0 to 1, 
 	\[
-		s^*U_1 - s^*U_0 = -id\int_0^1\int^B s\wedge e^{-t^2\abs{s}^2/2 +
-		it\nabla s + F} \odif{t}
+		U_1 - U_0 = -i(2\pi)^{-n /2}\epsilon(n)d\int_0^1\int^B x e^{-t^2\abs{x}^2/2 -
+		it\nabla x - F} \odif{t}
 	\] 
-	% TODO: complete proof
-	TODO: complete proof
+	Then taking the pullback by $s$ on both sides,   
+	\[
+		s^*U - s^*U_0 = -i(2\pi)^{-n /2}\epsilon(n)
+		d\int_0^1\int^B s\wedge e^{-t^2\abs{s}^2/2 -
+		it\nabla s - \Omega} \odif{t}
+	\] 
+	we find that $s^*U$ is
+	cohomologous to the Euler class for any section $s$.
 \end{proof}
 
 
-
 \section{Universal Mathai-Quillen formula}
+There is a slight generalisation of the Mathai-Quillen formula in the framework
+of equivariant cohomology. This is useful because we are often interested in
+the Thom form of a vector bundle associated to a principal bundle, where
+equivariant differential forms may be easier to work with. Furthermore, the
+universal Mathai-Quillen formula does not depend on the choice of a
+connection. 
+
+% p104 MQformula
+% cordes pg 103
+Let $E\to M$ be an oriented vector bunde or rank  $n$ with a
+metric and compatible connection, and fiber $V$. 
+Then $E$ can be identified as the associated bundle $\Fr_{\SO}(E)\times_{\SO} V$ 
+with the induced connection using the following proposition. 
+
 \begin{prop}
 	Let $E\to M$ be an oriented vector bundle with fiber $V=\mathbb{R}^n$ 
 	and  $P=\Fr_{\SO}(E)$ be the
@@ -602,14 +653,9 @@ Pullback by zero section is Pfaffian.
 	fiber. The map is injective because $v_1,\ldots,v_n$ must be linearly
 	independent, and surjective because $v_1,\ldots,v_n$ is a basis for $E_x$.
 \end{proof}
-% p104 MQformula
-% cordes pg 103
-Let $E\to M$ be an oriented vector bunde or rank  $n$ with a
-metric and compatible connection, and fiber $V$. 
-Then $E$ can be identified as the associated bundle $\Fr_{\SO}(E)\times_{\SO} V$ 
-with the induced connection. 
 
-More generally, consider a connected Lie group $G$ and 
+This shows that all vector bundles are associated to some principal bundle. So
+more generally, consider a connected Lie group $G$ and 
 principal $G$-bundle  $P\to M$ over a manifold of
 dimension $n$ with a connection $\omega$. Let $\rho : G \to \SO(V)$ be a 
 representation of rank $n$ (same as $\dim M$). 
@@ -692,7 +738,7 @@ Therefore, $w \circ i$ is a $\mathfrak{g}$-dga morphism and descends to the map
 \begin{defn} 
 	An element $U\in (S(\g^*)\otimes \Omega(V))^G$ is a
 	\underline{universal Thom form} if for any principal $G$-bundle $P\to M$ 
-	with a connection, a representation $\rho : G\to \SO(V)$ and oriented
+	with a connection $\omega$, a representation $\rho : G\to \SO(V)$ and oriented
 	associated bundle $P\times_\rho V$, the
 	Cartan map $\operatorname{Car}_{\omega} : \Omega_{G}(V) \to
 	\Omega(P\times_\rho V)$
@@ -736,15 +782,26 @@ viewed as  polynomials on $\g$.
 	and $E_0$ be the fiber of $E$ over  $x_0$. 
 	The fiber integral of $\tau$ only depends on the value of $\tau$ at the
 	tangent space of the fiber submanifold, i.e. in the vertical direction (see
-	figure ???). 
+	figure \ref{fig:fiber_integral}). 
 	So to evaluate the fiber integral at any point in $E_0$, it suffices to 
 	consider the restriction to the principal $G$-bundle 
 	$P_0\times V \to E_0$.
-
+	\begin{figure}[htb]
+	    \hfill
+		\begin{minipage}[c]{0.5\textwidth}
+			\includegraphics[trim={47mm 4mm 51mm 0},clip,width=\textwidth]{figs/associated_fiber_integral.pdf}
+		\end{minipage} 
+		\begin{minipage}[c]{0.48\textwidth}
+	        \caption{Elements of the fiber $E_0$ viewed as orbits of $P_0\times
+			V$. The diagram reflects $G$ being a free action on  $P_0$, but not
+			necessarily on $V$}
+	        \label{fig:associated_fiber_integral}
+		\end{minipage} 
+	\end{figure}
 	The tangent space at $(p,v)\in P_0\times V$ 
 	is $V_pP \oplus V$. But the connection on $P\times V$ is the pullback 
 	$p_1^*\omega$, which is constant in the $V$ direction, and the curvature
-	form vanishes on  $V_pP\oplus V$ since it is also a horizontal form. 
+	form vanishes on  $V_pP\oplus V$ since it is a horizontal form. 
 	If $\alpha_1,\ldots,\alpha_d$ is a dual basis for
 	$\g^*$, the element $p_2^*U$ is a sum of terms of the form 
 	$\beta_I \alpha_I$, where  $\beta_I \in \Omega(P\times V)$ are invariant
@@ -752,10 +809,9 @@ viewed as  polynomials on $\g$.
 	After we replace the $\alpha_i$ by the curvature forms  $\Omega_i$, as a
 	form on $P_0\times V$ we are only left with the term $\beta_0$. 
 	Then taking the horizontal component amounts to only evaluating tangent
-	vectors in $V$ at each point $(p,v)\in P_0\times V$ (see figure ???). 
+	vectors in $V$ at each point $(p,v)\in P_0\times V$. 
 	Subsequently, the fiber integral is the same as the integral of 
 	$\beta_0$ over $V$, which equals 1 because $\int_V U = 1$.  
-	% TODO draw diagram showing fiber integral, submanifold, horizontal proj
 	\begin{comment} % first attempt
 	This is defined on $\Omega(P\times_G V)\simeq \Omega(E)$ in exactly the same
 	way, since coordinate functions on $E$ can be pulled back via the canonical
