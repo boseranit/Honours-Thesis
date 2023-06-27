@@ -22,6 +22,7 @@ by Cartan (Theorem \ref{thm:equivariant_de_Rham} and \ref{thm:weil_cartan_iso}).
 First let us recall some basic definitions in algebraic topology. All maps
 considered are continuous.
 \begin{defn}
+	\begin{comment} % assume reader knows about this
 	Let $(X,x_0)$ and $(Y,y_0)$ be based topological spaces. Two maps
 	$f,g:(X,x_0)\to(Y,y_0)$ are \underline{homotopic} if there is a continuous
 	map $F:X\times [0,1]\to Y$ such that
@@ -34,6 +35,7 @@ considered are continuous.
 
 	If $X$ has the homotopy type of a point, we call it
 	\underline{contractible}.
+	\end{comment}
 
 	A map $f:X\to Y$ is a \underline{weak homotopy equivalence} if
 	it induces an isomorphism of homotopy groups
@@ -153,7 +155,8 @@ depend on it.
 
 \begin{defn}
 	Given a topological group $G$, let  $EG \to BG$ be a principal  $G$-bundle
-	with weakly contractible total space  $EG$. Define the  \underline{homotopy
+	with weakly contractible total space  $EG$ and any base space $BG$. 
+	Define the  \underline{homotopy
 	quotient} of a $G$-space $M$ by $M_G:=EG\times_G M$.
 	 
 	The \underline{equivariant cohomology} of $M$ is defined to be the singular
@@ -286,8 +289,8 @@ forms on principal bundles and $G$-manifolds.
 	$P\xrightarrow{\pi} M$. 
 	Then $\omega$ is a \underline{basic form} if  $\omega = \pi^*\eta$
 	where  $\eta\in\Omega(M)$. 
-	It is \underline{$G$-invariant} if $L^*_g \omega =\omega$ for all  $g\in G$,
-	where $L_g : P\to P$ is left multiplication by  $g$.
+	It is \underline{$G$-invariant} if $R^*_g \omega =\omega$ for all  $g\in G$,
+	where $R_g : P\to P$ is right multiplication by  $g$.
 	It is \underline{horizontal} if at each $p\in P$,
     $\omega$ vanishes whenever one of its arguments is vertical:
 	$\iota_Y\omega_p = 0$ for all  $Y\in V_p$.
@@ -507,10 +510,10 @@ Similarly, define the linear map
 	f_2 : \mathfrak{g}^* \to \Omega^2(P) \text{ given by }
 	f_2(\alpha) = \alpha \circ \Omega
 \]
-Again, we can extend $f_1$ to a unique algebra homomorphism 
+Again, we can extend $f_2$ to a unique algebra homomorphism 
 $S(\mathfrak{g}^*)\to \Omega(P)$ given by
 $f_2(\beta_1\cdots\beta^k)=f_2(\beta_1)\wedge\ldots\wedge f_2(\beta_k)$ for
-$\beta_i\in\mathfrak{g}^*$. 
+$\beta_i\in\mathfrak{g}^*$, because 2-forms commute.
 
 Combining $f_1$ and $f_2$ gives a bilinear map $f_1\times f_2 :
 \bigwedge(\mathfrak{g}^*)\times S(\mathfrak{g}^*) \to \Omega(P)$ given by
