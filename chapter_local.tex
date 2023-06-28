@@ -4,16 +4,50 @@ One of the primitive applications of the Mathai-Quillen formula is to prove the
 Poincar\'e-Hopf theorem. 
 Let $v\in\mathcal{X}(M)$ be a vector field on $M$.
 At a zero $p\in M$ of  $v$, the Lie bracket of vector fields defines an endomorphism 
-$\mathcal{L}_p(v) : T_pM \to T_pM$ by  $X\mapsto [X,v]$. In a coordinate system in
-which  $p=0$ and  $v= v^i \partial_i$,  $\mathcal{L}_p(v)$ is given by 
+$\mathcal{L}_p(v) : T_pM \to T_pM$ by  $X\mapsto [X,v]$. Here $X$ is 
+interpreted locally as a vector field with constant coefficients. 
+In a coordinate system in
+which $v= v^i \partial_i$, $\mathcal{L}_p(v)$ is given by 
  \[
-	 \mathcal{L}_p(v)\partial_i = \sum_{j=1}^{n} [\partial_i, v^j(p)\partial^j] 
-	 = \sum_{j=1}^{n} (\partial_i v_j(p)) \partial_j
+	 \mathcal{L}_p(v)\partial_i = \sum_{j=1}^{n} [\partial_i, v^j(p)\partial_j] 
+	 = \sum_{j=1}^{n} (\partial_i v^j(p)) \partial_j
 \] 
-A zero $p\in M$ is called \underline{non-degenerate} if  $\mathcal{L}_p(v)$ is
+since $\partial_i$ is a constant vector field. 
+A zero $p\in M$ of $v$ is called \underline{non-degenerate} if  $\mathcal{L}_p(v)$ is
 invertible. In this case, denote $\nu(p,v) = \sgn \det(\mathcal{L}_p(v)) 
 \in \{\pm 1\}$. If all of the zeros of $v$ are non-degenerate, we call  $v$
 non-degenerate. 
+
+\begin{lem}
+If $v$ is a non-degenerate vector field on a compact manifold  $M$, then there
+are finitely many zeros. 
+\end{lem}
+\begin{proof}
+	Choose a chart $\phi_p : U_p \to \mathbb{R}^n$ in a neighbourhood $U_p$ of
+	each zero $p\in M$ of $v$, which gives coordinates on the tangent bundle 
+	$d\phi_p : TU_p \to \mathbb{R}^n$. The vector field $v$ defines a
+	smooth map $d\phi_p \circ v : U_p\to \mathbb{R}^n$ 
+	with $v(p) = 0$, and we claim that its derivative is $d\phi_p\circ \mathcal{L}_p(v)$. 
+	To see this, write $v = v^j\partial_j$ in the coordinates of $TU_p$, i.e.
+	$d\phi_p(\partial_i) = e_i$. Then 
+	\[
+	\partial_i(d\phi_p \circ v)
+	= \partial_i( v^j e_j)
+	= (\partial_i v^j) e_j
+	= d\phi_p\circ \mathcal{L}_p(v)
+	\] 
+	As $\mathcal{L}_p(v)$ is invertible, the inverse function theorem tells us 
+	$d\phi_p \circ v$ is a local diffeomorphism
+	between open neighbourhoods $V_p \subset U_p$ and $B \subset \mathbb{R}^n$. 
+
+	Now suppose for a contradiction that are infinitely many zeros, in which
+	case we can find a convergent sequence of distinct zeros $p_k \to p \in M$. Then
+	$v(p)=0$ as well by continuity. So $d\phi_p\circ v : V_p \to B \subset
+	\mathbb{R}^n$ is a diffeomorphism for some $V_p \subset M$, with 
+	$d\phi_p\circ v(p) = 0$. But by definition of convergent sequence, there
+	exists a distinct zero $p_k \in V_p$ which means $d\phi_p\circ v(p_k) = 0$,
+	contradicting  $d\phi_p\circ v$ being a diffeomorphism.
+\end{proof}
 
 \begin{thm}[Poincare-Hopf] % Thm 1.56 BGV
 	If $v$ is a non-degenerate vector field on an oriented compact manifold $M$ 
@@ -21,23 +55,16 @@ non-degenerate.
 	\[
 		 \int_M \chi(TM) = \sum_{\set{p|v(p)=0}} \nu(p,v)	
 	\] 
+	where $\chi(TM)\in H^n(M)$ denotes the Euler class of the vector bundle.
 \end{thm}
 \begin{proof}
 	(adapted from \cite[Theorem 1.56]{bgv})
-	Choose a chart $\phi_p : U_p \to \mathbb{R}^n$ in a neighbourhood $U_p$ of
-	each zero $p\in M$ of $v$, which gives coordinates on the tangent bundle 
-	$\psi_p : TU_p \to \mathbb{R}^n$. The vector field $v$ defines a
-	smooth map $\psi_p \circ v : U_p\to \mathbb{R}^n$ 
-	with $v(p) = 0$ and invertible
-	derivative $\mathcal{L}_p(v)$. 
-	% TODO why is this the derivative?
-
-	By the inverse function theorem, $v$ is a local diffeomorphism
-	between open neighbourhoods $V_p \subset U_p$ and $B \subset \mathbb{R}^n$. 
+	Define $\phi_p : V_p \to \mathbb{R}^n$ as in the proof of the previous
+	lemma, chosen such that $\phi_p(p) = 0$. 
 	The orientation on $V_p$ induced by the oriented chart $\phi_p$ and by 
-	the local diffeomorphism $\psi_p \circ v$ differ by the sign $\nu(p,v)$. 
-
-	We may assume  $V_p$ are disjoint for each $p$.  Choose a Riemannian metric
+	the local diffeomorphism $d\phi_p \circ v$ differ by the sign $\nu(p,v)$. 
+	We may assume $V_p$ are disjoint for each $p$.  
+	Choose a Riemannian metric
 	on $M$ which agrees with the metric on each $V_p$ induced by the diffeomorphism
 	into  $\mathbb{R}^n$. Since $M$ is compact,  $\exists \epsilon > 0$ such
 	that  $\norm{v} \geq \epsilon$ on the compact set  $M\setminus \bigcup_p V_p$,
@@ -63,7 +90,7 @@ non-degenerate.
 
 	On each $V_p$, the metric and connection are trivial since they are induced 
 	by $v$. If we write $v= \sum_{i=1}^{n} x^i \partial_i$ in the coordinates of
-	the chart $\psi_p$,
+	$d\phi_p$,
 	\begin{align*}
 		v_t^*U |_{V_p} 
 		&= (2\pi)^{-n/2} e^{-t^2\norm{x}^2 /2} \int^B e^{-itdv} \\
@@ -95,7 +122,8 @@ point outside $s^{-1}(0)$.
 There is a generalisation of this result, where we assume that the zeros
 of $v$ are isolated instead of non-degenerate.\cite[Theorem 1.58]{bgv} 
 It is desirable to generalise this further to relate the Euler number of
-arbitrary vector bundles to zeros of a section, but the Poincar\'e-Hopf theorem
+arbitrary vector bundles to zeros of a section, where the zeros may not be
+isolated, but the Poincar\'e-Hopf theorem
 relies on the Lie bracket of vector fields to define the orientation of each
 zero. In order to describe such a generalisation we first need to introduce some
 intersection theory.
@@ -147,7 +175,8 @@ submanifold $S$, which leads to the concept of a tubular neighbourhood.
 	 $M$, such that  $S$ is diffeomorphic to the zero section.
 \end{defn}
 For a Riemannian manifold, one can identify $N_S$ with the orthogonal
-complement. If we further assume $S$ and $M$ are oriented, then there is an
+complement $(TS)^\perp \subset TM$. 
+If we further assume $S$ and $M$ are oriented, then there is an
 induced orientation on the normal bundle via 
 \begin{equation} \label{eq:normal_orientation}
 	\operatorname{or}(TM|_S) = \operatorname{or}(TS)\wedge \operatorname{or}(N_S)
@@ -390,8 +419,18 @@ $[\eta_{f_*[N]}] \in H^{m-n}(M)$ such that
 	\fall \omega \in H^n(M)
 \] 
 \end{comment}
+This gives a new perspective on the Euler number as the self intersection number 
+of the diagonal $\Delta \subset M\times M$, i.e. 
+$\int_\Delta \eta_\Delta = \int_M\chi(M)$. This follows from $\eta_\Delta$
+being equal to the Thom class of $N_\Delta$. Its integral on $\Delta$ is viewed
+as the integral on the zero section of $N_\Delta$, and hence computes the Euler
+number of the normal bundle. It can be shown that the
+normal bundle $N_\Delta$ is isomorphic to the tangent bundle of
+$\Delta$,\cite[Lemma 11.23]{bott_tu}
+and hence equals the Euler number of $\Delta$. Note that $\Delta$
+and $M$ are diffeomorphic.
 
-We can generalise Theorem \ref{thm:poincare_thom} 
+We are now ready to generalise Theorem \ref{thm:poincare_thom} 
 by finding the Poincar\'e dual of the zero set of an arbitrary section, or more
 generally the inverse image of a submanifold.
 
@@ -442,7 +481,7 @@ via equation (\ref{eq:normal_orientation}).
 	We claim that there exists $\epsilon > 0$ such that the restriction of  $f$
 	to  $T^\epsilon_g(x)$ is diffeomorphism to its image for all  
 	$x\in f^{-1}(S)$. % lemma 3.5
-	\begin{subproof}
+	\begin{subproof}[of claim]
 		By Lemma \ref{lem:normal_isomorphism}, 
 		$Df|_x : (N_{f^{-1}(S)})_x \to (N_S)_{f(x)}$ is an isomorphism.
 		By identifying the fiber $(N_{f^{-1}(S)})_x$ as the tangent space to 
@@ -575,8 +614,9 @@ set of any transverse section.
 The result above can be viewed as the generalisation of the Poincar\'e-Hopf
 theorem that we alluded to, when we take the vector bundle to be the
 tangent space and $\omega=1$, in which case $s^{-1}(0)$ is zero dimensional. 
-The integral computes the intersection number between the images of the zero
-section and $s$, which gives us a new perspective on the Euler number. 
+The orientation of each zero is based on whether the isomorphism  $Ds|_x : T_xM \to E_x$ 
+(see Lemma \ref{lem:normal_isomorphism}) reverses orientation or not.
+ 
 
 % discussion from cordes 11.10.3, physical p15
 There is an extension of the previous result for a section $s$ which is not
@@ -586,8 +626,8 @@ Recall that when $s \pitchfork M_0$,
 there is a surjection $Ds : T_x M \to T_{s(x)} E / T_{s(x)} M_0$ from which 
 we deduce that $n = k + s$. 
 But now suppose instead that  $s > n - k$, so
-the section is not transverse to $M_0$, but such that the fibers of 
-$\coker (\nabla s)$ defined by 
+the section is not transverse to $M_0$, but such that $s^{-1}(0)$ is a
+submanifold and the fibers of $\coker (\nabla s)$ defined by 
 \[
 0 \to \Im(\nabla_x s) \to E_x \to \coker (\nabla_x s) \to 0
 \] 
@@ -639,8 +679,8 @@ Given orientations of  $M$ and  $E$, $\coker(\nabla s)$ is canonically oriented.
 	$\nabla_x s : T_x M / T_x s^{-1}(0) \to \Im(\nabla_x s)$ is surjective, 
 	while  $\nabla_x \overline{u} : T_x s^{-1}(0) \to \Im(\nabla_x s)^\perp$ 
 	is surjective. Hence, $\nabla_x(s+\epsilon \overline{u}) : T_xM \to E_x$ is
-	surjective. Moreover, we extend $u$ to the neighbourhood of  $s^{-1}(0)$ such
-	that $s + \epsilon\overline{u}$ is transverse to the zero section for all
+	surjective. Moreover, we extend $u$ to the neighbourhood of  $s^{-1}(0)$ in 
+	such a way that $s + \epsilon\overline{u}$ is transverse to the zero section for all
 	$\epsilon > 0$. 
 	\begin{figure}[htb]
 		\begin{minipage}[c]{0.46\textwidth}
@@ -720,10 +760,10 @@ precise.
 \textbf{Bibliographical notes}
 {\small
 \begin{itemize}
-	\item The intersection theory in this chapter is largely owed to
+	\item The intersection theory in this chapter draws heavily from the notes by
 	\citet{nicolaescu_intersection}, whose writing is very detailed and
 	precise. The notes are intended to provide a complete proof of Theorem
 	\ref{thm:localisation}, which is claimed at the end of page 69 in 
-	\citet{bott_tu}.
+	\citet{bott_tu} without a complete proof.
 \end{itemize}
 }
