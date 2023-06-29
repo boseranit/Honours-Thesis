@@ -1,4 +1,4 @@
-\chapter{Donaldson-Witten theory in MQ formalism}
+\chapter{Donaldson-Witten theory}
 \label{chapter_aj}
 % See AJ intro
 In finite dimensions, the Mathai-Quillen formula gives an explicit differential
@@ -6,21 +6,19 @@ form representative of the Euler class.
 It was shown by Atiyah and
 Jeffrey \cite{atiyahlagrangians} that not only can the zero dimensional
 Donaldson invariant can be identified with the Euler number of a vector bundle
-over $\mathcal{A} /\mathcal{G}$, but the Donaldson invariants in general can be
+over $\mathcal{A}^* /\mathcal{G}$, but the Donaldson invariants in general can be
 written as an integral of a Mathai-Quillen type form over the gauge equivalence
-classes of irreducible connections, similar to (reference Gauss-Bonnet formula
-with Mathai-Quillen).
+classes of irreducible connections, analogous to Corollary
+\ref{cor:vb_localisation}.
 Moreover, they have been able to reproduce Witten's
-action functional from twisted SUSY YM theory term by term from purely geometric
-considerations.
+action functional from twisted SUSY TQFT term by term from purely geometric
+considerations. Conversely,
+this formalism makes it possible to construct a TQFT starting from a moduli 
+problem.
 
-Conversely,
-the Mathai-Quillen formalism makes it possible to construct a cohomological field
-theory starting from a moduli problem.
-
-\section{Thom form analog for principal bundles}
+\section{Thom form analogue for principal bundles}
 Before we construct the Atiyah-Jeffrey formula, we first need to develop an
-analog of the Thom form for a principal $G$-bundle $P\to M$. Assume $G$ is
+analogue of the Thom form for a principal $G$-bundle $P\to M$. Assume $G$ is
 a connected compact Lie group with $\dim G = d, \dim M = n$. 
 We wish to construct a differential form  $W\in \Omega^d(P)$
 such that its integral along the fiber equals 1, so that by 
@@ -42,7 +40,7 @@ Of course, we will need an orientation on $M,G$ and $P$.
 	\end{minipage} 
 \end{figure}
 Denote by $\omega \in \Omega^1(P,\g)$ the connection on
-$P$ induced by the metric on $P$ so that the horizontal and
+$P$ induced by a metric on $P$ so that the horizontal and
 vertical subspaces are orthogonal complements. Let $\eta_1,\ldots,\eta_d$ be an 
 orthonormal basis for $\g$ consistent with the orientation on $G$.
 We will show that
@@ -119,6 +117,7 @@ In turn, we can show that the integral along the $G$-orbit $\pi_*W = 1$.
 	fiber. Therefore, $\pi_*W = 1$ is the constant function on  $G$.
 \end{proof}
 
+\noindent
 The next proposition explains why $W$ is also called the projection form in
 \cite{cordes95}.
 \begin{prop} \label{prop:integral_horizontal_proj}
@@ -150,8 +149,8 @@ The next proposition explains why $W$ is also called the projection form in
 	\begin{align*}
 		\pi_*(\eta\wedge W)_b(v_1,\ldots,v_k) 
 		&= \int_{\pi^{-1}(b)} \eta(\widetilde{v}_1,\ldots,\widetilde{v}_k)\wedge W \\
-		&= \eta_p(\widetilde{v}_1,\ldots,\widetilde{v}_k)\int_{\pi^{-1}(b)} W \\
-		&= \eta_p(\widetilde{v}_1,\ldots,\widetilde{v}_k) 
+		&= \eta_p(\widetilde{v}_1,\ldots,\widetilde{v}_k)\int_{\pi^{-1}(b)} W 
+		= \eta_p(\widetilde{v}_1,\ldots,\widetilde{v}_k) 
 	\end{align*}
 	the second line follows from $\eta$ being an invariant form: 
 	$R_g^*\eta = \eta$ and that is how we've chosen the lifted horizontal
@@ -166,7 +165,7 @@ The purpose is to formally apply it to the Donaldson-Witten context in the next
 section. We consider the following setup: 
 \begin{itemize}
 	\item $G$ is a compact connected Lie group of dimension $d$
-	\item $P\to M$ is a principal $G$-bundle  of dimension  $2m+d$.
+	\item $P\to M$ is a principal $G$-bundle  
 	\item Choose an $\Ad$-invariant metric on $\g$ using Theorem 
 		\ref{thm:lie_inner_product}
 	\item Similarly, construct a metric on $P$ which is invariant under the 
@@ -298,8 +297,8 @@ $W$. After integrating out the vertical part of these terms,
 the result is the horizontal part of the original element in
 $\Omega(P\times V)$.
 
-In order to define $W\in \Omega^d(P\times V)$, we use the connection $\omega$ 
-on $P\times V$, and assume $M$ is an oriented manifold. Also we
+In order to construct $W\in \Omega^d(P\times V)$ defined earlier, we use the 
+connection $\omega$ on $P\times V$, and assume $M$ is an oriented manifold. Also we
 extend the metric on  $\g$ to a left-invariant Riemannian metric on $G$ as before.
 Recall that the invariant volume form $W$ can be written as the Berezin integral
 \[
@@ -729,8 +728,8 @@ Donaldson-Witten Lagrangian density
 	\psi\wedge \star d_A\eta \label{eq:dw_lagrangian}
 \end{align}
 where we have replaced the $(-)$ signs for the argument of differential forms on
-the principal bundle with  $\psi$, since the Berezin integral over $\psi$ in 
-equation (\ref{eq:AJ_formula_susy}) becomes a fermionic path integral, in the
+the principal bundle with  $\psi\in \Omega^1(M,\ad P)$, since the Berezin 
+integral over $\psi$ in equation (\ref{eq:AJ_formula_susy}) becomes a fermionic path integral, in the
 same way as for the variables $\eta$ and $\chi$. 
 Thus, our ``Euler number" for the vector bundle $\mathcal{A}^*
 \times_\mathcal{G}\Omega^{2,+}(M,\ad P)$ is proportional to
@@ -768,10 +767,10 @@ step further, hoping for a representation of the
 Donaldson invariants as the Euler class integrated against
 other differential forms on $\mathcal{A}^*$, analogous to Corollary
 \ref{cor:vb_localisation}. Note that $\mathcal{M}^*$ is the zero set of the
-section $\sigma$, so we can say the ``codimension" of the Euler class
-is $\dim \mathcal{M}^*$, as in the case of a transverse section of a finite
-dimensional vector bundle. Let us briefly describe Witten's formulation of the
-Donaldson invariants.
+section $\sigma$, so we can say the ``codimension" of the Euler class on
+$\mathcal{A}^*$ is $\dim \mathcal{M}^*$, as in the case of a transverse section 
+of a finite dimensional vector bundle. Let us briefly describe Witten's 
+formulation of the Donaldson invariants.
 
 Let $\xi = \mathcal{A}^*\times_\mathcal{G} P \to \mathcal{B}^*\times M$ be the
 principal $\SO(3)$-bundle introduced in chapter \ref{chapter_donaldson}. 
@@ -792,6 +791,7 @@ The three components of $\mathcal{F}$ can be written in terms of the fields
 to obtain $\mathcal{F} = F_A + \psi + i\phi$, and thus Witten writes the five
 components of $\Tr(\mathcal{F}\wedge \mathcal{F})$ as 
 % Siye wu says this is Equivariant curvature in the Cartan model 
+\vspace{-3mm}
 \begin{align*}
 	W_0 &= \frac{1}{2} \Tr \phi^2 && W_1 = \Tr(\phi \wedge \psi)  \\
 	W_2 &= \Tr \paren{\frac{1}{2}\psi\wedge \psi + i\phi \wedge F_A} 
@@ -799,7 +799,11 @@ components of $\Tr(\mathcal{F}\wedge \mathcal{F})$ as
 		&& W_4 = -\frac{1}{2}\Tr(F_A\wedge F_A)
 \end{align*}
 See \cite{witten_operators} for details on how $\mathcal{F}$ can be written this 
-way. Let us denote 
+way. Note that the double Fourier transform turned any expression
+$f(R^{-1}dC^*)$ into $f(\phi)$ which is why we expect $\phi$ to appear.
+The $\psi$ term appears because we evaluate all terms in the path integral at 
+that tangent vector. Let us denote 
+\vspace{-3mm}
 \[
 W_{\gamma}(A,\psi,\phi) = \int_{\gamma} \Tr(\mathcal{F}\wedge \mathcal{F}) 
 =\int_\gamma W_i
@@ -818,13 +822,35 @@ integral and action \cite[eq. 3.40]{wittenTQFT}:
 \] 
 up to some constant factor. 
 This should be interpreted as the integral over $\mathcal{A}^*$ of the product
-of the Euler class with classes $\mu(\gamma_i)$. Thus by Corollary 
-\ref{cor:vb_localisation}, the integral localises to the moduli space, and this
-provides another way to understand Witten's formulation of
-Donaldson invariants in the framework of topological quantum field theory.
+of the Euler class with classes $\mu(\gamma_i)$. 
+Recall that by manipulations 5 and 6, this is the same as instead integrating over 
+the moduli space, after taking the horizontal projection and pull back by the
+section $\sigma$. Thus if we formally apply Corollary 
+\ref{cor:vb_localisation}, the integral localises to the moduli space, 
+and this provides another way to understand Donaldson invariants.
+
 
 % section 4.2 MQintro
 % Birmingham 198-247
+Whether this makes rigorous mathematical sense or not, this path integral 
+representation coincides with Witten's formulation of these invariants. 
+This would be viewed as merely a curiosity if there were not a great deal more
+to this story. Its importance in topology is that 
+the SUSY TQFT formulation of these invariants have been undeniably effective 
+in producing deep mathematics. In particular, techniques of supersymmetric QFT
+(Seiberg-Witten duality) has given us a new set of invariants, and a similar
+interpretation of the theory led to its mathematical description in terms of a moduli space.
+Tools in this area of physics such as the $u$-plane integral also gives an
+effective method for deriving the expression for the Donaldson invariants in the
+general case.\cite{uplane}
+
+Moreover, the Atiyah-Jeffrey framework is not limited to the theories we have
+mentioned here: other examples include the Casson invariant of homology
+3-spheres and a two dimensional analogue of Donaldson theory describing
+intersection theory on a moduli space of flat connections.  
+Hence, the Atiyah-Jeffrey interpretation is a useful geometric setting
+that can translate between the techniques of TQFT and differential topology, 
+and mathematicians stand to gain intuition from learning it.
 
 
 \vspace{5mm}

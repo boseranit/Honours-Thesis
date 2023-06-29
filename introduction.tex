@@ -1,64 +1,126 @@
 \chapter*{Introduction}
 
 \addcontentsline{toc}{chapter}{Introduction}
-Weyl (1918) introduced the concepts of gauge transformation and gauge
+
+\section*{Brief history of gauge theory}
+In order to provide the context for the main topic of this thesis, we begin with
+a brief history of gauge theory. There is a long-standing tradition of rich
+areas of mathematics originating from physics, of which gauge theory and
+Donaldson theory is no exception.
+
+In 1918, Weyl introduced the concepts of gauge transformation and gauge
 invariance, while seeking to unify electromagnetism with general relativity. After the
 development of quantum mechanics, an idea was to make the global phase symmetry
 into a local gauge symmetry by replacing the momentum operator with a covariant 
 derivative in the Schrodinger equation, given by 
 $\widehat{p}=\frac{\hbar}{i}(\nabla+iA)$. The result of this $\U(1)$ gauge symmetry
-turns out to be profound, since it introduces EM interactions with a charged
+turns out to be profound, since it introduces eletromagnetic interactions with a charged
 quantum mechanical particle. This was the first widely accepted gauge theory,
 and popularised by Pauli (\citeyear{pauli_em}).\cite{pauli_em}
-Gauge theory was mostly limited to EM and GR until the paper of Yang and Mills 
-(1954). They introduced $\SU(2)$ gauge theories for
-isotopic spin axes, to understand the strong interaction. This idea later found
-application to the model of the electroweak interaction by Weinberg and Salam
-(1967), and also the Higgs mechanism (1966) for spontaneous symmetry breaking
-allowing gauge fields to acquire mass. 
 
-This also motivated the search for a strong force gauge theory, which is now
-known as quantum chromodynamics. The Standard Model unifies the description of
+Gauge theory was mostly limited to electromagnetism and general relativity until 
+the paper of Yang and Mills (1954). They extended the concept of gauge theory 
+to non-abelian groups 
+to understand the strong interaction. This idea later found
+application to the model of the electroweak interaction which incorporated the 
+Higgs mechanism by Weinberg and Salam (1967).
+Yang-Mills theory also lead to the development of a strong force gauge theory, 
+which is now known as quantum chromodynamics. The Standard Model unifies the description of
 electromagnetism, weak interactions and strong interactions in the language of
 quantized gauge theory. 
+\begin{comment}
+Since symmetries of spacetime and fields are
+central to classification and predicting properties of particles, the search for
+a non-trivial extension of the Poincare group lead to supersymmetry being 
+independently discovered in 1971 by multiple physicists. It became increasingly
+popular for its potential to provide an elegant solution to unsolved problems in
+particle physics, such as the hierarchy problem, grand unification and dark
+matter. 
+\end{comment}
 
-The origin of TQFT can be traced to the work of Schwarz and Witten.
-Schwarz showed that the Ray-Singer torsion, a particular topological invarint,
-could be represented as the partition function of a certian quantum field theory
-(1978). Unrelated to this observation, Witten gave a framework for understanding
-Morse theory in terms of supersymmetric quantum mechanics (1982), which was 
-generalised to an infinite dimensional version by Floer. 
-
-In \citeyear{don83}, Donaldson built on his doctoral advisor Atiyah's work on 
+\section*{Donaldson-Witten theory}
+The development of the study of solutions to the Yang-Mills equations 
+has proven to be fruitful for differential topology.
+In \citeyear{don83}, Simon Donaldson built on his doctoral advisor Atiyah's work on 
 Yang-Mills instantons to introduce his famous polynomial invariants, and prove 
 Donaldson's theorem.\cite{don83}
-Freedman used this work to exhibit existence of exotic differentiable
-structures on $\mathbb{R}^{4}$. 
-Witten (\citeyear{wittenTQFT}) provided a way
-of obtaining the polynomials as expectation values of certain observables in 
-a supersymmetric TQFT, which became
-known as Donaldson-Witten theory.\cite{wittenTQFT}
+In particular, he constructed invariants of
+smooth four dimensional manifolds from moduli spaces of anti-self-dual
+connections on principal $\SU(2)$-bundles.
+These invariants are sensitive to differentiable structures, whereas typical
+invariants in topology are stable under homeomorphisms.
+Furthermore, Freedman used his work to exhibit the existence of manifolds that
+are homeomorphic but not diffeomorphic to Euclidean $\mathbb{R}^{4}$. 
+
+However, Donaldson's work did not
+indicate any relation to physical ideas which Yang-Mills theory is based
+on. As a result, topologists with little or no knowledge of physics were able to 
+learn and make important contributions to Donaldson theory. However, if physics
+had lead to such a profound impact, perhaps there was more to be gained from a
+physical formulation of the theory. Indeed this was the case, as we will see
+next. 
+
+The origin of TQFT can be traced to the work of Albert Schwarz and Edward Witten.
+Schwarz (1978) showed that the Ray-Singer torsion, a particular topological invarint,
+could be represented as the partition function of a certain quantum field theory. 
+Unrelated to this observation, Witten gave a framework in supersymmetric (SUSY)
+quantum mechanics that lead to a generalisation of Morse theory (1982).
+It turns out that Donaldson invariants on a cylinder $Y^3\times \mathbb{R}$ is
+formally a Morse theory for a certain action functional. Thus,
+\citet{wittenTQFT} (\citeyear{wittenTQFT}) applied his idea
+to Donaldson invariants on a $Y^3\times \mathbb{R}$ to obtain a $N=2$ 
+SUSY quantum theory. But since this Morse theory is on a set of 
+gauge fields, we get a QFT. In the same paper, he came up with a
+relativistically covariant twisted version of QFT by generalising the existing 
+fields and adding new fields, in which the Donaldson polynomials appeared as 
+correlation functions of certain observables. This became known as Donaldson-Witten theory.
 
 % Naber intro 
 This construction is a remarkable achievement because it showed a profound
-connection between supersymmetric TQFT and differential topology. 
-Topologists were eager to understand the insights that gave rise to the radically
-new view of smooth four-manifold invariants. However, this area of theoretical physics
+connection between SUSY TQFT and Donaldson theory that one might
+expect. Topologists were eager to understand the insights that gave rise to the 
+radically new view of smooth four-manifold invariants. However, this area of theoretical physics
 was accessible to relatively few mathematicians. 
 Fortunately, Atiyah and Jeffrey showed how to arrive at the very same action by 
-purely geometric means, utilising the Mathai-Quillen formula. 
-Subsequently, their procedure has been adapted to produce analogous TQFT
-theories for other invariants, such as the Seiberg-Witten invariants.  
+purely geometric means. Starting with the universal Mathai-Quillen formula, they
+made a series of manipulations which resulted in the same action of
+Donaldson-Witten theory, but which could now be interpreted as an Euler form on
+an infinite-dimensional vector bundle.
 
-\section*{Introduction}
+Donaldson-Witten theory caught the attention of many, but this
+approach did not lead many mathematicians to gain new insight about Donaldson
+invariants, for a few reasons. Aside from the time and effort required to learn
+the relevant physics, the mathematics required to make the path integrals
+rigourous was not (and is still not) available. But in 1994, Witten's
+SUSY TQFT revealed its practical significance in a dramatic way. 
+\begin{comment}
+Nathan Seiberg had discovered new techniques to show that
+certain SUSY theories constrains the form of the effective Lagrangian to such an
+extent that quantum corrections vanish in higher orders in perturbation theory.
+\end{comment}
+Seiberg and Witten discovered new dualities in SUSY
+theories, which illustrates features such as quark confinement. These ideas led to
+the unification of string theories into $M$-theory, and other developments in
+SUSY theories.  
+They showed that the dual theory to Donaldson-Witten theory also has SUSY and
+the same twist obtains a new TQFT. The corresponding correlation functions,
+called the Seiberg-Witten invariants, revolutionised the study of 4-manifolds
+once again. 
 
+The new invariants are technically far easier to compute, and also leads to new
+simpler proofs in Donaldson theory. 
+Moreover, the duality predicts particular formulas that relate Donaldson
+invariants to Seiberg-Witten invariants, although a rigorous proof has still not
+yet been found. 
+
+\begin{comment}
 A quantum field theory is called a TQFT when the correlation functions are
-independent of the metric. 
-TQFT has been an active area of research ever since the seminal work by Witten
-\cite{wittenTQFT}. TQFT contains no excitations that may propagate in the
-spacetime, so it does not describe any waves we know in the real world. The
+independent of the metric. The
 characteristic quantity describing a configuration: the action, remains
 invariant under any continuous changes of the topology. 
+TQFT has been an active area of research ever since the seminal work by Witten
+\cite{wittenTQFT}. TQFT contains no excitations that may propagate in the
+spacetime, so it does not describe any waves we know in the real world. 
 
 There are two ways to formally guarantee that the correlation functions remain
 invariant under variations of the metric. % labatista, lozano
@@ -73,8 +135,8 @@ invariant under variations of the metric. % labatista, lozano
 	functions do not depend on the background metric. 
 \end{itemize}
 
-This thesis will focus on a particular Witten type TQFT: Donaldson-Witten
-theory. Witten-type TQFTs can be formulated in a variety of frameworks. 
+Donaldson-Witten theory is a particular TQFT. 
+Witten-type TQFTs can be formulated in a variety of frameworks. 
 \begin{itemize}
 	\item 
  The most geometric one corresponds to the Mathai-Quillen formalism. In this
@@ -85,26 +147,92 @@ space.\cite{cernTQFT}
  A different framework is the one based on the twisting of N = 2 supersymmetry.
 In this case, information on the physical theory can be used in the
 TQFT. (Seiberg-Witten invariants have shown up in this framework)
+\end{itemize}
 
 Topological quantum fields theories can be constructed based on the
 Mathai-Quillen formalism. Although the main breakthroughs in these theories have
 been provided in their formulation as twisted $\mathcal{N}=2$ supersymmetric
 theories, this provides a useful geometric framework.\cite{TQFTbook}
+\end{comment}
 
+\section*{Structure of the thesis}
+If there is anything to take away from the history presented, it is that
+topologists can benefit from a deeper understanding of Donaldson-Witten theory. 
+The goal for this thesis is to provide a thorough explanation of Atiyah and
+Jeffrey's interpretation of Witten's correlation functions and Lagrangian in
+terms of mathematically familiar concepts. Although the main breakthrough has
+been made in in the SUSY TQFT formulation, this provides a useful framework for
+mathematicians to think about the relation of Donaldson invariants with physics. 
+The structure of the thesis is as follows.
 
-\end{itemize}
+In Chapter \ref{chapter_equivariant}, we motivate 
+equivariant cohomology and proceed to describe the Borel construction. This
+construction is topological in nature, and we formulate an equivalent algebraic
+model called the Weil model, analogous to the de Rham isomorphism. We also
+describe the simpler Cartan model, and its properties.
 
+In Chapter \ref{chapter_mq}, we introduce the Thom isomorphism for vector
+bundles, and then construct the Mathai-Quillen formula for the Thom form. 
+Subsequently, we consider the generalisation of this formula to the Cartan model, 
+called the universal Thom form.
 
+In Chapter \ref{chapter_local}, we demonstrate the appliation of the
+Mathai-Quillen formula, and more generally the Thom form to localisation of
+integrals on manifolds. We prove a theorem stated in \cite{bott_tu} by utilising
+some results in intersection theory.
 
-Assumed knowledge:
+In Chapter \ref{chapter_donaldson}, we sketch the construction of Donaldson
+invariants. This requires first describing the Yang-Mills equations, then
+explaining the structure of the anti-self-dual moduli space. The theory required
+to do this is highly technical, so we do not go into the details of the analytic
+arguments, but include proofs of some results needed in the next chapter. 
+Finally the Donaldson map is defined. 
 
-Manifolds, Lie groups, Differential forms, integration on manifolds, de Rham cohomology
-(\citetitle{intro_tu} by Loring Tu \cite{intro_tu}, or Introduction to Smooth Manifolds by
-John Lee) 
+In Chapter \ref{chapter_aj}, we finally give an exposition of Atiyah and
+Jeffrey's paper.\cite{atiyahlagrangians} We first need to construct an analogue
+of the Thom form for a principal bundle. This is used in one of the series of
+manipulations of the Mathai-Quillen formula for the universal Thom form. 
+The result is then applied to Donaldson-Witten theory to show that the action 
+functional is reproduced, which allows us to interpret it as an infinite
+dimensional analogue of an Euler class. 
 
-Connections, curvature and characteristic classes \cite{loringtu}
+\section*{Assumed knowledge}
+The reader is required to be familiar with the theory in introductory texts
+on smooth manifolds, such as 
+\citetitle{intro_tu} by Loring Tu \cite{intro_tu}, or Introduction to Smooth Manifolds by
+John Lee \cite{lee_smooth}. Topics in particular include submanifolds, Lie groups, 
+differential forms, integration on manifolds, de Rham cohomology, Riemannian
+metrics and the exponential map.
+
+Furthermore we assume the reader is familiar with the theory of connections,
+curvature and Chern-Weil theory on vector bundles and principal bundles. 
+An excellent textbook for this is \citetitle{loringtu} by Loring Tu
+\cite{loringtu}.
+
+The reader is recommended to have a basic background in algebraic
+topology, which includes knowledge of simplicial homology and cohomology groups,
+and the cup product. 
 
 \begin{comment}
 	For supersymmetry chapter: 
 	\citetitle{hall} \citet{hall}
 \end{comment}
+
+\vspace{5mm}
+\hrule 
+\vspace{5mm}
+
+\textbf{Bibliographical notes}
+{\small
+\begin{itemize}
+	\item A overview of the main ideas in the two formulations of 
+		Donaldson-Witten theory is given in \citet{TQFTbook}, focusing more on
+		TQFT.
+
+	\item The article \citetitle{history} \cite{history} presents a 
+	more thorough review of the history of the development of Donaldson-Witten
+	theory and Seiberg-Witten theory, with brief explanations of the ideas. 
+\end{itemize}
+}
+
+
